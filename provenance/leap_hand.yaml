@@ -1,0 +1,79 @@
+model: leap_hand
+method: none
+confidence: none
+upstream_repo: https://github.com/leap-hand/LEAP_Hand_Sim
+upstream_file: assets/leap_hand/robot.urdf
+upstream_commit: null
+latest_upstream_commit: 150bc3d4b61fd6619193ba5a8ef209f3609ced89
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: leap_hand/right_hand.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: e6b97ca994f67583145d3b2124d76296f70c624b
+  timestamp: '1733381730'
+  date: '2024-12-04T22:55:30-08:00'
+  subject: initial commits for right hand
+menagerie_commits_involved: []
+source_candidate: null
+source_candidates:
+- commit: e8fc513816d4e3937904a437bdf632db749ecca5
+  timestamp: '1694800907'
+  date: '2023-09-15T14:01:47-04:00'
+  subject: leap hand sim release
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+evidence:
+- url: https://github.com/dexsuite/dex-urdf/tree/main/robots/hands/leap_hand
+  document: leap_hand/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/leap-hand/LEAP_Hand_Sim/blob/master/assets/leap_hand/robot.urdf
+  document: leap_hand/README.md
+  commit: f59b989dea80a523b0e0b0fbe550c664939c6376
+  current: false
+reason: 'No public revision matches all comparable quantities. Class: NO MATCHING
+  SOURCE; never counted as STALE.'
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.1
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - -1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - -1.0
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0

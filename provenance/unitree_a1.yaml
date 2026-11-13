@@ -1,0 +1,181 @@
+model: unitree_a1
+method: none
+confidence: none
+upstream_repo: https://github.com/unitreerobotics/unitree_ros
+upstream_file: robots/a1_description/urdf/a1.urdf
+upstream_commit: null
+latest_upstream_commit: 157ff950351e5f535e03c5d85a16b7d594b3dbcc
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: unitree_a1/a1.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 1b93125c79bb95e4e55a1d6471adb2cd92c71feb
+  timestamp: '1662561310'
+  date: '2022-09-07T07:35:10-07:00'
+  subject: Initial launch of MuJoCo Menagerie.
+  file: unitree_a1/a1.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: fb36886b3023db08c198264e1e9956ab202c3e3b
+  date: '2026-11-02T08:30:24-08:00'
+  file: unitree_a1/a1.xml
+- commit: d82891f8b6c576f9f6a9df308f3a1155ebedbc40
+  date: '2024-06-01T09:30:10-07:00'
+  file: unitree_a1/a1.xml
+- commit: ec982782ddc3b63a41cd9010e406ed272ac49a31
+  date: '2023-05-02T17:58:56-07:00'
+  file: unitree_a1/a1.xml
+- commit: 1b428b08bb26ca6024e7b21e8ff21a59f847eb87
+  date: '2022-09-13T08:40:03-07:00'
+  file: unitree_a1/a1.xml
+- commit: 1b93125c79bb95e4e55a1d6471adb2cd92c71feb
+  date: '2022-09-07T07:35:10-07:00'
+  file: unitree_a1/a1.xml
+source_candidate: null
+source_candidates:
+- commit: 8414c7792ee21dfe7b01bcdf847e85f3e5742997
+  timestamp: '1648714561'
+  date: '2022-03-31T17:16:01+09:00'
+  subject: Change urdf robot name e.g. go1_description -> go1
+  file: robots/a1_description/urdf/a1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 28
+  comparable_quantities: 78
+- commit: d8c05bfd006f21048f278bec21b6d71fd35c019f
+  timestamp: '1622605195'
+  date: '2021-06-02T11:39:55+08:00'
+  subject: modified urdf file by xacro
+  file: robots/a1_description/urdf/a1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 28
+  comparable_quantities: 78
+- commit: 5346d5516a1e5cefd28504bd8ce31528c5afde2c
+  timestamp: '1594783263'
+  date: '2020-07-15T11:21:03+08:00'
+  subject: unitree ros packages
+  file: robots/a1_description/urdf/a1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 33
+  comparable_quantities: 78
+evidence:
+- url: https://github.com/kevinzakka/obj2mjcf
+  document: unitree_a1/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/unitreerobotics/unitree_mujoco/tree/main/data/a1/meshes
+  document: unitree_a1/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/unitreerobotics/unitree_mujoco/tree/main/data/a1/urdf
+  document: unitree_a1/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/unitreerobotics/unitree_ros
+  file: robots/a1_description/urdf/a1.urdf
+  document: manufacturer source Git tree
+  reason: README-linked path missing at current HEAD; exact model filename in same-manufacturer
+    referenced source repository
+reason: 'No public revision matches all comparable quantities. Class: NO MATCHING
+  SOURCE; never counted as STALE.'
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - unitree_a1/a1.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.43
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - base
+    - FR_thigh_shoulder
+    - FL_thigh_shoulder
+    - RR_thigh_shoulder
+    - RL_thigh_shoulder
+    assets_loaded: 13
+    mesh_conversions:
+    - file: robots/a1_description/meshes/trunk.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/a1_description/meshes/hip.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/a1_description/meshes/thigh_mirror.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/a1_description/meshes/calf.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/a1_description/meshes/hip.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/a1_description/meshes/thigh.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/a1_description/meshes/calf.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/a1_description/meshes/hip.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/a1_description/meshes/thigh_mirror.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/a1_description/meshes/calf.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/a1_description/meshes/hip.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/a1_description/meshes/thigh.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/a1_description/meshes/calf.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - robots/a1_description/urdf/a1.urdf
+    - robots/a1_description/meshes/trunk.dae
+    - robots/a1_description/meshes/hip.dae
+    - robots/a1_description/meshes/thigh_mirror.dae
+    - robots/a1_description/meshes/calf.dae
+    - robots/a1_description/meshes/hip.dae
+    - robots/a1_description/meshes/thigh.dae
+    - robots/a1_description/meshes/calf.dae
+    - robots/a1_description/meshes/hip.dae
+    - robots/a1_description/meshes/thigh_mirror.dae
+    - robots/a1_description/meshes/calf.dae
+    - robots/a1_description/meshes/hip.dae
+    - robots/a1_description/meshes/thigh.dae
+    - robots/a1_description/meshes/calf.dae
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

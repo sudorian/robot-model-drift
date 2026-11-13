@@ -1,0 +1,169 @@
+model: berkeley_humanoid
+method: dated match
+confidence: medium
+upstream_repo: https://github.com/HybridRobotics/berkeley_humanoid_description
+upstream_file: urdf/robot.urdf
+upstream_commit: f6dbbb3319746655b75239790ef6e9224067dbca
+latest_upstream_commit: d0d13d3f81d795480e25ed1910eaf83d5f0a1d0b
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: berkeley_humanoid/berkeley_humanoid.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 483d231bae9796dff9d25ef23039e5cbb0d55351
+  timestamp: '1733516490'
+  date: '2024-12-06T12:21:30-08:00'
+  subject: 'Copybara import of the project:'
+menagerie_commits_involved: []
+source_candidate:
+  commit: f6dbbb3319746655b75239790ef6e9224067dbca
+  timestamp: '1724450132'
+  date: '2024-08-23T14:55:32-07:00'
+  subject: Rename verything to berkeley_humanoid
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 78
+source_candidates:
+- commit: f6dbbb3319746655b75239790ef6e9224067dbca
+  timestamp: '1724450132'
+  date: '2024-08-23T14:55:32-07:00'
+  subject: Rename verything to berkeley_humanoid
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 78
+- commit: b99690f9f6f8fab8d139ec0cce1d16aeaf5093e3
+  timestamp: '1720737288'
+  date: '2024-07-11T15:34:48-07:00'
+  subject: New ankle, small torque
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 78
+- commit: b220c10256b3bb9ed0c9a1e3d0fef2db0d8432fc
+  timestamp: '1716610426'
+  date: '2024-05-24T21:13:46-07:00'
+  subject: Update the defaultJointState
+  matches: false
+  mismatch_count: 70
+  comparable_quantities: 78
+- commit: a0a306301429fbe24771e698c7e89520aacdc768
+  timestamp: '1716340875'
+  date: '2024-05-21T18:21:15-07:00'
+  subject: Update urdf
+  matches: false
+  mismatch_count: 68
+  comparable_quantities: 78
+- commit: bb80b310aef1583ed3ffa88afe08de13c8f1ff2c
+  timestamp: '1716182435'
+  date: '2024-05-19T22:20:35-07:00'
+  subject: Update urdf
+  matches: false
+  mismatch_count: 70
+  comparable_quantities: 78
+- commit: ab26a863a3275771e2bff5f2f412b73e7e847999
+  timestamp: '1706515983'
+  date: '2024-01-29T00:13:03-08:00'
+  subject: Add more collision shapes
+  matches: false
+  mismatch_count: 70
+  comparable_quantities: 78
+- commit: cfa1fc7f6226cdfdd091e7c866d5e7764414fe2e
+  timestamp: '1706441393'
+  date: '2024-01-28T03:29:53-08:00'
+  subject: First successfully running in Gazebo
+  matches: false
+  mismatch_count: 72
+  comparable_quantities: 78
+- commit: 6b93233c05e1af58ee0834bb17b0dcff92689028
+  timestamp: '1706425533'
+  date: '2024-01-27T23:05:33-08:00'
+  subject: Add Gazebo tags
+  matches: false
+  mismatch_count: 70
+  comparable_quantities: 78
+- commit: 2a75c36509cc83d64078964da2e96a83e65616dc
+  timestamp: '1706237157'
+  date: '2024-01-25T18:45:57-08:00'
+  subject: Correct collision of URDF
+  matches: false
+  mismatch_count: 71
+  comparable_quantities: 78
+- commit: d0f0a50e6da181126ab015fb0143669596d03edb
+  timestamp: '1706070861'
+  date: '2024-01-23T20:34:21-08:00'
+  subject: Initial commit
+  matches: false
+  mismatch_count: 71
+  comparable_quantities: 78
+evidence:
+- url: https://github.com/HybridRobotics/berkeley_humanoid_description
+  document: berkeley_humanoid/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/HybridRobotics/isaac_berkeley_humanoid
+  document: berkeley_humanoid/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.6
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+  S:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0

@@ -1,0 +1,1242 @@
+model: ufactory_lite6
+method: dated match
+confidence: medium
+upstream_repo: https://github.com/xArm-Developer/xarm_ros2
+upstream_file: xarm_description/urdf/xarm_device.urdf.xacro
+upstream_commit: 65a1e29398045818d1475868c22f64053176d9f4
+latest_upstream_commit: ac736c92b02de7ca7e0be6f737d77d46707464d8
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: ufactory_lite6/lite6.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: cbbc575b4832f6c591a2da07d4aeb5fb81e49749
+  timestamp: '1699031772'
+  date: '2023-11-03T10:16:12-07:00'
+  subject: 'Add UFACTORY Lite 6 robot arm. Fixes #30.'
+  file: ufactory_lite6/lite6.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: 1ef6ef21d12106e2b5dcfb2b319698fb4ed0d030
+  date: '2024-09-01T15:18:42+10:00'
+  file: ufactory_lite6/lite6.xml
+- commit: 47b0810ec4d0201d0ff65013b9ffc1fe51573b03
+  date: '2024-09-01T15:18:42+10:00'
+  file: ufactory_lite6/lite6.xml
+- commit: 7d2f68ff183de4eceeca583169f81a25c63a87b8
+  date: '2024-06-08T15:46:34-07:00'
+  file: ufactory_lite6/lite6.xml
+- commit: cbbc575b4832f6c591a2da07d4aeb5fb81e49749
+  date: '2023-11-03T10:16:12-07:00'
+  file: ufactory_lite6/lite6.xml
+source_candidate:
+  commit: 65a1e29398045818d1475868c22f64053176d9f4
+  timestamp: '1693211470'
+  date: '2023-08-28T16:31:10+08:00'
+  subject: '[fix] fix mesh file name or suffix'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+source_candidates:
+- commit: 8aecd61cfba25a262371047005b0e998bdb476c5
+  timestamp: '1792483499'
+  date: '2026-10-20T16:04:59+08:00'
+  subject: '[fix] (urdf) update the effort limit'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 42
+- commit: 63b7f20cbf64549562e901e5c5d0d28aee6a6e70
+  timestamp: '1792483486'
+  date: '2026-10-20T16:04:46+08:00'
+  subject: '[fix] (urdf) update the effort limit'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 42
+- commit: fc716f7481df38efff79448a1aa32b01a100f165
+  timestamp: '1792483477'
+  date: '2026-10-20T16:04:37+08:00'
+  subject: '[fix] (urdf) update the effort limit'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 42
+- commit: edf9418cd9612c126cf57f1099baba8a39120fc6
+  timestamp: '1792483465'
+  date: '2026-10-20T16:04:25+08:00'
+  subject: '[fix] (urdf) update the effort limit'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 42
+- commit: 6777dc4252e3b9b98029218afc08be4d44ec6116
+  timestamp: '1792483447'
+  date: '2026-10-20T16:04:07+08:00'
+  subject: '[fix] (urdf) update the effort limit'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 42
+- commit: 1d62cac3671bd3c5148dcfae9deb8f46674ecc1f
+  timestamp: '1792482908'
+  date: '2026-10-20T15:55:08+08:00'
+  subject: '[fix] (urdf) update the effort limit'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 42
+- commit: 824c546fd9abe7f3855f4b80bc6eaf437cfc3b3e
+  timestamp: '1777346422'
+  date: '2026-04-28T11:20:22+08:00'
+  subject: '[fix] fix uflite_gripper urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 31b0ab983491d79c84396b76566fced6be7c1cd6
+  timestamp: '1777346415'
+  date: '2026-04-28T11:20:15+08:00'
+  subject: '[fix] fix uflite_gripper urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: d3ea86792acef085c106dd8b88eb4eab07243c57
+  timestamp: '1777346409'
+  date: '2026-04-28T11:20:09+08:00'
+  subject: '[fix] fix uflite_gripper urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 972096a4869e8b53c4aca58b4f78a49d029d290e
+  timestamp: '1777346403'
+  date: '2026-04-28T11:20:03+08:00'
+  subject: '[fix] fix uflite_gripper urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 0308340410f62516f411b22906b7031b4d5152df
+  timestamp: '1777346397'
+  date: '2026-04-28T11:19:57+08:00'
+  subject: '[fix] fix uflite_gripper urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 819ec6782a399e761352a14125bcb2ed1a72f0f4
+  timestamp: '1777346331'
+  date: '2026-04-28T11:18:51+08:00'
+  subject: '[fix] fix uflite_gripper urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: fd36fd6d2d83d9649e3f8f0075022e0086d20e02
+  timestamp: '1776938139'
+  date: '2026-04-23T17:55:39+08:00'
+  subject: '[feat] add dae model and support xArm Gripper G2 model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 8f3334196bbc188bc0610d587e6169f432aac817
+  timestamp: '1776938125'
+  date: '2026-04-23T17:55:25+08:00'
+  subject: '[feat] add dae model and support xArm Gripper G2 model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 8f0fff2dac82575e7ab750217e3af6ac84fc18b6
+  timestamp: '1776938118'
+  date: '2026-04-23T17:55:18+08:00'
+  subject: '[feat] add dae model and support xArm Gripper G2 model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 38558a8f95363162812ef1841d28563f6e9ace1f
+  timestamp: '1776938104'
+  date: '2026-04-23T17:55:04+08:00'
+  subject: '[feat] add dae model and support xArm Gripper G2 model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 74c98d4b92f6513c354deb787cfc80584f83f4cc
+  timestamp: '1776938093'
+  date: '2026-04-23T17:54:53+08:00'
+  subject: '[feat] add dae model and support xArm Gripper G2 model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: d48dbd1eebcd9c256cd0847edfe65eba18f7d4f1
+  timestamp: '1776937925'
+  date: '2026-04-23T17:52:05+08:00'
+  subject: '[feat] add dae model and support xArm Gripper G2 model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 9b45b0a013826edfe29c356d102b747b32ce265f
+  timestamp: '1765965100'
+  date: '2025-12-17T17:51:40+08:00'
+  subject: '[feat] update urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: f233affed69192d5345fab0723f6764ada4a9634
+  timestamp: '1765962507'
+  date: '2025-12-17T17:08:27+08:00'
+  subject: '[feat] update urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 5468237713dc14f7c99fd051250ed44cdf13e715
+  timestamp: '1765962419'
+  date: '2025-12-17T17:06:59+08:00'
+  subject: '[feat] update urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 5a557d9e019c8c7030654191c30d6ec088810b27
+  timestamp: '1765961710'
+  date: '2025-12-17T16:55:10+08:00'
+  subject: '[feat] update urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 8a773dc27cfd164005047b97eb0a687b51850f70
+  timestamp: '1765961367'
+  date: '2025-12-17T16:49:27+08:00'
+  subject: '[feat] update urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 3f2951962f6e8235bedf44259675f4f93a63408c
+  timestamp: '1755513405'
+  date: '2025-08-18T18:36:45+08:00'
+  subject: '[fix] fix dual realsense_d435i in gazebo'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 19e8cd4ce34a43c2f899c97ec35ebe186a058449
+  timestamp: '1755513348'
+  date: '2025-08-18T18:35:48+08:00'
+  subject: '[fix] fix dual realsense_d435i in gazebo'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: d5a303f0c33b6d6fb3b6144fe10d881ccd1f1581
+  timestamp: '1755513336'
+  date: '2025-08-18T18:35:36+08:00'
+  subject: '[fix] fix dual realsense_d435i in gazebo'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 4993c751ccea926083850d7e68802d04c8906d19
+  timestamp: '1755513193'
+  date: '2025-08-18T18:33:13+08:00'
+  subject: '[fix] fix dual realsense_d435i in gazebo'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 99fa64ea55d12bc90bbbdd0771239fdcfd4eafed
+  timestamp: '1730795514'
+  date: '2024-11-05T16:31:54+08:00'
+  subject: '[feat] Added branch jazzy'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 7031343533c017b194f7155879280774ecba7464
+  timestamp: '1725270485'
+  date: '2024-09-02T17:48:05+08:00'
+  subject: '[feat] add 1305 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 3b79058f9f01cea1b1e4245ba2d69ba3465036c6
+  timestamp: '1725270462'
+  date: '2024-09-02T17:47:42+08:00'
+  subject: '[feat] add 1305 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 9de833bf175eb9daacce25c020097338dbfd561b
+  timestamp: '1725270434'
+  date: '2024-09-02T17:47:14+08:00'
+  subject: '[feat] add 1305 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 23e76103147d05bb99427e856decb41e5a431ac7
+  timestamp: '1725270298'
+  date: '2024-09-02T17:44:58+08:00'
+  subject: '[feat] add 1305 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: d8f7705d00c453d73cd01ae9106f03864e167f54
+  timestamp: '1717149189'
+  date: '2024-05-31T17:53:09+08:00'
+  subject: '[feat] add xarm6_1305 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: b7ebd6d115e0fceaf60104bc80868aead9e9fba2
+  timestamp: '1717149176'
+  date: '2024-05-31T17:52:56+08:00'
+  subject: '[feat] add xarm6_1305 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 55004f62235e6f74dc9035dbd5f3bf3b5b9b4464
+  timestamp: '1717149156'
+  date: '2024-05-31T17:52:36+08:00'
+  subject: '[feat] add xarm6_1305 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 267f80d795cfa9e6903baefb2f3c96c5ffca8031
+  timestamp: '1717149012'
+  date: '2024-05-31T17:50:12+08:00'
+  subject: '[feat] add xarm6_1305 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: a5183849482cecbf09ebfe7733036df638f6582b
+  timestamp: '1709030157'
+  date: '2024-02-27T18:35:57+08:00'
+  subject: '[feat] support bio gripper'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 9a5ae59183c605548f27fd7d4a2345ea34daad55
+  timestamp: '1709030147'
+  date: '2024-02-27T18:35:47+08:00'
+  subject: '[fix] fix xarm7_mirror ros2 control params file in urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 557424d5e90d7d441bcef17b3b4cbcfb4cc80922
+  timestamp: '1709030137'
+  date: '2024-02-27T18:35:37+08:00'
+  subject: '[fix] update xarm7_mirror link inertial parameters'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 031ce0475de326d549a13db0bad7b0ccf4993daf
+  timestamp: '1709030130'
+  date: '2024-02-27T18:35:30+08:00'
+  subject: '[feat] support xarm7_mirror robot'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: a8bd2d3be53cfe0996e5292b31df51ce4cfdcf3d
+  timestamp: '1709030087'
+  date: '2024-02-27T18:34:47+08:00'
+  subject: '[feat] support bio gripper'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 7d6388cc2b0b682263540b67bfc3c6507872f82f
+  timestamp: '1709030070'
+  date: '2024-02-27T18:34:30+08:00'
+  subject: '[fix] fix xarm7_mirror ros2 control params file in urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: affa07619542dae1b74ee5430e954811d8e09464
+  timestamp: '1709030062'
+  date: '2024-02-27T18:34:22+08:00'
+  subject: '[fix] update xarm7_mirror link inertial parameters'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 23727ae848c214e0347631c7df3ff6f88f56a007
+  timestamp: '1709030055'
+  date: '2024-02-27T18:34:15+08:00'
+  subject: '[feat] support xarm7_mirror robot'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: db818a8673236243eab641d4400450d7c82fe456
+  timestamp: '1709030003'
+  date: '2024-02-27T18:33:23+08:00'
+  subject: '[feat] support bio gripper'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: c06f1b6765b6e457b94aa83eca2a44b560075825
+  timestamp: '1709029980'
+  date: '2024-02-27T18:33:00+08:00'
+  subject: '[fix] fix xarm7_mirror ros2 control params file in urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 9d8cd00fe724800f1bb0ef7c16035c231f2ef624
+  timestamp: '1709029970'
+  date: '2024-02-27T18:32:50+08:00'
+  subject: '[fix] update xarm7_mirror link inertial parameters'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 869d4ea62cc242ea40366a4bd2d6409cd1a4a1dc
+  timestamp: '1709029959'
+  date: '2024-02-27T18:32:39+08:00'
+  subject: '[feat] support xarm7_mirror robot'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 3115ca2397c984f0acc6119cc851e3dcf7342094
+  timestamp: '1709029651'
+  date: '2024-02-27T18:27:31+08:00'
+  subject: '[feat] support bio gripper'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 2d15d4df9598ca025214bfcba7eea1dc8dab8615
+  timestamp: '1705461326'
+  date: '2024-01-17T11:15:26+08:00'
+  subject: '[fix] fix xarm7_mirror ros2 control params file in urdf'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: e52001330e529147d58eada629ca1802a726c9df
+  timestamp: '1705459783'
+  date: '2024-01-17T10:49:43+08:00'
+  subject: '[fix] update xarm7_mirror link inertial parameters'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: bb9b8a9cb8e07f3a28ea02c13dc4a4370d7c4fff
+  timestamp: '1704364276'
+  date: '2024-01-04T18:31:16+08:00'
+  subject: '[feat] support xarm7_mirror robot'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 543b46c8f0044b750624257881b6841672b5e1f1
+  timestamp: '1700641208'
+  date: '2023-11-22T16:20:08+08:00'
+  subject: '[feat] add kinematics_suffix parameter'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 6e6990e948722cfce14408ab48ca89b36746203e
+  timestamp: '1700641184'
+  date: '2023-11-22T16:19:44+08:00'
+  subject: '[feat] add kinematics_suffix parameter'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: e368cce212722f18ae00407d2ceed26acbfee0c9
+  timestamp: '1700641153'
+  date: '2023-11-22T16:19:13+08:00'
+  subject: '[feat] add kinematics_suffix parameter'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 60cad2484386f9976b64673ab83b52d05c4de884
+  timestamp: '1699431231'
+  date: '2023-11-08T16:13:51+08:00'
+  subject: '[feat] add kinematics_suffix parameter'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 65a1e29398045818d1475868c22f64053176d9f4
+  timestamp: '1693211470'
+  date: '2023-08-28T16:31:10+08:00'
+  subject: '[fix] fix mesh file name or suffix'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: af6d302501c92e0fdaca0bab2afb45cf9d59c30c
+  timestamp: '1693211456'
+  date: '2023-08-28T16:30:56+08:00'
+  subject: '[fix] fix mesh file name or suffix'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 1c869d0c179e359a2ec2ff3b3c72a766e1dcffbc
+  timestamp: '1693211440'
+  date: '2023-08-28T16:30:40+08:00'
+  subject: '[fix] fix mesh file name or suffix'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: f1422a912dd4347cee168f8d53dbd3222e3133ba
+  timestamp: '1693211317'
+  date: '2023-08-28T16:28:37+08:00'
+  subject: '[fix] fix mesh file name or suffix'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 3d259ad60b8202b88009fdea2d20579ea40a7e8b
+  timestamp: '1688701446'
+  date: '2023-07-07T11:44:06+08:00'
+  subject: '[fix] URDF syntax compatible'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: e046122d38ce691194ba5e427e1facd76688e4cc
+  timestamp: '1688701424'
+  date: '2023-07-07T11:43:44+08:00'
+  subject: '[fix] URDF syntax compatible'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: ee12df29065c9a7ce41fe12dde21eb230f5d6a92
+  timestamp: '1688701400'
+  date: '2023-07-07T11:43:20+08:00'
+  subject: '[fix] URDF syntax compatible'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 4dcb4db56167b3474a6156d28528f40416129ad1
+  timestamp: '1688701297'
+  date: '2023-07-07T11:41:37+08:00'
+  subject: '[fix] URDF syntax compatible'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 53c3d9d67aed40455aec238c68cc7c9a0d8f3256
+  timestamp: '1688369302'
+  date: '2023-07-03T15:28:22+08:00'
+  subject: '[feat] add uf850 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 1363813193d94c5a37a694b75ea7819413b3b647
+  timestamp: '1688369270'
+  date: '2023-07-03T15:27:50+08:00'
+  subject: '[feat] add uf850 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 0a1c11548aed63aece4a033063c8362379af0ada
+  timestamp: '1688369212'
+  date: '2023-07-03T15:26:52+08:00'
+  subject: '[feat] add uf850 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: d7ed38dc8d45caec1f7b60dc4d47435f110181c3
+  timestamp: '1688367423'
+  date: '2023-07-03T14:57:03+08:00'
+  subject: '[feat] add uf850 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 80756d0ba7580c927503fd222985b3c63903fada
+  timestamp: '1684912790'
+  date: '2023-05-24T15:19:50+08:00'
+  subject: '[fix] fix link has invalid inertias (#37)'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 2fa261ff6fe481907b7bdd0223036912df4413ae
+  timestamp: '1684912767'
+  date: '2023-05-24T15:19:27+08:00'
+  subject: '[fix] fix link has invalid inertias (#37)'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 04b1247891274fdc8302c9cf27850ba0bd133f33
+  timestamp: '1684912744'
+  date: '2023-05-24T15:19:04+08:00'
+  subject: '[fix] fix link has invalid inertias (#37)'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: c4cead01a99c0d6b325cccc568ab0b64b25392eb
+  timestamp: '1684911943'
+  date: '2023-05-24T15:05:43+08:00'
+  subject: '[fix] fix link has invalid inertias (#37)'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 97e03e7f1beaaf6e8f2829b5d2ff253fba3895ae
+  timestamp: '1682405851'
+  date: '2023-04-25T14:57:31+08:00'
+  subject: '[fix] (rolling) fix _private_macro.xacro'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 1
+  comparable_quantities: 42
+- commit: 17bd0b41743a87bdab5887ba300a84747672e0de
+  timestamp: '1682405678'
+  date: '2023-04-25T14:54:38+08:00'
+  subject: '[fix] (humble) fix _private_macro.xacro'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 1
+  comparable_quantities: 42
+- commit: 5f6cabaf916b1310ce0c63133d9c9a9d8390f153
+  timestamp: '1682395001'
+  date: '2023-04-25T11:56:41+08:00'
+  subject: '[fix] (xacro) fix str to int exception'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 1
+  comparable_quantities: 42
+- commit: 28b9c617452f5ce7a10028c69dfc2408dba95957
+  timestamp: '1682394986'
+  date: '2023-04-25T11:56:26+08:00'
+  subject: '[feat] Unify the URDF file and adapt the inertia parameters of the link'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 1
+  comparable_quantities: 42
+- commit: 35502d7608dfcabb94e270276fbf736eb4db4330
+  timestamp: '1682241046'
+  date: '2023-04-23T17:10:46+08:00'
+  subject: '[fix] (xacro) fix str to int exception'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 1
+  comparable_quantities: 42
+- commit: d5bd701036bb153e9299857da686d268a98a4335
+  timestamp: '1682241037'
+  date: '2023-04-23T17:10:37+08:00'
+  subject: '[feat] Unify the URDF file and adapt the inertia parameters of the link'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 1
+  comparable_quantities: 42
+- commit: a7f43a8ae5095144f869308dec47e31ae889df81
+  timestamp: '1682240953'
+  date: '2023-04-23T17:09:13+08:00'
+  subject: '[fix] (xacro) fix str to int exception'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 1
+  comparable_quantities: 42
+- commit: 0cabe64c0b1f26a847a3b52aef7bf10ddef9c5a3
+  timestamp: '1681984922'
+  date: '2023-04-20T18:02:02+08:00'
+  subject: '[feat] Unify the URDF file and adapt the inertia parameters of the link'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 1
+  comparable_quantities: 42
+- commit: e82e45df62a6b9b290df35fe97c8ef980f3dead6
+  timestamp: '1680082791'
+  date: '2023-03-29T17:39:51+08:00'
+  subject: '[feat] add launch parameter `model1300` to replace the end model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at e82e45df62a6b9b290df35fe97c8ef980f3dead6: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 43f3be4da51d6cc81901f9833cc7d420822e6cea
+  timestamp: '1680082381'
+  date: '2023-03-29T17:33:01+08:00'
+  subject: '[feat] add launch parameter `model1300` to replace the end model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at 43f3be4da51d6cc81901f9833cc7d420822e6cea: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 72d9e0b5db59433866b71fbc9dcad97dcc4d0993
+  timestamp: '1680081643'
+  date: '2023-03-29T17:20:43+08:00'
+  subject: '[feat] add launch parameter `model1300` to replace the end model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at 72d9e0b5db59433866b71fbc9dcad97dcc4d0993: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 26cac4b33c195bd121b20bb76f9b6b6f13c52488
+  timestamp: '1671188411'
+  date: '2022-12-16T19:00:11+08:00'
+  subject: '[Fix] fix xarm_device_macro.xacro'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  error: 'Resource missing at 26cac4b33c195bd121b20bb76f9b6b6f13c52488: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 4b21786c471d92d66bb1060d5a80b428137bb537
+  timestamp: '1671188375'
+  date: '2022-12-16T18:59:35+08:00'
+  subject: '[Fix] fix xarm_device_macro.xacro'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  error: 'Resource missing at 4b21786c471d92d66bb1060d5a80b428137bb537: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: ab2ce303a9a58cdc0af1bd32e9dd6bc8eeb20c05
+  timestamp: '1671188322'
+  date: '2022-12-16T18:58:42+08:00'
+  subject: '[Fix] fix xarm_device_macro.xacro'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  error: 'Resource missing at ab2ce303a9a58cdc0af1bd32e9dd6bc8eeb20c05: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 046756a2e26707b9afe17592735ff3e49e5700d0
+  timestamp: '1671185460'
+  date: '2022-12-16T18:11:00+08:00'
+  subject: '[Fix] fix ros2_control name'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  error: 'Resource missing at 046756a2e26707b9afe17592735ff3e49e5700d0: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 4c5908625f334bd7a599239a5c556ba56f129578
+  timestamp: '1671185204'
+  date: '2022-12-16T18:06:44+08:00'
+  subject: '[Fix] fix ros2_control name'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  error: 'Resource missing at 4c5908625f334bd7a599239a5c556ba56f129578: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 6dd2963bd3b2419f965f7a1bf022e7c680c58b54
+  timestamp: '1671185154'
+  date: '2022-12-16T18:05:54+08:00'
+  subject: '[Fix] fix ros2_control name'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  error: 'Resource missing at 6dd2963bd3b2419f965f7a1bf022e7c680c58b54: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 3c153bbb8841d491f8a65434eb2fc5ce0da7b6c7
+  timestamp: '1671088573'
+  date: '2022-12-15T15:16:13+08:00'
+  subject: '[Feat] add the model of realsense D435i camera to the end'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at 3c153bbb8841d491f8a65434eb2fc5ce0da7b6c7: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 5b4bc59ba8e8aa1a4e7c78543fc8f4d3cb3b53ab
+  timestamp: '1671087802'
+  date: '2022-12-15T15:03:22+08:00'
+  subject: '[Feat] add the model of realsense D435i camera to the end'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at 5b4bc59ba8e8aa1a4e7c78543fc8f4d3cb3b53ab: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 31743052d1f8533850da79abb1e3f81515b28764
+  timestamp: '1671087308'
+  date: '2022-12-15T14:55:08+08:00'
+  subject: '[Feat] add the model of realsense D435i camera to the end'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at 31743052d1f8533850da79abb1e3f81515b28764: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 7d3918e4590322a850d2f29564269f5ce6708f8a
+  timestamp: '1655451438'
+  date: '2022-06-17T15:37:18+08:00'
+  subject: Rename namespace xarm_control to uf_robot_hardware
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at 7d3918e4590322a850d2f29564269f5ce6708f8a: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 27874699082c12ee4a390bf3b57108a7c5b3f468
+  timestamp: '1655451202'
+  date: '2022-06-17T15:33:22+08:00'
+  subject: Rename namespace xarm_control to uf_robot_hardware
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at 27874699082c12ee4a390bf3b57108a7c5b3f468: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 175000bcfa9259f1177ac0b669b41f5202b065a3
+  timestamp: '1655280199'
+  date: '2022-06-15T16:03:19+08:00'
+  subject: Call SDK API directly in xarm_controller
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at 175000bcfa9259f1177ac0b669b41f5202b065a3: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: e5a1e3feb2334e6f4d5ee1d5c99ace0e00b5b0bb
+  timestamp: '1655273510'
+  date: '2022-06-15T14:11:50+08:00'
+  subject: Call SDK API directly in xarm_controller
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at e5a1e3feb2334e6f4d5ee1d5c99ace0e00b5b0bb: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 3bfa3f167262d4ff0b04402afa81eaeb5761fd6c
+  timestamp: '1654684194'
+  date: '2022-06-08T18:29:54+08:00'
+  subject: Fix URDF file
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  error: 'Resource missing at 3bfa3f167262d4ff0b04402afa81eaeb5761fd6c: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: d33de50aaff5ca0768c7501fcf124a1d61802bdc
+  timestamp: '1654683474'
+  date: '2022-06-08T18:17:54+08:00'
+  subject: update lite6 and its gripper/vacuum_gripper models and some launch files
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  error: 'Resource missing at d33de50aaff5ca0768c7501fcf124a1d61802bdc: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 0f8ebb37378d5da713ae773e0031bd89c0fd8e0e
+  timestamp: '1654678562'
+  date: '2022-06-08T16:56:02+08:00'
+  subject: Fix URDF file
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  error: 'Resource missing at 0f8ebb37378d5da713ae773e0031bd89c0fd8e0e: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: ea976435eca4a20a8e29fe8549bf3f6f5abbbeb7
+  timestamp: '1654658063'
+  date: '2022-06-08T11:14:23+08:00'
+  subject: update lite6 and its gripper/vacuum_gripper models and some launch files
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  error: 'Resource missing at ea976435eca4a20a8e29fe8549bf3f6f5abbbeb7: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: f0ad415d615f658ba747fc533757e2c923d294c8
+  timestamp: '1651732076'
+  date: '2022-05-05T14:27:56+08:00'
+  subject: 'Feat: add lite6 model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at f0ad415d615f658ba747fc533757e2c923d294c8: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 7a2ba61a7090d155e68d5f0ba8bb2bb8c55bb746
+  timestamp: '1651214279'
+  date: '2022-04-29T14:37:59+08:00'
+  subject: 'Feat: add lite6 model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at 7a2ba61a7090d155e68d5f0ba8bb2bb8c55bb746: ../../../xarm_description/meshes/lite6/visual/base.stl'
+  matches: false
+- commit: 32cf9ff739ad0b4794e76bcb0df7d1d7b712bb8f
+  timestamp: '1625648202'
+  date: '2021-07-07T16:56:42+08:00'
+  subject: support load other model attach to end_effector
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at 32cf9ff739ad0b4794e76bcb0df7d1d7b712bb8f: ../../../xarm_description/meshes/xarm6/visual/base.stl'
+  matches: false
+- commit: eb02b6cfffd318ab049ce695e37941b8ddf8cd99
+  timestamp: '1624355726'
+  date: '2021-06-22T17:55:26+08:00'
+  subject: Separate xarm/gripper parameters, automatically combine parameters to use
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Resource missing at eb02b6cfffd318ab049ce695e37941b8ddf8cd99: ../../../xarm_description/meshes/xarm6/visual/base.stl'
+  matches: false
+- commit: 53a43be71f4b79bb5e2cdbe2f655a89655002548
+  timestamp: '1623399662'
+  date: '2021-06-11T16:21:02+08:00'
+  subject: remove moveit_fake_controller
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''link2'', id 3'
+  matches: false
+- commit: 02bf5f1bb07a3dad8f477b5ddc0ba03c582f5168
+  timestamp: '1623316786'
+  date: '2021-06-10T17:19:46+08:00'
+  subject: fix urdf/srdf name and add gazebo_ros2_control
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''link2'', id 3'
+  matches: false
+- commit: db64c562277909bc08c558b2f629bccf882db6a6
+  timestamp: '1622799731'
+  date: '2021-06-04T17:42:11+08:00'
+  subject: add dual_xarm_moveit control
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''link2'', id 3'
+  matches: false
+- commit: d17f59ebd0c9a9c6afd0bf61ee843d6e3b12ce61
+  timestamp: '1619511050'
+  date: '2021-04-27T16:10:50+08:00'
+  subject: update hw_ns parameter available
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''link2'', id 3'
+  matches: false
+- commit: bcceb1a87b32341dd4e11d8f8735835c9fc1c6f8
+  timestamp: '1619341114'
+  date: '2021-04-25T16:58:34+08:00'
+  subject: update
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''link2'', id 3'
+  matches: false
+- commit: 08ca7e445fdee4ddd5828f76e66a3b965d1e8c9b
+  timestamp: '1619163663'
+  date: '2021-04-23T15:41:03+08:00'
+  subject: update xarm_description
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''link2'', id 3'
+  matches: false
+- commit: 27be56de2e00e36d8e6db5a6b55a37d91ed894b8
+  timestamp: '1618559108'
+  date: '2021-04-16T15:45:08+08:00'
+  subject: add xarm_description
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''link2'', id 3'
+  matches: false
+evidence:
+- url: https://github.com/xArm-Developer/xarm_ros2/tree/master/xarm_description/urdf/lite6
+  document: ufactory_lite6/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - ufactory_lite6/lite6.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - world
+    - link_eef
+    assets_loaded: 14
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments:
+      robot_type: lite
+      dof: '6'
+      add_gripper: 'false'
+      prefix: ''
+      hw_ns: xarm
+      limited: 'false'
+      effort_control: 'false'
+      velocity_control: 'false'
+      add_vacuum_gripper: 'false'
+      add_bio_gripper: 'false'
+      model1300: 'false'
+      robot_ip: ''
+      robot_sn: ''
+      report_type: normal
+      ros2_control_plugin: uf_robot_hardware/UFRobotSystemHardware
+      ros2_control_params: ''
+      add_realsense_d435i: 'false'
+      add_d435i_links: 'true'
+      use_gazebo_camera: 'false'
+      add_other_geometry: 'false'
+      geometry_type: box
+      geometry_mass: '0.1'
+      geometry_height: '0.1'
+      geometry_radius: '0.1'
+      geometry_length: '0.1'
+      geometry_width: '0.1'
+      geometry_mesh_filename: ''
+      geometry_mesh_origin_xyz: 0 0 0
+      geometry_mesh_origin_rpy: 0 0 0
+      geometry_mesh_tcp_xyz: 0 0 0
+      geometry_mesh_tcp_rpy: 0 0 0
+      baud_checkset: 'true'
+      default_gripper_baud: '2000000'
+      attach_to: world
+      attach_xyz: 0 0 0
+      attach_rpy: 0 0 0
+      mesh_suffix: stl
+      kinematics_suffix: ''
+      gripper_version: G1
+    source_dependencies:
+    - xarm_description/config/kinematics/default/lite6_default_kinematics.yaml
+    - xarm_description/config/link_inertial/xarm6_type9_HT_BR2.yaml
+    - xarm_description/config/lite6/joint_limits.yaml
+    - xarm_description/urdf/_private_macro.xacro
+    - xarm_description/urdf/common/common.gazebo.xacro
+    - xarm_description/urdf/common/common.link.xacro
+    - xarm_description/urdf/common/common.material.xacro
+    - xarm_description/urdf/lite6/lite6.gazebo.xacro
+    - xarm_description/urdf/lite6/lite6.ros2_control.xacro
+    - xarm_description/urdf/lite6/lite6.transmission.xacro
+    - xarm_description/urdf/lite6/lite6.urdf.xacro
+    - xarm_description/urdf/lite6/lite6_robot_macro.xacro
+    - xarm_description/urdf/xarm_device.urdf.xacro
+    - xarm_description/urdf/xarm_device_macro.xacro
+    - xarm_description/meshes/lite6/visual/link_base.stl
+    - xarm_description/meshes/lite6/collision/link_base.stl
+    - xarm_description/meshes/lite6/visual/link1.stl
+    - xarm_description/meshes/lite6/collision/link1.stl
+    - xarm_description/meshes/lite6/visual/link2.stl
+    - xarm_description/meshes/lite6/collision/link2.stl
+    - xarm_description/meshes/lite6/visual/link3.stl
+    - xarm_description/meshes/lite6/collision/link3.stl
+    - xarm_description/meshes/lite6/visual/link4.stl
+    - xarm_description/meshes/lite6/collision/link4.stl
+    - xarm_description/meshes/lite6/visual/link5.stl
+    - xarm_description/meshes/lite6/collision/link5.stl
+    - xarm_description/meshes/lite6/visual/link6.stl
+    - xarm_description/meshes/lite6/collision/link6.stl
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo
+  S:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - world
+    - link_eef
+    assets_loaded: 14
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments:
+      robot_type: lite
+      dof: '6'
+      add_gripper: 'false'
+      prefix: ''
+      hw_ns: xarm
+      limited: 'false'
+      effort_control: 'false'
+      velocity_control: 'false'
+      add_vacuum_gripper: 'false'
+      model1300: 'false'
+      robot_ip: ''
+      robot_sn: ''
+      report_type: normal
+      ros2_control_plugin: uf_robot_hardware/UFRobotSystemHardware
+      ros2_control_params: ''
+      add_realsense_d435i: 'false'
+      add_d435i_links: 'true'
+      use_gazebo_camera: 'false'
+      add_other_geometry: 'false'
+      geometry_type: box
+      geometry_mass: '0.1'
+      geometry_height: '0.1'
+      geometry_radius: '0.1'
+      geometry_length: '0.1'
+      geometry_width: '0.1'
+      geometry_mesh_filename: ''
+      geometry_mesh_origin_xyz: 0 0 0
+      geometry_mesh_origin_rpy: 0 0 0
+      geometry_mesh_tcp_xyz: 0 0 0
+      geometry_mesh_tcp_rpy: 0 0 0
+      baud_checkset: 'true'
+      default_gripper_baud: '2000000'
+      attach_to: world
+      attach_xyz: 0 0 0
+      attach_rpy: 0 0 0
+      mesh_suffix: stl
+    source_dependencies:
+    - xarm_description/config/link_inertial/xarm6_type9_HT_BR2.yaml
+    - xarm_description/urdf/_private_macro.xacro
+    - xarm_description/urdf/common/common.gazebo.xacro
+    - xarm_description/urdf/common/common.link.xacro
+    - xarm_description/urdf/common/common.material.xacro
+    - xarm_description/urdf/lite6/lite6.gazebo.xacro
+    - xarm_description/urdf/lite6/lite6.ros2_control.xacro
+    - xarm_description/urdf/lite6/lite6.transmission.xacro
+    - xarm_description/urdf/lite6/lite6.urdf.xacro
+    - xarm_description/urdf/lite6/lite6_robot_macro.xacro
+    - xarm_description/urdf/xarm_device.urdf.xacro
+    - xarm_description/urdf/xarm_device_macro.xacro
+    - xarm_description/meshes/lite6/visual/link_base.stl
+    - xarm_description/meshes/lite6/collision/link_base.stl
+    - xarm_description/meshes/lite6/visual/link1.stl
+    - xarm_description/meshes/lite6/collision/link1.stl
+    - xarm_description/meshes/lite6/visual/link2.stl
+    - xarm_description/meshes/lite6/collision/link2.stl
+    - xarm_description/meshes/lite6/visual/link3.stl
+    - xarm_description/meshes/lite6/collision/link3.stl
+    - xarm_description/meshes/lite6/visual/link4.stl
+    - xarm_description/meshes/lite6/collision/link4.stl
+    - xarm_description/meshes/lite6/visual/link5.stl
+    - xarm_description/meshes/lite6/collision/link5.stl
+    - xarm_description/meshes/lite6/visual/link6.stl
+    - xarm_description/meshes/lite6/collision/link6.stl
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

@@ -1,0 +1,219 @@
+model: unitree_h1
+method: none
+confidence: none
+upstream_repo: https://github.com/unitreerobotics/unitree_ros
+upstream_file: robots/h1_description/urdf/h1.urdf
+upstream_commit: null
+latest_upstream_commit: 157ff950351e5f535e03c5d85a16b7d594b3dbcc
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: unitree_h1/h1.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 56c951b6e8ba8cd6a330ee42403874dbc2d546c9
+  timestamp: '1699303820'
+  date: '2023-11-06T12:50:20-08:00'
+  subject: Add Unitree H1 humanoid robot.
+  file: unitree_h1/h1.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: fb36886b3023db08c198264e1e9956ab202c3e3b
+  date: '2026-11-02T08:30:24-08:00'
+  file: unitree_h1/h1.xml
+- commit: ac6b2b09983786f3036cab1000221017fa2193b4
+  date: '2026-05-18T15:33:00-07:00'
+  file: unitree_h1/h1.xml
+- commit: 83e4e86b8f75a92a81487d383e24adcafceed55f
+  date: '2024-01-30T08:58:12-08:00'
+  file: unitree_h1/h1.xml
+- commit: c118f3d5d5ec9fb27f832ac78b3c4971234f0f4f
+  date: '2023-11-06T13:16:02-08:00'
+  file: unitree_h1/h1.xml
+- commit: 56c951b6e8ba8cd6a330ee42403874dbc2d546c9
+  date: '2023-11-06T12:50:20-08:00'
+  file: unitree_h1/h1.xml
+source_candidate: null
+source_candidates:
+- commit: 34e7506c5333666f7c6dad6bfeeca2176cace70b
+  timestamp: '1767173515'
+  date: '2025-12-31T17:31:55+08:00'
+  subject: update h1 urdf (mass&inertial)
+  file: robots/h1_description/urdf/h1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 67
+  comparable_quantities: 120
+- commit: c4519eba87c5c2a959c53629c74d03f1ee9bc866
+  timestamp: '1765279462'
+  date: '2025-12-09T19:24:22+08:00'
+  subject: change h1 torso_link mass
+  file: robots/h1_description/urdf/h1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 30
+  comparable_quantities: 120
+- commit: a3b70cae6fd4a82c0e1ece633d5c6f97e88c9d76
+  timestamp: '1750337769'
+  date: '2025-06-19T20:56:09+08:00'
+  subject: '- modify URDF material to facilitate conversion to USD   [go2, go2w, b2,
+    b2w,  h1] - fix go2w wheel collision error'
+  file: robots/h1_description/urdf/h1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 25
+  comparable_quantities: 120
+- commit: fa16256a76eae9565d8e17e9f4e5be2fb61a8807
+  timestamp: '1721220995'
+  date: '2024-07-17T20:56:35+08:00'
+  subject: fix material names
+  file: robots/h1_description/urdf/h1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 25
+  comparable_quantities: 120
+- commit: f99ca8397697b80fc3329097bf0521829845737f
+  timestamp: '1712887307'
+  date: '2024-04-12T10:01:47+08:00'
+  subject: update torso_link visualization
+  file: robots/h1_description/urdf/h1.urdf
+  dependency_change: true
+  matches: false
+  mismatch_count: 25
+  comparable_quantities: 120
+- commit: 73be4a2b90dcc5639cc4e4997ba7732fa11b7672
+  timestamp: '1712565853'
+  date: '2024-04-08T16:44:13+08:00'
+  subject: add camera and ladar links/joints in H1 urdf
+  file: robots/h1_description/urdf/h1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 25
+  comparable_quantities: 120
+- commit: 67ac2124494e93af87d34d6e53ef9060dbf9c923
+  timestamp: '1706773683'
+  date: '2024-02-01T15:48:03+08:00'
+  subject: update H1 urdf for isaac gym
+  file: robots/h1_description/urdf/h1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 25
+  comparable_quantities: 120
+- commit: 39c9da3e6bd097747cd6a5881cb655e3438b5708
+  timestamp: '1705928946'
+  date: '2024-01-22T21:09:06+08:00'
+  subject: update hip pitch joint limit
+  file: robots/h1_description/urdf/h1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 13
+  comparable_quantities: 120
+- commit: 1a3e6489c06f551090b3ad0e617d791b9b84a38a
+  timestamp: '1705672909'
+  date: '2024-01-19T22:01:49+08:00'
+  subject: update inertial params and add _isaacgym files
+  file: robots/h1_description/urdf/h1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 11
+  comparable_quantities: 120
+- commit: 6acf8832d61cb363476a199f1b6122ca72007c8c
+  timestamp: '1705655687'
+  date: '2024-01-19T17:14:47+08:00'
+  subject: update STL and URDF
+  file: robots/h1_description/urdf/h1.urdf
+  dependency_change: true
+  matches: false
+  mismatch_count: 17
+  comparable_quantities: 120
+- commit: e197ae10d301c41f17f61fe3a741925a033db1e8
+  timestamp: '1701919608'
+  date: '2023-12-07T11:26:48+08:00'
+  subject: add h1_description
+  file: robots/h1_description/urdf/h1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 17
+  comparable_quantities: 120
+evidence: []
+reason: 'No public revision matches all comparable quantities. Class: NO MATCHING
+  SOURCE; never counted as STALE.'
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - unitree_h1/h1.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 1.06
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - imu_link
+    - logo_link
+    - d435_left_imager_link
+    - d435_rgb_module_link
+    - mid360_link
+    assets_loaded: 21
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - robots/h1_description/urdf/h1.urdf
+    - robots/h1_description/meshes/pelvis.STL
+    - robots/h1_description/meshes/left_hip_yaw_link.STL
+    - robots/h1_description/meshes/left_hip_roll_link.STL
+    - robots/h1_description/meshes/left_hip_pitch_link.STL
+    - robots/h1_description/meshes/left_knee_link.STL
+    - robots/h1_description/meshes/left_ankle_link.STL
+    - robots/h1_description/meshes/right_hip_yaw_link.STL
+    - robots/h1_description/meshes/right_hip_roll_link.STL
+    - robots/h1_description/meshes/right_hip_pitch_link.STL
+    - robots/h1_description/meshes/right_knee_link.STL
+    - robots/h1_description/meshes/right_ankle_link.STL
+    - robots/h1_description/meshes/torso_link.STL
+    - robots/h1_description/meshes/left_shoulder_pitch_link.STL
+    - robots/h1_description/meshes/left_shoulder_roll_link.STL
+    - robots/h1_description/meshes/left_shoulder_yaw_link.STL
+    - robots/h1_description/meshes/left_elbow_link.STL
+    - robots/h1_description/meshes/right_shoulder_pitch_link.STL
+    - robots/h1_description/meshes/right_shoulder_roll_link.STL
+    - robots/h1_description/meshes/right_shoulder_yaw_link.STL
+    - robots/h1_description/meshes/right_elbow_link.STL
+    - robots/h1_description/meshes/logo_link.STL
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

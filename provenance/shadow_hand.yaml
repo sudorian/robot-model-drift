@@ -1,0 +1,681 @@
+model: shadow_hand
+method: unknown
+confidence: incomplete
+upstream_repo: https://github.com/shadow-robot/sr_common
+upstream_file: sr_description/robots/sr_hand.urdf.xacro
+upstream_commit: null
+latest_upstream_commit: 172c3d9c3715ee75eb10dfe4ee57e26a342b4529
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: shadow_hand/right_hand.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 0498058ea4d85f1f7630496c61479b0ff1fabbfe
+  timestamp: '1701462716'
+  date: '2023-12-01T12:31:56-08:00'
+  subject: 'Fix incorrect wrist orientation caused by the updated forearm mesh. Resolves
+    #31.'
+  file: shadow_hand/right_hand.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: c5d2e83f49a2a1201153a686de0d26cc02b3bd98
+  date: '2023-12-06T13:53:43-08:00'
+  file: shadow_hand/right_hand.xml
+- commit: 429e946a8e22bebc0548856396eacd6ff8e31d21
+  date: '2023-12-02T02:22:11-08:00'
+  file: shadow_hand/right_hand.xml
+- commit: 0498058ea4d85f1f7630496c61479b0ff1fabbfe
+  date: '2023-12-01T12:31:56-08:00'
+  file: shadow_hand/right_hand.xml
+- commit: ec982782ddc3b63a41cd9010e406ed272ac49a31
+  date: '2023-05-02T17:58:56-07:00'
+  file: shadow_hand/right_hand.xml
+- commit: 7515162f8a404648ededdab64f26ae8d8b802907
+  date: '2022-09-21T10:21:32-07:00'
+  file: shadow_hand/right_hand.xml
+- commit: 1b428b08bb26ca6024e7b21e8ff21a59f847eb87
+  date: '2022-09-13T08:40:03-07:00'
+  file: shadow_hand/right_hand.xml
+- commit: 1b93125c79bb95e4e55a1d6471adb2cd92c71feb
+  date: '2022-09-07T07:35:10-07:00'
+  file: shadow_hand/right_hand.xml
+source_candidate: null
+source_candidates:
+- commit: 172c3d9c3715ee75eb10dfe4ee57e26a342b4529
+  timestamp: '1736423289'
+  date: '2025-01-09T11:48:09Z'
+  subject: New hand G (lite) version with new plam flesh - Hand version G4 (#172)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 6fcee98982499a645c0812a89b6e70a920f2ed33
+  timestamp: '1721209752'
+  date: '2024-07-17T10:49:12+01:00'
+  subject: Fix thj2 offset in bt_2p configuration (#171)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: b90cf709fc0ec05bbf32d6ece3dca4a37c7891bb
+  timestamp: '1713538513'
+  date: '2024-04-19T15:55:13+01:00'
+  subject: Update MST meshes (and xacro) to MSTXL and adding MST sensors taxels TFs
+    to the Hand TF tree. (#168)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: efa7d38707acc6eef1b1f1cfd45e9ef478dd910c
+  timestamp: '1687528627'
+  date: '2023-06-23T14:57:07+01:00'
+  subject: Adding forearm mesh with logo (#169)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 76eb3d8f0de2a8d7aa41c71c2904a3a28cc81036
+  timestamp: '1684503315'
+  date: '2023-05-19T14:35:15+01:00'
+  subject: Merge branch 'noetic-devel' into F_SRC_7118
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 3a43ef636fcbbed0f0c0881b141ccf84b78fcf6c
+  timestamp: '1680268889'
+  date: '2023-03-31T14:21:29+01:00'
+  subject: Fix hand inertia values (Little Finger metacarpal) (#162)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: a8693bb34609f5068ec8c4537c5574768bcd7336
+  timestamp: '1680263569'
+  date: '2023-03-31T12:52:49+01:00'
+  subject: Hand model bug fix when using Biotac SP + (version 2) tactile sensors (#161)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 50517d00e6330b0539025a2576acdddaa7a31941
+  timestamp: '1678871902'
+  date: '2023-03-15T09:18:22Z'
+  subject: Adding E4 to the list of correct options (#158)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: f504d20b4f063dc394927f0a82546a6fb6385a56
+  timestamp: '1678871305'
+  date: '2023-03-15T09:08:25Z'
+  subject: Adding E4 to the list of correct options (#157)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 474af58ff5656e90261fca3e013e5a5110b1c29d
+  timestamp: '1676570321'
+  date: '2023-02-16T12:58:41-05:00'
+  subject: Removing the axis from the link (#155)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: a7ba7d6751b8bd0e8fc3bccfdcb67c68284bab35
+  timestamp: '1675390773'
+  date: '2023-02-02T21:19:33-05:00'
+  subject: Fixing lint
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 1039a5904aaf2b9a1ee8b71f5706fc18d1d059d5
+  timestamp: '1675353641'
+  date: '2023-02-02T11:00:41-05:00'
+  subject: Adding meshes
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 106813f392d4df2a6d88a9b57664297d893a6578
+  timestamp: '1675338662'
+  date: '2023-02-02T06:51:02-05:00'
+  subject: Changing path
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: adc4e3257a959e723821f15b8d24540808be455d
+  timestamp: '1675273028'
+  date: '2023-02-01T12:37:08-05:00'
+  subject: Merge branch 'noetic-devel' into F_SRC_7118
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 5ab01b2f4590ee362ed42a822507d3d1507bd9c1
+  timestamp: '1675272586'
+  date: '2023-02-01T12:29:46-05:00'
+  subject: 'New version E4: Includes new meshes for lfmetacarpal and palm (#152)'
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 87d3e85dd6b093f3f5eaf99398525c3f893cdd81
+  timestamp: '1671541163'
+  date: '2022-12-20T07:59:23-05:00'
+  subject: Deleted thumb distal material (#151)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: aa327fd27ef6350bd0af5431e6c0d88e91b636b3
+  timestamp: '1669295974'
+  date: '2022-11-24T13:19:34Z'
+  subject: Fixing relative lfknuckle position  (#149)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 8c27f69ba9effcfc84446ef619685223e6c4c8be
+  timestamp: '1668679079'
+  date: '2022-11-17T09:57:59Z'
+  subject: Fixing dae files (#146)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 72948fd39e5821c51d2e5f3b8608ea62d450b208
+  timestamp: '1668517547'
+  date: '2022-11-15T08:05:47-05:00'
+  subject: Adding colour to the thumb mst
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: d3ba89d35f40d8c9cce40ac74289c84f10569550
+  timestamp: '1668450029'
+  date: '2022-11-14T13:20:29-05:00'
+  subject: Adding thumb distal mst
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: ba9d6c25a53df57ecaa2e1cf784230aaaa90adcb
+  timestamp: '1668449652'
+  date: '2022-11-14T13:14:12-05:00'
+  subject: Fixing finger distal mst
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 6e0bb909309957e2090d3118b71ae0b34d967016
+  timestamp: '1668449022'
+  date: '2022-11-14T13:03:42-05:00'
+  subject: Adding finger distal mst
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: d145f608300fb7617671cd5962ab742f683ecddb
+  timestamp: '1668448025'
+  date: '2022-11-14T12:47:05-05:00'
+  subject: Fixing dae files
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: ac0af1a9476c95475be95ace0121c906f6882b08
+  timestamp: '1666641883'
+  date: '2022-10-24T21:04:43+01:00'
+  subject: Sp 399 fixing hand e urdf convention (#144)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  error: 'DaeMalformedError: XML Parsing Error: XML declaration allowed only at the
+    start of the document, line 26, column 6 (<string>, line 26)'
+  matches: false
+- commit: bda959328b7934176123af0cc0491c34ecaa23ce
+  timestamp: '1663071705'
+  date: '2022-09-13T13:21:45+01:00'
+  subject: Update thhub.urdf.xacro to fix the wrong axis on THJ3 of the Left Hand
+    (#140)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  deleted: false
+  error: 'DaeMalformedError: XML Parsing Error: XML declaration allowed only at the
+    start of the document, line 26, column 6 (<string>, line 26)'
+  matches: false
+- commit: 8ae940d250799b74a1bae0da2da14e2e4508551f
+  timestamp: '1648040876'
+  date: '2022-03-23T13:07:56Z'
+  subject: Added mounting plates for hand e and hand g (#137)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 68da0638d37f455d2a57ddbe10cbec4dbc59a387
+  timestamp: '1645721220'
+  date: '2022-02-24T11:47:00-05:00'
+  subject: Xacros refactored (#133)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 14fa4f9544f9557e4b81e63c866015278f82b078
+  timestamp: '1645702302'
+  date: '2022-02-24T12:31:42+01:00'
+  subject: Revert "Switching to new xacros (#130)" (#132)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 2fb910dc4aa0c1fb3ed05975aca0bcff2dec071c
+  timestamp: '1645698146'
+  date: '2022-02-24T10:22:26Z'
+  subject: Switching to new xacros (#130)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 45
+  comparable_quantities: 142
+- commit: 5357971ac91d11027c351aef1cc0603938518ae6
+  timestamp: '1631804125'
+  date: '2021-09-16T14:55:25Z'
+  subject: removing more messages
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 6bd31448a674c57db587eeeeebe62deabbd88790
+  timestamp: '1629902252'
+  date: '2021-08-25T14:37:32Z'
+  subject: fixing mesages
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 0ef6f2794237f69bc734713f7f70573ad1bf79b6
+  timestamp: '1629731509'
+  date: '2021-08-23T15:11:49Z'
+  subject: fix depcrecation messages
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 7c694f542b369a6bf7adcb0f95a02949853961b1
+  timestamp: '1620219529'
+  date: '2021-05-05T13:58:49+01:00'
+  subject: SRC-6417 Noetic migration 1 of 2 (#102)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: f061f0e9e777d5f8a4db4c19a033bd03f8101312
+  timestamp: '1595608034'
+  date: '2020-07-24T11:27:14-05:00'
+  subject: Moving hand meshes to a more standard path to make gzweb work (#89)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: aed7305381fe2d3b80e070baa1cb038a2b506d68
+  timestamp: '1587661041'
+  date: '2020-04-23T11:57:21-05:00'
+  subject: Update thdistal.urdf.xacro
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: cf4f2299605ef37432b453474dd7bc3079c5aef6
+  timestamp: '1587661004'
+  date: '2020-04-23T11:56:44-05:00'
+  subject: Update thdistal.urdf.xacro
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 0c5955e4532237586f814a301a5adab9a10c2992
+  timestamp: '1587660825'
+  date: '2020-04-23T17:53:45+01:00'
+  subject: Update sr_description/hand/xacro/thumb/thdistal.urdf.xacro
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: f2552825fa8e25f4ce35008d4f451f1cf7cf46e2
+  timestamp: '1587660816'
+  date: '2020-04-23T17:53:36+01:00'
+  subject: Update sr_description/hand/xacro/finger/proximal/proximal.urdf.xacro
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: ea5b17ab0418ce0102787bc8efac940c71d09dc5
+  timestamp: '1587465761'
+  date: '2020-04-21T10:42:41Z'
+  subject: extend j3 urdf limit (tested)
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 58656a8372cde2a1900a7fc723c5d6071da38350
+  timestamp: '1582201668'
+  date: '2020-02-20T13:27:48+01:00'
+  subject: add a child element called imu, to be compatible with SensorParser, and
+    avoid xacro breaking by renaming macro to imu_sensor
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: c2f1860511f6515519b7a98cf9429d7f1063fe24
+  timestamp: '1558023167'
+  date: '2019-05-16T16:12:47Z'
+  subject: Adapt tips for biotac
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: fa0c6228325e0e260bc011ca20a1e7d8d1f68f0c
+  timestamp: '1558020788'
+  date: '2019-05-16T15:33:08Z'
+  subject: Modify the tip frame so that it coincides with PSTs tip
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 08531b5619101fae8d16f02e6580468e3ebe2a61
+  timestamp: '1510073658'
+  date: '2017-11-07T16:54:18Z'
+  subject: corrected urdf
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: b56f69e72147e6e1577747c314519c08625a1d6f
+  timestamp: '1444059656'
+  date: '2015-10-05T16:40:56+01:00'
+  subject: Fixed urdfs with biotacs and dummy palm
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 7f747c449519dc26ed9646de056cab00ab663736
+  timestamp: '1442492822'
+  date: '2015-09-17T14:27:02+02:00'
+  subject: updating all transmissions to new type
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: cad56773c43e21ed5159fc9310b8713f626fc05c
+  timestamp: '1440747084'
+  date: '2015-08-28T09:31:24+02:00'
+  subject: Add 'sr_description/' from commit 'e39edd1e6d99ba50d7cc95100edaa827c28c5709'
+  file: sr_description/robots/sr_hand.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+evidence:
+- url: https://github.com/shadow-robot/sr_common/commit/bda959328b7934176123af0cc0491c34ecaa23ce
+  document: git commit message
+  commit: e946426aaaa56f59e14ad24ed2c22a3b1a04f124
+  current: false
+- url: https://github.com/kevinzakka/obj2mjcf
+  document: shadow_hand/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/shadow-robot/sr_common/blob/noetic-devel/sr_description/hand/xacro/forearm/forearm_e.urdf.xacro
+  document: shadow_hand/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/shadow-robot/sr_common/tree/noetic-devel/sr_description/meshes/
+  document: shadow_hand/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Unresolved historical compilation prevents selecting or rejecting a matching
+  source. Pairwise M/H differences are reported with unknown provenance.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - shadow_hand/right_hand.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 0.0
+        - 0.0
+        - 0.9999999999999998
+      - - 0.0
+        - -0.9999999999999998
+        - 0.0
+      - - 0.9999999999999998
+        - 0.0
+        - 0.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - world
+    - rh_manipulator
+    - rh_imu
+    assets_loaded: 29
+    mesh_conversions:
+    - file: sr_description/meshes/components/forearm/forearm_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/forearm/forearm_collision_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/wrist/wrist_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/palm/palm_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_knuckle/f_knuckle_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_proximal/f_proximal_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_middle/f_middle_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_knuckle/f_knuckle_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_proximal/f_proximal_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_middle/f_middle_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_knuckle/f_knuckle_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_proximal/f_proximal_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_middle/f_middle_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/lf_metacarpal/lf_metacarpal_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_knuckle/f_knuckle_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_proximal/f_proximal_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_middle/f_middle_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/th_proximal/th_proximal_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/th_middle/th_middle_E3M5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/th_distal/pst/th_distal_pst.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: sr_description/meshes/components/th_distal/pst/th_distal_pst.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments:
+      side: right
+      hand_type: hand_e
+      hand_version: E3M5
+      fingers: all
+      tip_sensors: pst
+      mid_sensors: none
+      prox_sensors: none
+      palm_sensor: none
+      mounting_plate: 'false'
+    source_dependencies:
+    - sr_description/hand/xacro/finger/distal/distal.gazebo.xacro
+    - sr_description/hand/xacro/finger/distal/distal.transmission.xacro
+    - sr_description/hand/xacro/finger/distal/distal.urdf.xacro
+    - sr_description/hand/xacro/finger/distal/f_distal_mstXL.urdf.xacro
+    - sr_description/hand/xacro/finger/fingers.urdf.xacro
+    - sr_description/hand/xacro/finger/knuckle/knuckle.gazebo.xacro
+    - sr_description/hand/xacro/finger/knuckle/knuckle.transmission.xacro
+    - sr_description/hand/xacro/finger/knuckle/knuckle.urdf.xacro
+    - sr_description/hand/xacro/finger/lfmetacarpal/lfmetacarpal.gazebo.xacro
+    - sr_description/hand/xacro/finger/lfmetacarpal/lfmetacarpal.transmission.xacro
+    - sr_description/hand/xacro/finger/lfmetacarpal/lfmetacarpal.urdf.xacro
+    - sr_description/hand/xacro/finger/middle/middle.gazebo.xacro
+    - sr_description/hand/xacro/finger/middle/middle.transmission.xacro
+    - sr_description/hand/xacro/finger/middle/middle.urdf.xacro
+    - sr_description/hand/xacro/finger/middle/middle_and_distal_bt_2p.urdf.xacro
+    - sr_description/hand/xacro/finger/proximal/proximal.gazebo.xacro
+    - sr_description/hand/xacro/finger/proximal/proximal.transmission.xacro
+    - sr_description/hand/xacro/finger/proximal/proximal.urdf.xacro
+    - sr_description/hand/xacro/forearm/forearm_e.urdf.xacro
+    - sr_description/hand/xacro/hand.urdf.xacro
+    - sr_description/hand/xacro/hand_e.urdf.xacro
+    - sr_description/hand/xacro/palm/imu.urdf.xacro
+    - sr_description/hand/xacro/palm/palm.gazebo.xacro
+    - sr_description/hand/xacro/palm/palm.transmission.xacro
+    - sr_description/hand/xacro/palm/palm_e.urdf.xacro
+    - sr_description/hand/xacro/process_fingers_parameter.xacro
+    - sr_description/hand/xacro/process_hand_type_version_side_parameters.xacro
+    - sr_description/hand/xacro/process_sensor_parameters.xacro
+    - sr_description/hand/xacro/thumb/th_distal_mst.urdf.xacro
+    - sr_description/hand/xacro/thumb/thbase.gazebo.xacro
+    - sr_description/hand/xacro/thumb/thbase.transmission.xacro
+    - sr_description/hand/xacro/thumb/thbase.urdf.xacro
+    - sr_description/hand/xacro/thumb/thdistal.gazebo.xacro
+    - sr_description/hand/xacro/thumb/thdistal.transmission.xacro
+    - sr_description/hand/xacro/thumb/thdistal.urdf.xacro
+    - sr_description/hand/xacro/thumb/thhub.gazebo.xacro
+    - sr_description/hand/xacro/thumb/thhub.transmission.xacro
+    - sr_description/hand/xacro/thumb/thhub.urdf.xacro
+    - sr_description/hand/xacro/thumb/thmiddle.gazebo.xacro
+    - sr_description/hand/xacro/thumb/thmiddle.transmission.xacro
+    - sr_description/hand/xacro/thumb/thmiddle.urdf.xacro
+    - sr_description/hand/xacro/thumb/thproximal.gazebo.xacro
+    - sr_description/hand/xacro/thumb/thproximal.transmission.xacro
+    - sr_description/hand/xacro/thumb/thproximal.urdf.xacro
+    - sr_description/hand/xacro/thumb/thumb.urdf.xacro
+    - sr_description/hand/xacro/validate_macros.xacro
+    - sr_description/hand/xacro/wrist/wrist.transmission.xacro
+    - sr_description/hand/xacro/wrist/wrist.urdf.xacro
+    - sr_description/other/xacro/gazebo.urdf.xacro
+    - sr_description/other/xacro/materials.urdf.xacro
+    - sr_description/robots/sr_hand.urdf.xacro
+    - sr_description/meshes/components/forearm/forearm_E3M5.dae
+    - sr_description/meshes/components/forearm/forearm_collision_E3M5.dae
+    - sr_description/meshes/components/wrist/wrist_E3M5.dae
+    - sr_description/meshes/components/palm/palm_E3M5.dae
+    - sr_description/meshes/components/f_knuckle/f_knuckle_E3M5.dae
+    - sr_description/meshes/components/f_proximal/f_proximal_E3M5.dae
+    - sr_description/meshes/components/f_middle/f_middle_E3M5.dae
+    - sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+    - sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+    - sr_description/meshes/components/f_knuckle/f_knuckle_E3M5.dae
+    - sr_description/meshes/components/f_proximal/f_proximal_E3M5.dae
+    - sr_description/meshes/components/f_middle/f_middle_E3M5.dae
+    - sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+    - sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+    - sr_description/meshes/components/f_knuckle/f_knuckle_E3M5.dae
+    - sr_description/meshes/components/f_proximal/f_proximal_E3M5.dae
+    - sr_description/meshes/components/f_middle/f_middle_E3M5.dae
+    - sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+    - sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+    - sr_description/meshes/components/lf_metacarpal/lf_metacarpal_E3M5.dae
+    - sr_description/meshes/components/f_knuckle/f_knuckle_E3M5.dae
+    - sr_description/meshes/components/f_proximal/f_proximal_E3M5.dae
+    - sr_description/meshes/components/f_middle/f_middle_E3M5.dae
+    - sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+    - sr_description/meshes/components/f_distal/pst/f_distal_pst.dae
+    - sr_description/meshes/components/th_proximal/th_proximal_E3M5.dae
+    - sr_description/meshes/components/th_middle/th_middle_E3M5.dae
+    - sr_description/meshes/components/th_distal/pst/th_distal_pst.dae
+    - sr_description/meshes/components/th_distal/pst/th_distal_pst.dae
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

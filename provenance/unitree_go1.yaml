@@ -1,0 +1,216 @@
+model: unitree_go1
+method: none
+confidence: none
+upstream_repo: https://github.com/unitreerobotics/unitree_ros
+upstream_file: robots/go1_description/urdf/go1.urdf
+upstream_commit: null
+latest_upstream_commit: 157ff950351e5f535e03c5d85a16b7d594b3dbcc
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: unitree_go1/go1.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 28ffb48b5c1d409a37fbfbb01c023c12e61cdefd
+  timestamp: '1684433690'
+  date: '2023-05-18T11:14:50-07:00'
+  subject: Add six new models to Menagerie.
+  file: unitree_go1/go1.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: fb36886b3023db08c198264e1e9956ab202c3e3b
+  date: '2026-11-02T08:30:24-08:00'
+  file: unitree_go1/go1.xml
+- commit: 1f39894208d5c531328209961d4e930299d01c16
+  date: '2024-11-15T10:23:34-08:00'
+  file: unitree_go1/go1.xml
+- commit: d82891f8b6c576f9f6a9df308f3a1155ebedbc40
+  date: '2024-06-01T09:30:10-07:00'
+  file: unitree_go1/go1.xml
+- commit: c5d2e83f49a2a1201153a686de0d26cc02b3bd98
+  date: '2023-12-06T13:53:43-08:00'
+  file: unitree_go1/go1.xml
+- commit: 785e57b07f3d0a0d019253930539cdac8860e016
+  date: '2023-05-18T11:50:21-07:00'
+  file: unitree_go1/go1.xml
+- commit: 28ffb48b5c1d409a37fbfbb01c023c12e61cdefd
+  date: '2023-05-18T11:14:50-07:00'
+  file: unitree_go1/go1.xml
+source_candidate: null
+source_candidates:
+- commit: 4590b76ec8fb2412cdbe21c82044a07131e181e3
+  timestamp: '1716813047'
+  date: '2024-05-27T20:30:47+08:00'
+  subject: Update go1.urdf
+  file: robots/go1_description/urdf/go1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 39
+  comparable_quantities: 78
+- commit: ca57a1857c7e1c551b457ab9fd2f85df36240b0d
+  timestamp: '1668608903'
+  date: '2022-11-16T22:28:23+08:00'
+  subject: reconfirm Go1 inertial params
+  file: robots/go1_description/urdf/go1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 39
+  comparable_quantities: 78
+- commit: 8414c7792ee21dfe7b01bcdf847e85f3e5742997
+  timestamp: '1648714561'
+  date: '2022-03-31T17:16:01+09:00'
+  subject: Change urdf robot name e.g. go1_description -> go1
+  file: robots/go1_description/urdf/go1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 65
+  comparable_quantities: 78
+- commit: 2e8877329ccb3b5b24d71f04f8ee9df68b3372e9
+  timestamp: '1646982014'
+  date: '2022-03-11T15:00:14+08:00'
+  subject: add urdf file
+  file: robots/go1_description/urdf/go1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 65
+  comparable_quantities: 78
+- commit: 2bf4935031ab1176da576c5e7f5a5be31aa41f07
+  timestamp: '1630490964'
+  date: '2021-09-01T18:09:24+08:00'
+  subject: added go1 model
+  file: robots/go1_description/urdf/go1.urdf
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+evidence:
+- url: https://github.com/unitreerobotics/unitree_ros/tree/master/robots/go1_description
+  document: unitree_go1/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: 'No public revision matches all comparable quantities. Class: NO MATCHING
+  SOURCE; never counted as STALE.'
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - unitree_go1/go1.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.445
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - base
+    - camera_optical_face
+    - camera_optical_chin
+    - camera_optical_left
+    - camera_optical_right
+    - camera_optical_rearDown
+    - camera_laserscan_link_left
+    - camera_laserscan_link_right
+    assets_loaded: 21
+    mesh_conversions:
+    - file: robots/go1_description/meshes/trunk.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/hip.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/thigh_mirror.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/calf.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/hip.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/thigh.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/calf.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/hip.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/thigh_mirror.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/calf.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/hip.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/thigh.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/calf.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/depthCamera.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/depthCamera.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/depthCamera.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/depthCamera.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/depthCamera.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/ultraSound.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/ultraSound.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go1_description/meshes/ultraSound.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - robots/go1_description/urdf/go1.urdf
+    - robots/go1_description/meshes/trunk.dae
+    - robots/go1_description/meshes/hip.dae
+    - robots/go1_description/meshes/thigh_mirror.dae
+    - robots/go1_description/meshes/calf.dae
+    - robots/go1_description/meshes/hip.dae
+    - robots/go1_description/meshes/thigh.dae
+    - robots/go1_description/meshes/calf.dae
+    - robots/go1_description/meshes/hip.dae
+    - robots/go1_description/meshes/thigh_mirror.dae
+    - robots/go1_description/meshes/calf.dae
+    - robots/go1_description/meshes/hip.dae
+    - robots/go1_description/meshes/thigh.dae
+    - robots/go1_description/meshes/calf.dae
+    - robots/go1_description/meshes/depthCamera.dae
+    - robots/go1_description/meshes/depthCamera.dae
+    - robots/go1_description/meshes/depthCamera.dae
+    - robots/go1_description/meshes/depthCamera.dae
+    - robots/go1_description/meshes/depthCamera.dae
+    - robots/go1_description/meshes/ultraSound.dae
+    - robots/go1_description/meshes/ultraSound.dae
+    - robots/go1_description/meshes/ultraSound.dae
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

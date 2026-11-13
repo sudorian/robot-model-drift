@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+project_root=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+export PYTHONPATH="$project_root/src${PYTHONPATH:+:$PYTHONPATH}"
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
+exec "$project_root/.venv/bin/python" -m drift --root "$project_root" "$@"

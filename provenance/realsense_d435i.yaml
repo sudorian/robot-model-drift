@@ -1,0 +1,578 @@
+model: realsense_d435i
+method: unknown
+confidence: incomplete
+upstream_repo: https://github.com/IntelRealSense/realsense-ros
+upstream_file: realsense2_description/urdf/_d435i.urdf.xacro
+upstream_commit: null
+latest_upstream_commit: 7a87097c499e3b0b69518d54a8e7a9ac1924e87c
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: realsense_d435i/d435i.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 28ffb48b5c1d409a37fbfbb01c023c12e61cdefd
+  timestamp: '1684433690'
+  date: '2023-05-18T11:14:50-07:00'
+  subject: Add six new models to Menagerie.
+  file: realsense_d435i/d435i.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: fb36886b3023db08c198264e1e9956ab202c3e3b
+  date: '2026-11-02T08:30:24-08:00'
+  file: realsense_d435i/d435i.xml
+- commit: c5d2e83f49a2a1201153a686de0d26cc02b3bd98
+  date: '2023-12-06T13:53:43-08:00'
+  file: realsense_d435i/d435i.xml
+- commit: 28ffb48b5c1d409a37fbfbb01c023c12e61cdefd
+  date: '2023-05-18T11:14:50-07:00'
+  file: realsense_d435i/d435i.xml
+source_candidate: null
+source_candidates:
+- commit: 7b8c7f46db331010f4484fc24bafc876b0d95b68
+  timestamp: '1793776158'
+  date: '2026-11-04T12:39:18+05:30'
+  subject: 'realsense2_description: address review on D4xx inertial origins'
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 2403129a16e73cb83eeee0c3890cf0f53bab2d8d
+  timestamp: '1793651444'
+  date: '2026-11-02T15:30:44-05:00'
+  subject: 'realsense2_description: put D4xx inertial origin at the collision box
+    center'
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 2de12b447cee4b2308188e91ddd2f23eadd18d6d
+  timestamp: '1793289730'
+  date: '2026-10-29T12:02:10-04:00'
+  subject: 'realsense2_description: use datasheet masses and box inertias for D4xx
+    cameras'
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 5fddd7a390e8bff480c654d3d329611c0ebcbac4
+  timestamp: '1780307359'
+  date: '2026-06-01T11:49:19+02:00'
+  subject: pass add_plug and use_mesh args to macro 435i
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 78b9612ce07a51ecc42d38411c236137670caadd
+  timestamp: '1765802672'
+  date: '2025-12-15T14:44:32+02:00'
+  subject: many intel removed and github user changed
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 780672098e8a9f89bb195d2a925ffe8667d82d4d
+  timestamp: '1754419595'
+  date: '2025-08-05T21:46:35+03:00'
+  subject: 'PR #3404 from adamwhats: Use package:// to discover meshes'
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: d9e15bb2fbb8642acecf19596a2349c7593c7bb6
+  timestamp: '1754400801'
+  date: '2025-08-05T16:33:21+03:00'
+  subject: update copyrights
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 20b16f4c462e7e097604ef5c91a2761e8ebc22b5
+  timestamp: '1754327703'
+  date: '2025-08-04T18:15:03+01:00'
+  subject: Use package:// to discover meshes
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 5ad31d1a9cf413cec0687cac3415223913821859
+  timestamp: '1713770900'
+  date: '2024-04-22T16:28:20+09:00'
+  subject: Fix collision offset
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: a04ea56d1a0e31c57bc2160f225f84fd5bbe8654
+  timestamp: '1682275646'
+  date: '2023-04-23T12:47:26-06:00'
+  subject: add missing find
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: d7e8792fe9d2de6a8a249b8f6c12205ed9c99b5c
+  timestamp: '1682275290'
+  date: '2023-04-23T12:41:30-06:00'
+  subject: update mesh path to use file find
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  error: '<class ''xacro.substitution_args.SubstitutionException''>: Unknown substitution
+    command [realsense2_description]. Valid commands are [''find'', ''env'', ''optenv'',
+    ''dirname'', ''arg''] Unknown substitution command [realsense2_description]. Valid
+    commands are [''find'', ''env'', ''optenv'', ''dirname'', ''arg'']'
+  matches: false
+- commit: 9398c98d522dbc40f7c06cde5188e78645603d37
+  timestamp: '1681286373'
+  date: '2023-04-12T10:59:33+03:00'
+  subject: 'PR #1637 from LuAPi: Add include guard to materials'
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: c6914f0ddb78615d311ee14e0e291491b9c3af57
+  timestamp: '1681237107'
+  date: '2023-04-11T21:18:27+03:00'
+  subject: clone PR1637 to ros2-development
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 492e9c7757eb343439b0c6e819931dec36afdf07
+  timestamp: '1675283676'
+  date: '2023-02-01T22:34:36+02:00'
+  subject: apply copyrights and license on project
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 6b0d4ae5befba161e4bab2d31ea403babf8c6e8e
+  timestamp: '1648540468'
+  date: '2022-03-29T10:54:28+03:00'
+  subject: '- add pr_check script to scripts folder - update main.yml steps to run
+    check over source files'
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: a749d9bc3e00aa075350c7dcc91b9dc9c663958d
+  timestamp: '1637675195'
+  date: '2021-11-23T15:46:35+02:00'
+  subject: Sync realsense2_description from ros2 branch
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: d074f29860c23a951c5cf6634d52c676ee589151
+  timestamp: '1624968817'
+  date: '2021-06-29T15:13:37+03:00'
+  subject: import from ROS1 - https://github.com/IntelRealSense/realsense-ros/pull/1802
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 9c442f7ef3b5d4f4a83d21f45a1d23c7b78246c6
+  timestamp: '1618229280'
+  date: '2021-04-12T09:08:00-03:00'
+  subject: Add use_mesh param to D435.
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 2b01891e4771895c9ede5c70fbcbfd519ad05467
+  timestamp: '1613480345'
+  date: '2021-02-16T14:59:05+02:00'
+  subject: Merge branch 'd415_add_plug' of https://github.com/Tuebel/realsense-ros
+    into Tuebel-d415_add_plug
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 66c41ebdea47f3dbb379c30f610d4691552c4a4a
+  timestamp: '1611249627'
+  date: '2021-01-21T17:20:27Z'
+  subject: Add include guard to materials
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 9189b0591fae677570d2dfd0ae8957fb6f12e635
+  timestamp: '1610954957'
+  date: '2021-01-18T09:29:17+02:00'
+  subject: add realsense2_description.
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 3b3136e6e56b8bd21c438d5b0cd16f1c1d5baf86
+  timestamp: '1608535418'
+  date: '2020-12-21T08:23:38+01:00'
+  subject: Consistent add_plug in xacros and launch files
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 2cb835f5e898ac60c3507cb1ac8b462f5455010f
+  timestamp: '1602057583'
+  date: '2020-10-07T10:59:43+03:00'
+  subject: Add name to usb_plug to enable using models for several devices.
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 7957440daf1213249f0ed7d8772e148b6d2ca0b6
+  timestamp: '1602052635'
+  date: '2020-10-07T09:37:15+03:00'
+  subject: Add models for D415, D435, D435i.
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 349fc0627648f86af21a3ae4859b819a10520232
+  timestamp: '1601969942'
+  date: '2020-10-06T10:39:02+03:00'
+  subject: fix view_d435_model.launch.py and view_d435i_model.launch.py
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 58017e26fc5d3471b52d07f093e74f4792f87278
+  timestamp: '1601959443'
+  date: '2020-10-06T07:44:03+03:00'
+  subject: Start import realsense2_description.
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 08a13b89e91c77c9ad42e0a8d290a2fafca244a5
+  timestamp: '1600836284'
+  date: '2020-09-23T13:44:44+09:00'
+  subject: added basis for realsense2_description
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 7eacd61a1b7d3ac08969c240cb65649b6006d0ae
+  timestamp: '1600338687'
+  date: '2020-09-17T12:31:27+02:00'
+  subject: Fix mass of d435
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 6
+- commit: 2b649ec5e2a1a1b46f59f848dcfaf9b4edbbb0b5
+  timestamp: '1598947331'
+  date: '2020-09-01T10:02:11+02:00'
+  subject: set a false default value for add_plug
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 78ce887f6a7ad527d540ba16b33446684693060f
+  timestamp: '1596005236'
+  date: '2020-07-29T09:47:16+03:00'
+  subject: 'version running on ROS2 - eloquent: `ros2 launch realsense2_camera rs.launch.py`'
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 487084f7fab58d23b3fe6e1c1d657fd78d8b048a
+  timestamp: '1595274415'
+  date: '2020-07-20T13:46:55-06:00'
+  subject: Merge branch 'development' into add_plug_option
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  error: Undefined substitution argument add_plug
+  matches: false
+- commit: 97a13d14ced239e8f70679c5acd155b25622dfd0
+  timestamp: '1592476597'
+  date: '2020-06-18T11:36:37+01:00'
+  subject: comply to ROS Noetic xacro rules (backcompatible with ROS Melodic)
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: ff2a81ce9ba7ab6f6b4e8c33c3d490b36093aa53
+  timestamp: '1592476250'
+  date: '2020-06-18T11:30:50+01:00'
+  subject: Merge branch 'development' into add-d435i-xacro
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  error: XML has no robot bodies; it is an include/extension fragment, not a standalone
+    source
+  matches: false
+- commit: f7cd5fced531551ac0e1e449e800fa11acac3944
+  timestamp: '1592392987'
+  date: '2020-06-17T14:23:07+03:00'
+  subject: Merge branch 'fix-use-nominal-extrinsics-param' of https://github.com/mcamurri/realsense-ros
+    into mcamurri-fix-use-nominal-extrinsics-param
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 69bd847377769b5bd140c14877a27d3f508b2866
+  timestamp: '1587185387'
+  date: '2020-04-17T22:49:47-06:00'
+  subject: D435 too
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: ad2987688df764e0d6d7372362e08c132dda1f69
+  timestamp: '1587184105'
+  date: '2020-04-17T22:28:25-06:00'
+  subject: created plug, added to D415
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: afef66f988c45cca14b4d8fd654c9c017c1b0ac1
+  timestamp: '1584268265'
+  date: '2020-03-15T10:31:05Z'
+  subject: move xml start line in the right place
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  deleted: false
+  error: XML has no robot bodies; it is an include/extension fragment, not a standalone
+    source
+  matches: false
+- commit: c8a8afd14240f8adee1548771d9bca2e16bcb12b
+  timestamp: '1584233787'
+  date: '2020-03-15T00:56:27Z'
+  subject: add D435i modules, urdf and launchfile
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  deleted: false
+  error: 'XML or text declaration not at start of entity: line 10, column 0'
+  matches: false
+- commit: dba885e87a83d8bdfa64ca54f77663cde4bebf58
+  timestamp: '1584233777'
+  date: '2020-03-15T00:56:17Z'
+  subject: fix use_nominal_extrinsics arg/property
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: c81130c7d9b2141b4130f9ebebf4f02a1a184f7c
+  timestamp: '1584233248'
+  date: '2020-03-15T00:47:28Z'
+  subject: add D435i modules, urdf and launchfile
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  deleted: false
+  error: 'XML or text declaration not at start of entity: line 10, column 0'
+  matches: false
+- commit: 5ffc651aa6bdb786e0a188cce5de594e54c8e403
+  timestamp: '1584231140'
+  date: '2020-03-15T00:12:20Z'
+  subject: fix use_nominal_extrinsics arg/property
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: b4363754069b00907cf30e098b881242cd925e2e
+  timestamp: '1584207553'
+  date: '2020-03-14T17:39:13Z'
+  subject: correct offset between camera_link and base_link
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 80492f40bcd8a41c532a241eece0979b68f029e2
+  timestamp: '1575975934'
+  date: '2019-12-10T13:05:34+02:00'
+  subject: add pointcloud to rs_d435_camera_with_model.launch and fix urdf.rviz accordingly.
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 09305fcb0b8dbb8d3fd5fee8fb4c53c982d3db33
+  timestamp: '1575967460'
+  date: '2019-12-10T10:44:20+02:00'
+  subject: Merge branch 'issue-885-squashed' of https://github.com/tykurtz/realsense-ros
+    into tykurtz-rename-frames-urdf
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: ecd94791a119cac48e6a5d18ea8493440f974035
+  timestamp: '1575963814'
+  date: '2019-12-10T09:43:34+02:00'
+  subject: Merge branch 'feature/parametrized-xacro' of https://github.com/veimox/realsense-ros
+    into parametrized-xacro
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 7ace746d14520c0c50daa21468c16420ba72f3a1
+  timestamp: '1571662010'
+  date: '2019-10-21T14:46:50+02:00'
+  subject: added support for multiple cameras
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: f6f8efab0534e4b046ac9a64952c1945581eb28c
+  timestamp: '1571047518'
+  date: '2019-10-14T12:05:18+02:00'
+  subject: passing camera name as a parameter
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: c04f95d3bd31795fac2b1fad2f23274c89d26118
+  timestamp: '1565365087'
+  date: '2019-08-09T08:38:07-07:00'
+  subject: See issue 885. Added name tag to 435 xacro. Added multiple camera test
+    launch file. Renamed xacro frames to be consistent with drivers. Added an option
+    to enable static frames in the urdf
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 691f6b6abaad3a22994613df9e1d8b233ac0248e
+  timestamp: '1553104748'
+  date: '2019-03-20T10:59:08-07:00'
+  subject: updated references to realsense2_description
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 52543ac3d188577b4544ea001c1857ced63f8417
+  timestamp: '1553104189'
+  date: '2019-03-20T10:49:49-07:00'
+  subject: moved description files into realsense2_description package
+  file: realsense2_description/urdf/_d435i.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+evidence:
+- url: https://github.com/IntelRealSense/realsense-ros/blob/ros2-development/realsense2_description/meshes/d435.dae
+  document: realsense_d435i/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/IntelRealSense/realsense-ros/blob/ros2-development/realsense2_description/urdf/_d435i.urdf.xacro
+  document: realsense_d435i/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/kevinzakka/obj2mjcf
+  document: realsense_d435i/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Unresolved historical compilation prevents selecting or rejecting a matching
+  source. Pairwise M/H differences are reported with unknown provenance.
+compilation:
+  M:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - d435i
+    assets_loaded: 9
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - realsense_d435i/d435i.xml
+    - realsense_d435i/assets/d435i_0.obj
+    - realsense_d435i/assets/d435i_1.obj
+    - realsense_d435i/assets/d435i_2.obj
+    - realsense_d435i/assets/d435i_3.obj
+    - realsense_d435i/assets/d435i_4.obj
+    - realsense_d435i/assets/d435i_5.obj
+    - realsense_d435i/assets/d435i_6.obj
+    - realsense_d435i/assets/d435i_7.obj
+    - realsense_d435i/assets/d435i_8.obj
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - __drift_world
+    - camera_bottom_screw_frame
+    assets_loaded: 1
+    mesh_conversions:
+    - file: realsense2_description/meshes/d435.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments:
+      __macro_instance__: sensor_d435i
+      __macro_parameters__: '{''parent'': ''__drift_world''}'
+      __macro_origin__: xyz=0 0 0 rpy=0 0 0
+    source_dependencies:
+    - realsense2_description/urdf/_d435.urdf.xacro
+    - realsense2_description/urdf/_d435i.urdf.xacro
+    - realsense2_description/urdf/_d435i_imu_modules.urdf.xacro
+    - realsense2_description/urdf/_materials.urdf.xacro
+    - realsense2_description/urdf/_usb_plug.urdf.xacro
+    - realsense2_description/meshes/d435.dae
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

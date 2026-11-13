@@ -1,0 +1,171 @@
+model: toddlerbot_2xc
+method: dated match
+confidence: medium
+upstream_repo: https://github.com/hshi74/toddlerbot
+upstream_file: toddlerbot/descriptions/toddlerbot_2xc/toddlerbot_2xc.xml
+upstream_commit: 957aadb8e6db85e02fbb9ef90bbcdb4b4c0c9f6c
+latest_upstream_commit: e337f3b177b4b53abff70b31d1695a7b66cc6d2e
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: toddlerbot_2xc/toddlerbot_2xc.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 4528ba60972f7012566bbd3514ef5729e2b6939c
+  timestamp: '1756521168'
+  date: '2025-08-29T22:32:48-04:00'
+  subject: Add toddlerbot_2xc and toddlerbot_2xm
+  file: toddlerbot_2xc/toddlerbot_2xc.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: ac6b2b09983786f3036cab1000221017fa2193b4
+  date: '2026-05-18T15:33:00-07:00'
+  file: toddlerbot_2xc/toddlerbot_2xc.xml
+- commit: 43b5e628efe40a7d92eea398e703093ca5df27b1
+  date: '2026-05-18T15:03:18-07:00'
+  file: toddlerbot_2xc/toddlerbot_2xc.xml
+- commit: b547c26d771ad09a1a184fc22baf7bee150cd2cb
+  date: '2025-10-03T14:19:21+08:00'
+  file: toddlerbot_2xc/toddlerbot_2xc.xml
+- commit: 24b360ced306e45269119a5fff16e14a6bb6b6c0
+  date: '2025-10-02T23:38:20+08:00'
+  file: toddlerbot_2xc/toddlerbot_2xc.xml
+- commit: c1177aece6500327419fb0a5550cc19d43e12027
+  date: '2025-10-02T23:06:21+08:00'
+  file: toddlerbot_2xc/toddlerbot_2xc.xml
+- commit: e3b49d0fac9fd1c481322f2d49843ebdf398f528
+  date: '2025-10-02T23:02:38+08:00'
+  file: toddlerbot_2xc/toddlerbot_2xc.xml
+- commit: 4528ba60972f7012566bbd3514ef5729e2b6939c
+  date: '2025-08-29T22:32:48-04:00'
+  file: toddlerbot_2xc/toddlerbot_2xc.xml
+source_candidate:
+  commit: 957aadb8e6db85e02fbb9ef90bbcdb4b4c0c9f6c
+  timestamp: '1756519877'
+  date: '2025-08-29T22:11:17-04:00'
+  subject: Update the robot descriptions
+  file: toddlerbot/descriptions/toddlerbot_2xc/toddlerbot_2xc.xml
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 226
+source_candidates:
+- commit: 19fb7f5bfd87d4836b652beb4df15ad62b4845a0
+  timestamp: '1774223795'
+  date: '2026-03-22T16:56:35-07:00'
+  subject: Release Locomotion Beyond Feet
+  file: toddlerbot/descriptions/toddlerbot_2xc/toddlerbot_2xc.xml
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 226
+- commit: 957aadb8e6db85e02fbb9ef90bbcdb4b4c0c9f6c
+  timestamp: '1756519877'
+  date: '2025-08-29T22:11:17-04:00'
+  subject: Update the robot descriptions
+  file: toddlerbot/descriptions/toddlerbot_2xc/toddlerbot_2xc.xml
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 226
+- commit: 082c5b416e44414fe2d6d2b02706a01efed53f36
+  timestamp: '1756103444'
+  date: '2025-08-24T23:30:44-07:00'
+  subject: Release v2.0.0 - Major update with comprehensive improvements
+  file: toddlerbot/descriptions/toddlerbot_2xc/toddlerbot_2xc.xml
+  deleted: false
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 226
+- commit: 84e02d14261292eec5d06f896e3145b35c54856c
+  timestamp: '1756102049'
+  date: '2025-08-24T23:07:29-07:00'
+  subject: Release v2.0.0 - Major update with comprehensive improvements
+  file: toddlerbot/descriptions/toddlerbot_2xc/toddlerbot_2xc.xml
+  deleted: false
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 226
+evidence:
+- url: https://github.com/hshi74/toddlerbot
+  document: toddlerbot_2xc/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - toddlerbot_2xc/toddlerbot_2xc.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.315053
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - toddlerbot/descriptions/toddlerbot_2xc/toddlerbot_2xc.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.315053
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  S:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - toddlerbot/descriptions/toddlerbot_2xc/toddlerbot_2xc.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.315053
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented

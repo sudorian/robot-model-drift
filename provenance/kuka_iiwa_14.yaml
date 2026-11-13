@@ -1,0 +1,94 @@
+model: kuka_iiwa_14
+method: none
+confidence: none
+upstream_repo: https://github.com/RobotLocomotion/drake
+upstream_file: multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf
+upstream_commit: null
+latest_upstream_commit: 9977d90894fe487195e9ac95a93ca4330a6ae81b
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: kuka_iiwa_14/iiwa14.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 28ffb48b5c1d409a37fbfbb01c023c12e61cdefd
+  timestamp: '1684433690'
+  date: '2023-05-18T11:14:50-07:00'
+  subject: Add six new models to Menagerie.
+menagerie_commits_involved: []
+source_candidate: null
+source_candidates:
+- commit: afaeb186410e70b4b8fc105e63cfa968920c2b9d
+  timestamp: '1596136330'
+  date: '2020-07-30T15:12:10-04:00'
+  subject: Mow over all XML files with xmllint
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 30
+- commit: 2d48efc3e06fb6780b20e94aefae37cccf8bf251
+  timestamp: '1573847192'
+  date: '2019-11-15T14:46:32-05:00'
+  subject: Clear superfluous executable bits (#12356)
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 30
+- commit: 73a8da32cd41ff7fd023c3680f8250860cbd0e6b
+  timestamp: '1512689042'
+  date: '2017-12-07T18:24:02-05:00'
+  subject: Run tools/dev/6996-move
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 30
+evidence:
+- url: https://github.com/RobotLocomotion/drake
+  document: kuka_iiwa_14/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/RobotLocomotion/drake/blob/master/manipulation/models/iiwa_description/urdf/iiwa14_spheres_dense_collision.urdf
+  document: kuka_iiwa_14/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: 'No public revision matches all comparable quantities. Class: NO MATCHING
+  SOURCE; never counted as STALE.'
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - base
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0

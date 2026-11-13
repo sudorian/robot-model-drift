@@ -1,0 +1,399 @@
+model: universal_robots_ur10e
+method: unknown
+confidence: incomplete
+upstream_repo: https://github.com/ros-industrial/universal_robot
+upstream_file: ur_description/urdf/ur10e.xacro
+upstream_commit: null
+latest_upstream_commit: 39ad110d8f2e8f66856a201cca88aa7a7025e3eb
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: universal_robots_ur10e/ur10e.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 17ce67be5130f3dd93b244524e0a83fc924473f8
+  timestamp: '1677681072'
+  date: '2023-03-01T17:31:12+03:00'
+  subject: add ur10e mjcf
+  file: universal_robots_ur10e/ur10e.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: fb36886b3023db08c198264e1e9956ab202c3e3b
+  date: '2026-11-02T08:30:24-08:00'
+  file: universal_robots_ur10e/ur10e.xml
+- commit: e4049d0a3bfd58d2a3081614e6777d4007e3f86a
+  date: '2026-09-01T10:08:37-07:00'
+  file: universal_robots_ur10e/ur10e.xml
+- commit: c6c202003c72e87d079db69160e499fb0d83c535
+  date: '2024-12-19T17:35:20+01:00'
+  file: universal_robots_ur10e/ur10e.xml
+- commit: 6a3bdfb4ebb6660bdeafde40495b9b7dc6a623a5
+  date: '2023-10-02T14:45:05-07:00'
+  file: universal_robots_ur10e/ur10e.xml
+- commit: 17ce67be5130f3dd93b244524e0a83fc924473f8
+  date: '2023-03-01T17:31:12+03:00'
+  file: universal_robots_ur10e/ur10e.xml
+source_candidate: null
+source_candidates:
+- commit: f2f8613b357ef5a704b9befbbcb967fd024e9bd4
+  timestamp: '1760340016'
+  date: '2025-10-13T09:20:16+02:00'
+  subject: Add support for UR8 Long & UR18 (#707)
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 32
+  comparable_quantities: 42
+- commit: 8e09498db540683816b9736edfb7db082417c23f
+  timestamp: '1747120386'
+  date: '2025-05-13T09:13:06+02:00'
+  subject: Add support for UR15 (#702)
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 32
+  comparable_quantities: 42
+- commit: 8515eb318af511e200c726ffdc2a2735afd81dcf
+  timestamp: '1742803158'
+  date: '2025-03-24T08:59:18+01:00'
+  subject: Fix masses of robot links (#689)
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 32
+  comparable_quantities: 42
+- commit: 957c7337b266f3bfbe0dc246a3ec3935ce5e5982
+  timestamp: '1742797666'
+  date: '2025-03-24T07:27:46+01:00'
+  subject: Fix UR3 mesh positing. (#691)
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 9
+  comparable_quantities: 42
+- commit: 0290bd26b61b5dcb14091d94475486369be09921
+  timestamp: '1710534220'
+  date: '2024-03-15T21:23:40+01:00'
+  subject: UR30 description and meshes (#674)
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 9
+  comparable_quantities: 42
+- commit: cdf646b99d6f8ffe580160f059867884ff189365
+  timestamp: '1702893076'
+  date: '2023-12-18T10:51:16+01:00'
+  subject: UR20 description and meshes (#657)
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 9
+  comparable_quantities: 42
+- commit: 33ac71af4d2cfb09862ab62ef9068d93a0ae9631
+  timestamp: '1658395319'
+  date: '2022-07-21T11:21:59+02:00'
+  subject: fixing deprecation warning
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 9
+  comparable_quantities: 42
+- commit: 81a542b14072b99ada8e2023bdcc0ce421772f59
+  timestamp: '1632817951'
+  date: '2021-09-28T10:32:31+02:00'
+  subject: 'Merge pull request #562 from fmauch/convenience_macros'
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 9
+  comparable_quantities: 42
+- commit: d111eb04ce35b83cff0c9f1d350f23f6c6f93521
+  timestamp: '1632817792'
+  date: '2021-09-28T10:29:52+02:00'
+  subject: Replace __ prefixes (#579)
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 8c84f2bc37883692b2d25c9081beeaa7330cfe59
+  timestamp: '1611332779'
+  date: '2021-01-22T17:26:19+01:00'
+  subject: 'description: provide convenience top-levels and macros.'
+  file: ur_description/urdf/ur10e.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 9
+  comparable_quantities: 42
+- commit: e4eb54718edc6ff414d3c046f2589b798b15f9b2
+  timestamp: '1611332779'
+  date: '2021-01-22T17:26:19+01:00'
+  subject: 'description: main macro xacro is not a top-level.'
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 50269d12523f6d11e4c36313f0ffb5caaf24e2d1
+  timestamp: '1597741926'
+  date: '2020-08-18T11:12:06+02:00'
+  subject: 'description: spec limits in degrees.'
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 0d7ed5e955e79c9e1a9940bfabe9da30cb35d452
+  timestamp: '1593520071'
+  date: '2020-06-30T14:27:51+02:00'
+  subject: 'description: delegate loading yaml files to read_model_data(..).'
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 0c7538eb5e7084ee7a37a2369b46e5937cf07b17
+  timestamp: '1592481536'
+  date: '2020-06-18T13:58:56+02:00'
+  subject: 'description: load values from new params.'
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: c86d01566971ed35a4857586cf894094428c8e09
+  timestamp: '1592481536'
+  date: '2020-06-18T13:58:56+02:00'
+  subject: 'description: they''re joint limits.'
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 616e7a9eecb33e9613aa7fa0ddfc939f6ce25694
+  timestamp: '1592481536'
+  date: '2020-06-18T13:58:56+02:00'
+  subject: 'description: convert joint limit files to ''ros_control format''.'
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 29a4fa09bd011f2bc0ab34d5270844a111be11c4
+  timestamp: '1592481536'
+  date: '2020-06-18T13:58:56+02:00'
+  subject: 'description: rename limit files.'
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: acccf59ed27b1242cc35954311b03368813156f5
+  timestamp: '1592323405'
+  date: '2020-06-16T18:03:25+02:00'
+  subject: 'description: assume -0==0. (#511)'
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 551c467ad07ca95850d003a02601b33cf7466de6
+  timestamp: '1591962723'
+  date: '2020-06-12T13:52:03+02:00'
+  subject: 'description: clarify status of ''inc'' xacro files. (#507)'
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 3ae0fa6e15b68b68df8d9353a7be84062042e165
+  timestamp: '1591452954'
+  date: '2020-06-06T16:15:54+02:00'
+  subject: 'description: dots to underscores.'
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 9245b38263331874dd82daaf7eec993d5b356d9b
+  timestamp: '1591443442'
+  date: '2020-06-06T13:37:22+02:00'
+  subject: Use full kinematics parameters in description (#495)
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: f7f16841586c944c0f494f9c4f35f5f5fa9e222b
+  timestamp: '1568648170'
+  date: '2019-09-16T17:36:10+02:00'
+  subject: create parameters yaml files * one for each models
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: b3d32d637396577923e022c56f59e8680dc1b869
+  timestamp: '1568648169'
+  date: '2019-09-16T17:36:09+02:00'
+  subject: deleted ur_e specific repositories * moved ur_e_description meshes files
+    to ur_description
+  file: ur_description/urdf/ur10e.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+evidence:
+- url: https://github.com/kevinzakka/obj2mjcf
+  document: universal_robots_ur10e/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/ros-industrial/universal_robot/tree/kinetic-devel/ur_e_description
+  document: universal_robots_ur10e/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/ros-industrial/universal_robot/tree/kinetic-devel/ur_e_description/meshes/ur10e/visual
+  document: universal_robots_ur10e/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Unresolved historical compilation prevents selecting or rejecting a matching
+  source. Pairwise M/H differences are reported with unknown provenance.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - universal_robots_ur10e/ur10e.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - -1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - -1.0
+        - -0.0
+      - - -0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - base_link
+    - base
+    - flange
+    - tool0
+    assets_loaded: 14
+    mesh_conversions:
+    - file: ur_description/meshes/ur10e/visual/base.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: ur_description/meshes/ur10e/visual/shoulder.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: ur_description/meshes/ur10e/visual/upperarm.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: ur_description/meshes/ur10e/visual/forearm.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: ur_description/meshes/ur10e/visual/wrist1.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: ur_description/meshes/ur10e/visual/wrist2.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: ur_description/meshes/ur10e/visual/wrist3.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - ur_description/config/ur10e/default_kinematics.yaml
+    - ur_description/config/ur10e/joint_limits.yaml
+    - ur_description/config/ur10e/physical_parameters.yaml
+    - ur_description/config/ur10e/visual_parameters.yaml
+    - ur_description/urdf/inc/ur10e_macro.xacro
+    - ur_description/urdf/inc/ur_common.xacro
+    - ur_description/urdf/inc/ur_macro.xacro
+    - ur_description/urdf/inc/ur_transmissions.xacro
+    - ur_description/urdf/ur10e.xacro
+    - ur_description/meshes/ur10e/visual/base.dae
+    - ur_description/meshes/ur10e/collision/base.stl
+    - ur_description/meshes/ur10e/visual/shoulder.dae
+    - ur_description/meshes/ur10e/collision/shoulder.stl
+    - ur_description/meshes/ur10e/visual/upperarm.dae
+    - ur_description/meshes/ur10e/collision/upperarm.stl
+    - ur_description/meshes/ur10e/visual/forearm.dae
+    - ur_description/meshes/ur10e/collision/forearm.stl
+    - ur_description/meshes/ur10e/visual/wrist1.dae
+    - ur_description/meshes/ur10e/collision/wrist1.stl
+    - ur_description/meshes/ur10e/visual/wrist2.dae
+    - ur_description/meshes/ur10e/collision/wrist2.stl
+    - ur_description/meshes/ur10e/visual/wrist3.dae
+    - ur_description/meshes/ur10e/collision/wrist3.stl
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

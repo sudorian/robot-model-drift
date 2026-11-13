@@ -1,0 +1,42 @@
+model: anybotics_anymal_c
+method: unknown
+confidence: unknown
+upstream_repo: null
+upstream_file: null
+upstream_commit: null
+latest_upstream_commit: null
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: anybotics_anymal_c/anymal_c.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change: null
+menagerie_commits_involved: []
+source_candidate: null
+source_candidates: []
+evidence:
+- url: https://github.com/ANYbotics/anymal_b_simple_description/blob/master/urdf/anymal.urdf
+  document: anybotics_anymal_c/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/ANYbotics/anymal_c_simple_description
+  document: anybotics_anymal_c/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/ANYbotics/anymal_c_simple_description/tree/master/meshes
+  document: anybotics_anymal_c/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/Andrew-Luo1
+  document: anybotics_anymal_c/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/kevinzakka/obj2mjcf
+  document: anybotics_anymal_c/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/google-deepmind/mujoco/blob/main/mjx/training_apg.ipynb
+  document: anybotics_anymal_c/README.md
+  commit: d3694476e267ead94f869c1e7aa5eff2d259e4d9
+  current: false
+reason: Machine-readable sources were identified, but no standalone source entry compiled.
+  See all candidate errors.
+compilation: {}

@@ -1,0 +1,216 @@
+model: unitree_z1
+method: dated match
+confidence: medium
+upstream_repo: https://github.com/unitreerobotics/unitree_ros
+upstream_file: robots/z1_description/xacro/z1.urdf
+upstream_commit: f10d1c6add85785542fed20fc5e3b4e66a13f64b
+latest_upstream_commit: 157ff950351e5f535e03c5d85a16b7d594b3dbcc
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: unitree_z1/z1.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 7bc6c99d5367e9dcd568fa2dbb54b6160cced324
+  timestamp: '1702556627'
+  date: '2023-12-14T15:23:47+03:00'
+  subject: 'feat: add unitree z1 robot'
+  file: unitree_z1/z1.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: a099b54b539416bff0db4d35fc2271c35c10f37a
+  date: '2023-12-31T00:53:12-08:00'
+  file: unitree_z1/z1.xml
+- commit: 7bc6c99d5367e9dcd568fa2dbb54b6160cced324
+  date: '2023-12-14T15:23:47+03:00'
+  file: unitree_z1/z1.xml
+source_candidate:
+  commit: f10d1c6add85785542fed20fc5e3b4e66a13f64b
+  timestamp: '1689838608'
+  date: '2023-07-20T15:36:48+08:00'
+  subject: update z1.urdf
+  file: robots/z1_description/xacro/z1.urdf
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+source_candidates:
+- commit: f10d1c6add85785542fed20fc5e3b4e66a13f64b
+  timestamp: '1689838608'
+  date: '2023-07-20T15:36:48+08:00'
+  subject: update z1.urdf
+  file: robots/z1_description/xacro/z1.urdf
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: fa9b011d74356e9eade03f67c646327c207cc826
+  timestamp: '1687854180'
+  date: '2023-06-27T16:23:00+08:00'
+  subject: modify z1_urdf
+  file: robots/z1_description/xacro/z1.urdf
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 6e033297dcf1fc9b4c73a900aa4f6fdea75d4ddd
+  timestamp: '1681442843'
+  date: '2023-04-14T11:27:23+08:00'
+  subject: add z1 stl files
+  file: robots/z1_description/xacro/z1.urdf
+  dependency_change: true
+  error: 'Unresolved or ambiguous package path package://z1_description/meshes/z1_Link00.dae:
+    []'
+  matches: false
+- commit: 44a16158a2a865f73836f8256a410f34102ea7f0
+  timestamp: '1668611361'
+  date: '2022-11-16T23:09:21+08:00'
+  subject: add z1 urdf
+  file: robots/z1_description/xacro/z1.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 4
+  comparable_quantities: 42
+- commit: 560fd88ef018d9d88d418734082dd9f1d777084a
+  timestamp: '1668610594'
+  date: '2022-11-16T22:56:34+08:00'
+  subject: add Z1
+  file: robots/z1_description/xacro/z1.urdf
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+evidence:
+- url: https://github.com/unitreerobotics/unitree_ros/blob/master/robots/z1_description/
+  document: unitree_z1/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/unitreerobotics/unitree_ros/blob/master/robots/z1_description/xacro/z1.urdf
+  document: unitree_z1/README.md
+  commit: 7bc6c99d5367e9dcd568fa2dbb54b6160cced324
+  current: false
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - unitree_z1/z1.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - world
+    assets_loaded: 7
+    mesh_conversions:
+    - file: robots/z1_description/meshes/visual/z1_Link00.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/z1_description/meshes/visual/z1_Link01.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/z1_description/meshes/visual/z1_Link02.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/z1_description/meshes/visual/z1_Link03.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/z1_description/meshes/visual/z1_Link04.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/z1_description/meshes/visual/z1_Link05.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/z1_description/meshes/visual/z1_Link06.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - robots/z1_description/xacro/z1.urdf
+    - robots/z1_description/meshes/visual/z1_Link00.dae
+    - robots/z1_description/meshes/visual/z1_Link01.dae
+    - robots/z1_description/meshes/visual/z1_Link02.dae
+    - robots/z1_description/meshes/visual/z1_Link03.dae
+    - robots/z1_description/meshes/visual/z1_Link04.dae
+    - robots/z1_description/meshes/visual/z1_Link05.dae
+    - robots/z1_description/meshes/visual/z1_Link06.dae
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo
+  S:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - world
+    assets_loaded: 7
+    mesh_conversions:
+    - file: robots/z1_description/meshes/visual/z1_Link00.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/z1_description/meshes/visual/z1_Link01.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/z1_description/meshes/visual/z1_Link02.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/z1_description/meshes/visual/z1_Link03.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/z1_description/meshes/visual/z1_Link04.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/z1_description/meshes/visual/z1_Link05.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/z1_description/meshes/visual/z1_Link06.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - robots/z1_description/xacro/z1.urdf
+    - robots/z1_description/meshes/visual/z1_Link00.dae
+    - robots/z1_description/meshes/visual/z1_Link01.dae
+    - robots/z1_description/meshes/visual/z1_Link02.dae
+    - robots/z1_description/meshes/visual/z1_Link03.dae
+    - robots/z1_description/meshes/visual/z1_Link04.dae
+    - robots/z1_description/meshes/visual/z1_Link05.dae
+    - robots/z1_description/meshes/visual/z1_Link06.dae
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

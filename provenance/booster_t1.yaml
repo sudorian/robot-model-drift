@@ -1,0 +1,109 @@
+model: booster_t1
+method: dated match
+confidence: medium
+upstream_repo: https://github.com/BoosterRobotics/booster_gym
+upstream_file: resources/T1/T1_serial.urdf
+upstream_commit: 687a33d08b08875fe45dc8d91b54db83766df8b9
+latest_upstream_commit: da396a06d6eed99e2de72d7749c48ee8748950f9
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: booster_t1/t1.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 14ceccf557cc47240202f2354d684eca58ff8de4
+  timestamp: '1738964027'
+  date: '2025-02-07T13:33:47-08:00'
+  subject: Add Booster T1 humanoid.
+menagerie_commits_involved: []
+source_candidate:
+  commit: 687a33d08b08875fe45dc8d91b54db83766df8b9
+  timestamp: '1736413505'
+  date: '2025-01-09T17:05:05+08:00'
+  subject: 'feat: add whole body urdf and mujoco xml file for T1'
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 144
+source_candidates:
+- commit: 687a33d08b08875fe45dc8d91b54db83766df8b9
+  timestamp: '1736413505'
+  date: '2025-01-09T17:05:05+08:00'
+  subject: 'feat: add whole body urdf and mujoco xml file for T1'
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 144
+- commit: 47db1eed40b221516eb2eea69b597f8a62c9c066
+  timestamp: '1735636581'
+  date: '2024-12-31T17:16:21+08:00'
+  subject: 'feat: booster train and deploy example'
+  matches: false
+  mismatch_count: 11
+  comparable_quantities: 144
+evidence:
+- url: https://github.com/BoosterRobotics/booster_gym/blob/main/resources/T1/T1_serial.urdf
+  document: booster_t1/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.7
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+  S:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0

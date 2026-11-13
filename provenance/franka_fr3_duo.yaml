@@ -1,0 +1,1266 @@
+model: franka_fr3_duo
+method: pinned
+confidence: high
+upstream_repo: https://github.com/frankarobotics/franka_description
+upstream_file: robots/fr3_duo/fr3_duo.urdf.xacro
+upstream_commit: 7aeeddc449edf8d62b594f9e36a81da53e7796f9
+latest_upstream_commit: 7aeeddc449edf8d62b594f9e36a81da53e7796f9
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: franka_fr3_duo/fr3_duo.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  timestamp: '1794341663'
+  date: '2026-11-10T14:14:23-06:00'
+  subject: Add Franka Research 3 Duo MJCF models to MuJoCo Menagerie. (#364)
+  file: franka_fr3_duo/fr3_duo.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: 370c43965323c0944b433b202aac5058b5f907a9
+  date: '2026-11-10T14:14:23-06:00'
+  file: franka_fr3_duo/fr3_duo.xml
+source_candidate:
+  commit: 7aeeddc449edf8d62b594f9e36a81da53e7796f9
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  timestamp: '1786955384'
+  date: '2026-08-17T10:29:44+02:00'
+  matches: false
+  mismatch_count: 24
+  comparable_quantities: 110
+source_candidates:
+- commit: 7d38551c31c29f4fd28c3e956ce66dc222e7f658
+  timestamp: '1785946506'
+  date: '2026-08-05T18:15:06+02:00'
+  subject: 'fix: apply no_prefix to the end effector as well as the arm'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 24
+  comparable_quantities: 110
+- commit: 8ca0106e0ecb2fceb19a8582cf0f1b9fbd76dfc3
+  timestamp: '1785943302'
+  date: '2026-08-05T17:21:42+02:00'
+  subject: 'fix: default the tcp offset to the mounted end effector''s own value'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 24
+  comparable_quantities: 110
+- commit: 8ba4a61b0dcf1f725689122f5e2629f9fc7eb45f
+  timestamp: '1783497620'
+  date: '2026-07-08T10:00:20+02:00'
+  subject: 'refactor: Remove gazebo tags/macros/args from franka_description'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 24
+  comparable_quantities: 110
+- commit: 15d4056592429f7ca2a12bbe90f98cf7323872d8
+  timestamp: '1783000705'
+  date: '2026-07-02T13:58:25Z'
+  subject: 'fix: shift correct mounting point half the height of the zed camera'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 24
+  comparable_quantities: 110
+- commit: 1f95d855267f346929fcaf0ebb58dbb59b9bd53e
+  timestamp: '1781789959'
+  date: '2026-06-18T15:39:19+02:00'
+  subject: 'refactor: Moving ros2_control related parts to franka_ros2'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 24
+  comparable_quantities: 110
+- commit: bd0de0093dc1b23b26a0b980c9b2c6c577ced199
+  timestamp: '1781601440'
+  date: '2026-06-16T11:17:20+02:00'
+  subject: 'refactor: Reverted mounting angles back to original CAD values'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 24
+  comparable_quantities: 110
+- commit: 0d86d9190ab6e7fa072bb3d5bbd529a57ae34b36
+  timestamp: '1776076471'
+  date: '2026-04-13T10:34:31Z'
+  subject: 'feat: ros2 control file added for fr3 duo'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 40
+  comparable_quantities: 110
+- commit: 9f1bbfe9a0f1b345d037f4c6a8378cbd06681ca6
+  timestamp: '1774434635'
+  date: '2026-03-25T10:30:35Z'
+  subject: 'fix: tmr inertials updated'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 40
+  comparable_quantities: 106
+- commit: 2eb09cf64f19a0f51554fd2025be34670c97c898
+  timestamp: '1773237978'
+  date: '2026-03-11T14:06:18Z'
+  subject: 'fix: adding tests for gazebo revealed bug in fr3_duo'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 40
+  comparable_quantities: 106
+- commit: 97a377c60afa3f50ceac2545cb2a0910c44814ee
+  timestamp: '1773233337'
+  date: '2026-03-11T13:48:57+01:00'
+  subject: 'refactor: configs'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 40
+  comparable_quantities: 106
+- commit: 3a170c1d6f50c346c523768b304706c25b4d88d8
+  timestamp: '1772782420'
+  date: '2026-03-06T08:33:40+01:00'
+  subject: 'refactor: Moved the origin of the fr3_duo_mount to 0 0 0 + moved kinematics/inertials
+    out'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 40
+  comparable_quantities: 106
+- commit: 5edd901e3485b062ee942c13f6ff7d4f5cbaf520
+  timestamp: '1772720858'
+  date: '2026-03-05T15:27:38+01:00'
+  subject: 'refactor: Moved head, mount and spine to accessories'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 7de996b30cef3bb97beadad2f3c5c751e8899f45
+  timestamp: '1772030311'
+  date: '2026-02-25T14:38:31Z'
+  subject: 'fix: passive state interfaces added for gazebo'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: b7cba8117ba666c4237834d34ebf3a716b44d43d
+  timestamp: '1772030288'
+  date: '2026-02-25T14:38:08Z'
+  subject: 'feat: namespaces enabled for gazebo'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: d2e4b147a457435a4bd8c4f15b622ec558fad169
+  timestamp: '1772024928'
+  date: '2026-02-25T14:08:48+01:00'
+  subject: 'feat: fr3v2 accelerometers frames'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 6cc9ba377b5a1a0eb8771ac718879db4f9d52b3e
+  timestamp: '1771523693'
+  date: '2026-02-19T18:54:53+01:00'
+  subject: 'feat: fr3v2 accelerometers frames'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 2b84eb27e9b5dcffc5fb2ef1268a5c01816860f9
+  timestamp: '1771358606'
+  date: '2026-02-17T20:03:26Z'
+  subject: 'feat: adaptations for gazebo'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 796e9a00788945552b0d7ad395b6638d666e5f3d
+  timestamp: '1769703444'
+  date: '2026-01-29T17:17:24+01:00'
+  subject: 'add: motor inertia and gear ratios to urdf'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: fe72f164e1c83747dfe0c4562ea10c3e86a43465
+  timestamp: '1769680523'
+  date: '2026-01-29T10:55:23+01:00'
+  subject: 'add: motor inertia and gear ratios to urdf'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: b347837c36870f08f9bff656f990bd991e3a73c1
+  timestamp: '1769096123'
+  date: '2026-01-22T15:35:23Z'
+  subject: delted command interface integration
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 27dca8a406ae48996e0460f3263192e82f51cc03
+  timestamp: '1769096123'
+  date: '2026-01-22T15:35:23Z'
+  subject: fixed the srdf to support different prefixes
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 23c712f3f156282e34756af40f36c80f3dc6d10a
+  timestamp: '1769096123'
+  date: '2026-01-22T15:35:23Z'
+  subject: slightly polished
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 2d16f8259b23ccc157309defbf1d9884e577d04f
+  timestamp: '1769096123'
+  date: '2026-01-22T15:35:23Z'
+  subject: Added fr3_duo srdf and enabled arm_prefixes for urdf
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 5c2e04b5a468bfd0d04afbe73852e5374e7d8ce1
+  timestamp: '1769085676'
+  date: '2026-01-22T13:41:16+01:00'
+  subject: 'feat: generating dummy srdf for robots without it feat: renamed robot_arms
+    into robot, moved tmr into robots fix: updated paths for tmr chore: changelog
+    updated'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 64121c668e406d15cad4133aab98c2dc2f4ae880
+  timestamp: '1769085315'
+  date: '2026-01-22T13:35:15+01:00'
+  subject: 'feat: generating dummy srdf for robots without it feat: renamed robot_arms
+    into robot, moved tmr into robots fix: updated paths for tmr chore: changelog
+    updated'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: c9684304d1949e2f1e855114d4112c555bab2061
+  timestamp: '1766143990'
+  date: '2025-12-19T12:33:10+01:00'
+  subject: 'feat: adds thread priority for async hardware interface'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 499f6a61339c4fc13159bb878921024b5b5c46bf
+  timestamp: '1766143864'
+  date: '2025-12-19T12:31:04+01:00'
+  subject: 'feat: pass async feature'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 2d8348d0fd2390fbc989eab5c0b54696676a9f89
+  timestamp: '1765180762'
+  date: '2025-12-08T07:59:22Z'
+  subject: 'feat: robot_id replaced by robot_type'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 6b98a3f2556d033d4539034925f26cbc4697fc18
+  timestamp: '1765180762'
+  date: '2025-12-08T07:59:22Z'
+  subject: 'feat: arm_id changed to robot_id'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 5415ac97ee91af78893e9b7717ddcd5db7a39b5e
+  timestamp: '1765180721'
+  date: '2025-12-08T07:58:41Z'
+  subject: 'feat: robot_id replaced by robot_type'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: e9547aebb2d4b8ac3b885ebb6eb5b37fbe6914f6
+  timestamp: '1765180721'
+  date: '2025-12-08T07:58:41Z'
+  subject: 'feat: arm_id changed to robot_id'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 220473e3bce4a22b5891c95e354b58d623fbfa12
+  timestamp: '1764340876'
+  date: '2025-11-28T15:41:16+01:00'
+  subject: 'refactor: new convention for versioning'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 6072688d5cd0f548107ad83b72f6d06e160ff52b
+  timestamp: '1764340875'
+  date: '2025-11-28T15:41:15+01:00'
+  subject: 'refactor: tmr branch working with jazzy'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 1f718bebc0597cb0d63c1ebdb65f9af63f7ce980
+  timestamp: '1764340875'
+  date: '2025-11-28T15:41:15+01:00'
+  subject: 'fix: Getting the multi robot arm to work'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  error: "name 'arm_name' is not defined \nwhen evaluating expression 'arm_name'"
+  matches: false
+- commit: 670a470c7b68a9d7b172ff923e58e7c4509fc462
+  timestamp: '1763128809'
+  date: '2025-11-14T15:00:09+01:00'
+  subject: 'refactor: new convention for versioning'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: b1bcc1519997ac63b017c28a5618c36bc6e2cc1d
+  timestamp: '1762938199'
+  date: '2025-11-12T10:03:19+01:00'
+  subject: 'refactor: tmr branch working with jazzy'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 648987f4f4d616dd52426f4bf34f65216238371e
+  timestamp: '1762935213'
+  date: '2025-11-12T09:13:33+01:00'
+  subject: 'fix: Getting the multi robot arm to work'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  error: "name 'arm_name' is not defined \nwhen evaluating expression 'arm_name'"
+  matches: false
+- commit: 1b6fa236e3df49632e58620b3ddc40ada05ea2e7
+  timestamp: '1761928687'
+  date: '2025-10-31T17:38:07+01:00'
+  subject: 'feat: mount and cover belong to the same link feat: updated inertials'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: f4fa7e5aa00908b9ef244ca6edeea861cf40c9fb
+  timestamp: '1761928461'
+  date: '2025-10-31T17:34:21+01:00'
+  subject: '* Refactor FR3 Duo Robot Configuration'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  error: "Undefined substitution argument kinematics_path' \nwhen evaluating expression\
+    \ 'xacro.load_yaml('$(arg kinematics_path')'"
+  matches: false
+- commit: 1bda71e15b433bc355fa19bb0391dd7b6618a723
+  timestamp: '1761928461'
+  date: '2025-10-31T17:34:21+01:00'
+  subject: updated model materials
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  error: "Undefined substitution argument kinematics_path' \nwhen evaluating expression\
+    \ 'xacro.load_yaml('$(arg kinematics_path')'"
+  matches: false
+- commit: 4b91abcb3391e80ccdae82b74cb19ee597a1f3c5
+  timestamp: '1761927863'
+  date: '2025-10-31T17:24:23+01:00'
+  subject: 'feat: mount and cover belong to the same link feat: updated inertials'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 3bad514b1aa6a9ee46c47f806805bfb3fc993bd6
+  timestamp: '1761927185'
+  date: '2025-10-31T17:13:05+01:00'
+  subject: '* Refactor FR3 Duo Robot Configuration'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  error: "Undefined substitution argument kinematics_path' \nwhen evaluating expression\
+    \ 'xacro.load_yaml('$(arg kinematics_path')'"
+  matches: false
+- commit: b6acf758a1a2bda99eef217b0a39b26ddad189e8
+  timestamp: '1761927185'
+  date: '2025-10-31T17:13:05+01:00'
+  subject: updated model materials
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  error: "Undefined substitution argument kinematics_path' \nwhen evaluating expression\
+    \ 'xacro.load_yaml('$(arg kinematics_path')'"
+  matches: false
+- commit: 8b71e0d5154b1548bee3cc2f9e41dd2538a8ce16
+  timestamp: '1760361306'
+  date: '2025-10-13T15:15:06+02:00'
+  subject: 'feat: added new robot variant fr3v2.1'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 6e825ec19dade2731306e508be353c205174b302
+  timestamp: '1760359399'
+  date: '2025-10-13T14:43:19+02:00'
+  subject: 'feat: added new robot variant fr3v2.1'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 42
+  comparable_quantities: 106
+- commit: 919c533741cb816684bb178f4904d771f45a1798
+  timestamp: '1760026548'
+  date: '2025-10-09T18:15:48+02:00'
+  subject: 'feat: Extend the joint limits, add position-based velocity limits tags'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 50
+  comparable_quantities: 106
+- commit: e9e3c6cd7d46fe520f99047c30d27e9449093cd9
+  timestamp: '1760026548'
+  date: '2025-10-09T18:15:48+02:00'
+  subject: 'feat: added accelerometer frames to urdfs'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 62
+  comparable_quantities: 106
+- commit: 1a07d2689eb26eff153dded401059fa5bf257f95
+  timestamp: '1758725650'
+  date: '2025-09-24T16:54:10+02:00'
+  subject: 'feat: Extend the joint limits, add position-based velocity limits tags'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 50
+  comparable_quantities: 106
+- commit: a48a4febb4d726c82fcb559bc8d6d4a8eba30112
+  timestamp: '1755699572'
+  date: '2025-08-20T16:19:32+02:00'
+  subject: 'feat: added accelerometer frames to urdfs'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 62
+  comparable_quantities: 106
+- commit: 27deab86e3df1ff8e093a7c5b6c0edae8739bc39
+  timestamp: '1754048418'
+  date: '2025-08-01T13:40:18+02:00'
+  subject: 'fix: remove redundant argument'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 62
+  comparable_quantities: 106
+- commit: 9dfc11294b32d481c31c2501655d7333505ba43d
+  timestamp: '1754048041'
+  date: '2025-08-01T13:34:01+02:00'
+  subject: 'fix: ee_with_one_link takes the correct arguments'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 62
+  comparable_quantities: 106
+- commit: 6af373c97b1dd7c2e4c135c2b82dcf0877ed6099
+  timestamp: '1753885047'
+  date: '2025-07-30T16:17:27+02:00'
+  subject: 'fix: gazebo can be used with prefixes'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 62
+  comparable_quantities: 106
+- commit: be8347725c07cb3567a1ca431fe1475f246120a2
+  timestamp: '1751531662'
+  date: '2025-07-03T10:34:22+02:00'
+  subject: 'fix: cover and mount replaced by new designs'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 62
+  comparable_quantities: 106
+- commit: 467e282f23c46ae4b2abf6771647aa5ac9366b22
+  timestamp: '1750937519'
+  date: '2025-06-26T13:31:59+02:00'
+  subject: 'fix: urdf xacros include end-effector parameters'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 62
+  comparable_quantities: 106
+- commit: c3a6cf30a9c0ef1e014fda28a5d5c8f6a6c88bd2
+  timestamp: '1750866855'
+  date: '2025-06-25T17:54:15+02:00'
+  subject: fix/ik-bug-gripper-launching
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 62
+  comparable_quantities: 106
+- commit: 5fd84b003f7339f383f40b609089f064de8785ee
+  timestamp: '1750428788'
+  date: '2025-06-20T16:13:08+02:00'
+  subject: 'fix: syntax error'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 62
+  comparable_quantities: 106
+- commit: b29e4f293bd6dbf0d305daceaf8307680df001b6
+  timestamp: '1744033237'
+  date: '2025-04-07T15:40:37+02:00'
+  subject: 'feat: identify fr3v2 interials'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 62
+  comparable_quantities: 106
+- commit: 35b789ceec2cbfee49cc2c0c0154f4356ffecf5a
+  timestamp: '1742570841'
+  date: '2025-03-21T16:27:21+01:00'
+  subject: 'fix: multi arm removed'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 82
+  comparable_quantities: 106
+- commit: e95a814cff738bedd6b90893aeeb361f4fdf6302
+  timestamp: '1742570826'
+  date: '2025-03-21T16:27:06+01:00'
+  subject: 'feat: fr3 duo description for multiple controller managers'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: c216a985142c8e527ff4f4df2fef6ac87273e52e
+  timestamp: '1742570826'
+  date: '2025-03-21T16:27:06+01:00'
+  subject: 'feat: fr3 duo added to franka description'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 24d6d0d3aea3794921bf7daf1fddf2bbe9c6338e
+  timestamp: '1742570826'
+  date: '2025-03-21T16:27:06+01:00'
+  subject: 'feat: add fr3v2'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 903a0875dad27a4835acdf356faafd5eb14341f2
+  timestamp: '1742570826'
+  date: '2025-03-21T16:27:06+01:00'
+  subject: 'feat: add srdfs for arms and hand'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 7365887381eea01ba7ab50142ea9636f54b7d307
+  timestamp: '1742570826'
+  date: '2025-03-21T16:27:06+01:00'
+  subject: 'feat: new collision meshes'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 0b5034bc35fafce1436f0bd072270ef1a894f4a0
+  timestamp: '1741082479'
+  date: '2025-03-04T11:01:19+01:00'
+  subject: 'fix: franka hand inertials fixed'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: d91cc7c6ec4d5651a2c0b5866e986d2d1bae8e49
+  timestamp: '1734010453'
+  date: '2024-12-12T14:34:13+01:00'
+  subject: 'fix: underscore removed from arm prefix'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 140626a44ba5ff58b25eb93e93093be1658aece4
+  timestamp: '1734010453'
+  date: '2024-12-12T14:34:13+01:00'
+  subject: 'fix: Fixed a wrong parameter name feat: Adapted the URDFs to use the ''multi
+    arm'' hardware interface in case of multi arm setups'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 66b51b59beee4bb17fc0da40f62e7c01eb00f65c
+  timestamp: '1734010453'
+  date: '2024-12-12T14:34:13+01:00'
+  subject: 'fix: end effectors can be used for dual arm setups'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 8fed11163d87f1e31cd100aca38b1a121c275860
+  timestamp: '1734010393'
+  date: '2024-12-12T14:33:13+01:00'
+  subject: 'feat: Adding the .xacro definition for dual arm setups'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: d9841cfbb3e80cc51dbd0d2f04bdae636ec53bb1
+  timestamp: '1733927648'
+  date: '2024-12-11T15:34:08+01:00'
+  subject: Use phong instead of lambert shading
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: a707a2e05f3b0d168684b28cc451205d3f7d1361
+  timestamp: '1733927457'
+  date: '2024-12-11T15:30:57+01:00'
+  subject: 'fix: robot model does not need to be specified for ee urdf'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 032e7ee892eee227bf80899a0cefe4d07d9808bb
+  timestamp: '1733927456'
+  date: '2024-12-11T15:30:56+01:00'
+  subject: Add option to omit arm_id prefix for link, visual, joint elements
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 6743e0924a87a8fe702bd3769d55204f1f719faa
+  timestamp: '1733927056'
+  date: '2024-12-11T15:24:16+01:00'
+  subject: 'fix: comments for franka hand arguments'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 126353b51dd06e724a8ee31adfb525639d0218ea
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'add: gazebo simulation joint friction and gazebo effort interface param'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: dcda424d6f8b38cfea0178830c9e05da4a1671ff
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'feat: support gazebo simulation in ros2'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 14c5d6373404f20cd24e0f6d5f5ddd959588fe04
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'feat: changed minor principal moment of inertia to satisfy triangle inequality'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: e3278521f5639639196c5330cefd6c962bd3550b
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'feat: Preparing changes for Gazebo'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 068f0b8ffe9665d0cd4a5e45274c663864c598c5
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'feat: Preparing changes for Gazebo'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: de0dc86219272db8c0ab6be706940a38ddce73b4
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'fix: link0 inertials added'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 4bb824f21dc553767b3bd2fafa363f8dc57a522d
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'fix: rpy values added'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: d5e8927aae7a100909753bb747799c663a2f4afd
+  timestamp: '1715875333'
+  date: '2024-05-16T18:02:13+02:00'
+  subject: 'feat: end-effector can be deactivated with an argument'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: b51da21a28af2cd27c028e61cbf328458e8a90f0
+  timestamp: '1715098740'
+  date: '2024-05-07T18:19:00+02:00'
+  subject: 'feat: add dedicated folder for end-effectors'
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 1ddff9ba71abb199fb349ffcc3155e86cfdb094e
+  timestamp: '1702916720'
+  date: '2023-12-18T17:25:20+01:00'
+  subject: Publish franka_description
+  file: robots/fr3_duo/fr3_duo.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+evidence:
+- url: https://github.com/frankarobotics/franka_description
+  document: franka_fr3_duo/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/frankarobotics/franka_description/blob/main/robots/fr3_duo/fr3_duo.urdf.xacro
+  document: franka_fr3_duo/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/google-deepmind/mujoco_menagerie/blob/main/franka_fr3_v2/fr3v2.xml
+  document: franka_fr3_duo/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/google-deepmind/mujoco_menagerie/tree/main/franka_fr3_v2
+  document: franka_fr3_duo/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/kevinzakka/obj2mjcf
+  document: franka_fr3_duo/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - left_fr3v2_link8
+    - right_fr3v2_link8
+    assets_loaded: 58
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - franka_fr3_duo/fr3_duo.xml
+    - franka_fr3_duo/assets/fr3_duo_mount.obj
+    - franka_fr3_duo/assets/fr3_duo_cover.obj
+    - franka_fr3_duo/assets/franka_head.obj
+    - franka_fr3_duo/assets/fr3_duo_mount.stl
+    - franka_fr3_duo/assets/fr3_duo_cover.stl
+    - franka_fr3_duo/assets/franka_head.stl
+    - franka_fr3_duo/assets/link0_0.obj
+    - franka_fr3_duo/assets/link0_1.obj
+    - franka_fr3_duo/assets/link0_2.obj
+    - franka_fr3_duo/assets/link0_3.obj
+    - franka_fr3_duo/assets/link0_4.obj
+    - franka_fr3_duo/assets/link0_5.obj
+    - franka_fr3_duo/assets/link1_0.obj
+    - franka_fr3_duo/assets/link1_1.obj
+    - franka_fr3_duo/assets/link1_2.obj
+    - franka_fr3_duo/assets/link1_3.obj
+    - franka_fr3_duo/assets/link2_0.obj
+    - franka_fr3_duo/assets/link2_1.obj
+    - franka_fr3_duo/assets/link2_2.obj
+    - franka_fr3_duo/assets/link2_3.obj
+    - franka_fr3_duo/assets/link3_0.obj
+    - franka_fr3_duo/assets/link3_1.obj
+    - franka_fr3_duo/assets/link3_2.obj
+    - franka_fr3_duo/assets/link3_3.obj
+    - franka_fr3_duo/assets/link4_0.obj
+    - franka_fr3_duo/assets/link4_1.obj
+    - franka_fr3_duo/assets/link4_2.obj
+    - franka_fr3_duo/assets/link4_3.obj
+    - franka_fr3_duo/assets/link5_0.obj
+    - franka_fr3_duo/assets/link5_1.obj
+    - franka_fr3_duo/assets/link5_2.obj
+    - franka_fr3_duo/assets/link5_3.obj
+    - franka_fr3_duo/assets/link5_4.obj
+    - franka_fr3_duo/assets/link6_0.obj
+    - franka_fr3_duo/assets/link6_1.obj
+    - franka_fr3_duo/assets/link6_2.obj
+    - franka_fr3_duo/assets/link6_3.obj
+    - franka_fr3_duo/assets/link6_4.obj
+    - franka_fr3_duo/assets/link6_5.obj
+    - franka_fr3_duo/assets/link6_6.obj
+    - franka_fr3_duo/assets/link6_7.obj
+    - franka_fr3_duo/assets/link6_8.obj
+    - franka_fr3_duo/assets/link6_9.obj
+    - franka_fr3_duo/assets/link7_0.obj
+    - franka_fr3_duo/assets/link7_1.obj
+    - franka_fr3_duo/assets/link7_2.obj
+    - franka_fr3_duo/assets/link7_3.obj
+    - franka_fr3_duo/assets/link7_4.obj
+    - franka_fr3_duo/assets/link7_5.obj
+    - franka_fr3_duo/assets/link7_6.obj
+    - franka_fr3_duo/assets/link0.stl
+    - franka_fr3_duo/assets/link1.stl
+    - franka_fr3_duo/assets/link2.stl
+    - franka_fr3_duo/assets/link3.stl
+    - franka_fr3_duo/assets/link4.stl
+    - franka_fr3_duo/assets/link5.stl
+    - franka_fr3_duo/assets/link6.stl
+    - franka_fr3_duo/assets/link7.stl
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.030814
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - base
+    - fr3_duo_mount_origin
+    - fr3_duo_mount_left
+    - fr3_duo_mount_right
+    - left_base
+    - left_fr3v2_link0_accelerometer_top
+    - left_fr3v2_link0_accelerometer_bottom
+    - left_fr3v2_link1_accelerometer_top
+    - left_fr3v2_link1_accelerometer_bottom
+    - left_fr3v2_link2_accelerometer_top
+    - left_fr3v2_link2_accelerometer_bottom
+    - left_fr3v2_link3_accelerometer_top
+    - left_fr3v2_link3_accelerometer_bottom
+    - left_fr3v2_link4_accelerometer_top
+    - left_fr3v2_link4_accelerometer_bottom
+    - left_fr3v2_link5_accelerometer_top
+    - left_fr3v2_link5_accelerometer_bottom
+    - left_fr3v2_link8
+    - left_fr3v2_hand_tcp
+    - right_base
+    - right_fr3v2_link0_accelerometer_top
+    - right_fr3v2_link0_accelerometer_bottom
+    - right_fr3v2_link1_accelerometer_top
+    - right_fr3v2_link1_accelerometer_bottom
+    - right_fr3v2_link2_accelerometer_top
+    - right_fr3v2_link2_accelerometer_bottom
+    - right_fr3v2_link3_accelerometer_top
+    - right_fr3v2_link3_accelerometer_bottom
+    - right_fr3v2_link4_accelerometer_top
+    - right_fr3v2_link4_accelerometer_bottom
+    - right_fr3v2_link5_accelerometer_top
+    - right_fr3v2_link5_accelerometer_bottom
+    - right_fr3v2_link8
+    - right_fr3v2_hand_tcp
+    assets_loaded: 46
+    mesh_conversions:
+    - file: meshes/accessories/fr3_duo_mount_v0_3/visual/fr3_duo_mount.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/accessories/fr3_duo_mount_v0_3/visual/fr3_duo_cover.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/accessories/franka_head_v0_2/visual/franka_head.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link0.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link1.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link2.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link3.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link4.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link6.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link7.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/hand.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/finger.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/finger.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link0.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link1.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link2.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link3.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link4.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link6.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link7.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/hand.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/finger.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/finger.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments:
+      robot_types: '[''fr3v2'',''fr3v2'']'
+      no_prefix: 'false'
+      hand: 'true'
+      ee_id: franka_hand
+      special_connection: ''
+      xyz_ee: 0 0 0
+      rpy_ee: 0 0 -0.7853981633974483
+      tcp_xyz: ''
+      tcp_rpy: 0 0 0
+      safety_distance: '0.03'
+      with_sc: 'false'
+      include_self_collision_geometry: 'true'
+      description_pkg: franka_description
+      arm_prefixes: '[''left'',''right'']'
+      xyz: 0 0 0
+      rpy: 0 0 0
+      base_mount: base
+    source_dependencies:
+    - accessories/fr3_duo_mount_v0_3/fr3_duo_mount.xacro
+    - accessories/fr3_duo_mount_v0_3/inertials.yaml
+    - accessories/fr3_duo_mount_v0_3/kinematics.yaml
+    - accessories/franka_head_v0_2/franka_head.xacro
+    - accessories/franka_head_v0_2/inertials.yaml
+    - accessories/franka_head_v0_2/kinematics.yaml
+    - end_effectors/common/franka_hand.xacro
+    - end_effectors/common/utils.xacro
+    - end_effectors/franka_hand/inertials.yaml
+    - robots/common/franka_arm.xacro
+    - robots/common/franka_robot.xacro
+    - robots/common/utils.xacro
+    - robots/fr3_duo/fr3_duo.urdf.xacro
+    - robots/fr3_duo/fr3_duo.xacro
+    - robots/fr3v2/accelerometers.yaml
+    - robots/fr3v2/dynamics.yaml
+    - robots/fr3v2/inertials.yaml
+    - robots/fr3v2/joint_limits.yaml
+    - robots/fr3v2/kinematics.yaml
+    - meshes/accessories/fr3_duo_mount_v0_3/visual/fr3_duo_mount.dae
+    - meshes/accessories/fr3_duo_mount_v0_3/visual/fr3_duo_cover.dae
+    - meshes/accessories/fr3_duo_mount_v0_3/collision/fr3_duo_mount.stl
+    - meshes/accessories/fr3_duo_mount_v0_3/collision/fr3_duo_cover.stl
+    - meshes/accessories/franka_head_v0_2/visual/franka_head.dae
+    - meshes/accessories/franka_head_v0_2/collision/franka_head.stl
+    - meshes/robots/fr3v2/visual/link0.dae
+    - meshes/robots/fr3v2/collision/link0.stl
+    - meshes/robots/fr3v2/visual/link1.dae
+    - meshes/robots/fr3v2/collision/link1.stl
+    - meshes/robots/fr3v2/visual/link2.dae
+    - meshes/robots/fr3v2/collision/link2.stl
+    - meshes/robots/fr3v2/visual/link3.dae
+    - meshes/robots/fr3v2/collision/link3.stl
+    - meshes/robots/fr3v2/visual/link4.dae
+    - meshes/robots/fr3v2/collision/link4.stl
+    - meshes/robots/fr3v2/visual/link5.dae
+    - meshes/robots/fr3v2/collision/link5.stl
+    - meshes/robots/fr3v2/visual/link6.dae
+    - meshes/robots/fr3v2/collision/link6.stl
+    - meshes/robots/fr3v2/visual/link7.dae
+    - meshes/robots/fr3v2/collision/link7.stl
+    - meshes/robot_ee/franka_hand_white/visual/hand.dae
+    - meshes/robot_ee/franka_hand_white/collision/hand.stl
+    - meshes/robot_ee/franka_hand_white/visual/finger.dae
+    - meshes/robot_ee/franka_hand_white/visual/finger.dae
+    - meshes/robots/fr3v2/visual/link0.dae
+    - meshes/robots/fr3v2/collision/link0.stl
+    - meshes/robots/fr3v2/visual/link1.dae
+    - meshes/robots/fr3v2/collision/link1.stl
+    - meshes/robots/fr3v2/visual/link2.dae
+    - meshes/robots/fr3v2/collision/link2.stl
+    - meshes/robots/fr3v2/visual/link3.dae
+    - meshes/robots/fr3v2/collision/link3.stl
+    - meshes/robots/fr3v2/visual/link4.dae
+    - meshes/robots/fr3v2/collision/link4.stl
+    - meshes/robots/fr3v2/visual/link5.dae
+    - meshes/robots/fr3v2/collision/link5.stl
+    - meshes/robots/fr3v2/visual/link6.dae
+    - meshes/robots/fr3v2/collision/link6.stl
+    - meshes/robots/fr3v2/visual/link7.dae
+    - meshes/robots/fr3v2/collision/link7.stl
+    - meshes/robot_ee/franka_hand_white/visual/hand.dae
+    - meshes/robot_ee/franka_hand_white/collision/hand.stl
+    - meshes/robot_ee/franka_hand_white/visual/finger.dae
+    - meshes/robot_ee/franka_hand_white/visual/finger.dae
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo
+  S:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - base
+    - fr3_duo_mount_origin
+    - fr3_duo_mount_left
+    - fr3_duo_mount_right
+    - left_base
+    - left_fr3v2_link0_accelerometer_top
+    - left_fr3v2_link0_accelerometer_bottom
+    - left_fr3v2_link1_accelerometer_top
+    - left_fr3v2_link1_accelerometer_bottom
+    - left_fr3v2_link2_accelerometer_top
+    - left_fr3v2_link2_accelerometer_bottom
+    - left_fr3v2_link3_accelerometer_top
+    - left_fr3v2_link3_accelerometer_bottom
+    - left_fr3v2_link4_accelerometer_top
+    - left_fr3v2_link4_accelerometer_bottom
+    - left_fr3v2_link5_accelerometer_top
+    - left_fr3v2_link5_accelerometer_bottom
+    - left_fr3v2_link8
+    - left_fr3v2_hand_tcp
+    - right_base
+    - right_fr3v2_link0_accelerometer_top
+    - right_fr3v2_link0_accelerometer_bottom
+    - right_fr3v2_link1_accelerometer_top
+    - right_fr3v2_link1_accelerometer_bottom
+    - right_fr3v2_link2_accelerometer_top
+    - right_fr3v2_link2_accelerometer_bottom
+    - right_fr3v2_link3_accelerometer_top
+    - right_fr3v2_link3_accelerometer_bottom
+    - right_fr3v2_link4_accelerometer_top
+    - right_fr3v2_link4_accelerometer_bottom
+    - right_fr3v2_link5_accelerometer_top
+    - right_fr3v2_link5_accelerometer_bottom
+    - right_fr3v2_link8
+    - right_fr3v2_hand_tcp
+    assets_loaded: 46
+    mesh_conversions:
+    - file: meshes/accessories/fr3_duo_mount_v0_3/visual/fr3_duo_mount.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/accessories/fr3_duo_mount_v0_3/visual/fr3_duo_cover.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/accessories/franka_head_v0_2/visual/franka_head.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link0.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link1.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link2.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link3.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link4.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link6.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link7.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/hand.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/finger.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/finger.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link0.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link1.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link2.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link3.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link4.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link6.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3v2/visual/link7.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/hand.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/finger.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/finger.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments:
+      robot_types: '[''fr3v2'',''fr3v2'']'
+      no_prefix: 'false'
+      hand: 'true'
+      ee_id: franka_hand
+      special_connection: ''
+      xyz_ee: 0 0 0
+      rpy_ee: 0 0 -0.7853981633974483
+      tcp_xyz: ''
+      tcp_rpy: 0 0 0
+      safety_distance: '0.03'
+      with_sc: 'false'
+      include_self_collision_geometry: 'true'
+      description_pkg: franka_description
+      arm_prefixes: '[''left'',''right'']'
+      xyz: 0 0 0
+      rpy: 0 0 0
+      base_mount: base
+    source_dependencies:
+    - accessories/fr3_duo_mount_v0_3/fr3_duo_mount.xacro
+    - accessories/fr3_duo_mount_v0_3/inertials.yaml
+    - accessories/fr3_duo_mount_v0_3/kinematics.yaml
+    - accessories/franka_head_v0_2/franka_head.xacro
+    - accessories/franka_head_v0_2/inertials.yaml
+    - accessories/franka_head_v0_2/kinematics.yaml
+    - end_effectors/common/franka_hand.xacro
+    - end_effectors/common/utils.xacro
+    - end_effectors/franka_hand/inertials.yaml
+    - robots/common/franka_arm.xacro
+    - robots/common/franka_robot.xacro
+    - robots/common/utils.xacro
+    - robots/fr3_duo/fr3_duo.urdf.xacro
+    - robots/fr3_duo/fr3_duo.xacro
+    - robots/fr3v2/accelerometers.yaml
+    - robots/fr3v2/dynamics.yaml
+    - robots/fr3v2/inertials.yaml
+    - robots/fr3v2/joint_limits.yaml
+    - robots/fr3v2/kinematics.yaml
+    - meshes/accessories/fr3_duo_mount_v0_3/visual/fr3_duo_mount.dae
+    - meshes/accessories/fr3_duo_mount_v0_3/visual/fr3_duo_cover.dae
+    - meshes/accessories/fr3_duo_mount_v0_3/collision/fr3_duo_mount.stl
+    - meshes/accessories/fr3_duo_mount_v0_3/collision/fr3_duo_cover.stl
+    - meshes/accessories/franka_head_v0_2/visual/franka_head.dae
+    - meshes/accessories/franka_head_v0_2/collision/franka_head.stl
+    - meshes/robots/fr3v2/visual/link0.dae
+    - meshes/robots/fr3v2/collision/link0.stl
+    - meshes/robots/fr3v2/visual/link1.dae
+    - meshes/robots/fr3v2/collision/link1.stl
+    - meshes/robots/fr3v2/visual/link2.dae
+    - meshes/robots/fr3v2/collision/link2.stl
+    - meshes/robots/fr3v2/visual/link3.dae
+    - meshes/robots/fr3v2/collision/link3.stl
+    - meshes/robots/fr3v2/visual/link4.dae
+    - meshes/robots/fr3v2/collision/link4.stl
+    - meshes/robots/fr3v2/visual/link5.dae
+    - meshes/robots/fr3v2/collision/link5.stl
+    - meshes/robots/fr3v2/visual/link6.dae
+    - meshes/robots/fr3v2/collision/link6.stl
+    - meshes/robots/fr3v2/visual/link7.dae
+    - meshes/robots/fr3v2/collision/link7.stl
+    - meshes/robot_ee/franka_hand_white/visual/hand.dae
+    - meshes/robot_ee/franka_hand_white/collision/hand.stl
+    - meshes/robot_ee/franka_hand_white/visual/finger.dae
+    - meshes/robot_ee/franka_hand_white/visual/finger.dae
+    - meshes/robots/fr3v2/visual/link0.dae
+    - meshes/robots/fr3v2/collision/link0.stl
+    - meshes/robots/fr3v2/visual/link1.dae
+    - meshes/robots/fr3v2/collision/link1.stl
+    - meshes/robots/fr3v2/visual/link2.dae
+    - meshes/robots/fr3v2/collision/link2.stl
+    - meshes/robots/fr3v2/visual/link3.dae
+    - meshes/robots/fr3v2/collision/link3.stl
+    - meshes/robots/fr3v2/visual/link4.dae
+    - meshes/robots/fr3v2/collision/link4.stl
+    - meshes/robots/fr3v2/visual/link5.dae
+    - meshes/robots/fr3v2/collision/link5.stl
+    - meshes/robots/fr3v2/visual/link6.dae
+    - meshes/robots/fr3v2/collision/link6.stl
+    - meshes/robots/fr3v2/visual/link7.dae
+    - meshes/robots/fr3v2/collision/link7.stl
+    - meshes/robot_ee/franka_hand_white/visual/hand.dae
+    - meshes/robot_ee/franka_hand_white/collision/hand.stl
+    - meshes/robot_ee/franka_hand_white/visual/finger.dae
+    - meshes/robot_ee/franka_hand_white/visual/finger.dae
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

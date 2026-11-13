@@ -1,0 +1,106 @@
+model: iit_softfoot
+method: dated match
+confidence: medium
+upstream_repo: https://github.com/NMMI/SoftFoot_MuJoCo
+upstream_file: softfoot.xml
+upstream_commit: 43834f4490adf19a2443e8daa81d3a69fe716ea5
+latest_upstream_commit: 3b87622feb1e36e9a758aa76854204412d4ca8e8
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: iit_softfoot/softfoot.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: d14022b5dcb49da125f8c0c421ef8076f76372ac
+  timestamp: '1733921989'
+  date: '2024-12-11T12:59:49Z'
+  subject: Add IIT SoftFoot files
+menagerie_commits_involved: []
+source_candidate:
+  commit: 43834f4490adf19a2443e8daa81d3a69fe716ea5
+  timestamp: '1733917272'
+  date: '2024-12-11T12:41:12+01:00'
+  subject: Add files via upload
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 289
+source_candidates:
+- commit: 43834f4490adf19a2443e8daa81d3a69fe716ea5
+  timestamp: '1733917272'
+  date: '2024-12-11T12:41:12+01:00'
+  subject: Add files via upload
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 289
+evidence:
+- url: https://github.com/NMMI/SoftFoot_MuJoCo
+  document: iit_softfoot/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/google-deepmind/dm_control/tree/main/dm_control/mjcf
+  document: iit_softfoot/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0000000000000002
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0000000000000002
+      - - 0.0
+        - -1.0000000000000002
+        - 0.0
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0000000000000002
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0000000000000002
+      - - 0.0
+        - -1.0000000000000002
+        - 0.0
+  S:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0000000000000002
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0000000000000002
+      - - 0.0
+        - -1.0000000000000002
+        - 0.0

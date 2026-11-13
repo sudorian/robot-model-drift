@@ -1,0 +1,741 @@
+model: ufactory_xarm7
+method: dated match
+confidence: medium
+upstream_repo: https://github.com/xArm-Developer/xarm_ros
+upstream_file: xarm_description/urdf/xarm_device.urdf.xacro
+upstream_commit: fcc2060b1ccd8a72ac3f332ff9c3c590182870e7
+latest_upstream_commit: cf51617d98bc55a88d9aa735acfa43a0bbb8e425
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: ufactory_xarm7/xarm7_nohand.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 7a229d92a50a47fc1df973652919ce95b82cab2d
+  timestamp: '1692905982'
+  date: '2023-08-24T12:39:42-07:00'
+  subject: Add UFACTORY xarm7.
+  file: ufactory_xarm7/xarm7_nohand.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: 52aae0995cb4c97cdaf70e09d9f4e0c25df04bce
+  date: '2024-12-17T17:11:42+01:00'
+  file: ufactory_xarm7/xarm7_nohand.xml
+- commit: 8d66d2dbd911bcabb817c972b698361b7f079a74
+  date: '2023-10-17T17:32:34-07:00'
+  file: ufactory_xarm7/xarm7_nohand.xml
+- commit: 45bb7fe33025b63beecad316164b5b44a300f4b4
+  date: '2023-08-28T04:16:07-07:00'
+  file: ufactory_xarm7/xarm7_nohand.xml
+- commit: 7a229d92a50a47fc1df973652919ce95b82cab2d
+  date: '2023-08-24T12:39:42-07:00'
+  file: ufactory_xarm7/xarm7_nohand.xml
+source_candidate:
+  commit: fcc2060b1ccd8a72ac3f332ff9c3c590182870e7
+  timestamp: '1688700399'
+  date: '2023-07-07T11:26:39+08:00'
+  subject: '[fix] URDF syntax compatible'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 48
+source_candidates:
+- commit: 5b7bfe4585819fddb962b018d7362d30db892960
+  timestamp: '1792484348'
+  date: '2026-10-20T16:19:08+08:00'
+  subject: '[fix] (urdf) update the effort limit'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L' or robot_sn[0] == 'F')'"
+  matches: false
+- commit: cf51617d98bc55a88d9aa735acfa43a0bbb8e425
+  timestamp: '1792484144'
+  date: '2026-10-20T16:15:44+08:00'
+  subject: '[fix] (urdf) update the effort limit'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 7
+  comparable_quantities: 48
+- commit: b9d492275b968d24317ca33a9f2579e1633acbbf
+  timestamp: '1777346626'
+  date: '2026-04-28T11:23:46+08:00'
+  subject: '[feat] support dae model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L' or robot_sn[0] == 'F')'"
+  matches: false
+- commit: bef5ccea19aeb43f934f6febe9eacc423b4b5e67
+  timestamp: '1777345899'
+  date: '2026-04-28T11:11:39+08:00'
+  subject: '[feat] support dae model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 48
+- commit: 9bf2158860c8df275186f36f852647ea7a5cfb0e
+  timestamp: '1755513945'
+  date: '2025-08-18T18:45:45+08:00'
+  subject: '[fix] fix dual realsense_d435i in gazebo'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L' or robot_sn[0] == 'F')'"
+  matches: false
+- commit: f8d572f768d990122dca304144f92bcf09a1f2ec
+  timestamp: '1742530437'
+  date: '2025-03-21T12:13:57+08:00'
+  subject: '[feat] add 1305 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L' or robot_sn[0] == 'F')'"
+  matches: false
+- commit: a69d7d4b3f9f4476201a7025cc3e82a59223b1cc
+  timestamp: '1732790717'
+  date: '2024-11-28T18:45:17+08:00'
+  subject: '[feat] add 1305 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 48
+- commit: de625f9f102d126a54ca92b40df9962ce03ea620
+  timestamp: '1724308344'
+  date: '2024-08-22T14:32:24+08:00'
+  subject: change scripts to make gazebo sim support groups
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L' or robot_sn[0] == 'F')'"
+  matches: false
+- commit: c5f271d0fc49388dea29d218215bafb4bd198e9a
+  timestamp: '1723777230'
+  date: '2024-08-16T11:00:30+08:00'
+  subject: change scripts to make gazebo sim support groups
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 48
+- commit: 74e75cf87e6904d0876b869113d09a8bc9f6e176
+  timestamp: '1698114616'
+  date: '2023-10-24T10:30:16+08:00'
+  subject: '[feat] add kinematics_suffix parameter'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L' or robot_sn[0] == 'F')'"
+  matches: false
+- commit: c7eeca9ea1ff779c7b4e084968cd364ba4b32e4c
+  timestamp: '1698114604'
+  date: '2023-10-24T10:30:04+08:00'
+  subject: fix duplicate motor3 name in tranmission 4 entries
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L' or robot_sn[0] == 'F')'"
+  matches: false
+- commit: de13fa4c13e8a3c95e3b170219808dd7de47fd15
+  timestamp: '1698113648'
+  date: '2023-10-24T10:14:08+08:00'
+  subject: Merge branch 'master' of https://github.com/Taiga-Robotics/xarm_ros into
+    Taiga-Robotics-dev
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 48
+- commit: a083c3639944da6b040f051fd180bdc95eefd5ca
+  timestamp: '1698113341'
+  date: '2023-10-24T10:09:01+08:00'
+  subject: '[feat] add kinematics_suffix parameter'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 48
+- commit: 999ce749acb4a4e8adc8801f902f06da7c63fb3f
+  timestamp: '1698111578'
+  date: '2023-10-23T21:39:38-04:00'
+  subject: fix duplicate motor3 name in tranmission 4 entries
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 48
+- commit: 281d6c301092d93d3deac12b6b6b6dd86fb05df1
+  timestamp: '1693211077'
+  date: '2023-08-28T16:24:37+08:00'
+  subject: '[fix] fix mesh file name or suffix'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L' or robot_sn[0] == 'F')'"
+  matches: false
+- commit: 97f7c85e791663a92feea1541a338ec5484fdf78
+  timestamp: '1693210697'
+  date: '2023-08-28T16:18:17+08:00'
+  subject: '[fix] fix mesh file name or suffix'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 48
+- commit: bed4ea09157bb044b543d2ca5fcf7780cef8a6da
+  timestamp: '1688700745'
+  date: '2023-07-07T11:32:25+08:00'
+  subject: '[fix] URDF syntax compatible'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L' or robot_sn[0] == 'F')'"
+  matches: false
+- commit: fcc2060b1ccd8a72ac3f332ff9c3c590182870e7
+  timestamp: '1688700399'
+  date: '2023-07-07T11:26:39+08:00'
+  subject: '[fix] URDF syntax compatible'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 48
+- commit: 87ce4faaffec776b683a5d7c480146ffae1f7bdb
+  timestamp: '1688632249'
+  date: '2023-07-06T16:30:49+08:00'
+  subject: '[fix] (kinetic) fix urdf expression'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L')'"
+  matches: false
+- commit: 75956706e0108c2abcb98ed91eb6403604844acf
+  timestamp: '1688371734'
+  date: '2023-07-03T16:08:54+08:00'
+  subject: '[feat] add uf850 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L')'"
+  matches: false
+- commit: 911a420ff68fc488d96156fe715f7044c12b9dcd
+  timestamp: '1688367349'
+  date: '2023-07-03T14:55:49+08:00'
+  subject: '[feat] add uf850 models'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 48
+- commit: d8f863a37fa7810f9b0cef156088530f8340afb9
+  timestamp: '1684912886'
+  date: '2023-05-24T15:21:26+08:00'
+  subject: '[fix] fix link has invalid inertias'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L')'"
+  matches: false
+- commit: 04dc79616ef55433bd589daee01c2d0db713f2f0
+  timestamp: '1684912614'
+  date: '2023-05-24T15:16:54+08:00'
+  subject: '[fix] fix link has invalid inertias'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 48
+- commit: 79d6c2d2a16c10abdd2ae21b8fd6efe80bec3a41
+  timestamp: '1682238627'
+  date: '2023-04-23T16:30:27+08:00'
+  subject: '[fix] (urdf) default use `load_yaml()`, not `xacro.load_yaml()`'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''link4'', id 5'
+  matches: false
+- commit: 5fd541a9e85716ce4c3a9cc793cc5cfed2c11084
+  timestamp: '1682217057'
+  date: '2023-04-23T10:30:57+08:00'
+  subject: '[fix] (xacro) fix str to int exception'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L')'"
+  matches: false
+- commit: 467f381a3241753867fbf8e2c3647302716bc015
+  timestamp: '1682216988'
+  date: '2023-04-23T10:29:48+08:00'
+  subject: '[fix] (xacro) fix str to int exception'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''link4'', id 5'
+  matches: false
+- commit: 9f263958f4df3223dd29f0c8176f9d8f48668ef5
+  timestamp: '1681984802'
+  date: '2023-04-20T18:00:02+08:00'
+  subject: '[feat] Lite6 support load Realsense D435i model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''link4'', id 5'
+  matches: false
+- commit: 012b3ccf3d8ea5fe7db03a5cbdb9d9785a1d9b7c
+  timestamp: '1681984671'
+  date: '2023-04-20T17:57:51+08:00'
+  subject: '[fix] (kinetic) fix _private_macro.xacro'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L')'"
+  matches: false
+- commit: 00fcc0833845f12afaa85c1bafba4ec327078ce1
+  timestamp: '1681984448'
+  date: '2023-04-20T17:54:08+08:00'
+  subject: '[feat] Lite6 support load Realsense D435i model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''link4'', id 5'
+  matches: false
+- commit: d1d076e8bdb126016b29523bc19304dddf409151
+  timestamp: '1681982001'
+  date: '2023-04-20T17:13:21+08:00'
+  subject: '[fix] fix _private_macro.xacro'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''link4'', id 5'
+  matches: false
+- commit: e027c47bf4d600f11f03bd2aa359d22bc8d9dfdd
+  timestamp: '1681972633'
+  date: '2023-04-20T14:37:13+08:00'
+  subject: '[feat] Unify the URDF file and adapt the inertia parameters of the link'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: "Use of invalid name(s):  __len__ \nwhen evaluating expression 'robot_sn.__len__()'\
+    \ \nwhen evaluating expression 'robot_sn_len >= 14 and (robot_sn[0] == 'X' or\
+    \ robot_sn[0] == 'L')'"
+  matches: false
+- commit: 91d6608a22d92f90202bfc6b81afc44f145d07be
+  timestamp: '1681972214'
+  date: '2023-04-20T14:30:14+08:00'
+  subject: '[feat] Unify the URDF file and adapt the inertia parameters of the link'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''link4'', id 5'
+  matches: false
+- commit: 206ee31cc6860955d9bca90d87d8e7769cdb3dff
+  timestamp: '1680081986'
+  date: '2023-03-29T17:26:26+08:00'
+  subject: '[feat] add launch parameter `model1300` to replace the end model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 163d4085401018d9df774ac32959a07e7b7a04cb
+  timestamp: '1680081617'
+  date: '2023-03-29T17:20:17+08:00'
+  subject: '[feat] add launch parameter `model1300` to replace the end model'
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 841509f3eccc31abdd3f476f75ca66f7b49ecedc
+  timestamp: '1590749711'
+  date: '2020-05-29T18:55:11+08:00'
+  subject: add wait_for_finish parameter
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 93f22e0a8282ddb0b59485550013566b91567bee
+  timestamp: '1560305190'
+  date: '2019-06-12T10:06:30+08:00'
+  subject: v1.0.0
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: d968e51c5766e9ab51d2cfbf4b560cac562f5ec4
+  timestamp: '1559249572'
+  date: '2019-05-31T04:52:52+08:00'
+  subject: new xarm7 and xarm5 models
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 0ede8369d7112313a2bfa8ff295190d4faff5c6a
+  timestamp: '1558609167'
+  date: '2019-05-23T18:59:27+08:00'
+  subject: updated solid model
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 2a1b6a6b0893b88d9fd949b0c604c1df3f40d3f7
+  timestamp: '1543572560'
+  date: '2018-11-30T18:09:20+08:00'
+  subject: add Moveit Support
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 019346d9a7ff66bdd2ff25123024dd8f297da197
+  timestamp: '1533558323'
+  date: '2018-08-06T05:25:23-07:00'
+  subject: add the xarm_description folder
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+evidence:
+- url: https://github.com/xArm-Developer/xarm_ros/tree/master/xarm_description/urdf/xarm7
+  document: ufactory_xarm7/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/s1lent4gnt
+  document: ufactory_xarm7/README.md
+  commit: ffdf57667476eca8e550c33704a5e9fa90c45ce4
+  current: false
+- url: https://github.com/google-deepmind/mujoco_menagerie/issues/83
+  document: ufactory_xarm7/README.md
+  commit: b5a72f92f0630bc3b90711ed41ff640e93b1f90b
+  current: false
+- url: https://github.com/google-deepmind/mujoco_menagerie/pull/131
+  document: ufactory_xarm7/README.md
+  commit: b5a72f92f0630bc3b90711ed41ff640e93b1f90b
+  current: false
+- url: https://github.com/s1lent4gnt
+  document: ufactory_xarm7/CHANGELOG.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - ufactory_xarm7/xarm7_nohand.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.12
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - world
+    - link_eef
+    assets_loaded: 16
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments:
+      robot_type: xarm
+      dof: '7'
+      add_gripper: 'false'
+      prefix: ''
+      hw_ns: xarm
+      limited: 'false'
+      effort_control: 'false'
+      velocity_control: 'false'
+      add_vacuum_gripper: 'false'
+      add_bio_gripper: 'false'
+      model1300: 'false'
+      robot_ip: ''
+      robot_sn: ''
+      report_type: normal
+      ros2_control_plugin: uf_robot_hardware/UFRobotSystemHardware
+      ros2_control_params: ''
+      add_realsense_d435i: 'false'
+      add_d435i_links: 'true'
+      use_gazebo_camera: 'false'
+      add_other_geometry: 'false'
+      geometry_type: box
+      geometry_mass: '0.1'
+      geometry_height: '0.1'
+      geometry_radius: '0.1'
+      geometry_length: '0.1'
+      geometry_width: '0.1'
+      geometry_mesh_filename: ''
+      geometry_mesh_origin_xyz: 0 0 0
+      geometry_mesh_origin_rpy: 0 0 0
+      geometry_mesh_tcp_xyz: 0 0 0
+      geometry_mesh_tcp_rpy: 0 0 0
+      baud_checkset: 'true'
+      default_gripper_baud: '2000000'
+      attach_to: world
+      attach_xyz: 0 0 0
+      attach_rpy: 0 0 0
+      mesh_suffix: stl
+      kinematics_suffix: ''
+      gripper_version: G1
+    source_dependencies:
+    - xarm_description/config/kinematics/default/xarm7_default_kinematics.yaml
+    - xarm_description/config/link_inertial/xarm7_type7_HT_BR2.yaml
+    - xarm_description/config/xarm7/joint_limits.yaml
+    - xarm_description/urdf/_private_macro.xacro
+    - xarm_description/urdf/common/common.gazebo.xacro
+    - xarm_description/urdf/common/common.link.xacro
+    - xarm_description/urdf/common/common.material.xacro
+    - xarm_description/urdf/xarm7/xarm7.gazebo.xacro
+    - xarm_description/urdf/xarm7/xarm7.transmission.xacro
+    - xarm_description/urdf/xarm7/xarm7.urdf.xacro
+    - xarm_description/urdf/xarm7/xarm7_robot_macro.xacro
+    - xarm_description/urdf/xarm_device.urdf.xacro
+    - xarm_description/urdf/xarm_device_macro.xacro
+    - xarm_description/meshes/xarm7/visual/link_base.stl
+    - xarm_description/meshes/xarm7/visual/link_base.stl
+    - xarm_description/meshes/xarm7/visual/link1.stl
+    - xarm_description/meshes/xarm7/visual/link1.stl
+    - xarm_description/meshes/xarm7/visual/link2.stl
+    - xarm_description/meshes/xarm7/visual/link2.stl
+    - xarm_description/meshes/xarm7/visual/link3.stl
+    - xarm_description/meshes/xarm7/visual/link3.stl
+    - xarm_description/meshes/xarm7/visual/link4.stl
+    - xarm_description/meshes/xarm7/visual/link4.stl
+    - xarm_description/meshes/xarm7/visual/link5.stl
+    - xarm_description/meshes/xarm7/visual/link5.stl
+    - xarm_description/meshes/xarm7/visual/link6.stl
+    - xarm_description/meshes/xarm7/visual/link6.stl
+    - xarm_description/meshes/xarm7/visual/link7.stl
+    - xarm_description/meshes/end_tool/collision/end_tool.stl
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo
+  S:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - world
+    - link_eef
+    assets_loaded: 16
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments:
+      robot_type: xarm
+      dof: '7'
+      add_gripper: 'false'
+      prefix: ''
+      hw_ns: xarm
+      limited: 'false'
+      effort_control: 'false'
+      velocity_control: 'false'
+      add_vacuum_gripper: 'false'
+      model1300: 'false'
+      robot_ip: ''
+      robot_sn: ''
+      report_type: normal
+      ros2_control_plugin: uf_robot_hardware/UFRobotSystemHardware
+      ros2_control_params: ''
+      add_realsense_d435i: 'false'
+      add_d435i_links: 'true'
+      use_gazebo_camera: 'false'
+      add_other_geometry: 'false'
+      geometry_type: box
+      geometry_mass: '0.1'
+      geometry_height: '0.1'
+      geometry_radius: '0.1'
+      geometry_length: '0.1'
+      geometry_width: '0.1'
+      geometry_mesh_filename: ''
+      geometry_mesh_origin_xyz: 0 0 0
+      geometry_mesh_origin_rpy: 0 0 0
+      geometry_mesh_tcp_xyz: 0 0 0
+      geometry_mesh_tcp_rpy: 0 0 0
+      baud_checkset: 'true'
+      default_gripper_baud: '2000000'
+      attach_to: world
+      attach_xyz: 0 0 0
+      attach_rpy: 0 0 0
+    source_dependencies:
+    - xarm_description/config/link_inertial/xarm7_type7_HT_BR2.yaml
+    - xarm_description/urdf/_private_macro.xacro
+    - xarm_description/urdf/common/common.gazebo.xacro
+    - xarm_description/urdf/common/common.link.xacro
+    - xarm_description/urdf/common/common.material.xacro
+    - xarm_description/urdf/xarm7/xarm7.gazebo.xacro
+    - xarm_description/urdf/xarm7/xarm7.transmission.xacro
+    - xarm_description/urdf/xarm7/xarm7.urdf.xacro
+    - xarm_description/urdf/xarm7/xarm7_robot_macro.xacro
+    - xarm_description/urdf/xarm_device.urdf.xacro
+    - xarm_description/urdf/xarm_device_macro.xacro
+    - xarm_description/meshes/xarm7/visual/link_base.STL
+    - xarm_description/meshes/xarm7/visual/link_base.STL
+    - xarm_description/meshes/xarm7/visual/link1.STL
+    - xarm_description/meshes/xarm7/visual/link1.STL
+    - xarm_description/meshes/xarm7/visual/link2.STL
+    - xarm_description/meshes/xarm7/visual/link2.STL
+    - xarm_description/meshes/xarm7/visual/link3.STL
+    - xarm_description/meshes/xarm7/visual/link3.STL
+    - xarm_description/meshes/xarm7/visual/link4.STL
+    - xarm_description/meshes/xarm7/visual/link4.STL
+    - xarm_description/meshes/xarm7/visual/link5.STL
+    - xarm_description/meshes/xarm7/visual/link5.STL
+    - xarm_description/meshes/xarm7/visual/link6.STL
+    - xarm_description/meshes/xarm7/visual/link6.STL
+    - xarm_description/meshes/xarm7/visual/link7.STL
+    - xarm_description/meshes/end_tool/collision/end_tool.STL
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

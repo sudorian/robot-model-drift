@@ -1,0 +1,30 @@
+model: apptronik_apollo
+method: unknown
+confidence: unknown
+upstream_repo: null
+upstream_file: null
+upstream_commit: null
+latest_upstream_commit: null
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: apptronik_apollo/apptronik_apollo.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change: null
+menagerie_commits_involved: []
+source_candidate: null
+source_candidates: []
+evidence:
+- url: https://github.com/google-deepmind/mujoco_menagerie/issues/136.
+  document: apptronik_apollo/README.md
+  commit: 23ab4678660a14aef753d3f602efc7af82f2b4c3
+  current: false
+- url: https://github.com/google-deepmind/mujoco_menagerie/issues/136.
+  document: apptronik_apollo/CHANGELOG.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/google-deepmind/mujoco_menagerie/issues/318
+  document: apptronik_apollo/CHANGELOG.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: No machine-readable upstream repository found in README, CHANGELOG, or their
+  history. Vendor/CAD/web descriptions were not fetched under the network rules.
+compilation: {}

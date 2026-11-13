@@ -1,0 +1,272 @@
+model: robotis_op3
+method: unknown
+confidence: incomplete
+upstream_repo: https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-Common
+upstream_file: op3_description/urdf/robotis_op3.urdf.xacro
+upstream_commit: null
+latest_upstream_commit: 0780e54c2064a42089b0cf970d716ae44fec9233
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: robotis_op3/op3.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 28ffb48b5c1d409a37fbfbb01c023c12e61cdefd
+  timestamp: '1684433690'
+  date: '2023-05-18T11:14:50-07:00'
+  subject: Add six new models to Menagerie.
+  file: robotis_op3/op3.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: fb36886b3023db08c198264e1e9956ab202c3e3b
+  date: '2026-11-02T08:30:24-08:00'
+  file: robotis_op3/op3.xml
+- commit: 1f39894208d5c531328209961d4e930299d01c16
+  date: '2024-11-15T10:23:34-08:00'
+  file: robotis_op3/op3.xml
+- commit: c5d2e83f49a2a1201153a686de0d26cc02b3bd98
+  date: '2023-12-06T13:53:43-08:00'
+  file: robotis_op3/op3.xml
+- commit: 28ffb48b5c1d409a37fbfbb01c023c12e61cdefd
+  date: '2023-05-18T11:14:50-07:00'
+  file: robotis_op3/op3.xml
+source_candidate: null
+source_candidates:
+- commit: d76c4c6ed581f6c7a3d67a1a28bb89781af955b0
+  timestamp: '1739499837'
+  date: '2025-02-14T11:23:57+09:00'
+  subject: "gazebo xacro \uD30C\uC77C \uC704\uCE58 \uC774\uB3D9"
+  file: op3_description/urdf/robotis_op3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 106
+- commit: 0862e151e1924f3f5f63c22ab8f6f085e1f4a7cc
+  timestamp: '1739415743'
+  date: '2025-02-12T22:02:23-05:00'
+  subject: bring gazebo file and change the xacro file for the gazebo file
+  file: op3_description/urdf/robotis_op3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 106
+- commit: 06ae3ae938121e6a04c9f05e2bccdc341ea922e8
+  timestamp: '1739318061'
+  date: '2025-02-12T08:54:21+09:00'
+  subject: "robotis_op3.urdf.xacro, robotis_op3.gazebo.xacro \uD30C\uC77C \uC218\uC815"
+  file: op3_description/urdf/robotis_op3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 106
+- commit: 139a7ac0d950755aa28318d418552db0ae0cd93e
+  timestamp: '1733541366'
+  date: '2024-12-06T22:16:06-05:00'
+  subject: 'upload workinf files: changes files for gazebo'
+  file: op3_description/urdf/robotis_op3.urdf.xacro
+  deleted: false
+  error: 'No such file or directory: .cache/ROBOTIS-GIT__ROBOTIS-OP3-Common/.drift_xacro/tmp3im9yp7r/.unresolved_package/op3_gazebo_ros2/gazebo/robotis_op3.gazebo.xacro
+    [Errno 2] No such file or directory: ''.cache/ROBOTIS-GIT__ROBOTIS-OP3-Common/.drift_xacro/tmp3im9yp7r/.unresolved_package/op3_gazebo_ros2/gazebo/robotis_op3.gazebo.xacro'''
+  matches: false
+- commit: 0f22b4239725f57b70b873d5e589d584d721ee50
+  timestamp: '1733541366'
+  date: '2024-12-06T22:16:06-05:00'
+  subject: added simplified collision bounds
+  file: op3_description/urdf/robotis_op3.urdf.xacro
+  deleted: false
+  error: 'unknown macro name: xacro:insert_transmission'
+  matches: false
+- commit: 125484eccb1504a8b9768f17e40ed1526fc15ebc
+  timestamp: '1731036598'
+  date: '2024-11-07T22:29:58-05:00'
+  subject: 'upload working files: migrate the xacro files and add display.launch.py'
+  file: op3_description/urdf/robotis_op3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 106
+- commit: 0780e54c2064a42089b0cf970d716ae44fec9233
+  timestamp: '1530003692'
+  date: '2018-06-26T18:01:32+09:00'
+  subject: Update robotis_op3.transmissions.xacro
+  file: op3_description/urdf/robotis_op3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 106
+- commit: 66a7a39216d3d269d5087f3e94a2b5640bc80259
+  timestamp: '1523601704'
+  date: '2018-04-13T15:41:44+09:00'
+  subject: fixed typo. changed xacro files for visualization sensors in rviz
+  file: op3_description/urdf/robotis_op3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 106
+- commit: e713d70c0a4bbfd557683f060c8efd2acc07c5c0
+  timestamp: '1522041618'
+  date: '2018-03-26T14:20:18+09:00'
+  subject: changed package names and paths related
+  file: op3_description/urdf/robotis_op3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 106
+- commit: b3947376853ab2afab01e910a80177c18827b1f3
+  timestamp: '1522040847'
+  date: '2018-03-26T14:07:27+09:00'
+  subject: changed package names
+  file: op3_description/urdf/robotis_op3.urdf.xacro
+  rename_from: robotis_op3_description/urdf/robotis_op3.urdf.xacro
+  error: 'No such file or directory: .cache/ROBOTIS-GIT__ROBOTIS-OP3-Common/.drift_xacro/tmp9v6eosm0/.unresolved_package/robotis_op3_description/urdf/robotis_op3.visuals.xacro
+    [Errno 2] No such file or directory: ''.cache/ROBOTIS-GIT__ROBOTIS-OP3-Common/.drift_xacro/tmp9v6eosm0/.unresolved_package/robotis_op3_description/urdf/robotis_op3.visuals.xacro'''
+  matches: false
+- commit: 74977228bf72dc74dc0ae0ffc0053a07a7f5e556
+  timestamp: '1522037778'
+  date: '2018-03-26T13:16:18+09:00'
+  subject: refactoring to release
+  file: robotis_op3_description/urdf/robotis_op3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 106
+- commit: ab6f34086747a99868988e6c4bb755ed19e09ccc
+  timestamp: '1508910539'
+  date: '2017-10-25T14:48:59+09:00'
+  subject: gazebo camera imu added
+  file: robotis_op3_description/urdf/robotis_op3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 106
+- commit: 94434f115719257fa96fb2415720cea53e040fa9
+  timestamp: '1508907161'
+  date: '2017-10-25T13:52:41+09:00'
+  subject: gazebo simulation added
+  file: robotis_op3_description/urdf/robotis_op3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 106
+- commit: 24b07fe8987d8de5134948f860608ae66685d7c5
+  timestamp: '1496285015'
+  date: '2017-06-01T11:43:35+09:00'
+  subject: added robotis-op3 robot description.
+  file: robotis_op3_description/urdf/robotis_op3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 106
+evidence:
+- url: https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-Common/tree/master/op3_description/urdf
+  document: robotis_op3/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Unresolved historical compilation prevents selecting or rejecting a matching
+  source. Pairwise M/H differences are reported with unknown provenance.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - robotis_op3/op3.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.3
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - cam_link
+    - cam_gazebo_link
+    assets_loaded: 42
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - op3_description/urdf/robotis_op3.gazebo.xacro
+    - op3_description/urdf/robotis_op3.inertia.xacro
+    - op3_description/urdf/robotis_op3.structure.head.xacro
+    - op3_description/urdf/robotis_op3.structure.larm.xacro
+    - op3_description/urdf/robotis_op3.structure.lleg.xacro
+    - op3_description/urdf/robotis_op3.structure.rarm.xacro
+    - op3_description/urdf/robotis_op3.structure.rleg.xacro
+    - op3_description/urdf/robotis_op3.transmissions.xacro
+    - op3_description/urdf/robotis_op3.urdf.xacro
+    - op3_description/urdf/robotis_op3.visuals.xacro
+    - op3_description/meshes/body.stl
+    - op3_description/meshes/body.stl
+    - op3_description/meshes/ll1.stl
+    - op3_description/meshes/ll1.stl
+    - op3_description/meshes/ll2.stl
+    - op3_description/meshes/ll2.stl
+    - op3_description/meshes/ll3.stl
+    - op3_description/meshes/ll3.stl
+    - op3_description/meshes/ll4.stl
+    - op3_description/meshes/ll4.stl
+    - op3_description/meshes/ll5.stl
+    - op3_description/meshes/ll5.stl
+    - op3_description/meshes/ll6.stl
+    - op3_description/meshes/ll6.stl
+    - op3_description/meshes/rl1.stl
+    - op3_description/meshes/rl1.stl
+    - op3_description/meshes/rl2.stl
+    - op3_description/meshes/rl2.stl
+    - op3_description/meshes/rl3.stl
+    - op3_description/meshes/rl3.stl
+    - op3_description/meshes/rl4.stl
+    - op3_description/meshes/rl4.stl
+    - op3_description/meshes/rl5.stl
+    - op3_description/meshes/rl5.stl
+    - op3_description/meshes/rl6.stl
+    - op3_description/meshes/rl6.stl
+    - op3_description/meshes/la1.stl
+    - op3_description/meshes/la1.stl
+    - op3_description/meshes/la2.stl
+    - op3_description/meshes/la2.stl
+    - op3_description/meshes/la3.stl
+    - op3_description/meshes/la3.stl
+    - op3_description/meshes/ra1.stl
+    - op3_description/meshes/ra1.stl
+    - op3_description/meshes/ra2.stl
+    - op3_description/meshes/ra2.stl
+    - op3_description/meshes/ra3.stl
+    - op3_description/meshes/ra3.stl
+    - op3_description/meshes/h1.stl
+    - op3_description/meshes/h1.stl
+    - op3_description/meshes/h2.stl
+    - op3_description/meshes/h2.stl
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

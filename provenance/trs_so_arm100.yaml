@@ -1,0 +1,147 @@
+model: trs_so_arm100
+method: pinned
+confidence: high
+upstream_repo: https://github.com/TheRobotStudio/SO-ARM100
+upstream_file: URDF/SO_5DOF_ARM100_8j_URDF.SLDASM/urdf/SO_5DOF_ARM100_8j_URDF.SLDASM.urdf
+upstream_commit: 4e9c5588d8a8415b6a6c2142a0ce8c32207cf3e9
+latest_upstream_commit: a758567c3978dfeefe282ede0500085a48fe8f78
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: trs_so_arm100/so_arm100.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 309a39d03a66a75b462cc0f18f6a45fa7c98689e
+  timestamp: '1749520821'
+  date: '2025-06-09T19:00:21-07:00'
+  subject: adjust SO100 joint limits
+  file: trs_so_arm100/so_arm100.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: ac6b2b09983786f3036cab1000221017fa2193b4
+  date: '2026-05-18T15:33:00-07:00'
+  file: trs_so_arm100/so_arm100.xml
+- commit: 309a39d03a66a75b462cc0f18f6a45fa7c98689e
+  date: '2025-06-09T19:00:21-07:00'
+  file: trs_so_arm100/so_arm100.xml
+- commit: a88bc450470d97ebc1f282e5969675fb4d1f0ed7
+  date: '2024-11-25T02:08:01-08:00'
+  file: trs_so_arm100/so_arm100.xml
+- commit: 13d6c48b8f59d2c4badee7756b4ea3532613cddf
+  date: '2024-10-28T16:54:40Z'
+  file: trs_so_arm100/so_arm100.xml
+source_candidate:
+  commit: 4e9c5588d8a8415b6a6c2142a0ce8c32207cf3e9
+  file: URDF/SO_5DOF_ARM100_8j_URDF.SLDASM/urdf/SO_5DOF_ARM100_8j_URDF.SLDASM.urdf
+  timestamp: '1730104871'
+  date: '2024-10-28T09:41:11+01:00'
+  matches: false
+  mismatch_count: 11
+  comparable_quantities: 30
+source_candidates:
+- commit: 0c8e2892f2196d97376ee2a4c0844d4b08e137b1
+  timestamp: '1750874936'
+  date: '2025-06-25T20:08:56+02:00'
+  subject: Updated the new so101 calibration urdf with fixed direction and frame (#106)
+  file: Simulation/SO100/so100.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 23
+  comparable_quantities: 42
+- commit: bbb9734c2908e2efbbdebe699058180828944af9
+  timestamp: '1747829323'
+  date: '2025-05-21T14:08:43+02:00'
+  subject: Update URDF (#83)
+  file: Simulation/SO100/so100.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 23
+  comparable_quantities: 42
+evidence:
+- url: https://github.com/TheRobotStudio/SO-ARM100/blob/4e9c5588d8a8415b6a6c2142a0ce8c32207cf3e9/URDF/SO_5DOF_ARM100_8j_URDF.SLDASM/urdf/SO_5DOF_ARM100_8j_URDF.SLDASM.urdf
+  document: trs_so_arm100/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/TheRobotStudio/SO-ARM100/tree/main
+  document: trs_so_arm100/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - Base
+    assets_loaded: 18
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - trs_so_arm100/so_arm100.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - Simulation/SO100/so100.urdf
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo
+  S:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - URDF/SO_5DOF_ARM100_8j_URDF.SLDASM/urdf/SO_5DOF_ARM100_8j_URDF.SLDASM.urdf
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

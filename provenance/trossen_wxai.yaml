@@ -1,0 +1,26 @@
+model: trossen_wxai
+method: unknown
+confidence: unknown
+upstream_repo: null
+upstream_file: null
+upstream_commit: null
+latest_upstream_commit: null
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: trossen_wxai/wxai_follower_biarm.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change: null
+menagerie_commits_involved: []
+source_candidate: null
+source_candidates: []
+evidence:
+- url: https://github.com/Interbotix/interbotix_ros_manipulators/blob/main/interbotix_ros_xsarms/interbotix_xsarm_descriptions/meshes/interbotix_black.png
+  document: trossen_wxai/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/google-deepmind/mujoco/tree/f7e00d041e05ee1eb4131d3f33e32892aa5d2752/python/mujoco/sysid#system-identification-toolbox
+  document: trossen_wxai/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: No machine-readable upstream repository found in README, CHANGELOG, or their
+  history. Vendor/CAD/web descriptions were not fetched under the network rules.
+compilation: {}

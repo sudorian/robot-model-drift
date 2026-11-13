@@ -1,0 +1,239 @@
+model: kinova_gen3
+method: none
+confidence: none
+upstream_repo: https://github.com/Kinovarobotics/ros_kortex
+upstream_file: kortex_description/robots/gen3.xacro
+upstream_commit: null
+latest_upstream_commit: c3280d8a6a6b5d96590d51538e3f265710a6c77d
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: kinova_gen3/gen3.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: af493511dbdfce2e046858a4d2f2955e063e17fd
+  timestamp: '1719580874'
+  date: '2024-06-28T06:21:14-07:00'
+  subject: 'Add Kinova Gen3 to MuJoCo Menagerie. Fixes #64'
+  file: kinova_gen3/gen3.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: d7b481bac63d3d600ab404ee74f7474c5efe8a67
+  date: '2026-10-13T15:39:53-07:00'
+  file: kinova_gen3/gen3.xml
+- commit: 530f70a45e3e8c87149df3c1b1d951298782ffc2
+  date: '2024-07-20T17:19:12-04:00'
+  file: kinova_gen3/gen3.xml
+- commit: af493511dbdfce2e046858a4d2f2955e063e17fd
+  date: '2024-06-28T06:21:14-07:00'
+  file: kinova_gen3/gen3.xml
+source_candidate: null
+source_candidates:
+- commit: f86211025dc81d0d95f3c0283d32d99de550d629
+  timestamp: '1769449122'
+  date: '2026-01-26T12:38:42-05:00'
+  subject: Modified joints positional limits as per the user guide values (#350)
+  file: kortex_description/robots/gen3.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 7
+  comparable_quantities: 44
+- commit: 041b49094fbe197b0d9f62eff5a68ad135da38d8
+  timestamp: '1769449095'
+  date: '2026-01-26T12:38:15-05:00'
+  subject: Modified joints positional limits as per the user guide values
+  file: kortex_description/robots/gen3.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 7
+  comparable_quantities: 44
+- commit: d8f9cc38f99062053fcedc2ff64481dc2e7fbab0
+  timestamp: '1680548061'
+  date: '2023-04-04T00:24:21+05:30'
+  subject: Fix joint limits pertaining to Gen3 Manuals
+  file: kortex_description/robots/gen3.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 7
+  comparable_quantities: 44
+- commit: 4e712077bd4a45978a8c76d99c63b1514ef5b75e
+  timestamp: '1679082855'
+  date: '2023-03-17T15:54:15-04:00'
+  subject: fix hard lmits in urdf and clarify build type being release or debug
+  file: kortex_description/robots/gen3.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 7
+  comparable_quantities: 44
+- commit: 11e42a2c15d01dcbcddcab6326e20d2e0e0da2d0
+  timestamp: '1593493856'
+  date: '2020-06-30T01:10:56-04:00'
+  subject: Added camera frames to gen3-7dof description so the vision module can work
+    correctly (#82)
+  file: kortex_description/robots/gen3.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 10
+  comparable_quantities: 44
+- commit: ea4c01d9e0f7b7d7c6f8de25bae6097038f5ced1
+  timestamp: '1591706848'
+  date: '2020-06-09T08:47:28-04:00'
+  subject: Tool frame (#97)
+  file: kortex_description/robots/gen3.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 10
+  comparable_quantities: 44
+- commit: 0b422bb0770b2383eac4dec2d1566b3d65c3c31f
+  timestamp: '1582751429'
+  date: '2020-02-26T16:10:29-05:00'
+  subject: Push 2.2 changes to kinetic-devel (#81)
+  file: kortex_description/robots/gen3.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 10
+  comparable_quantities: 44
+- commit: cff9fe91fc299433f3e091eded51b5084f930410
+  timestamp: '1580745117'
+  date: '2020-02-03T10:51:57-05:00'
+  subject: Add multiple-robots launch file and URDF example
+  file: kortex_description/robots/gen3.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 12
+  comparable_quantities: 44
+- commit: 69fe57117d5104d9f47da38c0b7badb3241e24e6
+  timestamp: '1580242864'
+  date: '2020-01-28T15:21:04-05:00'
+  subject: Add prefix in launch and xacro files (#73)
+  file: kortex_description/robots/gen3.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 12
+  comparable_quantities: 44
+- commit: cb95593c52f91f2e444afb3873111361772d9ffa
+  timestamp: '1576869830'
+  date: '2019-12-20T14:23:50-05:00'
+  subject: Push to release 2.1 (#65)
+  file: kortex_description/robots/gen3.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 12
+  comparable_quantities: 44
+- commit: 947be04971d683389381695a4d4a66bc4f013219
+  timestamp: '1565700180'
+  date: '2019-08-13T08:43:00-04:00'
+  subject: New content for release 2.0.0
+  file: kortex_description/robots/gen3.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 12
+  comparable_quantities: 44
+- commit: f5d0bad8dd4021d6febcb5702802b6ee22bd2b75
+  timestamp: '1556291358'
+  date: '2019-04-26T11:09:18-04:00'
+  subject: Fixed the end effector reference frame that was modified by mistake and
+    renamed EndEffector to end_effector (#18)
+  file: kortex_description/robots/gen3.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 12
+  comparable_quantities: 44
+- commit: c2df268eaf8773ffe0ea84e763d4d6713a85e89e
+  timestamp: '1555422303'
+  date: '2019-04-16T09:45:03-04:00'
+  subject: Add launch files and rename joints and links to match ROS convention (#13)
+  file: kortex_description/robots/gen3.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 12
+  comparable_quantities: 44
+evidence:
+- url: https://github.com/Kinovarobotics/ros_kortex/blob/noetic-devel/kortex_description/robots/gen3.xacro
+  document: kinova_gen3/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: 'No public revision matches all comparable quantities. Class: NO MATCHING
+  SOURCE; never counted as STALE.'
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - kinova_gen3/gen3.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - end_effector_link
+    - camera_link
+    - camera_depth_frame
+    - camera_color_frame
+    - tool_frame
+    assets_loaded: 16
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments:
+      arm: gen3
+      dof: '7'
+      vision: 'true'
+      gripper: ''
+      sim: 'false'
+      prefix: ''
+    source_dependencies:
+    - kortex_description/arms/gen3/7dof/urdf/gen3_macro.xacro
+    - kortex_description/robots/gen3.xacro
+    - kortex_description/robots/kortex_robot.xacro
+    - kortex_description/arms/gen3/7dof/meshes/base_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/base_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/shoulder_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/shoulder_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/half_arm_1_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/half_arm_1_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/half_arm_2_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/half_arm_2_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/forearm_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/forearm_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/spherical_wrist_1_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/spherical_wrist_1_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/spherical_wrist_2_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/spherical_wrist_2_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/bracelet_with_vision_link.STL
+    - kortex_description/arms/gen3/7dof/meshes/bracelet_with_vision_link.STL
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

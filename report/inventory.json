@@ -1,0 +1,3252 @@
+[
+  {
+    "model": "agilex_piper",
+    "menagerie_files": [
+      "agilex_piper/piper.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/agilexrobotics/Piper_ros/tree/ros-noetic-no-aloha/src/piper_description/urdf",
+        "document": "agilex_piper/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/agilexrobotics/Piper_ros",
+        "ref": "ros-noetic-no-aloha",
+        "path": "src/piper_description/urdf",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/pull/149",
+        "document": "git commit message",
+        "commit": "9f29f4dc45b405dcaa5a73259977f697dd9da55e",
+        "current": false
+      },
+      {
+        "url": "https://github.com/agilexrobotics/Piper_ros/tree/ros-noetic-no-aloha/src/piper_description/urdf",
+        "document": "agilex_piper/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "agilex_piper/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "agilex_piper/README.md",
+    "derivation_lines": [
+      "1.  Added `<mujoco> <compiler balanceinertia=\"true\" discardvisual=\"false\"/> </mujoco>` to the URDF's",
+      "4. Merged similar materials between the .objs"
+    ]
+  },
+  {
+    "model": "agility_cassie",
+    "menagerie_files": [
+      "agility_cassie/cassie.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [],
+    "readme": "agility_cassie/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "aloha",
+    "menagerie_files": [
+      "aloha/aloha.xml"
+    ],
+    "xml_fragments": [
+      "aloha/filtered_cartesian_actuators.xml",
+      "aloha/joint_position_actuators.xml",
+      "aloha/keyframe_ctrl.xml",
+      "aloha/keyframe_no_act.xml"
+    ],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [
+      {
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/tree/main/trossen_vx300s",
+        "document": "aloha/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "aloha/README.md",
+    "derivation_lines": [
+      "3. Performed system identification of actuator gain and torque limits and joint damping, armature and friction parameters as follows:",
+      "    1. Collected 11 trajectories in real using the leader arms consisting of sinusoidal motions targeting the control limits of the motors in the follower arms."
+    ]
+  },
+  {
+    "model": "anybotics_anymal_b",
+    "menagerie_files": [
+      "anybotics_anymal_b/anymal_b.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/ANYbotics/anymal_b_simple_description/blob/master/urdf/anymal.urdf",
+        "document": "anybotics_anymal_b/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/ANYbotics/anymal_b_simple_description",
+        "ref": "master",
+        "path": "urdf/anymal.urdf",
+        "pinned": false,
+        "score": 32
+      },
+      {
+        "url": "https://github.com/ANYbotics/anymal_b_simple_description",
+        "document": "anybotics_anymal_b/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/ANYbotics/anymal_b_simple_description",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/ANYbotics/anymal_b_simple_description",
+        "document": "anybotics_anymal_b/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/ANYbotics/anymal_b_simple_description/blob/master/urdf/anymal.urdf",
+        "document": "anybotics_anymal_b/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/ANYbotics/anymal_b_simple_description/tree/master/meshes",
+        "document": "anybotics_anymal_b/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "anybotics_anymal_b/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "anybotics_anymal_b/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "anybotics_anymal_c",
+    "menagerie_files": [
+      "anybotics_anymal_c/anymal_c.xml",
+      "anybotics_anymal_c/anymal_c_mjx.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/ANYbotics/anymal_c_simple_description",
+        "document": "anybotics_anymal_c/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/ANYbotics/anymal_c_simple_description",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/ANYbotics/anymal_b_simple_description/blob/master/urdf/anymal.urdf",
+        "document": "anybotics_anymal_c/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/ANYbotics/anymal_c_simple_description",
+        "document": "anybotics_anymal_c/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/ANYbotics/anymal_c_simple_description/tree/master/meshes",
+        "document": "anybotics_anymal_c/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/Andrew-Luo1",
+        "document": "anybotics_anymal_c/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "anybotics_anymal_c/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/google-deepmind/mujoco/blob/main/mjx/training_apg.ipynb",
+        "document": "anybotics_anymal_c/README.md",
+        "commit": "d3694476e267ead94f869c1e7aa5eff2d259e4d9",
+        "current": false
+      }
+    ],
+    "readme": "anybotics_anymal_c/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "apptronik_apollo",
+    "menagerie_files": [
+      "apptronik_apollo/apptronik_apollo.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [
+      {
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/issues/136.",
+        "document": "apptronik_apollo/README.md",
+        "commit": "c4ea7d4a1664bf5bd47121911dca3e1ee482d89b",
+        "current": false
+      },
+      {
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/issues/136.",
+        "document": "apptronik_apollo/CHANGELOG.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/issues/318",
+        "document": "apptronik_apollo/CHANGELOG.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "apptronik_apollo/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "arx_l5",
+    "menagerie_files": [
+      "arx_l5/arx_l5.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/ARXroboticsX/ARX_Model/tree/af6fe43c873008a85bce6195c0f2160f1a1c14ce/X5/X5A",
+        "document": "arx_l5/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/ARXroboticsX/ARX_Model",
+        "ref": "af6fe43c873008a85bce6195c0f2160f1a1c14ce",
+        "path": "X5/X5A",
+        "pinned": true,
+        "score": 12
+      },
+      {
+        "url": "https://github.com/ARXroboticsX/ARX_Model",
+        "document": "arx_l5/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/ARXroboticsX/ARX_Model",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/ARXroboticsX/ARX_Model/tree/master/X5/X5A/urdf",
+        "document": "arx_l5/README.md",
+        "commit": "46c6ec86cd03ceb023450b2003c762ee07f17281",
+        "current": false,
+        "repo": "https://github.com/ARXroboticsX/ARX_Model",
+        "ref": "master",
+        "path": "X5/X5A/urdf",
+        "pinned": false,
+        "score": 0
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/ARXroboticsX/ARX_Model",
+        "document": "arx_l5/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/ARXroboticsX/ARX_Model/tree/af6fe43c873008a85bce6195c0f2160f1a1c14ce/X5/X5A",
+        "document": "arx_l5/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/ARXroboticsX/ARX_Model/tree/master/X5/X5A/urdf",
+        "document": "arx_l5/README.md",
+        "commit": "46c6ec86cd03ceb023450b2003c762ee07f17281",
+        "current": false
+      }
+    ],
+    "readme": "arx_l5/README.md",
+    "derivation_lines": [
+      "1.  Added `<mujoco> <compiler balanceinertia=\"true\" discardvisual=\"false\"/> </mujoco>` to the URDF's",
+      "4.  Merged similar materials between the .objs."
+    ]
+  },
+  {
+    "model": "berkeley_humanoid",
+    "menagerie_files": [
+      "berkeley_humanoid/berkeley_humanoid.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/HybridRobotics/berkeley_humanoid_description",
+        "document": "berkeley_humanoid/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/HybridRobotics/berkeley_humanoid_description",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/HybridRobotics/isaac_berkeley_humanoid",
+        "document": "berkeley_humanoid/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/HybridRobotics/isaac_berkeley_humanoid",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/pull/126",
+        "document": "git commit message",
+        "commit": "483d231bae9796dff9d25ef23039e5cbb0d55351",
+        "current": false
+      },
+      {
+        "url": "https://github.com/HybridRobotics/berkeley_humanoid_description",
+        "document": "berkeley_humanoid/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/HybridRobotics/isaac_berkeley_humanoid",
+        "document": "berkeley_humanoid/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "berkeley_humanoid/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "bitcraze_crazyflie_2",
+    "menagerie_files": [
+      "bitcraze_crazyflie_2/cf2.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/whoenig/crazyflie_ros",
+        "document": "bitcraze_crazyflie_2/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/whoenig/crazyflie_ros",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "bitcraze_crazyflie_2/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/whoenig/crazyflie_ros",
+        "document": "bitcraze_crazyflie_2/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "bitcraze_crazyflie_2/README.md",
+    "derivation_lines": [
+      "4. Set the inertial properties to values obtained from the datasheet and [MIT's system identification](https://groups.csail.mit.edu/robotics-center/public_papers/Landry15.pdf)",
+      "    * These properties are set via inertial tag i.e. `pos =\"0 0 0\" mass=\"0.027\" diaginertia=\"2.3951e-5 2.3951e-5 3.2347e-5\"`",
+      "5. Added combined thrust and body moments about a `site` placed at the inertial frame. The `ctrlrange` limits are currently arbitrary and need to be further tuned."
+    ]
+  },
+  {
+    "model": "booster_t1",
+    "menagerie_files": [
+      "booster_t1/t1.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/BoosterRobotics/booster_gym/blob/main/resources/T1/T1_serial.urdf",
+        "document": "booster_t1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/BoosterRobotics/booster_gym",
+        "ref": "main",
+        "path": "resources/T1/T1_serial.urdf",
+        "pinned": false,
+        "score": 32
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/BoosterRobotics/booster_gym/blob/main/resources/T1/T1_serial.urdf",
+        "document": "booster_t1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "booster_t1/README.md",
+    "derivation_lines": [
+      "2. Added the following to the URDF `<robot>` tag `<mujoco><compiler balanceinertia=\"true\" discardvisual=\"false\" fusestatic=\"false\" strippath=\"false\"/></mujoco>`."
+    ]
+  },
+  {
+    "model": "boston_dynamics_spot",
+    "menagerie_files": [
+      "boston_dynamics_spot/spot.xml",
+      "boston_dynamics_spot/spot_arm.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/bdaiinstitute/spot_ros2/blob/main/spot_description/urdf/spot_arm_macro.urdf",
+        "document": "boston_dynamics_spot/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/bdaiinstitute/spot_ros2",
+        "ref": "main",
+        "path": "spot_description/urdf/spot_arm_macro.urdf",
+        "pinned": false,
+        "score": 32
+      },
+      {
+        "url": "https://github.com/bdaiinstitute/spot_ros2/blob/main/spot_description/urdf/spot_simple.urdf.xacro",
+        "document": "boston_dynamics_spot/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/bdaiinstitute/spot_ros2",
+        "ref": "main",
+        "path": "spot_description/urdf/spot_simple.urdf.xacro",
+        "pinned": false,
+        "score": 32
+      },
+      {
+        "url": "https://github.com/bdaiinstitute/spot_ros2",
+        "document": "boston_dynamics_spot/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/bdaiinstitute/spot_ros2",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/bdaiinstitute/spot_ros2",
+        "document": "boston_dynamics_spot/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/bdaiinstitute/spot_ros2/blob/main/spot_description/urdf/spot_arm_macro.urdf",
+        "document": "boston_dynamics_spot/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/bdaiinstitute/spot_ros2/blob/main/spot_description/urdf/spot_simple.urdf.xacro",
+        "document": "boston_dynamics_spot/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "boston_dynamics_spot/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "boston_dynamics_spot/README.md",
+    "derivation_lines": [
+      "2. Added `<mujoco> <compiler discardvisual=\"false\" strippath=\"false\" fusestatic=\"false\"/> </mujoco>` to the URDF's",
+      "   joint `armature` values (not identified from hardware; arm and wrist `forcerange`",
+      "   limits follow the Spot Arm URDF joint effort limits)."
+    ]
+  },
+  {
+    "model": "dynamixel_2r",
+    "menagerie_files": [
+      "dynamixel_2r/dynamixel_2r.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [
+      {
+        "url": "https://github.com/rhoban/bam",
+        "document": "dynamixel_2r/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/rhoban/bam",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/rhoban/bam",
+        "document": "dynamixel_2r/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "dynamixel_2r/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "fanuc_crx5ia",
+    "menagerie_files": [
+      "fanuc_crx5ia/crx5ia.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [
+      {
+        "url": "plain SHA in README line 27",
+        "document": "fanuc_crx5ia/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/FANUC-CORPORATION/fanuc_description",
+        "ref": "fb40c9803a826ba68c7c8e28ba904a25efa7fcd2",
+        "path": "",
+        "pinned": true,
+        "score": 7,
+        "pin_context": "   (tag `v2.3.0`, commit `fb40c9803a826ba68c7c8e28ba904a25efa7fcd2`) to a"
+      },
+      {
+        "url": "https://github.com/FANUC-CORPORATION/fanuc_description",
+        "document": "fanuc_crx5ia/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/FANUC-CORPORATION/fanuc_description",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/FANUC-CORPORATION/fanuc_description",
+        "document": "fanuc_crx5ia/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "fanuc_crx5ia/README.md",
+    "derivation_lines": [
+      "3. Added `<mujoco> <compiler meshdir=\"assets\" discardvisual=\"false\" fusestatic=\"false\" balanceinertia=\"true\"/> </mujoco>`",
+      "6. Added position-controlled actuators using the URDF effort limits as",
+      "   `forcerange` (160 N\u00b7m for J1\u2013J3, 40 N\u00b7m for J4\u2013J6) and tuned joint",
+      "The URDF, meshes, and inertial parameters are \u00a9 2025\u20132026 FANUC CORPORATION"
+    ]
+  },
+  {
+    "model": "flexiv_rizon4",
+    "menagerie_files": [
+      "flexiv_rizon4/flexiv_rizon4.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [],
+    "readme": "flexiv_rizon4/README.md",
+    "derivation_lines": [
+      "   respective `actuatorfrcrange` limits (123, 64, and 39 Nm).",
+      "   mass matrix at the home configuration. The gains follow a second-order"
+    ]
+  },
+  {
+    "model": "flexiv_rizon4s",
+    "menagerie_files": [
+      "flexiv_rizon4s/flexiv_rizon4s.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [],
+    "readme": "flexiv_rizon4s/README.md",
+    "derivation_lines": [
+      "   respective `actuatorfrcrange` limits (123, 64, and 39 Nm)."
+    ]
+  },
+  {
+    "model": "flybody",
+    "menagerie_files": [
+      "flybody/fruitfly.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [
+      {
+        "url": "https://github.com/TuragaLab/flybody/commit/736608121847c3c025fd02a629bdb016a3294f9a",
+        "document": "flybody/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/TuragaLab/flybody",
+        "ref": "736608121847c3c025fd02a629bdb016a3294f9a",
+        "path": "",
+        "pinned": true,
+        "score": 12
+      },
+      {
+        "url": "https://github.com/TuragaLab/flybody",
+        "document": "flybody/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/TuragaLab/flybody",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/TuragaLab/flybody/blob/main/flybody/fruitfly/build_fruitfly/README.md",
+        "document": "flybody/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/TuragaLab/flybody",
+        "ref": "main",
+        "path": "flybody/fruitfly/build_fruitfly/README.md",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/TuragaLab/flybody/tree/main/flybody/fruitfly/build_fruitfly",
+        "document": "flybody/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/TuragaLab/flybody",
+        "ref": "main",
+        "path": "flybody/fruitfly/build_fruitfly",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/TuragaLab/flybody",
+        "document": "flybody/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/TuragaLab/flybody/blob/main/flybody/fruitfly/build_fruitfly/README.md",
+        "document": "flybody/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/TuragaLab/flybody/commit/736608121847c3c025fd02a629bdb016a3294f9a",
+        "document": "flybody/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/TuragaLab/flybody/tree/main/flybody/fruitfly/build_fruitfly",
+        "document": "flybody/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "flybody/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "fourier_n1",
+    "menagerie_files": [
+      "fourier_n1/n1.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "plain SHA in README line 26",
+        "document": "fourier_n1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/FFTAI/Wiki-GRx-Models",
+        "ref": "f29a87905bdcfc32fdac9c5342644630fd27156a",
+        "path": "",
+        "pinned": true,
+        "score": 7,
+        "pin_context": "    - Commit: `f29a87905bdcfc32fdac9c5342644630fd27156a`"
+      },
+      {
+        "url": "https://github.com/FFTAI/Wiki-GRx-Models",
+        "document": "fourier_n1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/FFTAI/Wiki-GRx-Models",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/FFTAI/wiki-grx-mjcf",
+        "document": "fourier_n1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/FFTAI/wiki-grx-mjcf",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/FFTAI/Wiki-GRx-Models",
+        "document": "fourier_n1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/FFTAI/wiki-grx-mjcf",
+        "document": "fourier_n1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "fourier_n1/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "franka_emika_panda",
+    "menagerie_files": [
+      "franka_emika_panda/hand.xml",
+      "franka_emika_panda/mjx_hand.xml",
+      "franka_emika_panda/mjx_panda.xml",
+      "franka_emika_panda/mjx_panda_nohand.xml",
+      "franka_emika_panda/mjx_scene.xml",
+      "franka_emika_panda/mjx_single_cube.xml",
+      "franka_emika_panda/panda.xml",
+      "franka_emika_panda/panda_nohand.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/frankaemika/franka_ros/blob/develop/franka_description/robots/common/inertial.yaml",
+        "document": "franka_emika_panda/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/frankaemika/franka_ros",
+        "ref": "develop",
+        "path": "franka_description/robots/common/inertial.yaml",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/frankaemika/franka_ros/tree/develop/franka_description",
+        "document": "franka_emika_panda/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/frankaemika/franka_ros",
+        "ref": "develop",
+        "path": "franka_description",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/frankaemika/franka_ros/tree/develop/franka_description/robots",
+        "document": "franka_emika_panda/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/frankaemika/franka_ros",
+        "ref": "develop",
+        "path": "franka_description/robots",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/frankaemika/franka_ros/blob/develop/franka_description/robots/inertial.yaml",
+        "document": "franka_emika_panda/README.md",
+        "commit": "1b93125c79bb95e4e55a1d6471adb2cd92c71feb",
+        "current": false,
+        "repo": "https://github.com/frankaemika/franka_ros",
+        "ref": "develop",
+        "path": "franka_description/robots/inertial.yaml",
+        "pinned": false,
+        "score": 0
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/frankaemika/franka_ros/blob/develop/franka_description/robots/common/inertial.yaml",
+        "document": "franka_emika_panda/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/frankaemika/franka_ros/tree/develop/franka_description",
+        "document": "franka_emika_panda/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/frankaemika/franka_ros/tree/develop/franka_description/meshes/collision",
+        "document": "franka_emika_panda/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/frankaemika/franka_ros/tree/develop/franka_description/meshes/visual",
+        "document": "franka_emika_panda/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/frankaemika/franka_ros/tree/develop/franka_description/robots",
+        "document": "franka_emika_panda/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "franka_emika_panda/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/kmammou/v-hacd",
+        "document": "franka_emika_panda/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/frankaemika/franka_ros/blob/develop/franka_description/robots/inertial.yaml",
+        "document": "franka_emika_panda/README.md",
+        "commit": "1b93125c79bb95e4e55a1d6471adb2cd92c71feb",
+        "current": false
+      }
+    ],
+    "readme": "franka_emika_panda/README.md",
+    "derivation_lines": [
+      "7. Matched inertial parameters with [inertial.yaml](",
+      "   https://github.com/frankaemika/franka_ros/blob/develop/franka_description/robots/common/inertial.yaml).",
+      "7. Removed tendon and added position actuator for the gripper. Changed gripper `ctrlrange`."
+    ]
+  },
+  {
+    "model": "franka_fr3",
+    "menagerie_files": [
+      "franka_fr3/fr3.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/frankaemika/franka_description",
+        "document": "franka_fr3/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/frankaemika/franka_description",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/frankaemika/franka_description/blob/main/scripts/create_urdf.sh",
+        "document": "franka_fr3/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/frankaemika/franka_description",
+        "ref": "main",
+        "path": "scripts/create_urdf.sh",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/frankaemika/franka_description",
+        "document": "franka_fr3/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/frankaemika/franka_description/blob/main/scripts/create_urdf.sh",
+        "document": "franka_fr3/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "franka_fr3/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "franka_fr3/README.md",
+    "derivation_lines": [
+      "4. Added `<mujoco> <compiler discardvisual=\"true\" strippath=\"false\" fusestatic=\"false\" balanceinertia=\"true\"/> </mujoco>` to the URDF's `<robot>` clause."
+    ]
+  },
+  {
+    "model": "franka_fr3_duo",
+    "menagerie_files": [
+      "franka_fr3_duo/fr3_duo.xml",
+      "franka_fr3_duo/fr3_duo_with_spine.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [
+      {
+        "url": "plain SHA in README line 23",
+        "document": "franka_fr3_duo/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/frankarobotics/franka_description",
+        "ref": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+        "path": "robots/fr3_duo/fr3_duo.urdf.xacro",
+        "pinned": true,
+        "score": 37,
+        "pin_context": "repository (version 2.9.0, commit `7aeeddc449edf8d62b594f9e36a81da53e7796f9`)."
+      },
+      {
+        "url": "https://github.com/frankarobotics/franka_description/blob/main/robots/fr3_duo/fr3_duo.urdf.xacro",
+        "document": "franka_fr3_duo/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/frankarobotics/franka_description",
+        "ref": "main",
+        "path": "robots/fr3_duo/fr3_duo.urdf.xacro",
+        "pinned": false,
+        "score": 32
+      },
+      {
+        "url": "https://github.com/frankarobotics/franka_description",
+        "document": "franka_fr3_duo/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/frankarobotics/franka_description",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/frankarobotics/franka_description",
+        "document": "franka_fr3_duo/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/frankarobotics/franka_description/blob/main/robots/fr3_duo/fr3_duo.urdf.xacro",
+        "document": "franka_fr3_duo/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/blob/main/franka_fr3_v2/fr3v2.xml",
+        "document": "franka_fr3_duo/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/tree/main/franka_fr3_v2",
+        "document": "franka_fr3_duo/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "franka_fr3_duo/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "franka_fr3_duo/README.md",
+    "derivation_lines": [
+      "   transforms, joint limits, and inertials come directly from MuJoCo's URDF",
+      "     <compiler balanceinertia=\"true\" discardvisual=\"true\" fusestatic=\"false\"",
+      "   collapsed fixed mounting-frame and empty accelerometer bodies while",
+      "     the column's `0.1` + `[0, 0.85]` m vertical slide range) so the arms have"
+    ]
+  },
+  {
+    "model": "franka_fr3_v2",
+    "menagerie_files": [
+      "franka_fr3_v2/fr3v2.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/frankaemika/franka_description",
+        "document": "franka_fr3_v2/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/frankaemika/franka_description",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/frankaemika/franka_description/blob/main/scripts/create_urdf.sh",
+        "document": "franka_fr3_v2/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/frankaemika/franka_description",
+        "ref": "main",
+        "path": "scripts/create_urdf.sh",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/frankaemika/franka_description",
+        "document": "franka_fr3_v2/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/frankaemika/franka_description/blob/main/scripts/create_urdf.sh",
+        "document": "franka_fr3_v2/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "franka_fr3_v2/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "franka_fr3_v2/README.md",
+    "derivation_lines": [
+      "4. Added `<mujoco> <compiler discardvisual=\"true\" strippath=\"false\" fusestatic=\"false\" balanceinertia=\"true\"/> </mujoco>` to the URDF's `<robot>` clause."
+    ]
+  },
+  {
+    "model": "google_barkour_v0",
+    "menagerie_files": [
+      "google_barkour_v0/barkour_v0.xml",
+      "google_barkour_v0/barkour_v0_mjx.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [],
+    "readme": "google_barkour_v0/README.md",
+    "derivation_lines": [
+      "Copyright 2023 DeepMind Technologies Limited."
+    ]
+  },
+  {
+    "model": "google_barkour_vb",
+    "menagerie_files": [
+      "google_barkour_vb/barkour_vb.xml",
+      "google_barkour_vb/barkour_vb_mjx.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [],
+    "readme": "google_barkour_vb/README.md",
+    "derivation_lines": [
+      "Copyright 2023 DeepMind Technologies Limited."
+    ]
+  },
+  {
+    "model": "google_robot",
+    "menagerie_files": [
+      "google_robot/robot.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [],
+    "readme": "google_robot/README.md",
+    "derivation_lines": [
+      "This package contains a simplified robot description (MJCF) of a [mobile manipulator](https://rl-at-scale.github.io/) with a 7 degree-of-freedom (DoF) arm and a parallel jaw gripper developed by Google.",
+      "    @inproceedings{rlscale2023rss,",
+      "    \u00a0 \u00a0 title={Deep RL at Scale: Sorting Waste in Office Buildings with a Fleet of Mobile Manipulators},"
+    ]
+  },
+  {
+    "model": "hello_robot_stretch",
+    "menagerie_files": [
+      "hello_robot_stretch/stretch.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [],
+    "evidence": [
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "hello_robot_stretch/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/shadow-robot/sr_common/tree/noetic-devel/sr_description/meshes/",
+        "document": "hello_robot_stretch/README.md",
+        "commit": "9b842872b7c26680d40421e15ff193737bac7df6",
+        "current": false
+      }
+    ],
+    "readme": "hello_robot_stretch/README.md",
+    "derivation_lines": [
+      "2. Added `<mujoco> <compiler discardvisual=\"false\" fusestatic=\"false\" balanceinertia=\"true\"/> </mujoco>` to the URDF's"
+    ]
+  },
+  {
+    "model": "hello_robot_stretch_3",
+    "menagerie_files": [
+      "hello_robot_stretch_3/stretch.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "hello_robot_stretch_3/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "hello_robot_stretch_3/README.md",
+    "derivation_lines": [
+      "2. Added `<mujoco> <compiler discardvisual=\"false\" fusestatic=\"false\" balanceinertia=\"true\"/> </mujoco>` to the URDF's"
+    ]
+  },
+  {
+    "model": "i2rt_yam",
+    "menagerie_files": [
+      "i2rt_yam/yam.xml",
+      "i2rt_yam/yam_linear_4310.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "plain SHA in README line 24",
+        "document": "i2rt_yam/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/i2rt-robotics/i2rt",
+        "ref": "120c3c81400171174604e503943f8d1ebc891058",
+        "path": "robot_models/yam/yam.urdf",
+        "pinned": true,
+        "score": 37,
+        "pin_context": "  commit `120c3c81400171174604e503943f8d1ebc891058`)."
+      },
+      {
+        "url": "plain SHA in README line 33",
+        "document": "i2rt_yam/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/i2rt-robotics/i2rt",
+        "ref": "d4efb66d81bd8bde42909880b16591d4af82e8c0",
+        "path": "robot_models/yam/yam.urdf",
+        "pinned": true,
+        "score": 37,
+        "pin_context": "1. Started from `yam.urdf` (commit SHA d4efb66d81bd8bde42909880b16591d4af82e8c0)."
+      },
+      {
+        "url": "https://github.com/i2rt-robotics/i2rt/blob/main/robot_models/yam/yam.urdf",
+        "document": "i2rt_yam/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/i2rt-robotics/i2rt",
+        "ref": "main",
+        "path": "robot_models/yam/yam.urdf",
+        "pinned": false,
+        "score": 32
+      },
+      {
+        "url": "https://github.com/i2rt-robotics/i2rt",
+        "document": "i2rt_yam/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/i2rt-robotics/i2rt",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/i2rt-robotics/i2rt",
+        "document": "i2rt_yam/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/i2rt-robotics/i2rt/blob/main/robot_models/yam/yam.urdf",
+        "document": "i2rt_yam/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "i2rt_yam/README.md",
+    "derivation_lines": [
+      "2. Added the following to the URDF `<robot>` tag `<mujoco><compiler balanceinertia=\"true\" discardvisual=\"false\" fusestatic=\"false\" strippath=\"false\"/></mujoco>`.",
+      "7. Added armature based on reflected inertia values provided by the manufacturer.",
+      "2. Updated arm joint ranges and actuator PD gains to match the YAM Pro + `linear_4310` SDK configuration.",
+      "   - Finger travel is 0 to 47.5 mm, with joint and control limits extending 5 mm past closed to allow grasp squeezing.",
+      "   - Actuator PD gains and force limits match the hardware's 50 N per-pad grip force limit.",
+      "4. Added the wrist-mounted Intel RealSense D405 camera on `link_6` using extrinsics, intrinsics, and mass properties from I2RT's CAD station model."
+    ]
+  },
+  {
+    "model": "iit_softfoot",
+    "menagerie_files": [
+      "iit_softfoot/softfoot.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [
+      {
+        "url": "https://github.com/NMMI/SoftFoot_MuJoCo",
+        "document": "iit_softfoot/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/NMMI/SoftFoot_MuJoCo",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/NMMI/SoftFoot_MuJoCo",
+        "document": "iit_softfoot/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/google-deepmind/dm_control/tree/main/dm_control/mjcf",
+        "document": "iit_softfoot/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "iit_softfoot/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "kinova_gen3",
+    "menagerie_files": [
+      "kinova_gen3/gen3.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/Kinovarobotics/ros_kortex/blob/noetic-devel/kortex_description/robots/gen3.xacro",
+        "document": "kinova_gen3/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/Kinovarobotics/ros_kortex",
+        "ref": "noetic-devel",
+        "path": "kortex_description/robots/gen3.xacro",
+        "pinned": false,
+        "score": 32
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/Kinovarobotics/ros_kortex/blob/noetic-devel/kortex_description/robots/gen3.xacro",
+        "document": "kinova_gen3/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "kinova_gen3/README.md",
+    "derivation_lines": [
+      "  <compiler meshdir=\"assets\" discardvisual=\"false\" fusestatic=\"false\"/>",
+      "Note `fusestatic=\"false\"` is needed so that base_link is preserved.",
+      "    - Added position actuators with joint limits on joints 2, 4, and 6."
+    ]
+  },
+  {
+    "model": "kuka_iiwa_14",
+    "menagerie_files": [
+      "kuka_iiwa_14/iiwa14.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/RobotLocomotion/drake/blob/master/manipulation/models/iiwa_description/urdf/iiwa14_spheres_dense_collision.urdf",
+        "document": "kuka_iiwa_14/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/RobotLocomotion/drake",
+        "ref": "master",
+        "path": "manipulation/models/iiwa_description/urdf/iiwa14_spheres_dense_collision.urdf",
+        "pinned": false,
+        "score": 32
+      },
+      {
+        "url": "https://github.com/RobotLocomotion/drake",
+        "document": "kuka_iiwa_14/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/RobotLocomotion/drake",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/RobotLocomotion/drake",
+        "document": "kuka_iiwa_14/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/RobotLocomotion/drake/blob/master/manipulation/models/iiwa_description/urdf/iiwa14_spheres_dense_collision.urdf",
+        "document": "kuka_iiwa_14/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "kuka_iiwa_14/README.md",
+    "derivation_lines": [
+      "3. Created base body and added its corresponding inertial properties.",
+      "8.  Added forcelimits to match the torque limits in the [spec sheet](https://www.reeco.co.uk/wp-content/uploads/2020/05/KUKA-LBR-iiwa-technical-data.pdf)."
+    ]
+  },
+  {
+    "model": "leap_hand",
+    "menagerie_files": [
+      "leap_hand/left_hand.xml",
+      "leap_hand/right_hand.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/leap-hand/LEAP_Hand_Sim/blob/master/assets/leap_hand/robot.urdf",
+        "document": "leap_hand/README.md",
+        "commit": "f59b989dea80a523b0e0b0fbe550c664939c6376",
+        "current": false,
+        "repo": "https://github.com/leap-hand/LEAP_Hand_Sim",
+        "ref": "master",
+        "path": "assets/leap_hand/robot.urdf",
+        "pinned": false,
+        "score": 30
+      },
+      {
+        "url": "https://github.com/dexsuite/dex-urdf/tree/main/robots/hands/leap_hand",
+        "document": "leap_hand/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/dexsuite/dex-urdf",
+        "ref": "main",
+        "path": "robots/hands/leap_hand",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/dexsuite/dex-urdf/tree/main/robots/hands/leap_hand",
+        "document": "leap_hand/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/leap-hand/LEAP_Hand_Sim/blob/master/assets/leap_hand/robot.urdf",
+        "document": "leap_hand/README.md",
+        "commit": "f59b989dea80a523b0e0b0fbe550c664939c6376",
+        "current": false
+      }
+    ],
+    "readme": "leap_hand/README.md",
+    "derivation_lines": [
+      "2. Run it through drake's fix_inertia tool (v. 1.30.0)",
+      "      <compiler balanceinertia=\"true\" discardvisual=\"false\" fusestatic=\"false\"/>",
+      "    python -m mujoco.viewer --mjcf=<name_of_inertia_fixed_urdf>.urdf",
+      "10. Delete the actuatorfrcrange field for all joints."
+    ]
+  },
+  {
+    "model": "low_cost_robot_arm",
+    "menagerie_files": [
+      "low_cost_robot_arm/low_cost_robot_arm.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/s1lent4gnt/koch-v1-1/blob/main/simulation/follower.urdf",
+        "document": "low_cost_robot_arm/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/s1lent4gnt/koch-v1-1",
+        "ref": "main",
+        "path": "simulation/follower.urdf",
+        "pinned": false,
+        "score": 32
+      },
+      {
+        "url": "https://github.com/AlexanderKoch-Koch/low_cost_robot/tree/main",
+        "document": "low_cost_robot_arm/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/AlexanderKoch-Koch/low_cost_robot",
+        "ref": "main",
+        "path": "",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/jess-moss/koch-v1-1/tree/main",
+        "document": "low_cost_robot_arm/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/jess-moss/koch-v1-1",
+        "ref": "main",
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/AlexanderKoch-Koch/low_cost_robot/tree/main",
+        "document": "low_cost_robot_arm/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/jess-moss/koch-v1-1/tree/main",
+        "document": "low_cost_robot_arm/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf/tree/main",
+        "document": "low_cost_robot_arm/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/s1lent4gnt/koch-v1-1/blob/main/simulation/follower.urdf",
+        "document": "low_cost_robot_arm/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "low_cost_robot_arm/README.md",
+    "derivation_lines": [
+      "7. Added approximate joint limits."
+    ]
+  },
+  {
+    "model": "ms_human_700",
+    "menagerie_files": [
+      "ms_human_700/MS-Human-700-Locomotion.xml",
+      "ms_human_700/MS-Human-700-Manipulation.xml",
+      "ms_human_700/MS-Human-700.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [
+      {
+        "url": "https://github.com/LNSGroup/MS-Human-700",
+        "document": "ms_human_700/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/LNSGroup/MS-Human-700",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/LNSGroup/MS-Human-700",
+        "document": "ms_human_700/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "ms_human_700/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "pal_talos",
+    "menagerie_files": [
+      "pal_talos/talos.xml",
+      "pal_talos/talos_motor.xml",
+      "pal_talos/talos_position.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/pal-robotics/talos_robot/tree/kinetic-devel/talos_description",
+        "document": "pal_talos/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/pal-robotics/talos_robot",
+        "ref": "kinetic-devel",
+        "path": "talos_description",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/pal-robotics/talos_robot/tree/kinetic-devel/talos_description",
+        "document": "pal_talos/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "pal_talos/README.md",
+    "derivation_lines": [
+      " 2. Added `<mujoco> <compiler meshdir=\"../meshes/\" strippath=\"false\" balanceinertia=\"true\" autolimits=\"true\" discardvisual=\"false\"/> </mujoco>` to the URDF in order to preserve visual geometries and configure other [parameters](https://mujoco.readthedocs.io/en/stable/XMLreference.html#compiler).",
+      " 3. Removed `package://` shortcuts and fixed file paths to use assets only from the local `assets` folder.",
+      " 5. Added a free joint `<joint name=\"reference\" type=\"free\"/>` to the base and fixed the body tree by adding `<body  name=\"base_link\"  pos=\"0 0 0\"></body>` around the base geom.",
+      " 6. Added `<inertial pos=\"-0.05709419 0.00153054 -0.0762521\" mass=\"15.36284\" fullinertia=\"0.20105075811 0.08411496729 0.2318908414 0.00023244734 0.0040167728 -0.00087206649\"/> <geom type=\"mesh\" class=\"visual\" density=\"0\" rgba=\"0.9 0.9 0.9 1\" mesh=\"base_link\"/>` base inertia that was not automatically converted."
+    ]
+  },
+  {
+    "model": "pal_tiago",
+    "menagerie_files": [
+      "pal_tiago/tiago.xml",
+      "pal_tiago/tiago_motor.xml",
+      "pal_tiago/tiago_position.xml",
+      "pal_tiago/tiago_velocity.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/pal-robotics/tiago_robot/blob/kinetic-devel/tiago_description",
+        "document": "pal_tiago/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/pal-robotics/tiago_robot",
+        "ref": "kinetic-devel",
+        "path": "tiago_description",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/pal-robotics/tiago_robot/blob/kinetic-devel/tiago_description",
+        "document": "pal_tiago/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "pal_tiago/README.md",
+    "derivation_lines": [
+      " 2. Added `<mujoco>  <compiler meshdir=\"../meshes/\" strippath=\"false\"balanceinertia=\"true\" autolimits=\"true\" discardvisual=\"false\"/> </mujoco>` to the URDF in order to preserve visual geometries and configure other [parameters](https://mujoco.readthedocs.io/en/stable/XMLreference.html#compiler).",
+      " 4. Removed `package://` shortcuts and fixed file paths to use assets only from the local `assets` folder.",
+      " 6. Added a free joint `<joint  name=\"reference\"  type=\"free\"/>` to the base and fixed the body tree by adding `<body  name=\"base_link\" pos=\"0 0 0\"></body>` around the base geom.",
+      " 7. Added `<inertial pos=\"0 0 0\" mass=\"28.26649\" fullinertia=\"0.465408937 0.483193291 0.550939703 0.002160024 -0.001760255 -0.000655952\"/>` base inertia that was not automatically converted."
+    ]
+  },
+  {
+    "model": "pal_tiago_dual",
+    "menagerie_files": [
+      "pal_tiago_dual/tiago_dual.xml",
+      "pal_tiago_dual/tiago_dual_motor.xml",
+      "pal_tiago_dual/tiago_dual_position.xml",
+      "pal_tiago_dual/tiago_dual_velocity.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/pal-robotics/tiago_dual_robot/blob/kinetic-devel/tiago_dual_description/",
+        "document": "pal_tiago_dual/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/pal-robotics/tiago_dual_robot",
+        "ref": "kinetic-devel",
+        "path": "tiago_dual_description/",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/pal-robotics/tiago_dual_robot/blob/kinetic-devel/tiago_dual_description/",
+        "document": "pal_tiago_dual/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "pal_tiago_dual/README.md",
+    "derivation_lines": [
+      " 2. Added `<mujoco><compiler meshdir=\"../meshes/\" strippath=\"false\"balanceinertia=\"true\" autolimits=\"true\" discardvisual=\"false\"/></mujoco>` to the URDF in order to preserve visual geometries and configure other [parameters](https://mujoco.readthedocs.io/en/stable/XMLreference.html#compiler).",
+      " 4. Removed `package://` shortcuts and fixed file paths to use assets only from the local `assets` folder.",
+      " 6. Added a free joint `<joint name=\"reference\" type=\"free\"/>` to the base and fixed the body tree by adding `<body  name=\"base_link\" pos=\"0 0 0\"></body>` around the base geom.",
+      " 7. Added `<inertial pos=\"0 0 0\" mass=\"28.26649\" fullinertia=\"0.465408937 0.483193291 0.550939703 0.002160024 -0.001760255 -0.000655952\"/>` base inertia that was not automatically converted."
+    ]
+  },
+  {
+    "model": "pndbotics_adam_lite",
+    "menagerie_files": [
+      "pndbotics_adam_lite/adam_lite.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [
+      {
+        "url": "https://github.com/RethinkRobotics/sawyer_robot/tree/master/sawyer_description/meshes",
+        "document": "pndbotics_adam_lite/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "pndbotics_adam_lite/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "pndbotics_adam_lite/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "rainbow_robotics_rby1",
+    "menagerie_files": [
+      "rainbow_robotics_rby1/rby1a_1.2.xml",
+      "rainbow_robotics_rby1/rby1a_1.2_no_gripper.xml",
+      "rainbow_robotics_rby1/rby1m_1.2.xml",
+      "rainbow_robotics_rby1/rby1m_1.2_no_gripper.xml",
+      "rainbow_robotics_rby1/rby1m_1.3.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/RainbowRobotics/rby1-sdk/blob/main/models/rby1a/urdf/model.urdf",
+        "document": "rainbow_robotics_rby1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/RainbowRobotics/rby1-sdk",
+        "ref": "main",
+        "path": "models/rby1a/urdf/model.urdf",
+        "pinned": false,
+        "score": 32
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/RainbowRobotics/rby1-sdk/blob/main/models/rby1a/urdf/model.urdf",
+        "document": "rainbow_robotics_rby1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/RainbowRobotics",
+        "document": "rainbow_robotics_rby1/README.md",
+        "commit": "41f63ddfe1d430306fe3983813796662b07ae1c4",
+        "current": false
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "rainbow_robotics_rby1/README.md",
+        "commit": "41f63ddfe1d430306fe3983813796662b07ae1c4",
+        "current": false
+      }
+    ],
+    "readme": "rainbow_robotics_rby1/README.md",
+    "derivation_lines": [
+      "- configured wheel/torso/arm/head/gripper actuators and control ranges"
+    ]
+  },
+  {
+    "model": "realsense_d435i",
+    "menagerie_files": [
+      "realsense_d435i/d435i.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/IntelRealSense/realsense-ros/blob/ros2-development/realsense2_description/urdf/_d435i.urdf.xacro",
+        "document": "realsense_d435i/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/IntelRealSense/realsense-ros",
+        "ref": "ros2-development",
+        "path": "realsense2_description/urdf/_d435i.urdf.xacro",
+        "pinned": false,
+        "score": 32
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/IntelRealSense/realsense-ros/blob/ros2-development/realsense2_description/meshes/d435.dae",
+        "document": "realsense_d435i/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/IntelRealSense/realsense-ros/blob/ros2-development/realsense2_description/urdf/_d435i.urdf.xacro",
+        "document": "realsense_d435i/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "realsense_d435i/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "realsense_d435i/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "rethink_robotics_sawyer",
+    "menagerie_files": [
+      "rethink_robotics_sawyer/sawyer.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/RethinkRobotics/sawyer_robot/blob/master/sawyer_description/urdf/",
+        "document": "rethink_robotics_sawyer/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/RethinkRobotics/sawyer_robot",
+        "ref": "master",
+        "path": "sawyer_description/urdf/",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/RethinkRobotics/sawyer_robot/tree/master/sawyer_description",
+        "document": "rethink_robotics_sawyer/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/RethinkRobotics/sawyer_robot",
+        "ref": "master",
+        "path": "sawyer_description",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/RethinkRobotics/sawyer_robot/blob/master/sawyer_description/urdf/",
+        "document": "rethink_robotics_sawyer/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/RethinkRobotics/sawyer_robot/tree/master/sawyer_description",
+        "document": "rethink_robotics_sawyer/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/RethinkRobotics/sawyer_robot/tree/master/sawyer_description/meshes",
+        "document": "rethink_robotics_sawyer/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "rethink_robotics_sawyer/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "rethink_robotics_sawyer/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "robot_soccer_kit",
+    "menagerie_files": [
+      "robot_soccer_kit/robot_soccer_kit.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [],
+    "readme": "robot_soccer_kit/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "robotiq_2f85",
+    "menagerie_files": [
+      "robotiq_2f85/2f85.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/ros-industrial/robotiq/tree/kinetic-devel/robotiq_2f_85_gripper_visualization",
+        "document": "robotiq_2f85/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/ros-industrial/robotiq",
+        "ref": "kinetic-devel",
+        "path": "robotiq_2f_85_gripper_visualization",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/ros-industrial/robotiq/tree/kinetic-devel/robotiq_2f_85_gripper_visualization",
+        "document": "robotiq_2f85/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "robotiq_2f85/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "robotiq_2f85_v4",
+    "menagerie_files": [
+      "robotiq_2f85_v4/2f85.xml",
+      "robotiq_2f85_v4/mjx_2f85.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/ros-industrial/robotiq/tree/kinetic-devel/robotiq_2f_85_gripper_visualization",
+        "document": "robotiq_2f85_v4/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/ros-industrial/robotiq",
+        "ref": "kinetic-devel",
+        "path": "robotiq_2f_85_gripper_visualization",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/Rhoban/onshape-to-robot",
+        "document": "robotiq_2f85_v4/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/ros-industrial/robotiq/tree/kinetic-devel/robotiq_2f_85_gripper_visualization",
+        "document": "robotiq_2f85_v4/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "robotiq_2f85_v4/README.md",
+    "derivation_lines": [
+      "3. Created assembly file using onshape and joint limits from robotiq_2f85 XML model.",
+      "7. Used inertia and mass from robotiq_2f85 model."
+    ]
+  },
+  {
+    "model": "robotis_omy_3m",
+    "menagerie_files": [
+      "robotis_omy_3m/omy_3m.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/ROBOTIS-GIT/open_manipulator/tree/main/open_manipulator_description/urdf/omy_3m",
+        "document": "robotis_omy_3m/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/ROBOTIS-GIT/open_manipulator",
+        "ref": "main",
+        "path": "open_manipulator_description/urdf/omy_3m",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/ROBOTIS-GIT/open_manipulator/tree/main/open_manipulator_description/meshes/omy_3m",
+        "document": "robotis_omy_3m/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/ROBOTIS-GIT/open_manipulator/tree/main/open_manipulator_description/urdf/omy_3m",
+        "document": "robotis_omy_3m/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "robotis_omy_3m/README.md",
+    "derivation_lines": [
+      "The OMY-3M is a 6-DOF fixed-base robotic manipulator designed for research and industrial manipulation tasks.",
+      "   limits.",
+      "6. Added `fullinertia` values directly from the URDF for accurate dynamics simulation.",
+      "- The compiled mass, center of mass, principal inertia and inertial orientation of all six moving links match the",
+      "The position actuators use the documented maximum torque as their force limit. See the"
+    ]
+  },
+  {
+    "model": "robotis_op3",
+    "menagerie_files": [
+      "robotis_op3/op3.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-Common/tree/master/op3_description/urdf",
+        "document": "robotis_op3/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-Common",
+        "ref": "master",
+        "path": "op3_description/urdf",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-Common/tree/master/op3_description/urdf",
+        "document": "robotis_op3/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "robotis_op3/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "robotstudio_so101",
+    "menagerie_files": [
+      "robotstudio_so101/so101.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [
+      {
+        "url": "plain SHA in README line 22",
+        "document": "robotstudio_so101/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/TheRobotStudio/SO-ARM100",
+        "ref": "aec17bbc256d1a7342d53aaa4950595d4c30b40d",
+        "path": "Simulation/SO101/so101_new_calib.xml",
+        "pinned": true,
+        "score": 47,
+        "pin_context": "1. Copied `so101_new_calib.xml` (commit SHA aec17bbc256d1a7342d53aaa4950595d4c30b40d)."
+      },
+      {
+        "url": "https://github.com/TheRobotStudio/SO-ARM100/blob/608122e9ac330a753735f2e18aee73338e9ac407/Simulation/SO101/so101_new_calib.xml#L1",
+        "document": "robotstudio_so101/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/TheRobotStudio/SO-ARM100",
+        "ref": "608122e9ac330a753735f2e18aee73338e9ac407",
+        "path": "Simulation/SO101/so101_new_calib.xml",
+        "pinned": true,
+        "score": 42
+      },
+      {
+        "url": "https://github.com/TheRobotStudio/SO-ARM100/tree/main/Simulation/SO101",
+        "document": "robotstudio_so101/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/TheRobotStudio/SO-ARM100",
+        "ref": "main",
+        "path": "Simulation/SO101",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/TheRobotStudio/SO-ARM100/blob/608122e9ac330a753735f2e18aee73338e9ac407/Simulation/SO101/so101_new_calib.xml#L1",
+        "document": "robotstudio_so101/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/TheRobotStudio/SO-ARM100/tree/main/Simulation/SO101",
+        "document": "robotstudio_so101/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "robotstudio_so101/README.md",
+    "derivation_lines": [
+      "4. Use default `forcerange` for actuators rather than 3.35 N/m."
+    ]
+  },
+  {
+    "model": "seeed_rebot_devarm",
+    "menagerie_files": [
+      "seeed_rebot_devarm/seeed_rebot_devarm.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/Seeed-Projects/reBot-Isaacsim",
+        "document": "seeed_rebot_devarm/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/Seeed-Projects/reBot-Isaacsim",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/3dlg-hcvc/visacd",
+        "document": "seeed_rebot_devarm/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/Seeed-Projects/reBot-Isaacsim",
+        "document": "seeed_rebot_devarm/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/discoverse-dev/urdf-to-mjcf",
+        "document": "seeed_rebot_devarm/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "seeed_rebot_devarm/README.md",
+    "derivation_lines": [
+      "   across the fixed joint, and preserved all six components of every URDF",
+      "   inertia tensor, including the products of inertia. This keeps the MJCF",
+      "3. Fixed the base to the world and added the base link inertial.",
+      "5. Added position-controlled actuators with `ctrlrange` equal to the joint",
+      "   limits. Joint torque limits come from the actuator ratings (RS-06: 36 N\u00b7m,",
+      "Mass, center of mass, and the full compiled inertia tensor were verified against"
+    ]
+  },
+  {
+    "model": "shadow_dexee",
+    "menagerie_files": [
+      "shadow_dexee/shadow_dexee.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [],
+    "readme": "shadow_dexee/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "shadow_hand",
+    "menagerie_files": [
+      "shadow_hand/left_hand.xml",
+      "shadow_hand/right_hand.xml"
+    ],
+    "xml_fragments": [
+      "shadow_hand/keyframes.xml"
+    ],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "repo": "https://github.com/shadow-robot/sr_common",
+        "path": "sr_description/robots/sr_hand.urdf.xacro",
+        "arguments": {
+          "side": "right",
+          "hand_type": "hand_e",
+          "hand_version": "E3M5"
+        },
+        "recipe": true,
+        "pinned": false,
+        "ref": null,
+        "score": 100,
+        "current": true,
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "document": "config/xacro_recipes.yaml",
+        "url": "https://github.com/shadow-robot/sr_common",
+        "recipe_evidence": "The README links a component macro; the manufacturer's standalone hand wrapper supplies the complete right-hand E-series construction. Both Menagerie hand variants are self-checked; this recipe compares the right hand."
+      },
+      {
+        "url": "https://github.com/shadow-robot/sr_common/blob/noetic-devel/sr_description/hand/xacro/forearm/forearm_e.urdf.xacro",
+        "document": "shadow_hand/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/shadow-robot/sr_common",
+        "ref": "noetic-devel",
+        "path": "sr_description/hand/xacro/forearm/forearm_e.urdf.xacro",
+        "pinned": false,
+        "score": 32
+      },
+      {
+        "url": "https://github.com/shadow-robot/sr_common/commit/bda959328b7934176123af0cc0491c34ecaa23ce",
+        "document": "git commit message",
+        "commit": "e946426aaaa56f59e14ad24ed2c22a3b1a04f124",
+        "current": false,
+        "repo": "https://github.com/shadow-robot/sr_common",
+        "ref": "bda959328b7934176123af0cc0491c34ecaa23ce",
+        "path": "",
+        "pinned": false,
+        "score": 0
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/shadow-robot/sr_common/commit/bda959328b7934176123af0cc0491c34ecaa23ce",
+        "document": "git commit message",
+        "commit": "e946426aaaa56f59e14ad24ed2c22a3b1a04f124",
+        "current": false
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "shadow_hand/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/shadow-robot/sr_common/blob/noetic-devel/sr_description/hand/xacro/forearm/forearm_e.urdf.xacro",
+        "document": "shadow_hand/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/shadow-robot/sr_common/tree/noetic-devel/sr_description/meshes/",
+        "document": "shadow_hand/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "shadow_hand/README.md",
+    "derivation_lines": [
+      "6. Added forearm body and its corresponding inertial specs."
+    ]
+  },
+  {
+    "model": "sharpa_wave",
+    "menagerie_files": [
+      "sharpa_wave/left_hand.xml",
+      "sharpa_wave/right_hand.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/sharpa-robotics/sharpa-urdf-usd-xml/commit/6eea427eb24189519f32b9f21674cd534d3f973c",
+        "document": "sharpa_wave/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/sharpa-robotics/sharpa-urdf-usd-xml",
+        "ref": "6eea427eb24189519f32b9f21674cd534d3f973c",
+        "path": "",
+        "pinned": true,
+        "score": 12
+      },
+      {
+        "url": "https://github.com/sharpa-robotics/sharpa-urdf-usd-xml",
+        "document": "sharpa_wave/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/sharpa-robotics/sharpa-urdf-usd-xml",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/sharpa-robotics/sharpa-urdf-usd-xml/commit/6eea427eb24189519f32b9f21674cd534d3f973c",
+        "document": "sharpa_wave/CHANGELOG.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/sharpa-robotics/sharpa-urdf-usd-xml",
+        "ref": "6eea427eb24189519f32b9f21674cd534d3f973c",
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/sharpa-robotics/sharpa-urdf-usd-xml",
+        "document": "sharpa_wave/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/sharpa-robotics/sharpa-urdf-usd-xml/commit/6eea427eb24189519f32b9f21674cd534d3f973c",
+        "document": "sharpa_wave/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/sharpa-robotics/sharpa-urdf-usd-xml/commit/6eea427eb24189519f32b9f21674cd534d3f973c",
+        "document": "sharpa_wave/CHANGELOG.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "sharpa_wave/README.md",
+    "derivation_lines": [
+      "   fused into the world:",
+      "      <compiler meshdir=\"meshes\" balanceinertia=\"false\"",
+      "                discardvisual=\"false\" fusestatic=\"false\"/>",
+      "     carrying `armature`, `damping`, `frictionloss`, and `actuatorfrcrange`",
+      "     specs. `armature` is the reflected rotor inertia compted from the manufacturer's",
+      "4. Replaced the auxiliary massless fingertip link (a TCP marker in the URDF)",
+      "   with a `<site>`, then resaved with `fusestatic=\"true\"`. `fusestatic` merges",
+      "   inertia along, so the per-finger elastomer-pad and fingertip links collapse",
+      "   control range from the joint range via `inheritrange=\"1.0\"`.",
+      "  `quat`, `ipos`, `iquat`, geom/site poses, joint `axis`, and joint `range`",
+      "- **`thumb_DP` mass.** The upstream URDFs disagree on the thumb distal",
+      "  phalange mass (`left_sharpa_wave.urdf`: 0.00988 kg, `right_sharpa_wave.urdf`:"
+    ]
+  },
+  {
+    "model": "skydio_x2",
+    "menagerie_files": [
+      "skydio_x2/x2.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [],
+    "readme": "skydio_x2/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "stanford_tidybot",
+    "menagerie_files": [
+      "stanford_tidybot/base.xml",
+      "stanford_tidybot/tidybot.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [],
+    "readme": "stanford_tidybot/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "tetheria_aero_hand_open",
+    "menagerie_files": [
+      "tetheria_aero_hand_open/left_hand.xml",
+      "tetheria_aero_hand_open/right_hand.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [],
+    "evidence": [],
+    "readme": "tetheria_aero_hand_open/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "toddlerbot_2xc",
+    "menagerie_files": [
+      "toddlerbot_2xc/toddlerbot_2xc.xml",
+      "toddlerbot_2xc/toddlerbot_2xc_mjx.xml",
+      "toddlerbot_2xc/toddlerbot_2xc_pos.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [
+      {
+        "url": "https://github.com/hshi74/toddlerbot",
+        "document": "toddlerbot_2xc/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/hshi74/toddlerbot",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/hshi74/toddlerbot",
+        "document": "toddlerbot_2xc/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "toddlerbot_2xc/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "toddlerbot_2xm",
+    "menagerie_files": [
+      "toddlerbot_2xm/toddlerbot_2xm.xml",
+      "toddlerbot_2xm/toddlerbot_2xm_mjx.xml",
+      "toddlerbot_2xm/toddlerbot_2xm_pos.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [
+      {
+        "url": "https://github.com/hshi74/toddlerbot",
+        "document": "toddlerbot_2xm/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/hshi74/toddlerbot",
+        "ref": null,
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/hshi74/toddlerbot",
+        "document": "toddlerbot_2xm/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "toddlerbot_2xm/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "trossen_vx300s",
+    "menagerie_files": [
+      "trossen_vx300s/vx300s.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/Interbotix/interbotix_ros_manipulators/blob/main/interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/vx300s.urdf.xacro",
+        "document": "trossen_vx300s/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/Interbotix/interbotix_ros_manipulators",
+        "ref": "main",
+        "path": "interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/vx300s.urdf.xacro",
+        "pinned": false,
+        "score": 32
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/Interbotix/interbotix_ros_manipulators/blob/main/interbotix_ros_xsarms/interbotix_xsarm_descriptions/meshes/interbotix_black.png",
+        "document": "trossen_vx300s/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/Interbotix/interbotix_ros_manipulators/blob/main/interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/vx300s.urdf.xacro",
+        "document": "trossen_vx300s/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "trossen_vx300s/README.md",
+    "derivation_lines": [
+      "1. Added `<mujoco> <compiler discardvisual=\"false\" strippath=\"false\" fusestatic=\"false\"/> </mujoco>` to the URDF's"
+    ]
+  },
+  {
+    "model": "trossen_wx250s",
+    "menagerie_files": [
+      "trossen_wx250s/wx250s.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/Interbotix/interbotix_ros_manipulators/blob/main/interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/wx250s.urdf.xacro",
+        "document": "trossen_wx250s/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/Interbotix/interbotix_ros_manipulators",
+        "ref": "main",
+        "path": "interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/wx250s.urdf.xacro",
+        "pinned": false,
+        "score": 32
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/Interbotix/interbotix_ros_manipulators/blob/main/interbotix_ros_xsarms/interbotix_xsarm_descriptions/meshes/interbotix_black.png",
+        "document": "trossen_wx250s/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/Interbotix/interbotix_ros_manipulators/blob/main/interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/wx250s.urdf.xacro",
+        "document": "trossen_wx250s/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "trossen_wx250s/README.md",
+    "derivation_lines": [
+      "1. Added `<mujoco> <compiler discardvisual=\"false\" strippath=\"false\" fusestatic=\"false\"/> </mujoco>` to the URDF's",
+      "    * Removed all `actuatorfrcrange` as they were extremely low and affecting the actuation."
+    ]
+  },
+  {
+    "model": "trossen_wxai",
+    "menagerie_files": [
+      "trossen_wxai/wxai_follower.xml",
+      "trossen_wxai/wxai_follower_biarm.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [],
+    "evidence": [
+      {
+        "url": "https://github.com/Interbotix/interbotix_ros_manipulators/blob/main/interbotix_ros_xsarms/interbotix_xsarm_descriptions/meshes/interbotix_black.png",
+        "document": "trossen_wxai/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/google-deepmind/mujoco/tree/f7e00d041e05ee1eb4131d3f33e32892aa5d2752/python/mujoco/sysid#system-identification-toolbox",
+        "document": "trossen_wxai/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "trossen_wxai/README.md",
+    "derivation_lines": [
+      "1. Added `<mujoco> <compiler discardvisual=\"false\" strippath=\"false\" fusestatic=\"false\"/> </mujoco>` to the `wxai_follower.urdf`'s"
+    ]
+  },
+  {
+    "model": "trs_so_arm100",
+    "menagerie_files": [
+      "trs_so_arm100/so_arm100.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/TheRobotStudio/SO-ARM100/blob/4e9c5588d8a8415b6a6c2142a0ce8c32207cf3e9/URDF/SO_5DOF_ARM100_8j_URDF.SLDASM/urdf/SO_5DOF_ARM100_8j_URDF.SLDASM.urdf",
+        "document": "trs_so_arm100/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/TheRobotStudio/SO-ARM100",
+        "ref": "4e9c5588d8a8415b6a6c2142a0ce8c32207cf3e9",
+        "path": "URDF/SO_5DOF_ARM100_8j_URDF.SLDASM/urdf/SO_5DOF_ARM100_8j_URDF.SLDASM.urdf",
+        "pinned": true,
+        "score": 42
+      },
+      {
+        "url": "https://github.com/TheRobotStudio/SO-ARM100/tree/main",
+        "document": "trs_so_arm100/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/TheRobotStudio/SO-ARM100",
+        "ref": "main",
+        "path": "",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/TheRobotStudio/SO-ARM100/blob/4e9c5588d8a8415b6a6c2142a0ce8c32207cf3e9/URDF/SO_5DOF_ARM100_8j_URDF.SLDASM/urdf/SO_5DOF_ARM100_8j_URDF.SLDASM.urdf",
+        "document": "trs_so_arm100/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/TheRobotStudio/SO-ARM100/tree/main",
+        "document": "trs_so_arm100/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "trs_so_arm100/README.md",
+    "derivation_lines": [
+      "7. Added approximate joint limits."
+    ]
+  },
+  {
+    "model": "ufactory_lite6",
+    "menagerie_files": [
+      "ufactory_lite6/lite6.xml",
+      "ufactory_lite6/lite6_gripper_narrow.xml",
+      "ufactory_lite6/lite6_gripper_wide.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "repo": "https://github.com/xArm-Developer/xarm_ros2",
+        "path": "xarm_description/urdf/xarm_device.urdf.xacro",
+        "arguments": {
+          "robot_type": "lite",
+          "dof": "6",
+          "add_gripper": "false"
+        },
+        "recipe": true,
+        "pinned": false,
+        "ref": null,
+        "score": 100,
+        "current": true,
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "document": "config/xacro_recipes.yaml",
+        "url": "https://github.com/xArm-Developer/xarm_ros2",
+        "recipe_evidence": "Menagerie describes the six-axis Lite 6 and provides a no-gripper variant; the manufacturer device wrapper declares robot_type, dof and add_gripper arguments."
+      },
+      {
+        "url": "https://github.com/xArm-Developer/xarm_ros2/tree/master/xarm_description/urdf/lite6",
+        "document": "ufactory_lite6/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/xArm-Developer/xarm_ros2",
+        "ref": "master",
+        "path": "xarm_description/urdf/lite6",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/xArm-Developer/xarm_ros2/tree/master/xarm_description/urdf/lite6",
+        "document": "ufactory_lite6/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "ufactory_lite6/README.md",
+    "derivation_lines": [
+      "description](https://github.com/xArm-Developer/xarm_ros2/tree/master/xarm_description/urdf/lite6). 3 versions are provided: no gripper, wide gripper, and narrow gripper. The gripper fingers can be attached in two orientations, narrrow (so that they close fully) or wide (so that wider objects can be gripped). This provides some flexibility with the limited range of the gripper.",
+      "1. Added `<mujoco> <compiler discardvisual=\"false\" strippath=\"false\" fusestatic=\"false\"/> </mujoco>` to the URDF's",
+      "The URDF only contains a gripper model for the Lite 6 with the fingers fused to the gripper body. To separate the fingers, the .step file of the fused body from the [Ufactory website](https://www.ufactory.cc/download/) was loaded into Onshape ([file here](https://cad.onshape.com/documents/f60aac1c8ff6af8f490dc855/w/5c0df4bc7414802fc89a514e/e/7dc41825dd66894c14b085ca?renderMode=0&uiState=66bdfb41f48d6a182064f4a4)) and split along the tracks that the fingers run on.  Because MuJoCo forms a convex hull for collision meshes, it was necessary to separate the wide fingers into the base and tip for realistic gripping.",
+      "The moments of inertia were estimated in Onshape due to not having any data from the manufacturer. This was done by choosing a density that matched the mass of the actual part, and assuming a uniform mass distribution (which is not the actual case but should be close enough)."
+    ]
+  },
+  {
+    "model": "ufactory_xarm7",
+    "menagerie_files": [
+      "ufactory_xarm7/hand.xml",
+      "ufactory_xarm7/xarm7.xml",
+      "ufactory_xarm7/xarm7_nohand.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "repo": "https://github.com/xArm-Developer/xarm_ros",
+        "path": "xarm_description/urdf/xarm_device.urdf.xacro",
+        "arguments": {
+          "robot_type": "xarm",
+          "dof": "7",
+          "add_gripper": "false"
+        },
+        "recipe": true,
+        "pinned": false,
+        "ref": null,
+        "score": 100,
+        "current": true,
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "document": "config/xacro_recipes.yaml",
+        "url": "https://github.com/xArm-Developer/xarm_ros",
+        "recipe_evidence": "Menagerie names xArm 7; the manufacturer device wrapper declares robot_type, dof and add_gripper arguments."
+      },
+      {
+        "url": "https://github.com/xArm-Developer/xarm_ros/tree/master/xarm_description/urdf/xarm7",
+        "document": "ufactory_xarm7/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/xArm-Developer/xarm_ros",
+        "ref": "master",
+        "path": "xarm_description/urdf/xarm7",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/xArm-Developer/xarm_ros/tree/master/xarm_description/urdf/xarm7",
+        "document": "ufactory_xarm7/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/s1lent4gnt",
+        "document": "ufactory_xarm7/README.md",
+        "commit": "ffdf57667476eca8e550c33704a5e9fa90c45ce4",
+        "current": false
+      },
+      {
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/issues/83",
+        "document": "ufactory_xarm7/README.md",
+        "commit": "b5a72f92f0630bc3b90711ed41ff640e93b1f90b",
+        "current": false
+      },
+      {
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/pull/131",
+        "document": "ufactory_xarm7/README.md",
+        "commit": "b5a72f92f0630bc3b90711ed41ff640e93b1f90b",
+        "current": false
+      },
+      {
+        "url": "https://github.com/s1lent4gnt",
+        "document": "ufactory_xarm7/CHANGELOG.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "ufactory_xarm7/README.md",
+    "derivation_lines": [
+      "1. Added `<mujoco> <compiler discardvisual=\"false\" fusestatic=\"false\"/> </mujoco>` to the URDF's"
+    ]
+  },
+  {
+    "model": "umi_gripper",
+    "menagerie_files": [
+      "umi_gripper/umi_gripper.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": true,
+    "preferred_format": "urdf",
+    "sources": [],
+    "evidence": [
+      {
+        "url": "https://github.com/pal-robotics/talos_robot/tree/kinetic-devel/talos_description",
+        "document": "umi_gripper/README.md",
+        "commit": "884e0e1983c7c80db91740af56a648fdeb3989dd",
+        "current": false
+      }
+    ],
+    "readme": "umi_gripper/README.md",
+    "derivation_lines": [
+      "2.  Added `<mujoco> <compiler balanceinertia=\"true\" discardvisual=\"false\"/> </mujoco>` to the URDF's",
+      "7. Added a `<tendon>` section with a fixed tendon named split to synchronize the movement of both fingers."
+    ]
+  },
+  {
+    "model": "unitree_a1",
+    "menagerie_files": [
+      "unitree_a1/a1.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/unitreerobotics/unitree_mujoco/tree/main/data/a1/urdf",
+        "document": "unitree_a1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/unitreerobotics/unitree_mujoco",
+        "ref": "main",
+        "path": "data/a1/urdf",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "unitree_a1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_mujoco/tree/main/data/a1/meshes",
+        "document": "unitree_a1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_mujoco/tree/main/data/a1/urdf",
+        "document": "unitree_a1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "unitree_a1/README.md",
+    "derivation_lines": [
+      "8. Shifted joint reference values and ranges so that 0 corresponds to standing pose."
+    ]
+  },
+  {
+    "model": "unitree_g1",
+    "menagerie_files": [
+      "unitree_g1/g1.xml",
+      "unitree_g1/g1_mjlab.xml",
+      "unitree_g1/g1_mjx.xml",
+      "unitree_g1/g1_with_hands.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": null,
+    "sources": [
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/g1_description/g1_29dof_rev_1_0.xml",
+        "document": "unitree_g1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/unitreerobotics/unitree_ros",
+        "ref": "master",
+        "path": "robots/g1_description/g1_29dof_rev_1_0.xml",
+        "pinned": false,
+        "score": 32
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/g1_description/g1_29dof_rev_1_0.xml",
+        "document": "unitree_g1/CHANGELOG.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/unitreerobotics/unitree_ros",
+        "ref": "master",
+        "path": "robots/g1_description/g1_29dof_rev_1_0.xml",
+        "pinned": false,
+        "score": 32
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml",
+        "document": "unitree_g1/CHANGELOG.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/unitreerobotics/unitree_ros",
+        "ref": "master",
+        "path": "robots/g1_description/g1_29dof_with_hand_rev_1_0.xml",
+        "pinned": false,
+        "score": 32
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml",
+        "document": "unitree_g1/README.md",
+        "commit": "b5ff2e8666c2fa36fddd0961e5bd992726c1efc1",
+        "current": false,
+        "repo": "https://github.com/unitreerobotics/unitree_ros",
+        "ref": "master",
+        "path": "robots/g1_description/g1_29dof_with_hand_rev_1_0.xml",
+        "pinned": false,
+        "score": 30
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/g1_description",
+        "document": "unitree_g1/CHANGELOG.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/unitreerobotics/unitree_ros",
+        "ref": "master",
+        "path": "robots/g1_description",
+        "pinned": false,
+        "score": 2
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/g1_description",
+        "document": "unitree_g1/README.md",
+        "commit": "b5ff2e8666c2fa36fddd0961e5bd992726c1efc1",
+        "current": false,
+        "repo": "https://github.com/unitreerobotics/unitree_ros",
+        "ref": "master",
+        "path": "robots/g1_description",
+        "pinned": false,
+        "score": 0
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/tree/master/robots/g1_description",
+        "document": "unitree_g1/README.md",
+        "commit": "3d9225cc00d68a053fc74129ee609f4f9f760065",
+        "current": false,
+        "repo": "https://github.com/unitreerobotics/unitree_ros",
+        "ref": "master",
+        "path": "robots/g1_description",
+        "pinned": false,
+        "score": 0
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/blob/main/unitree_g1/g1.xml",
+        "document": "git commit message",
+        "commit": "c8bba941168df392d62e6d5d406a78829eea563e",
+        "current": false
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/g1_description/g1_29dof_rev_1_0.xml",
+        "document": "unitree_g1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/g1_description",
+        "document": "unitree_g1/README.md",
+        "commit": "b5ff2e8666c2fa36fddd0961e5bd992726c1efc1",
+        "current": false
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml",
+        "document": "unitree_g1/README.md",
+        "commit": "b5ff2e8666c2fa36fddd0961e5bd992726c1efc1",
+        "current": false
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/tree/master/robots/g1_description",
+        "document": "unitree_g1/README.md",
+        "commit": "3d9225cc00d68a053fc74129ee609f4f9f760065",
+        "current": false
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/g1_description",
+        "document": "unitree_g1/CHANGELOG.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/g1_description/g1_29dof_rev_1_0.xml",
+        "document": "unitree_g1/CHANGELOG.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml",
+        "document": "unitree_g1/CHANGELOG.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "unitree_g1/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "unitree_go1",
+    "menagerie_files": [
+      "unitree_go1/go1.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/tree/master/robots/go1_description",
+        "document": "unitree_go1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/unitreerobotics/unitree_ros",
+        "ref": "master",
+        "path": "robots/go1_description",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/tree/master/robots/go1_description",
+        "document": "unitree_go1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "unitree_go1/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "unitree_go2",
+    "menagerie_files": [
+      "unitree_go2/go2.xml",
+      "unitree_go2/go2_mjx.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/tree/master/robots/go2_description",
+        "document": "unitree_go2/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/unitreerobotics/unitree_ros",
+        "ref": "master",
+        "path": "robots/go2_description",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/google-deepmind/mujoco_menagerie/pull/57",
+        "document": "git commit message",
+        "commit": "ca7031c3b93adb5543c2dad8746286c6f2ff5ddd",
+        "current": false
+      },
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "unitree_go2/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/lonelyfluency",
+        "document": "unitree_go2/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/tree/master/robots/go2_description",
+        "document": "unitree_go2/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/tree/master/robots/go2_description/meshes",
+        "document": "unitree_go2/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_mujoco/tree/main/data/a1/meshes",
+        "document": "unitree_go2/README.md",
+        "commit": "a5836a9410b36a7f69ad575e1436403214116039",
+        "current": false
+      }
+    ],
+    "readme": "unitree_go2/README.md",
+    "derivation_lines": [
+      "3. Added `<mujoco> <compiler discardvisual=\"false\" strippath=\"false\" fusestatic=\"false\"/> </mujoco>` to the URDF's"
+    ]
+  },
+  {
+    "model": "unitree_h1",
+    "menagerie_files": [
+      "unitree_h1/h1.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "repo": "https://github.com/unitreerobotics/unitree_ros",
+        "ref": "master",
+        "path": "robots/h1_description/urdf/h1.urdf",
+        "pinned": false,
+        "score": 50,
+        "url": "user-provided upstream lead",
+        "document": "unitree_h1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "evidence": [],
+    "readme": "unitree_h1/README.md",
+    "derivation_lines": [
+      "1. Added `<mujoco> <compiler discardvisual=\"false\" strippath=\"false\" fusestatic=\"false\"/> </mujoco>` to the URDF's"
+    ]
+  },
+  {
+    "model": "unitree_z1",
+    "menagerie_files": [
+      "unitree_z1/z1.xml",
+      "unitree_z1/z1_gripper.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/z1_description/xacro/z1.urdf",
+        "document": "unitree_z1/README.md",
+        "commit": "7bc6c99d5367e9dcd568fa2dbb54b6160cced324",
+        "current": false,
+        "repo": "https://github.com/unitreerobotics/unitree_ros",
+        "ref": "master",
+        "path": "robots/z1_description/xacro/z1.urdf",
+        "pinned": false,
+        "score": 30
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/z1_description/",
+        "document": "unitree_z1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/unitreerobotics/unitree_ros",
+        "ref": "master",
+        "path": "robots/z1_description/",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/z1_description/",
+        "document": "unitree_z1/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/unitreerobotics/unitree_ros/blob/master/robots/z1_description/xacro/z1.urdf",
+        "document": "unitree_z1/README.md",
+        "commit": "7bc6c99d5367e9dcd568fa2dbb54b6160cced324",
+        "current": false
+      }
+    ],
+    "readme": "unitree_z1/README.md",
+    "derivation_lines": [
+      "1. Added `<mujoco><compiler discardvisual=\"false\" fusestatic=\"false\"/></mujoco>` to the URDF's `<robot>` clause in order to preserve visual geometries."
+    ]
+  },
+  {
+    "model": "universal_robots_ur10e",
+    "menagerie_files": [
+      "universal_robots_ur10e/ur10e.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/ros-industrial/universal_robot/tree/kinetic-devel/ur_e_description",
+        "document": "universal_robots_ur10e/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/ros-industrial/universal_robot",
+        "ref": "kinetic-devel",
+        "path": "ur_e_description",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "universal_robots_ur10e/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/ros-industrial/universal_robot/tree/kinetic-devel/ur_e_description",
+        "document": "universal_robots_ur10e/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/ros-industrial/universal_robot/tree/kinetic-devel/ur_e_description/meshes/ur10e/visual",
+        "document": "universal_robots_ur10e/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "universal_robots_ur10e/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "universal_robots_ur5e",
+    "menagerie_files": [
+      "universal_robots_ur5e/ur5e.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/ros-industrial/universal_robot/tree/kinetic-devel/ur_e_description",
+        "document": "universal_robots_ur5e/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/ros-industrial/universal_robot",
+        "ref": "kinetic-devel",
+        "path": "ur_e_description",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/kevinzakka/obj2mjcf",
+        "document": "universal_robots_ur5e/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/ros-industrial/universal_robot/tree/kinetic-devel/ur_e_description",
+        "document": "universal_robots_ur5e/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/ros-industrial/universal_robot/tree/kinetic-devel/ur_e_description/meshes/ur5e/visual",
+        "document": "universal_robots_ur5e/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "universal_robots_ur5e/README.md",
+    "derivation_lines": []
+  },
+  {
+    "model": "wonik_allegro",
+    "menagerie_files": [
+      "wonik_allegro/left_hand.xml",
+      "wonik_allegro/right_hand.xml"
+    ],
+    "xml_fragments": [],
+    "cad_web_source": false,
+    "preferred_format": "urdf",
+    "sources": [
+      {
+        "url": "https://github.com/simlabrobotics/allegro_hand_ros/blob/master/allegro_hand_description/allegro_hand_description_right.urdf",
+        "document": "wonik_allegro/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/simlabrobotics/allegro_hand_ros",
+        "ref": "master",
+        "path": "allegro_hand_description/allegro_hand_description_right.urdf",
+        "pinned": false,
+        "score": 32
+      },
+      {
+        "url": "https://github.com/simlabrobotics/allegro_hand_ros/blob/master/allegro_hand_description/",
+        "document": "wonik_allegro/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true,
+        "repo": "https://github.com/simlabrobotics/allegro_hand_ros",
+        "ref": "master",
+        "path": "allegro_hand_description/",
+        "pinned": false,
+        "score": 2
+      }
+    ],
+    "evidence": [
+      {
+        "url": "https://github.com/simlabrobotics/allegro_hand_ros/blob/master/allegro_hand_description/",
+        "document": "wonik_allegro/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      },
+      {
+        "url": "https://github.com/simlabrobotics/allegro_hand_ros/blob/master/allegro_hand_description/allegro_hand_description_right.urdf",
+        "document": "wonik_allegro/README.md",
+        "commit": "370c43965323c0944b433b202aac5058b5f907a9",
+        "current": true
+      }
+    ],
+    "readme": "wonik_allegro/README.md",
+    "derivation_lines": [
+      "7. Scaled the global density to be `1000 * actual_mass / current_mass`."
+    ]
+  }
+]

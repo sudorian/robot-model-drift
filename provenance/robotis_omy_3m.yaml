@@ -1,0 +1,132 @@
+model: robotis_omy_3m
+method: unknown
+confidence: incomplete
+upstream_repo: https://github.com/ROBOTIS-GIT/open_manipulator
+upstream_file: open_manipulator_description/urdf/omy_3m/omy_3m.urdf
+upstream_commit: null
+latest_upstream_commit: cb946894a8b5d242d2d4e012f93f01eecac5a3ce
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: robotis_omy_3m/omy_3m.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 2cd6b7be15440787d12f7eb4c34ae1a1a03237c4
+  timestamp: '1790624926'
+  date: '2026-09-28T12:48:46-07:00'
+  subject: Add ROBOTIS OMY-3M (#233)
+  file: robotis_omy_3m/omy_3m.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: 2cd6b7be15440787d12f7eb4c34ae1a1a03237c4
+  date: '2026-09-28T12:48:46-07:00'
+  file: robotis_omy_3m/omy_3m.xml
+source_candidate: null
+source_candidates:
+- commit: 29b52de15fead1fcd4856e79e2e534cfe834b91a
+  timestamp: '1767968849'
+  date: '2026-01-09T23:27:29+09:00'
+  subject: 'fix: remove trailing slashes from mesh file paths in URDF models for omx_f,
+    omx_l, omy_3m, omy_f3m, and omy_l100'
+  file: open_manipulator_description/urdf/omy_3m/omy_3m.urdf
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 7
+  comparable_quantities: 42
+- commit: a97abb2886abdfcf55ab8ce81ccc76aff1015cfb
+  timestamp: '1767967575'
+  date: '2026-01-09T23:06:15+09:00'
+  subject: 'feat: add URDF model for omy_3m robot'
+  file: open_manipulator_description/urdf/omy_3m/omy_3m.urdf
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 7
+  comparable_quantities: 42
+- commit: edde108d41eb0a4c32ac643996c539ed91f60976
+  timestamp: '1750301150'
+  date: '2025-06-19T11:45:50+09:00'
+  subject: Modified the description meshes and launch
+  file: open_manipulator_description/urdf/omy_3m/omy_3m.urdf
+  dependency_change: true
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+evidence:
+- url: https://github.com/ROBOTIS-GIT/open_manipulator/tree/main/open_manipulator_description/meshes/omy_3m
+  document: robotis_omy_3m/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/ROBOTIS-GIT/open_manipulator/tree/main/open_manipulator_description/urdf/omy_3m
+  document: robotis_omy_3m/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Unresolved historical compilation prevents selecting or rejecting a matching
+  source. Pairwise M/H differences are reported with unknown provenance.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - robotis_omy_3m/omy_3m.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - world
+    - end_effector_link
+    assets_loaded: 7
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - open_manipulator_description/urdf/omy_3m/omy_3m.urdf
+    - open_manipulator_description/meshes/omy_3m/base_unit.stl
+    - open_manipulator_description/meshes/omy_3m/link1.stl
+    - open_manipulator_description/meshes/omy_3m/link2.stl
+    - open_manipulator_description/meshes/omy_3m/link3.stl
+    - open_manipulator_description/meshes/omy_3m/link4.stl
+    - open_manipulator_description/meshes/omy_3m/link5.stl
+    - open_manipulator_description/meshes/omy_3m/link6.stl
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

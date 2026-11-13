@@ -1,0 +1,10 @@
+{
+  "model_reports": 71,
+  "provenance_files": 71,
+  "source_link_occurrences": 3404,
+  "unique_source_line_targets_checked": 2824,
+  "unresolved_finding_source_references": 0,
+  "all_link_targets_exist_at_exact_shas": true,
+  "raw_com_source_links_checked": true,
+  "workflow_yaml_valid": true
+}

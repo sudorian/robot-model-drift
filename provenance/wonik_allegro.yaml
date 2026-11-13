@@ -1,0 +1,214 @@
+model: wonik_allegro
+method: unknown
+confidence: incomplete
+upstream_repo: https://github.com/simlabrobotics/allegro_hand_ros
+upstream_file: allegro_hand_description/allegro_hand_description_right.urdf
+upstream_commit: null
+latest_upstream_commit: 296ef6bae4b535ffb91420237cdc8a87f6e9f6df
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: wonik_allegro/left_hand.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 28ffb48b5c1d409a37fbfbb01c023c12e61cdefd
+  timestamp: '1684433690'
+  date: '2023-05-18T11:14:50-07:00'
+  subject: Add six new models to Menagerie.
+  file: wonik_allegro/left_hand.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: c5d2e83f49a2a1201153a686de0d26cc02b3bd98
+  date: '2023-12-06T13:53:43-08:00'
+  file: wonik_allegro/left_hand.xml
+- commit: 1b3b0c64bfa36df8668d88c531f8e834233ed55a
+  date: '2023-05-21T05:50:52-07:00'
+  file: wonik_allegro/left_hand.xml
+- commit: 28ffb48b5c1d409a37fbfbb01c023c12e61cdefd
+  date: '2023-05-18T11:14:50-07:00'
+  file: wonik_allegro/left_hand.xml
+source_candidate: null
+source_candidates:
+- commit: 5dbee2a29cf106e3e64c17e304bdb52b7530dbbd
+  timestamp: '1378374260'
+  date: '2013-09-05T18:44:20+09:00'
+  subject: Left URDF finished. Bash build fixed.
+  file: allegro_hand_description/allegro_hand_description_right.urdf
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: cd0ee4ffe2a4d6dfba77f2153d59a673d3fe4dcb
+  timestamp: '1378284967'
+  date: '2013-09-04T17:56:07+09:00'
+  subject: Added left meshes. All but thumb in xacro.
+  file: allegro_hand_description/allegro_hand_description_right.urdf
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 67e31388ea04a8d3cbee4b3ef4e9b4819c252d4b
+  timestamp: '1377684165'
+  date: '2013-08-28T19:02:45+09:00'
+  subject: Edited Rt Xacro. Added build bash script for xacro->urdf
+  file: allegro_hand_description/allegro_hand_description_right.urdf
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: d7bb552f08f09655d72af32f8abacda5c8e6bcb3
+  timestamp: '1360920210'
+  date: '2013-02-15T18:23:30+09:00'
+  subject: velocity saturation controller. needs tuning.
+  file: allegro_hand_description/allegro_hand_description_right.urdf
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+evidence:
+- url: https://github.com/simlabrobotics/allegro_hand_ros/blob/master/allegro_hand_description/
+  document: wonik_allegro/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/simlabrobotics/allegro_hand_ros/blob/master/allegro_hand_description/allegro_hand_description_right.urdf
+  document: wonik_allegro/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Unresolved historical compilation prevents selecting or rejecting a matching
+  source. Pairwise M/H differences are reported with unknown provenance.
+compilation:
+  M:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - palm
+    - rf_base
+    - rf_proximal
+    - rf_medial
+    - rf_distal
+    - rf_tip
+    - mf_base
+    - mf_proximal
+    - mf_medial
+    - mf_distal
+    - mf_tip
+    - ff_base
+    - ff_proximal
+    - ff_medial
+    - ff_distal
+    - ff_tip
+    - th_base
+    - th_proximal
+    - th_medial
+    - th_distal
+    - th_tip
+    assets_loaded: 11
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - wonik_allegro/left_hand.xml
+    - wonik_allegro/assets/base_link_left.stl
+    - wonik_allegro/assets/link_0.0.stl
+    - wonik_allegro/assets/link_1.0.stl
+    - wonik_allegro/assets/link_2.0.stl
+    - wonik_allegro/assets/link_3.0.stl
+    - wonik_allegro/assets/link_3.0_tip.stl
+    - wonik_allegro/assets/link_12.0_left.stl
+    - wonik_allegro/assets/link_13.0.stl
+    - wonik_allegro/assets/link_14.0.stl
+    - wonik_allegro/assets/link_15.0.stl
+    - wonik_allegro/assets/link_15.0_tip.stl
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 0.0
+        - 0.0
+        - 0.9999999999999998
+      - - 0.0
+        - -0.9999999999999998
+        - 0.0
+      - - 0.9999999999999998
+        - 0.0
+        - 0.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - base_link
+    - link_0.0
+    - link_1.0
+    - link_2.0
+    - link_3.0
+    - link_3.0_tip
+    - link_4.0
+    - link_5.0
+    - link_6.0
+    - link_7.0
+    - link_7.0_tip
+    - link_8.0
+    - link_9.0
+    - link_10.0
+    - link_11.0
+    - link_11.0_tip
+    - link_12.0
+    - link_13.0
+    - link_14.0
+    - link_15.0
+    - link_15.0_tip
+    assets_loaded: 21
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments:
+      __package_directory_fallbacks__: '{''allegro_hand_description'': ''allegro_hand_description''}'
+    source_dependencies:
+    - allegro_hand_description/allegro_hand_description_right.urdf
+    - allegro_hand_description/meshes/base_link.STL
+    - allegro_hand_description/meshes/link_0.0.STL
+    - allegro_hand_description/meshes/link_1.0.STL
+    - allegro_hand_description/meshes/link_2.0.STL
+    - allegro_hand_description/meshes/link_3.0.STL
+    - allegro_hand_description/meshes/link_3.0_tip.STL
+    - allegro_hand_description/meshes/link_0.0.STL
+    - allegro_hand_description/meshes/link_1.0.STL
+    - allegro_hand_description/meshes/link_2.0.STL
+    - allegro_hand_description/meshes/link_3.0.STL
+    - allegro_hand_description/meshes/link_3.0_tip.STL
+    - allegro_hand_description/meshes/link_0.0.STL
+    - allegro_hand_description/meshes/link_1.0.STL
+    - allegro_hand_description/meshes/link_2.0.STL
+    - allegro_hand_description/meshes/link_3.0.STL
+    - allegro_hand_description/meshes/link_3.0_tip.STL
+    - allegro_hand_description/meshes/link_12.0_right.STL
+    - allegro_hand_description/meshes/link_13.0.STL
+    - allegro_hand_description/meshes/link_14.0.STL
+    - allegro_hand_description/meshes/link_15.0.STL
+    - allegro_hand_description/meshes/link_15.0_tip.STL
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

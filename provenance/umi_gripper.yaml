@@ -1,0 +1,23 @@
+model: umi_gripper
+method: unknown
+confidence: unknown
+upstream_repo: null
+upstream_file: null
+upstream_commit: null
+latest_upstream_commit: null
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: umi_gripper/umi_gripper.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change: null
+menagerie_commits_involved: []
+source_candidate: null
+source_candidates: []
+evidence:
+- url: https://github.com/pal-robotics/talos_robot/tree/kinetic-devel/talos_description
+  document: umi_gripper/README.md
+  commit: 884e0e1983c7c80db91740af56a648fdeb3989dd
+  current: false
+reason: Current README describes a SolidWorks conversion from a Google Docs CAD source.
+  No public machine-readable upstream is named; unrelated historical template links
+  are retained only as evidence.
+compilation: {}

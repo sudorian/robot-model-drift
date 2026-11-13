@@ -1,0 +1,22 @@
+model: dynamixel_2r
+method: unknown
+confidence: unknown
+upstream_repo: null
+upstream_file: null
+upstream_commit: null
+latest_upstream_commit: null
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: dynamixel_2r/dynamixel_2r.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change: null
+menagerie_commits_involved: []
+source_candidate: null
+source_candidates: []
+evidence:
+- url: https://github.com/rhoban/bam
+  document: dynamixel_2r/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Linked repository inspected, but no standalone URDF/MJCF robot description
+  was found. No M/H drift classification is made.
+compilation: {}

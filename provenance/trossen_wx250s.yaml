@@ -1,0 +1,163 @@
+model: trossen_wx250s
+method: none
+confidence: none
+upstream_repo: https://github.com/Interbotix/interbotix_ros_manipulators
+upstream_file: interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/wx250s.urdf.xacro
+upstream_commit: null
+latest_upstream_commit: 0bb2b0e6d0e619bff02cf74dbd5af5681dcf80c9
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: trossen_wx250s/wx250s.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 3ff28577c3d5e9c63b2bf84489c45b851745b8d0
+  timestamp: '1717528182'
+  date: '2024-06-04T12:09:42-07:00'
+  subject: 'Add WidowX 250 6-DoF. Closes #28.'
+  file: trossen_wx250s/wx250s.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: fb36886b3023db08c198264e1e9956ab202c3e3b
+  date: '2026-11-02T08:30:24-08:00'
+  file: trossen_wx250s/wx250s.xml
+- commit: 3ff28577c3d5e9c63b2bf84489c45b851745b8d0
+  date: '2024-06-04T12:09:42-07:00'
+  file: trossen_wx250s/wx250s.xml
+source_candidate: null
+source_candidates:
+- commit: 9bc407b8ee5e9181b0019dc659fcb0f3385262ac
+  timestamp: '1666216332'
+  date: '2022-10-19T16:52:12-05:00'
+  subject: '[xsarm_descriptions] Fix control joint order'
+  file: interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/wx250s.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 15
+  comparable_quantities: 53
+- commit: d72e60d44f2e9e65ea82fb7a6463f339ffc14c61
+  timestamp: '1665601407'
+  date: '2022-10-12T14:03:27-05:00'
+  subject: '[xsarm_descriptions] Add Gazebo configs'
+  file: interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/wx250s.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 15
+  comparable_quantities: 53
+- commit: fb7ed642c7e8c432a6b16bbb3a915936f3998f8a
+  timestamp: '1664846460'
+  date: '2022-10-03T20:21:00-05:00'
+  subject: '[xsarm_descriptions] Add Gazebo configs'
+  file: interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/wx250s.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 15
+  comparable_quantities: 53
+- commit: 7fc83d81706300d59b1640a095f166e33fe88c51
+  timestamp: '1656722770'
+  date: '2022-07-01T19:46:10-05:00'
+  subject: '[xsarm_descriptions] Fix control joint order'
+  file: interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/wx250s.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 15
+  comparable_quantities: 53
+- commit: fea281db8a62be423ae5e3c30120fd58cb5b3cb0
+  timestamp: '1651786126'
+  date: '2022-05-05T16:28:46-05:00'
+  subject: '[xsarm_descriptions] Change gazebo to gz_classic'
+  file: interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/wx250s.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 15
+  comparable_quantities: 53
+- commit: 9cdf83dcf6441525270015181f12d8915aed55a8
+  timestamp: '1651773600'
+  date: '2022-05-05T13:00:00-05:00'
+  subject: '[xsarm_descriptions] Package refactor'
+  file: interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/wx250s.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 15
+  comparable_quantities: 53
+- commit: 5640f829cca04bee644af58eae9e5e2fe3f1872c
+  timestamp: '1603394921'
+  date: '2020-10-22T14:28:41-05:00'
+  subject: Interbotix ROS Packages V2
+  file: interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/wx250s.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 15
+  comparable_quantities: 53
+evidence:
+- url: https://github.com/Interbotix/interbotix_ros_manipulators/blob/main/interbotix_ros_xsarms/interbotix_xsarm_descriptions/meshes/interbotix_black.png
+  document: trossen_wx250s/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/Interbotix/interbotix_ros_manipulators/blob/main/interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/wx250s.urdf.xacro
+  document: trossen_wx250s/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: 'No public revision matches all comparable quantities. Class: NO MATCHING
+  SOURCE; never counted as STALE.'
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - trossen_wx250s/wx250s.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments:
+      robot_name: wx250s
+      base_link_frame: base_link
+      show_ar_tag: 'false'
+      show_gripper_bar: 'true'
+      show_gripper_fingers: 'true'
+      use_world_frame: 'false'
+      external_urdf_loc: ''
+      load_gazebo_configs: 'false'
+    source_dependencies:
+    - interbotix_ros_xsarms/interbotix_xsarm_descriptions/urdf/wx250s.urdf.xacro
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

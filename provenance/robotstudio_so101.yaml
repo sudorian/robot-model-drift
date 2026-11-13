@@ -1,0 +1,185 @@
+model: robotstudio_so101
+method: pinned
+confidence: high
+upstream_repo: https://github.com/TheRobotStudio/SO-ARM100
+upstream_file: Simulation/SO101/so101_new_calib.xml
+upstream_commit: aec17bbc256d1a7342d53aaa4950595d4c30b40d
+latest_upstream_commit: a758567c3978dfeefe282ede0500085a48fe8f78
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: robotstudio_so101/so101.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 3abca2e302625cec9429c49806121ea2855cef81
+  timestamp: '1790624585'
+  date: '2026-09-28T12:43:05-07:00'
+  subject: Fix SO101 wrist_roll joint range upper limit (#324)
+  file: robotstudio_so101/so101.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: 3abca2e302625cec9429c49806121ea2855cef81
+  date: '2026-09-28T12:43:05-07:00'
+  file: robotstudio_so101/so101.xml
+- commit: c96a32d28fb5da84da38c1da4d749e7a13212855
+  date: '2026-09-23T15:46:38-07:00'
+  file: robotstudio_so101/so101.xml
+- commit: ac6b2b09983786f3036cab1000221017fa2193b4
+  date: '2026-05-18T15:33:00-07:00'
+  file: robotstudio_so101/so101.xml
+- commit: a0f6f504239ade88560f8a4dc9171cd013138eba
+  date: '2026-01-08T14:28:24-08:00'
+  file: robotstudio_so101/so101.xml
+source_candidate:
+  commit: aec17bbc256d1a7342d53aaa4950595d4c30b40d
+  timestamp: '1764247903'
+  date: '2025-11-27T13:51:43+01:00'
+  subject: Update actuator model params (#141)
+  file: Simulation/SO101/so101_new_calib.xml
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 48
+source_candidates:
+- commit: aec17bbc256d1a7342d53aaa4950595d4c30b40d
+  timestamp: '1764247903'
+  date: '2025-11-27T13:51:43+01:00'
+  subject: Update actuator model params (#141)
+  file: Simulation/SO101/so101_new_calib.xml
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 48
+- commit: ac69024c5027cc293435d8b4bfccc3f8a8d9edb8
+  timestamp: '1751293076'
+  date: '2025-06-30T16:17:56+02:00'
+  subject: Update Mujoco XML files with colors (#115)
+  file: Simulation/SO101/so101_new_calib.xml
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 48
+- commit: 0c8e2892f2196d97376ee2a4c0844d4b08e137b1
+  timestamp: '1750874936'
+  date: '2025-06-25T20:08:56+02:00'
+  subject: Updated the new so101 calibration urdf with fixed direction and frame (#106)
+  file: Simulation/SO101/so101_new_calib.xml
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 48
+- commit: 63eede5a636e548eb8f2854e558bd343c21db9f7
+  timestamp: '1750158770'
+  date: '2025-06-17T13:12:50+02:00'
+  subject: fix mujoco attributes (#101)
+  file: Simulation/SO101/so101_new_calib.xml
+  deleted: false
+  matches: false
+  mismatch_count: 29
+  comparable_quantities: 48
+- commit: 4026fe1a5cc1e1c6572a02f6259579016566ca29
+  timestamp: '1747660548'
+  date: '2025-05-19T15:15:48+02:00'
+  subject: Add old and new simulation files for so101 (#86)
+  file: Simulation/SO101/so101_new_calib.xml
+  deleted: false
+  matches: false
+  mismatch_count: 29
+  comparable_quantities: 48
+- commit: 1b74d9fcaaa8e0514bf504545f8f3555a044e0bf
+  timestamp: '1747660283'
+  date: '2025-05-19T15:11:23+02:00'
+  subject: Add old and new simulation files for so101
+  file: Simulation/SO101/so101_new_calib.xml
+  deleted: false
+  matches: false
+  mismatch_count: 29
+  comparable_quantities: 48
+evidence:
+- url: https://github.com/TheRobotStudio/SO-ARM100/blob/608122e9ac330a753735f2e18aee73338e9ac407/Simulation/SO101/so101_new_calib.xml#L1
+  document: robotstudio_so101/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/TheRobotStudio/SO-ARM100/tree/main/Simulation/SO101
+  document: robotstudio_so101/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - camera_mount
+    assets_loaded: 18
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - robotstudio_so101/so101.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - Simulation/SO101/so101_new_calib.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  S:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - Simulation/SO101/so101_new_calib.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented

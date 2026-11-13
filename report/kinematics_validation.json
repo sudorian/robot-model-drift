@@ -1,0 +1,44 @@
+{
+  "models_rerun": 71,
+  "self_comparisons_recompiled": 119,
+  "frame_independent_and_raw_range_limit_records_unchanged": 3502,
+  "raw_com_records_and_raw_classes_preserved": 827,
+  "stale_records_unchanged": 20,
+  "stale_models_unchanged": [
+    "seeed_rebot_devarm",
+    "ufactory_lite6",
+    "ufactory_xarm7"
+  ],
+  "h1_acceptance_unchanged": true,
+  "all_primary_checked_axes_from_mujoco_xaxis": true,
+  "convention_differs_models": [
+    "agilex_piper",
+    "arx_l5",
+    "rainbow_robotics_rby1",
+    "trs_so_arm100",
+    "universal_robots_ur10e",
+    "universal_robots_ur5e"
+  ],
+  "insufficient_coverage_models": [
+    "bitcraze_crazyflie_2",
+    "boston_dynamics_spot",
+    "franka_emika_panda",
+    "i2rt_yam",
+    "kuka_iiwa_14",
+    "leap_hand",
+    "realsense_d435i",
+    "robotiq_2f85",
+    "robotiq_2f85_v4",
+    "trossen_vx300s",
+    "wonik_allegro"
+  ],
+  "excluded_raw_com_findings": 67,
+  "class_counts": {
+    "NO MATCHING SOURCE": 324,
+    "undocumented derivation difference": 82,
+    "unknown": 157,
+    "STALE": 20,
+    "needs a human look": 4
+  },
+  "total_findings": 587
+}

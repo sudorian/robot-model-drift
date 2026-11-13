@@ -1,0 +1,79 @@
+{
+  "seed": 20261113,
+  "all_reported_findings": 587,
+  "selection": "shuffle every finding without replacement; inspect in this order until three are independently extractable; every skipped draw recorded",
+  "checks": [
+    {
+      "model": "robotis_op3",
+      "entity": "head_tilt",
+      "quantity": "effort",
+      "compiled": {
+        "m": 5.0,
+        "s": null,
+        "h": 1000.0
+      },
+      "direct_xml": {
+        "m": 5.0,
+        "s": null,
+        "h": 1000.0
+      },
+      "agree": true
+    },
+    {
+      "model": "universal_robots_ur5e",
+      "entity": "wrist_1_link",
+      "quantity": "principal_moments",
+      "compiled": {
+        "m": [
+          0.0021942,
+          0.0025599,
+          0.0025599
+        ],
+        "s": null,
+        "h": [
+          0.0011986756140664695,
+          0.0014236273687042765,
+          0.0016550170172292542
+        ]
+      },
+      "direct_xml": {
+        "m": [
+          0.0021942,
+          0.0025599,
+          0.0025599
+        ],
+        "s": null,
+        "h": [
+          0.0011986756140664695,
+          0.0014236273687040747,
+          0.0016550170172294559
+        ]
+      },
+      "agree": true
+    },
+    {
+      "model": "robotis_omy_3m",
+      "entity": "joint1",
+      "quantity": "effort",
+      "compiled": {
+        "m": 61.4,
+        "s": null,
+        "h": 1000.0
+      },
+      "direct_xml": {
+        "m": 61.4,
+        "s": null,
+        "h": 1000.0
+      },
+      "agree": true
+    }
+  ],
+  "skipped_draws": [
+    {
+      "model": "franka_fr3",
+      "entity": "fr3_link0",
+      "quantity": "subtree_mass",
+      "reason": "Subtree includes geometry-inferred mass"
+    }
+  ]
+}

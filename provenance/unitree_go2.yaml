@@ -1,0 +1,246 @@
+model: unitree_go2
+method: none
+confidence: none
+upstream_repo: https://github.com/unitreerobotics/unitree_ros
+upstream_file: robots/go2_description/urdf/go2_description.urdf
+upstream_commit: null
+latest_upstream_commit: 157ff950351e5f535e03c5d85a16b7d594b3dbcc
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: unitree_go2/go2.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 2ffe3e33bbf5785a4c5a2290dd909b7a051845bf
+  timestamp: '1698166223'
+  date: '2023-10-24T09:50:23-07:00'
+  subject: 'Add Unitree Go2 quadruped. Resolves #29.'
+  file: unitree_go2/go2.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: ac6b2b09983786f3036cab1000221017fa2193b4
+  date: '2026-05-18T15:33:00-07:00'
+  file: unitree_go2/go2.xml
+- commit: 9da3f77e7ef4cb588cefb3bae7209d20522062d8
+  date: '2025-02-16T17:33:09-08:00'
+  file: unitree_go2/go2.xml
+- commit: d82891f8b6c576f9f6a9df308f3a1155ebedbc40
+  date: '2024-06-01T09:30:10-07:00'
+  file: unitree_go2/go2.xml
+- commit: 2ffe3e33bbf5785a4c5a2290dd909b7a051845bf
+  date: '2023-10-24T09:50:23-07:00'
+  file: unitree_go2/go2.xml
+source_candidate: null
+source_candidates:
+- commit: a3b70cae6fd4a82c0e1ece633d5c6f97e88c9d76
+  timestamp: '1750337769'
+  date: '2025-06-19T20:56:09+08:00'
+  subject: '- modify URDF material to facilitate conversion to USD   [go2, go2w, b2,
+    b2w,  h1] - fix go2w wheel collision error'
+  file: robots/go2_description/urdf/go2_description.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 23
+  comparable_quantities: 78
+- commit: c20ca8f1fe5e519474c6c8d10b1ce5c719dd7a65
+  timestamp: '1732701145'
+  date: '2024-11-27T17:52:25+08:00'
+  subject: add go2 front_camera link
+  file: robots/go2_description/urdf/go2_description.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 23
+  comparable_quantities: 78
+- commit: a6155774091987ef9d550a48baa63752952f39f9
+  timestamp: '1726025358'
+  date: '2024-09-11T11:29:18+08:00'
+  subject: add go2 rotor inertial to g2's urdf
+  file: robots/go2_description/urdf/go2_description.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 23
+  comparable_quantities: 78
+- commit: 79f054ec271398fe5cf560a9f48d2dc7864b5bc7
+  timestamp: '1696995225'
+  date: '2023-10-11T11:33:45+08:00'
+  subject: modify knee joint info in go2's urdf
+  file: robots/go2_description/urdf/go2_description.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 12
+  comparable_quantities: 78
+- commit: 3b6a691e72e94f2bb01551ece843af9bf1f353d6
+  timestamp: '1693894295'
+  date: '2023-09-05T14:11:35+08:00'
+  subject: add go2_description
+  file: robots/go2_description/urdf/go2_description.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 16
+  comparable_quantities: 78
+evidence:
+- url: https://github.com/google-deepmind/mujoco_menagerie/pull/57
+  document: git commit message
+  commit: ca7031c3b93adb5543c2dad8746286c6f2ff5ddd
+  current: false
+- url: https://github.com/kevinzakka/obj2mjcf
+  document: unitree_go2/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/lonelyfluency
+  document: unitree_go2/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/unitreerobotics/unitree_ros/tree/master/robots/go2_description
+  document: unitree_go2/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/unitreerobotics/unitree_ros/tree/master/robots/go2_description/meshes
+  document: unitree_go2/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/unitreerobotics/unitree_mujoco/tree/main/data/a1/meshes
+  document: unitree_go2/README.md
+  commit: a5836a9410b36a7f69ad575e1436403214116039
+  current: false
+reason: 'No public revision matches all comparable quantities. Class: NO MATCHING
+  SOURCE; never counted as STALE.'
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - unitree_go2/go2.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.445
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - FL_calflower
+    - FL_calflower1
+    - FR_calflower
+    - FR_calflower1
+    - RL_calflower
+    - RL_calflower1
+    - RR_calflower
+    - RR_calflower1
+    - front_camera
+    assets_loaded: 17
+    mesh_conversions:
+    - file: robots/go2_description/dae/base.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/hip.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/thigh.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/calf.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/foot.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/hip.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/thigh_mirror.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/calf_mirror.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/foot.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/hip.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/thigh.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/calf.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/foot.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/hip.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/thigh_mirror.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/calf_mirror.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: robots/go2_description/dae/foot.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations:
+    - Retained first of duplicate visual material tags; geometry, inertials and joints
+      unchanged
+    - Retained first of duplicate visual material tags; geometry, inertials and joints
+      unchanged
+    - Retained first of duplicate visual material tags; geometry, inertials and joints
+      unchanged
+    - Retained first of duplicate visual material tags; geometry, inertials and joints
+      unchanged
+    - Retained first of duplicate visual material tags; geometry, inertials and joints
+      unchanged
+    - Retained first of duplicate visual material tags; geometry, inertials and joints
+      unchanged
+    - Retained first of duplicate visual material tags; geometry, inertials and joints
+      unchanged
+    - Retained first of duplicate visual material tags; geometry, inertials and joints
+      unchanged
+    - Retained first of duplicate visual material tags; geometry, inertials and joints
+      unchanged
+    - Retained first of duplicate visual material tags; geometry, inertials and joints
+      unchanged
+    - Retained first of duplicate visual material tags; geometry, inertials and joints
+      unchanged
+    - Retained first of duplicate visual material tags; geometry, inertials and joints
+      unchanged
+    - Retained first of duplicate visual material tags; geometry, inertials and joints
+      unchanged
+    xacro_arguments: {}
+    source_dependencies:
+    - robots/go2_description/urdf/go2_description.urdf
+    - robots/go2_description/dae/base.dae
+    - robots/go2_description/dae/hip.dae
+    - robots/go2_description/dae/thigh.dae
+    - robots/go2_description/dae/calf.dae
+    - robots/go2_description/dae/foot.dae
+    - robots/go2_description/dae/hip.dae
+    - robots/go2_description/dae/thigh_mirror.dae
+    - robots/go2_description/dae/calf_mirror.dae
+    - robots/go2_description/dae/foot.dae
+    - robots/go2_description/dae/hip.dae
+    - robots/go2_description/dae/thigh.dae
+    - robots/go2_description/dae/calf.dae
+    - robots/go2_description/dae/foot.dae
+    - robots/go2_description/dae/hip.dae
+    - robots/go2_description/dae/thigh_mirror.dae
+    - robots/go2_description/dae/calf_mirror.dae
+    - robots/go2_description/dae/foot.dae
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

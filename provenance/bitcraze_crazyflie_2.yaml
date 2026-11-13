@@ -1,0 +1,160 @@
+model: bitcraze_crazyflie_2
+method: dated match
+confidence: medium
+upstream_repo: https://github.com/whoenig/crazyflie_ros
+upstream_file: crazyflie_description/urdf/crazyflie2.urdf.xacro
+upstream_commit: 3a8717c4ab31a7be19293abc08a8922e5c51a89f
+latest_upstream_commit: df3ce76f700953cfa2794b8fd4628ea6b93c92c4
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: bitcraze_crazyflie_2/cf2.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: da364cff0a24f86927bee531902b01b0fbb5e527
+  timestamp: '1709445383'
+  date: '2024-03-03T11:26:23+05:30'
+  subject: added crazyflie model
+  file: bitcraze_crazyflie_2/cf2.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: 24d7b69f71d0a93bb9f24f4c2245a12c49366f97
+  date: '2024-03-07T15:49:23+05:30'
+  file: bitcraze_crazyflie_2/cf2.xml
+- commit: e3def484b580dd7a0c4ab0e4101979f08f5d24c4
+  date: '2024-03-05T20:45:01+05:30'
+  file: bitcraze_crazyflie_2/cf2.xml
+- commit: 54b8a2deb546de7d43de31eeae7af808d8fe81ee
+  date: '2024-03-03T11:32:49+05:30'
+  file: bitcraze_crazyflie_2/cf2.xml
+- commit: da364cff0a24f86927bee531902b01b0fbb5e527
+  date: '2024-03-03T11:26:23+05:30'
+  file: bitcraze_crazyflie_2/cf2.xml
+source_candidate:
+  commit: 3a8717c4ab31a7be19293abc08a8922e5c51a89f
+  timestamp: '1477812783'
+  date: '2016-10-30T03:33:03-04:00'
+  subject: Remove rotation offset in Crazyflie 2 collada file
+  file: crazyflie_description/urdf/crazyflie2.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 6
+source_candidates:
+- commit: 3a8717c4ab31a7be19293abc08a8922e5c51a89f
+  timestamp: '1477812783'
+  date: '2016-10-30T03:33:03-04:00'
+  subject: Remove rotation offset in Crazyflie 2 collada file
+  file: crazyflie_description/urdf/crazyflie2.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 6
+- commit: 97b135c6235457a265481f005ce7bffa816e7c52
+  timestamp: '1477795935'
+  date: '2016-10-29T22:52:15-04:00'
+  subject: Add correct inertia tensor values for Crazyflie 2.0
+  file: crazyflie_description/urdf/crazyflie2.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 6
+- commit: 0a448dffdab8d01238d3d99c65f4e776d5ede4cb
+  timestamp: '1463185390'
+  date: '2016-05-13T17:23:10-07:00'
+  subject: add description for crazyflie2
+  file: crazyflie_description/urdf/crazyflie2.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 4
+  comparable_quantities: 6
+evidence:
+- url: https://github.com/kevinzakka/obj2mjcf
+  document: bitcraze_crazyflie_2/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/whoenig/crazyflie_ros
+  document: bitcraze_crazyflie_2/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - bitcraze_crazyflie_2/cf2.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.1
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - crazyflie_description/urdf/crazyflie2.urdf.xacro
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo
+  S:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - crazyflie_description/urdf/crazyflie2.urdf.xacro
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

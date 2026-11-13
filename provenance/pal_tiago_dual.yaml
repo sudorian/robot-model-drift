@@ -1,0 +1,22 @@
+model: pal_tiago_dual
+method: unknown
+confidence: unknown
+upstream_repo: null
+upstream_file: null
+upstream_commit: null
+latest_upstream_commit: null
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: pal_tiago_dual/tiago_dual.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change: null
+menagerie_commits_involved: []
+source_candidate: null
+source_candidates: []
+evidence:
+- url: https://github.com/pal-robotics/tiago_dual_robot/blob/kinetic-devel/tiago_dual_description/
+  document: pal_tiago_dual/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Machine-readable sources were identified, but no standalone source entry compiled.
+  See all candidate errors.
+compilation: {}

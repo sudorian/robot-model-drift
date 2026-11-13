@@ -1,0 +1,102 @@
+model: low_cost_robot_arm
+method: none
+confidence: none
+upstream_repo: https://github.com/s1lent4gnt/koch-v1-1
+upstream_file: simulation/follower.urdf
+upstream_commit: null
+latest_upstream_commit: cc1a4eb9b27978b6bc3bb34f12fa5a7d229f1fde
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: low_cost_robot_arm/low_cost_robot_arm.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 4caaf29f00c71b62904bb85d3e1df2a6a34de505
+  timestamp: '1745486907'
+  date: '2025-04-24T11:28:27+02:00'
+  subject: add koch's low-cost robot arm mjcf
+menagerie_commits_involved: []
+source_candidate: null
+source_candidates:
+- commit: cc1a4eb9b27978b6bc3bb34f12fa5a7d229f1fde
+  timestamp: '1740496214'
+  date: '2025-02-25T16:10:14+01:00'
+  subject: separate arm parts to links and motor links
+  matches: false
+  mismatch_count: 15
+  comparable_quantities: 40
+- commit: 7fa50d9c6e0e940f6e894804bc85def94eb776f8
+  timestamp: '1737923940'
+  date: '2025-01-26T21:39:00+01:00'
+  subject: nit path
+  matches: false
+  mismatch_count: 35
+  comparable_quantities: 40
+- commit: a5841b6ab243d8d152acc9e9655ff3fb0a718ce4
+  timestamp: '1737923362'
+  date: '2025-01-26T21:29:22+01:00'
+  subject: 'feat: add follower arm URDF file and meshes'
+  matches: false
+  mismatch_count: 35
+  comparable_quantities: 40
+evidence:
+- url: https://github.com/AlexanderKoch-Koch/low_cost_robot/tree/main
+  document: low_cost_robot_arm/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/jess-moss/koch-v1-1/tree/main
+  document: low_cost_robot_arm/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/kevinzakka/obj2mjcf/tree/main
+  document: low_cost_robot_arm/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/s1lent4gnt/koch-v1-1/blob/main/simulation/follower.urdf
+  document: low_cost_robot_arm/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: 'No public revision matches all comparable quantities. Class: NO MATCHING
+  SOURCE; never counted as STALE.'
+compilation:
+  M:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - base_link
+    assets_loaded: 22
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0

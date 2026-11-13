@@ -1,0 +1,216 @@
+model: fanuc_crx5ia
+method: pinned
+confidence: high
+upstream_repo: https://github.com/FANUC-CORPORATION/fanuc_description
+upstream_file: fanuc_crx_description/robot/crx5ia.urdf.xacro
+upstream_commit: fb40c9803a826ba68c7c8e28ba904a25efa7fcd2
+latest_upstream_commit: fb40c9803a826ba68c7c8e28ba904a25efa7fcd2
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: fanuc_crx5ia/crx5ia.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: a662de603224c47123b0783821c58ad4402ad3e3
+  timestamp: '1793405318'
+  date: '2026-10-30T17:08:38-07:00'
+  subject: Add FANUC CRX-5iA model (#354)
+  file: fanuc_crx5ia/crx5ia.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: fb36886b3023db08c198264e1e9956ab202c3e3b
+  date: '2026-11-02T08:30:24-08:00'
+  file: fanuc_crx5ia/crx5ia.xml
+- commit: a662de603224c47123b0783821c58ad4402ad3e3
+  date: '2026-10-30T17:08:38-07:00'
+  file: fanuc_crx5ia/crx5ia.xml
+source_candidate:
+  commit: fb40c9803a826ba68c7c8e28ba904a25efa7fcd2
+  file: fanuc_crx_description/robot/crx5ia.urdf.xacro
+  timestamp: '1785910666'
+  date: '2026-08-05T15:17:46+09:00'
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+source_candidates:
+- commit: 932cdb9271da90fd26fdf4aca3f10f8cea11751a
+  timestamp: '1772170236'
+  date: '2026-02-27T14:30:36+09:00'
+  subject: Release v1.2.0
+  file: fanuc_crx_description/robot/crx5ia.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 0b083ba858a6ec9f88bd03eae2665366c80f53a1
+  timestamp: '1756695566'
+  date: '2025-09-01T11:59:26+09:00'
+  subject: Release v1.0.2
+  file: fanuc_crx_description/robot/crx5ia.urdf.xacro
+  dependency_change: true
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+- commit: 785ff6792ffff809e071cc46effa542cd1a45f3b
+  timestamp: '1753433283'
+  date: '2025-07-25T17:48:03+09:00'
+  subject: Initial Release
+  file: fanuc_crx_description/robot/crx5ia.urdf.xacro
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 42
+evidence:
+- url: https://github.com/FANUC-CORPORATION/fanuc_description
+  document: fanuc_crx5ia/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - fanuc_crx5ia/crx5ia.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - world
+    - ee_link
+    - wbase
+    - flange
+    - fanuc_flange
+    assets_loaded: 14
+    mesh_conversions:
+    - file: fanuc_crx_description/meshes/crx5ia/visual/base.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: fanuc_crx_description/meshes/crx5ia/visual/j1.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: fanuc_crx_description/meshes/crx5ia/visual/j2.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: fanuc_crx_description/meshes/crx5ia/visual/j3.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: fanuc_crx_description/meshes/crx5ia/visual/j4.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: fanuc_crx_description/meshes/crx5ia/visual/j5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: fanuc_crx_description/meshes/crx5ia/visual/j6.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - fanuc_crx_description/robot/crx5ia.urdf.xacro
+    - fanuc_crx_description/urdf/crx5ia_urdf_macro.xacro
+    - fanuc_crx_description/meshes/crx5ia/visual/base.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/base.stl
+    - fanuc_crx_description/meshes/crx5ia/visual/j1.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/j1.stl
+    - fanuc_crx_description/meshes/crx5ia/visual/j2.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/j2.stl
+    - fanuc_crx_description/meshes/crx5ia/visual/j3.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/j3.stl
+    - fanuc_crx_description/meshes/crx5ia/visual/j4.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/j4.stl
+    - fanuc_crx_description/meshes/crx5ia/visual/j5.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/j5.stl
+    - fanuc_crx_description/meshes/crx5ia/visual/j6.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/j6.stl
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.75
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo
+  S:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - world
+    - ee_link
+    - wbase
+    - flange
+    - fanuc_flange
+    assets_loaded: 14
+    mesh_conversions:
+    - file: fanuc_crx_description/meshes/crx5ia/visual/base.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: fanuc_crx_description/meshes/crx5ia/visual/j1.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: fanuc_crx_description/meshes/crx5ia/visual/j2.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: fanuc_crx_description/meshes/crx5ia/visual/j3.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: fanuc_crx_description/meshes/crx5ia/visual/j4.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: fanuc_crx_description/meshes/crx5ia/visual/j5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: fanuc_crx_description/meshes/crx5ia/visual/j6.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - fanuc_crx_description/robot/crx5ia.urdf.xacro
+    - fanuc_crx_description/urdf/crx5ia_urdf_macro.xacro
+    - fanuc_crx_description/meshes/crx5ia/visual/base.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/base.stl
+    - fanuc_crx_description/meshes/crx5ia/visual/j1.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/j1.stl
+    - fanuc_crx_description/meshes/crx5ia/visual/j2.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/j2.stl
+    - fanuc_crx_description/meshes/crx5ia/visual/j3.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/j3.stl
+    - fanuc_crx_description/meshes/crx5ia/visual/j4.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/j4.stl
+    - fanuc_crx_description/meshes/crx5ia/visual/j5.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/j5.stl
+    - fanuc_crx_description/meshes/crx5ia/visual/j6.dae
+    - fanuc_crx_description/meshes/crx5ia/collision/j6.stl
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.75
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

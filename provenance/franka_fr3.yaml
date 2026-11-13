@@ -1,0 +1,848 @@
+model: franka_fr3
+method: unknown
+confidence: incomplete
+upstream_repo: https://github.com/frankaemika/franka_description
+upstream_file: robots/fr3/fr3.urdf.xacro
+upstream_commit: null
+latest_upstream_commit: 7aeeddc449edf8d62b594f9e36a81da53e7796f9
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: franka_fr3/fr3.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 0059d4335f8156206f63a35662313385f7ad6d74
+  timestamp: '1791403645'
+  date: '2026-10-07T13:07:25-07:00'
+  subject: Update FR3 and FR3 v2 joint position limits to current Franka spec (#329)
+  file: franka_fr3/fr3.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: 98a70c569c4c1b6da467a20012f766ee1f8dc521
+  date: '2026-11-02T08:55:18-08:00'
+  file: franka_fr3/fr3.xml
+- commit: d9415a3076f921fdb9735d45d609a596df722468
+  date: '2026-11-02T13:47:03Z'
+  file: franka_fr3/fr3.xml
+- commit: 0059d4335f8156206f63a35662313385f7ad6d74
+  date: '2026-10-07T13:07:25-07:00'
+  file: franka_fr3/fr3.xml
+- commit: 7618485a6b874a1526bf0619f56fd6a45e5efe01
+  date: '2025-07-02T14:52:55+01:00'
+  file: franka_fr3/fr3.xml
+- commit: db140ade7ee4cb59629f9687aafc65af663d5bbe
+  date: '2025-04-25T04:02:36-07:00'
+  file: franka_fr3/fr3.xml
+- commit: cd7fc51b704c3cba05748bd5537cb17990b341eb
+  date: '2025-04-25T02:19:32-07:00'
+  file: franka_fr3/fr3.xml
+- commit: 71379218f772e4ec27fe3dd8d68400c41917d48d
+  date: '2025-04-25T09:47:13+01:00'
+  file: franka_fr3/fr3.xml
+- commit: d4c6881cdfcaecc984b49aeb478cd61f197c7e13
+  date: '2025-01-09T03:36:02-08:00'
+  file: franka_fr3/fr3.xml
+- commit: acbbf1636fcfef9b437a6eb8c6f84380fb4aa998
+  date: '2024-05-31T12:48:27-07:00'
+  file: franka_fr3/fr3.xml
+- commit: 7876dcdef0d912387441616526ed236142f047d3
+  date: '2024-05-31T11:49:00-07:00'
+  file: franka_fr3/fr3.xml
+source_candidate: null
+source_candidates:
+- commit: 7d38551c31c29f4fd28c3e956ce66dc222e7f658
+  timestamp: '1785946506'
+  date: '2026-08-05T18:15:06+02:00'
+  subject: 'fix: apply no_prefix to the end effector as well as the arm'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 8ca0106e0ecb2fceb19a8582cf0f1b9fbd76dfc3
+  timestamp: '1785943302'
+  date: '2026-08-05T17:21:42+02:00'
+  subject: 'fix: default the tcp offset to the mounted end effector''s own value'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 8ba4a61b0dcf1f725689122f5e2629f9fc7eb45f
+  timestamp: '1783497620'
+  date: '2026-07-08T10:00:20+02:00'
+  subject: 'refactor: Remove gazebo tags/macros/args from franka_description'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 1f95d855267f346929fcaf0ebb58dbb59b9bd53e
+  timestamp: '1781789959'
+  date: '2026-06-18T15:39:19+02:00'
+  subject: 'refactor: Moving ros2_control related parts to franka_ros2'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 97a377c60afa3f50ceac2545cb2a0910c44814ee
+  timestamp: '1773233337'
+  date: '2026-03-11T13:48:57+01:00'
+  subject: 'refactor: configs'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 5edd901e3485b062ee942c13f6ff7d4f5cbaf520
+  timestamp: '1772720858'
+  date: '2026-03-05T15:27:38+01:00'
+  subject: 'refactor: Moved head, mount and spine to accessories'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 8313d899373c5b96139c748d1bb76cb1bd9a82b1
+  timestamp: '1772030338'
+  date: '2026-02-25T14:38:58Z'
+  subject: 'feat: mobile fr3 duo xacro created and head added'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 7de996b30cef3bb97beadad2f3c5c751e8899f45
+  timestamp: '1772030311'
+  date: '2026-02-25T14:38:31Z'
+  subject: 'fix: passive state interfaces added for gazebo'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  error: 'mismatched tag: line 115, column 4'
+  matches: false
+- commit: b7cba8117ba666c4237834d34ebf3a716b44d43d
+  timestamp: '1772030288'
+  date: '2026-02-25T14:38:08Z'
+  subject: 'feat: namespaces enabled for gazebo'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  error: 'mismatched tag: line 100, column 4'
+  matches: false
+- commit: d2e4b147a457435a4bd8c4f15b622ec558fad169
+  timestamp: '1772024928'
+  date: '2026-02-25T14:08:48+01:00'
+  subject: 'feat: fr3v2 accelerometers frames'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 45b5ba23831e5b9a2c66e7a519eb25d23184fdfe
+  timestamp: '1771612152'
+  date: '2026-02-20T19:29:12+01:00'
+  subject: revert lidar changes
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 6cc9ba377b5a1a0eb8771ac718879db4f9d52b3e
+  timestamp: '1771523693'
+  date: '2026-02-19T18:54:53+01:00'
+  subject: 'feat: fr3v2 accelerometers frames'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 2b84eb27e9b5dcffc5fb2ef1268a5c01816860f9
+  timestamp: '1771358606'
+  date: '2026-02-17T20:03:26Z'
+  subject: 'feat: adaptations for gazebo'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 796e9a00788945552b0d7ad395b6638d666e5f3d
+  timestamp: '1769703444'
+  date: '2026-01-29T17:17:24+01:00'
+  subject: 'add: motor inertia and gear ratios to urdf'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: fe72f164e1c83747dfe0c4562ea10c3e86a43465
+  timestamp: '1769680523'
+  date: '2026-01-29T10:55:23+01:00'
+  subject: 'add: motor inertia and gear ratios to urdf'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 5c2e04b5a468bfd0d04afbe73852e5374e7d8ce1
+  timestamp: '1769085676'
+  date: '2026-01-22T13:41:16+01:00'
+  subject: 'feat: generating dummy srdf for robots without it feat: renamed robot_arms
+    into robot, moved tmr into robots fix: updated paths for tmr chore: changelog
+    updated'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 64121c668e406d15cad4133aab98c2dc2f4ae880
+  timestamp: '1769085315'
+  date: '2026-01-22T13:35:15+01:00'
+  subject: 'feat: generating dummy srdf for robots without it feat: renamed robot_arms
+    into robot, moved tmr into robots fix: updated paths for tmr chore: changelog
+    updated'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: c9684304d1949e2f1e855114d4112c555bab2061
+  timestamp: '1766143990'
+  date: '2025-12-19T12:33:10+01:00'
+  subject: 'feat: adds thread priority for async hardware interface'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 499f6a61339c4fc13159bb878921024b5b5c46bf
+  timestamp: '1766143864'
+  date: '2025-12-19T12:31:04+01:00'
+  subject: 'feat: pass async feature'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 2d8348d0fd2390fbc989eab5c0b54696676a9f89
+  timestamp: '1765180762'
+  date: '2025-12-08T07:59:22Z'
+  subject: 'feat: robot_id replaced by robot_type'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 6b98a3f2556d033d4539034925f26cbc4697fc18
+  timestamp: '1765180762'
+  date: '2025-12-08T07:59:22Z'
+  subject: 'feat: arm_id changed to robot_id'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 5415ac97ee91af78893e9b7717ddcd5db7a39b5e
+  timestamp: '1765180721'
+  date: '2025-12-08T07:58:41Z'
+  subject: 'feat: robot_id replaced by robot_type'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: e9547aebb2d4b8ac3b885ebb6eb5b37fbe6914f6
+  timestamp: '1765180721'
+  date: '2025-12-08T07:58:41Z'
+  subject: 'feat: arm_id changed to robot_id'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 220473e3bce4a22b5891c95e354b58d623fbfa12
+  timestamp: '1764340876'
+  date: '2025-11-28T15:41:16+01:00'
+  subject: 'refactor: new convention for versioning'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 6072688d5cd0f548107ad83b72f6d06e160ff52b
+  timestamp: '1764340875'
+  date: '2025-11-28T15:41:15+01:00'
+  subject: 'refactor: tmr branch working with jazzy'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 1f718bebc0597cb0d63c1ebdb65f9af63f7ce980
+  timestamp: '1764340875'
+  date: '2025-11-28T15:41:15+01:00'
+  subject: 'fix: Getting the multi robot arm to work'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  error: "name 'arm_name' is not defined \nwhen evaluating expression 'arm_name'"
+  matches: false
+- commit: 670a470c7b68a9d7b172ff923e58e7c4509fc462
+  timestamp: '1763128809'
+  date: '2025-11-14T15:00:09+01:00'
+  subject: 'refactor: new convention for versioning'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: b1bcc1519997ac63b017c28a5618c36bc6e2cc1d
+  timestamp: '1762938199'
+  date: '2025-11-12T10:03:19+01:00'
+  subject: 'refactor: tmr branch working with jazzy'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 648987f4f4d616dd52426f4bf34f65216238371e
+  timestamp: '1762935213'
+  date: '2025-11-12T09:13:33+01:00'
+  subject: 'fix: Getting the multi robot arm to work'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  error: "name 'arm_name' is not defined \nwhen evaluating expression 'arm_name'"
+  matches: false
+- commit: 8b71e0d5154b1548bee3cc2f9e41dd2538a8ce16
+  timestamp: '1760361306'
+  date: '2025-10-13T15:15:06+02:00'
+  subject: 'feat: added new robot variant fr3v2.1'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 6e825ec19dade2731306e508be353c205174b302
+  timestamp: '1760359399'
+  date: '2025-10-13T14:43:19+02:00'
+  subject: 'feat: added new robot variant fr3v2.1'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: e9e3c6cd7d46fe520f99047c30d27e9449093cd9
+  timestamp: '1760026548'
+  date: '2025-10-09T18:15:48+02:00'
+  subject: 'feat: added accelerometer frames to urdfs'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 919c533741cb816684bb178f4904d771f45a1798
+  timestamp: '1760026548'
+  date: '2025-10-09T18:15:48+02:00'
+  subject: 'feat: Extend the joint limits, add position-based velocity limits tags'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: 1a07d2689eb26eff153dded401059fa5bf257f95
+  timestamp: '1758725650'
+  date: '2025-09-24T16:54:10+02:00'
+  subject: 'feat: Extend the joint limits, add position-based velocity limits tags'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 14
+  comparable_quantities: 52
+- commit: a48a4febb4d726c82fcb559bc8d6d4a8eba30112
+  timestamp: '1755699572'
+  date: '2025-08-20T16:19:32+02:00'
+  subject: 'feat: added accelerometer frames to urdfs'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 27deab86e3df1ff8e093a7c5b6c0edae8739bc39
+  timestamp: '1754048418'
+  date: '2025-08-01T13:40:18+02:00'
+  subject: 'fix: remove redundant argument'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 9dfc11294b32d481c31c2501655d7333505ba43d
+  timestamp: '1754048041'
+  date: '2025-08-01T13:34:01+02:00'
+  subject: 'fix: ee_with_one_link takes the correct arguments'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 6af373c97b1dd7c2e4c135c2b82dcf0877ed6099
+  timestamp: '1753885047'
+  date: '2025-07-30T16:17:27+02:00'
+  subject: 'fix: gazebo can be used with prefixes'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 467e282f23c46ae4b2abf6771647aa5ac9366b22
+  timestamp: '1750937519'
+  date: '2025-06-26T13:31:59+02:00'
+  subject: 'fix: urdf xacros include end-effector parameters'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: c3a6cf30a9c0ef1e014fda28a5d5c8f6a6c88bd2
+  timestamp: '1750866855'
+  date: '2025-06-25T17:54:15+02:00'
+  subject: fix/ik-bug-gripper-launching
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 5fd84b003f7339f383f40b609089f064de8785ee
+  timestamp: '1750428788'
+  date: '2025-06-20T16:13:08+02:00'
+  subject: 'fix: syntax error'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 35b789ceec2cbfee49cc2c0c0154f4356ffecf5a
+  timestamp: '1742570841'
+  date: '2025-03-21T16:27:21+01:00'
+  subject: 'fix: multi arm removed'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 24d6d0d3aea3794921bf7daf1fddf2bbe9c6338e
+  timestamp: '1742570826'
+  date: '2025-03-21T16:27:06+01:00'
+  subject: 'feat: add fr3v2'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 903a0875dad27a4835acdf356faafd5eb14341f2
+  timestamp: '1742570826'
+  date: '2025-03-21T16:27:06+01:00'
+  subject: 'feat: add srdfs for arms and hand'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 7365887381eea01ba7ab50142ea9636f54b7d307
+  timestamp: '1742570826'
+  date: '2025-03-21T16:27:06+01:00'
+  subject: 'feat: new collision meshes'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 8a5522798a4843cb8f82cf6844233309c6be7d77
+  timestamp: '1742567124'
+  date: '2025-03-21T14:25:24Z'
+  subject: Changes XACRO arguments to parameters for simpler macro invocations
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 0b5034bc35fafce1436f0bd072270ef1a894f4a0
+  timestamp: '1741082479'
+  date: '2025-03-04T11:01:19+01:00'
+  subject: 'fix: franka hand inertials fixed'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: fd5360a39d91e0f8d83d0537c09d9df4b606d797
+  timestamp: '1740502144'
+  date: '2025-02-25T16:49:04Z'
+  subject: 'feat: Added namespace to single robot control'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 140626a44ba5ff58b25eb93e93093be1658aece4
+  timestamp: '1734010453'
+  date: '2024-12-12T14:34:13+01:00'
+  subject: 'fix: Fixed a wrong parameter name feat: Adapted the URDFs to use the ''multi
+    arm'' hardware interface in case of multi arm setups'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: d91cc7c6ec4d5651a2c0b5866e986d2d1bae8e49
+  timestamp: '1734010453'
+  date: '2024-12-12T14:34:13+01:00'
+  subject: 'fix: underscore removed from arm prefix'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 66b51b59beee4bb17fc0da40f62e7c01eb00f65c
+  timestamp: '1734010453'
+  date: '2024-12-12T14:34:13+01:00'
+  subject: 'fix: end effectors can be used for dual arm setups'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 8fed11163d87f1e31cd100aca38b1a121c275860
+  timestamp: '1734010393'
+  date: '2024-12-12T14:33:13+01:00'
+  subject: 'feat: Adding the .xacro definition for dual arm setups'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: d9841cfbb3e80cc51dbd0d2f04bdae636ec53bb1
+  timestamp: '1733927648'
+  date: '2024-12-11T15:34:08+01:00'
+  subject: Use phong instead of lambert shading
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: a707a2e05f3b0d168684b28cc451205d3f7d1361
+  timestamp: '1733927457'
+  date: '2024-12-11T15:30:57+01:00'
+  subject: 'fix: robot model does not need to be specified for ee urdf'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 032e7ee892eee227bf80899a0cefe4d07d9808bb
+  timestamp: '1733927456'
+  date: '2024-12-11T15:30:56+01:00'
+  subject: Add option to omit arm_id prefix for link, visual, joint elements
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: b836c1ef29bd79a774fdc80efb37d217011a965e
+  timestamp: '1733927056'
+  date: '2024-12-11T15:24:16+01:00'
+  subject: Remove arm_id parameter from toplevel robot xacros
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 6743e0924a87a8fe702bd3769d55204f1f719faa
+  timestamp: '1733927056'
+  date: '2024-12-11T15:24:16+01:00'
+  subject: 'fix: comments for franka hand arguments'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 126353b51dd06e724a8ee31adfb525639d0218ea
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'add: gazebo simulation joint friction and gazebo effort interface param'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 068f0b8ffe9665d0cd4a5e45274c663864c598c5
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'feat: Preparing changes for Gazebo'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  error: 'Error: inertia must satisfy A + B >= C; use ''balanceinertia'' to fix
+
+    Element name ''fr3_link2'', id 4'
+  matches: false
+- commit: dcda424d6f8b38cfea0178830c9e05da4a1671ff
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'feat: support gazebo simulation in ros2'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: 14c5d6373404f20cd24e0f6d5f5ddd959588fe04
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'feat: changed minor principal moment of inertia to satisfy triangle inequality'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 20
+  comparable_quantities: 52
+- commit: e3278521f5639639196c5330cefd6c962bd3550b
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'feat: Preparing changes for Gazebo'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  error: 'Unresolved or ambiguous package path package://franka_description/meshes/robot_ee/franka_hand/visual/franka_hand.dae:
+    []'
+  matches: false
+- commit: 4bb824f21dc553767b3bd2fafa363f8dc57a522d
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'fix: rpy values added'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  error: 'DaeMalformedError: XML Parsing Error: XML declaration allowed only at the
+    start of the document, line 25, column 6 (<string>, line 25)'
+  matches: false
+- commit: de0dc86219272db8c0ab6be706940a38ddce73b4
+  timestamp: '1719491234'
+  date: '2024-06-27T14:27:14+02:00'
+  subject: 'fix: link0 inertials added'
+  file: robots/fr3/fr3.urdf.xacro
+  dependency_change: true
+  error: 'DaeMalformedError: XML Parsing Error: XML declaration allowed only at the
+    start of the document, line 25, column 6 (<string>, line 25)'
+  matches: false
+- commit: d5e8927aae7a100909753bb747799c663a2f4afd
+  timestamp: '1715875333'
+  date: '2024-05-16T18:02:13+02:00'
+  subject: 'feat: end-effector can be deactivated with an argument'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  error: 'DaeMalformedError: XML Parsing Error: XML declaration allowed only at the
+    start of the document, line 25, column 6 (<string>, line 25)'
+  matches: false
+- commit: b51da21a28af2cd27c028e61cbf328458e8a90f0
+  timestamp: '1715098740'
+  date: '2024-05-07T18:19:00+02:00'
+  subject: 'feat: add dedicated folder for end-effectors'
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  error: 'DaeMalformedError: XML Parsing Error: XML declaration allowed only at the
+    start of the document, line 25, column 6 (<string>, line 25)'
+  matches: false
+- commit: 1ddff9ba71abb199fb349ffcc3155e86cfdb094e
+  timestamp: '1702916720'
+  date: '2023-12-18T17:25:20+01:00'
+  subject: Publish franka_description
+  file: robots/fr3/fr3.urdf.xacro
+  deleted: false
+  error: 'DaeMalformedError: XML Parsing Error: XML declaration allowed only at the
+    start of the document, line 25, column 6 (<string>, line 25)'
+  matches: false
+evidence:
+- url: https://github.com/frankaemika/franka_description
+  document: franka_fr3/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/frankaemika/franka_description/blob/main/scripts/create_urdf.sh
+  document: franka_fr3/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/kevinzakka/obj2mjcf
+  document: franka_fr3/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Unresolved historical compilation prevents selecting or rejecting a matching
+  source. Pairwise M/H differences are reported with unknown provenance.
+compilation:
+  M:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - base
+    - fr3_link0
+    assets_loaded: 36
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - franka_fr3/fr3.xml
+    - franka_fr3/assets/link0_0.obj
+    - franka_fr3/assets/link0_1.obj
+    - franka_fr3/assets/link0_2.obj
+    - franka_fr3/assets/link0_3.obj
+    - franka_fr3/assets/link0_4.obj
+    - franka_fr3/assets/link0_5.obj
+    - franka_fr3/assets/link0_6.obj
+    - franka_fr3/assets/link1.obj
+    - franka_fr3/assets/link2.obj
+    - franka_fr3/assets/link3_0.obj
+    - franka_fr3/assets/link3_1.obj
+    - franka_fr3/assets/link4_0.obj
+    - franka_fr3/assets/link4_1.obj
+    - franka_fr3/assets/link5_0.obj
+    - franka_fr3/assets/link5_1.obj
+    - franka_fr3/assets/link5_2.obj
+    - franka_fr3/assets/link6_0.obj
+    - franka_fr3/assets/link6_1.obj
+    - franka_fr3/assets/link6_2.obj
+    - franka_fr3/assets/link6_3.obj
+    - franka_fr3/assets/link6_4.obj
+    - franka_fr3/assets/link6_5.obj
+    - franka_fr3/assets/link6_6.obj
+    - franka_fr3/assets/link6_7.obj
+    - franka_fr3/assets/link7_0.obj
+    - franka_fr3/assets/link7_1.obj
+    - franka_fr3/assets/link7_2.obj
+    - franka_fr3/assets/link7_3.obj
+    - franka_fr3/assets/link0.stl
+    - franka_fr3/assets/link1.stl
+    - franka_fr3/assets/link2.stl
+    - franka_fr3/assets/link3.stl
+    - franka_fr3/assets/link4.stl
+    - franka_fr3/assets/link5.stl
+    - franka_fr3/assets/link6.stl
+    - franka_fr3/assets/link7.stl
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - base
+    - fr3_link0_accelerometer_top
+    - fr3_link0_accelerometer_bottom
+    - fr3_link1_accelerometer_top
+    - fr3_link1_accelerometer_bottom
+    - fr3_link2_accelerometer_top
+    - fr3_link2_accelerometer_bottom
+    - fr3_link3_accelerometer_top
+    - fr3_link3_accelerometer_bottom
+    - fr3_link4_accelerometer_top
+    - fr3_link4_accelerometer_bottom
+    - fr3_link5_accelerometer_top
+    - fr3_link5_accelerometer_bottom
+    - fr3_link8
+    - fr3_hand_tcp
+    assets_loaded: 20
+    mesh_conversions:
+    - file: meshes/robots/fr3/visual/link0.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3/visual/link1.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3/visual/link2.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3/visual/link3.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3/visual/link4.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3/visual/link5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3/visual/link6.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robots/fr3/visual/link7.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/hand.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/finger.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/robot_ee/franka_hand_white/visual/finger.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments:
+      robot_type: fr3
+      arm_prefix: ''
+      no_prefix: 'false'
+      hand: 'true'
+      ee_id: franka_hand
+      special_connection: ''
+      xyz_ee: 0 0 0
+      rpy_ee: 0 0 -0.7853981633974483
+      tcp_xyz: ''
+      tcp_rpy: 0 0 0
+      safety_distance: '0.03'
+      with_sc: 'false'
+      connected_to: base
+      include_self_collision_geometry: 'true'
+      description_pkg: franka_description
+      xyz: 0 0 0
+      rpy: 0 0 0
+    source_dependencies:
+    - end_effectors/common/franka_hand.xacro
+    - end_effectors/common/utils.xacro
+    - end_effectors/franka_hand/inertials.yaml
+    - robots/common/franka_arm.xacro
+    - robots/common/franka_robot.xacro
+    - robots/common/utils.xacro
+    - robots/fr3/accelerometers.yaml
+    - robots/fr3/dynamics.yaml
+    - robots/fr3/fr3.urdf.xacro
+    - robots/fr3/inertials.yaml
+    - robots/fr3/joint_limits.yaml
+    - robots/fr3/kinematics.yaml
+    - meshes/robots/fr3/visual/link0.dae
+    - meshes/robots/fr3/collision/link0.stl
+    - meshes/robots/fr3/visual/link1.dae
+    - meshes/robots/fr3/collision/link1.stl
+    - meshes/robots/fr3/visual/link2.dae
+    - meshes/robots/fr3/collision/link2.stl
+    - meshes/robots/fr3/visual/link3.dae
+    - meshes/robots/fr3/collision/link3.stl
+    - meshes/robots/fr3/visual/link4.dae
+    - meshes/robots/fr3/collision/link4.stl
+    - meshes/robots/fr3/visual/link5.dae
+    - meshes/robots/fr3/collision/link5.stl
+    - meshes/robots/fr3/visual/link6.dae
+    - meshes/robots/fr3/collision/link6.stl
+    - meshes/robots/fr3/visual/link7.dae
+    - meshes/robots/fr3/collision/link7.stl
+    - meshes/robot_ee/franka_hand_white/visual/hand.dae
+    - meshes/robot_ee/franka_hand_white/collision/hand.stl
+    - meshes/robot_ee/franka_hand_white/visual/finger.dae
+    - meshes/robot_ee/franka_hand_white/visual/finger.dae
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

@@ -1,0 +1,193 @@
+model: seeed_rebot_devarm
+method: dated match
+confidence: medium
+upstream_repo: https://github.com/Seeed-Projects/reBot-Isaacsim
+upstream_file: urdf/00-arm-rs_asm-v3/urdf/00-arm-rs_asm-v3.urdf
+upstream_commit: 6a18beabefa9564d9b66c93fd671a8c7a4548601
+latest_upstream_commit: 51aa87625e6aaa1ccb8514b0d0c66e3aa1c711bf
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: seeed_rebot_devarm/seeed_rebot_devarm.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: da76818e269b82289eba39808e2fb91d679d6994
+  timestamp: '1786304118'
+  date: '2026-08-09T12:35:18-07:00'
+  subject: Add Seeed Studio reBot DevArm (RobStride) (#300)
+  file: seeed_rebot_devarm/seeed_rebot_devarm.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: da76818e269b82289eba39808e2fb91d679d6994
+  date: '2026-08-09T12:35:18-07:00'
+  file: seeed_rebot_devarm/seeed_rebot_devarm.xml
+source_candidate:
+  commit: 6a18beabefa9564d9b66c93fd671a8c7a4548601
+  timestamp: '1785713292'
+  date: '2026-08-03T01:28:12+02:00'
+  subject: Couple the gripper fingers and repair the USD regeneration pipeline
+  file: urdf/00-arm-rs_asm-v3/urdf/00-arm-rs_asm-v3.urdf
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 58
+source_candidates:
+- commit: cec6ceec45843664fcfcf97ab1d045e9938aaca9
+  timestamp: '1793950689'
+  date: '2026-11-06T15:38:09+08:00'
+  subject: Align RS inertials and regenerate USD from SDK model
+  file: urdf/00-arm-rs_asm-v3/urdf/00-arm-rs_asm-v3.urdf
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 7
+  comparable_quantities: 58
+- commit: 37659b082986ce8dae59f75fe8526ddbe45d64b9
+  timestamp: '1793934048'
+  date: '2026-11-06T11:00:48+08:00'
+  subject: Align RS URDF names with digital twin
+  file: urdf/00-arm-rs_asm-v3/urdf/00-arm-rs_asm-v3.urdf
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 58
+- commit: 6a18beabefa9564d9b66c93fd671a8c7a4548601
+  timestamp: '1785713292'
+  date: '2026-08-03T01:28:12+02:00'
+  subject: Couple the gripper fingers and repair the USD regeneration pipeline
+  file: urdf/00-arm-rs_asm-v3/urdf/00-arm-rs_asm-v3.urdf
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 58
+- commit: be50733684d63999d999f0c19120a463e7c74abd
+  timestamp: '1784319088'
+  date: '2026-07-17T22:11:28+02:00'
+  subject: 'fix(urdf): rescale link2-6 inertia tensors to match updated masses'
+  file: urdf/00-arm-rs_asm-v3/urdf/00-arm-rs_asm-v3.urdf
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 3
+  comparable_quantities: 58
+- commit: eb10e2dfa21450c2acb63e06a60a557755675309
+  timestamp: '1784259421'
+  date: '2026-07-17T11:37:01+08:00'
+  subject: Update the mass in 00-arm-rs_asm-v3. urdf
+  file: urdf/00-arm-rs_asm-v3/urdf/00-arm-rs_asm-v3.urdf
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 8
+  comparable_quantities: 58
+- commit: 1539163d925e8c93b30030a99ee94aef3637221a
+  timestamp: '1782959669'
+  date: '2026-07-02T10:34:29+08:00'
+  subject: fix and add urdf
+  file: urdf/00-arm-rs_asm-v3/urdf/00-arm-rs_asm-v3.urdf
+  deleted: false
+  history_incomplete: Exact-rename traversal required unavailable unrelated blobs;
+    current-path history was inspected, older renamed paths remain unresolved
+  matches: false
+  mismatch_count: 22
+  comparable_quantities: 58
+evidence:
+- url: https://github.com/3dlg-hcvc/visacd
+  document: seeed_rebot_devarm/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/Seeed-Projects/reBot-Isaacsim
+  document: seeed_rebot_devarm/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/discoverse-dev/urdf-to-mjcf
+  document: seeed_rebot_devarm/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - seeed_rebot_devarm/seeed_rebot_devarm.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - urdf/00-arm-rs_asm-v3/urdf/00-arm-rs_asm-v3.urdf
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo
+  S:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - urdf/00-arm-rs_asm-v3/urdf/00-arm-rs_asm-v3.urdf
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

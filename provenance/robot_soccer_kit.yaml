@@ -1,0 +1,18 @@
+model: robot_soccer_kit
+method: unknown
+confidence: unknown
+upstream_repo: null
+upstream_file: null
+upstream_commit: null
+latest_upstream_commit: null
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: robot_soccer_kit/robot_soccer_kit.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change: null
+menagerie_commits_involved: []
+source_candidate: null
+source_candidates: []
+evidence: []
+reason: No machine-readable upstream repository found in README, CHANGELOG, or their
+  history. Vendor/CAD/web descriptions were not fetched under the network rules.
+compilation: {}

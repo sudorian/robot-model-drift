@@ -1,0 +1,112 @@
+model: sharpa_wave
+method: pinned
+confidence: high
+upstream_repo: https://github.com/sharpa-robotics/sharpa-urdf-usd-xml
+upstream_file: wave_01/left_sharpa_wave/left_sharpa_wave_with_flange.urdf
+upstream_commit: 6eea427eb24189519f32b9f21674cd534d3f973c
+latest_upstream_commit: d323b371d02f4fc04a0873c19c5234cae6d803dd
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: sharpa_wave/left_hand.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: c1a4eeb85694ae1dffe33ff1797d4e528928a133
+  timestamp: '1785860272'
+  date: '2026-08-04T09:17:52-07:00'
+  subject: Update sharpa armature and fix collision double counting bug. (#303)
+menagerie_commits_involved: []
+source_candidate:
+  commit: 6eea427eb24189519f32b9f21674cd534d3f973c
+  timestamp: '1778896349'
+  date: '2026-05-16T09:52:29+08:00'
+  matches: false
+  mismatch_count: 13
+  comparable_quantities: 138
+source_candidates:
+- commit: 3e953f588ba9954cebaa720aaa4cee06a43a068e
+  timestamp: '1775185454'
+  date: '2026-04-03T11:04:14+08:00'
+  subject: Initial commit
+  matches: false
+  mismatch_count: 13
+  comparable_quantities: 138
+evidence:
+- url: https://github.com/sharpa-robotics/sharpa-urdf-usd-xml
+  document: sharpa_wave/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/sharpa-robotics/sharpa-urdf-usd-xml/commit/6eea427eb24189519f32b9f21674cd534d3f973c
+  document: sharpa_wave/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/sharpa-robotics/sharpa-urdf-usd-xml/commit/6eea427eb24189519f32b9f21674cd534d3f973c
+  document: sharpa_wave/CHANGELOG.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - left_hand_C_MC
+    - left_thumb_MCP_VL
+    - left_pinky_MC
+    assets_loaded: 54
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+  S:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0

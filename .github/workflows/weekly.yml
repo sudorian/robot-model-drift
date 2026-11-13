@@ -1,0 +1,64 @@
+name: Robot model drift survey (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weekly-model-drift
+  cancel-in-progress: false
+
+jobs:
+  survey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      VECLIB_MAXIMUM_THREADS: '1'
+      GIT_NO_LAZY_FETCH: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check disk and install pinned CPU dependencies
+        run: |
+          df -h .
+          python -m venv .venv
+          printf '\n- CI network: `nice -n 15 .venv/bin/python -m pip install --index-url https://pypi.org/simple --no-cache-dir -r requirements.txt` — install pinned dependencies.\n' >> NOTES.md
+          if nice -n 15 .venv/bin/python -m pip install --index-url https://pypi.org/simple --no-cache-dir -r requirements.txt; then
+            printf '%s\n' '- CI dependency install succeeded.' >> NOTES.md
+          else
+            install_status=$?
+            printf '%s\n' "- CI dependency install failed with exit $install_status." >> NOTES.md
+            exit "$install_status"
+          fi
+      - name: Acquire source and run H1 first
+        run: |
+          nice -n 15 ./drift check unitree_h1 --fetch
+          nice -n 15 ./drift acceptance
+      - name: Regression tests
+        run: nice -n 15 .venv/bin/python -m pytest -q --ignore=tests/test_survey_results.py
+      - name: Survey remaining models serially
+        run: nice -n 15 ./drift check all --fetch
+      - name: Validate current survey self-comparisons
+        if: always()
+        run: nice -n 15 .venv/bin/python -m pytest -q tests/test_survey_results.py
+      - name: Render reports and independent XML checks
+        if: always()
+        run: |
+          nice -n 15 ./drift report
+          nice -n 15 ./drift cross-check
+          nice -n 15 ./drift cross-check --all-stale
+          du -sh .
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: robot-model-drift-report
+          path: |
+            report/
+            provenance/
+            NOTES.md

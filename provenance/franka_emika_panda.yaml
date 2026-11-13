@@ -1,0 +1,360 @@
+model: franka_emika_panda
+method: none
+confidence: none
+upstream_repo: https://github.com/frankaemika/franka_ros
+upstream_file: franka_description/robots/panda/panda.urdf.xacro
+upstream_commit: null
+latest_upstream_commit: ddd2fffd9de44b02ad15b4bbb2bfa2cec4d60d98
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: franka_emika_panda/panda_nohand.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 5f952e860a25d71eeba51f5aa29da428e7012761
+  timestamp: '1678297670'
+  date: '2023-03-08T09:47:50-08:00'
+  subject: Change element names and remove keyframe from the panda no-hand model.
+  file: franka_emika_panda/panda_nohand.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: fb36886b3023db08c198264e1e9956ab202c3e3b
+  date: '2026-11-02T08:30:24-08:00'
+  file: franka_emika_panda/panda_nohand.xml
+- commit: 7618485a6b874a1526bf0619f56fd6a45e5efe01
+  date: '2025-07-02T14:52:55+01:00'
+  file: franka_emika_panda/panda_nohand.xml
+- commit: 251ca9e84a27c49f133f9513dae878fa2d2f6f7d
+  date: '2023-05-03T08:36:36-07:00'
+  file: franka_emika_panda/panda_nohand.xml
+- commit: ec982782ddc3b63a41cd9010e406ed272ac49a31
+  date: '2023-05-02T17:58:56-07:00'
+  file: franka_emika_panda/panda_nohand.xml
+- commit: 5f952e860a25d71eeba51f5aa29da428e7012761
+  date: '2023-03-08T09:47:50-08:00'
+  file: franka_emika_panda/panda_nohand.xml
+- commit: b4d7d138e6cfa95fe39eedbf8332168e24a53ec5
+  date: '2022-10-17T12:46:26-07:00'
+  file: franka_emika_panda/panda_nohand.xml
+- commit: 9f1b308338c558aa3465c8190468524e783cfb21
+  date: '2022-09-21T11:04:08-07:00'
+  file: franka_emika_panda/panda_nohand.xml
+source_candidate: null
+source_candidates:
+- commit: 121176db0bab847b247c1a3e8e9640d98f2eb5c1
+  timestamp: '1682325712'
+  date: '2023-04-24T10:41:52+02:00'
+  subject: 'FIX: Unknown substitution "hand"'
+  file: franka_description/robots/panda/panda.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 2
+  comparable_quantities: 6
+- commit: 15d3c01cd4a9913c4ad555f525550883093b69f6
+  timestamp: '1682325633'
+  date: '2023-04-24T10:40:33+02:00'
+  subject: 'ADD: `parent` + `{xyz,rpy}` params to franka_robot.xacro'
+  file: franka_description/robots/panda/panda.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 2
+  comparable_quantities: 6
+- commit: 057a3d97771958826e278d8cdccdfdda23b10eb1
+  timestamp: '1662046134'
+  date: '2022-09-01T17:28:54+02:00'
+  subject: 'FIX: Make <arg> in `franka_robot` macro property'
+  file: franka_description/robots/panda/panda.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 2
+  comparable_quantities: 6
+- commit: e87f240a40f97d7bbfef423f318555404fd1897e
+  timestamp: '1662046134'
+  date: '2022-09-01T17:28:54+02:00'
+  subject: allow selecting fr3 urdf for launch files
+  file: franka_description/robots/panda/panda.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 2
+  comparable_quantities: 6
+- commit: f18b66293f7426681be9ac36f372dbf87396b5ca
+  timestamp: '1662046134'
+  date: '2022-09-01T17:28:54+02:00'
+  subject: load joint limits directly in top-level URDf
+  file: franka_description/robots/panda/panda.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 2
+  comparable_quantities: 6
+- commit: 2a7414e108bfa475cc75912ff44f5a08883f90c8
+  timestamp: '1662046134'
+  date: '2022-09-01T17:28:54+02:00'
+  subject: 'CHANGE: Extract <limits> & <safety_controller> into custom macro'
+  file: franka_description/robots/panda/panda.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 2
+  comparable_quantities: 6
+- commit: b2a62ff6052db4deff8b5ad734658deea2403390
+  timestamp: '1662025673'
+  date: '2022-09-01T11:47:53+02:00'
+  subject: refactor franka_description to support for fr3
+  file: franka_description/robots/panda/panda.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 2
+  comparable_quantities: 6
+- commit: 7d1d0d37a06431964e3e07ba1b46b18f0a17b08a
+  timestamp: '1624345917'
+  date: '2021-06-22T09:11:57+02:00'
+  subject: 'ADD: Collision meshes as decimated STLs of visuals'
+  file: franka_description/robots/panda/panda.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 406e118c143cbefb58c2db8b6a5da87345dd1949
+  timestamp: '1573201843'
+  date: '2019-11-08T16:30:43+08:00'
+  subject: 'Merge pull request #79 from LCAS/gazebo8'
+  file: franka_description/robots/panda/panda.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: 9fcc3f5e3b343d351acf8671daa6f4a378c2e78e
+  timestamp: '1571067830'
+  date: '2019-10-14T17:43:50+02:00'
+  subject: Meshes for G8
+  file: franka_description/robots/panda/panda.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: dfe405ed6d83d4448d6b9f5dca9719d26f1a0a71
+  timestamp: '1541779514'
+  date: '2018-11-09T17:05:14+01:00'
+  subject: deletese collision meshes.
+  file: franka_description/robots/panda/panda.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+- commit: aa2f01ef542aaa50d0edfc6a1bf3aec195426919
+  timestamp: '1519309790'
+  date: '2018-02-22T15:29:50+01:00'
+  subject: Add Collada meshes
+  file: franka_description/robots/panda/panda.urdf.xacro
+  dependency_change: true
+  deleted: true
+  matches: false
+  note: Source entry absent at this revision; no numeric value to compile
+evidence:
+- url: https://github.com/frankaemika/franka_ros/blob/develop/franka_description/robots/common/inertial.yaml
+  document: franka_emika_panda/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/frankaemika/franka_ros/tree/develop/franka_description
+  document: franka_emika_panda/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/frankaemika/franka_ros/tree/develop/franka_description/meshes/collision
+  document: franka_emika_panda/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/frankaemika/franka_ros/tree/develop/franka_description/meshes/visual
+  document: franka_emika_panda/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/frankaemika/franka_ros/tree/develop/franka_description/robots
+  document: franka_emika_panda/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/kevinzakka/obj2mjcf
+  document: franka_emika_panda/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/kmammou/v-hacd
+  document: franka_emika_panda/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/frankaemika/franka_ros/blob/develop/franka_description/robots/inertial.yaml
+  document: franka_emika_panda/README.md
+  commit: 1b93125c79bb95e4e55a1d6471adb2cd92c71feb
+  current: false
+reason: 'No public revision matches all comparable quantities. Class: NO MATCHING
+  SOURCE; never counted as STALE.'
+compilation:
+  M:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - attachment
+    assets_loaded: 59
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - franka_emika_panda/panda_nohand.xml
+    - franka_emika_panda/assets/link0.stl
+    - franka_emika_panda/assets/link1.stl
+    - franka_emika_panda/assets/link2.stl
+    - franka_emika_panda/assets/link3.stl
+    - franka_emika_panda/assets/link4.stl
+    - franka_emika_panda/assets/link5_collision_0.obj
+    - franka_emika_panda/assets/link5_collision_1.obj
+    - franka_emika_panda/assets/link5_collision_2.obj
+    - franka_emika_panda/assets/link6.stl
+    - franka_emika_panda/assets/link7.stl
+    - franka_emika_panda/assets/link0_0.obj
+    - franka_emika_panda/assets/link0_1.obj
+    - franka_emika_panda/assets/link0_2.obj
+    - franka_emika_panda/assets/link0_3.obj
+    - franka_emika_panda/assets/link0_4.obj
+    - franka_emika_panda/assets/link0_5.obj
+    - franka_emika_panda/assets/link0_7.obj
+    - franka_emika_panda/assets/link0_8.obj
+    - franka_emika_panda/assets/link0_9.obj
+    - franka_emika_panda/assets/link0_10.obj
+    - franka_emika_panda/assets/link0_11.obj
+    - franka_emika_panda/assets/link1.obj
+    - franka_emika_panda/assets/link2.obj
+    - franka_emika_panda/assets/link3_0.obj
+    - franka_emika_panda/assets/link3_1.obj
+    - franka_emika_panda/assets/link3_2.obj
+    - franka_emika_panda/assets/link3_3.obj
+    - franka_emika_panda/assets/link4_0.obj
+    - franka_emika_panda/assets/link4_1.obj
+    - franka_emika_panda/assets/link4_2.obj
+    - franka_emika_panda/assets/link4_3.obj
+    - franka_emika_panda/assets/link5_0.obj
+    - franka_emika_panda/assets/link5_1.obj
+    - franka_emika_panda/assets/link5_2.obj
+    - franka_emika_panda/assets/link6_0.obj
+    - franka_emika_panda/assets/link6_1.obj
+    - franka_emika_panda/assets/link6_2.obj
+    - franka_emika_panda/assets/link6_3.obj
+    - franka_emika_panda/assets/link6_4.obj
+    - franka_emika_panda/assets/link6_5.obj
+    - franka_emika_panda/assets/link6_6.obj
+    - franka_emika_panda/assets/link6_7.obj
+    - franka_emika_panda/assets/link6_8.obj
+    - franka_emika_panda/assets/link6_9.obj
+    - franka_emika_panda/assets/link6_10.obj
+    - franka_emika_panda/assets/link6_11.obj
+    - franka_emika_panda/assets/link6_12.obj
+    - franka_emika_panda/assets/link6_13.obj
+    - franka_emika_panda/assets/link6_14.obj
+    - franka_emika_panda/assets/link6_15.obj
+    - franka_emika_panda/assets/link6_16.obj
+    - franka_emika_panda/assets/link7_0.obj
+    - franka_emika_panda/assets/link7_1.obj
+    - franka_emika_panda/assets/link7_2.obj
+    - franka_emika_panda/assets/link7_3.obj
+    - franka_emika_panda/assets/link7_4.obj
+    - franka_emika_panda/assets/link7_5.obj
+    - franka_emika_panda/assets/link7_6.obj
+    - franka_emika_panda/assets/link7_7.obj
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - panda_link0
+    - panda_link0_sc
+    - panda_link1
+    - panda_link1_sc
+    - panda_link2
+    - panda_link2_sc
+    - panda_link3
+    - panda_link3_sc
+    - panda_link4
+    - panda_link4_sc
+    - panda_link5
+    - panda_link5_sc
+    - panda_link6
+    - panda_link6_sc
+    - panda_link7
+    - panda_link7_sc
+    - panda_link8
+    assets_loaded: 16
+    mesh_conversions:
+    - file: franka_description/meshes/visual/link0.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: franka_description/meshes/visual/link1.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: franka_description/meshes/visual/link2.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: franka_description/meshes/visual/link3.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: franka_description/meshes/visual/link4.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: franka_description/meshes/visual/link5.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: franka_description/meshes/visual/link6.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: franka_description/meshes/visual/link7.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments:
+      arm_id: panda
+      hand: 'false'
+      tcp_xyz: 0 0 0.1034
+      tcp_rpy: 0 0 0
+      gazebo: 'false'
+      parent: world
+      xyz: 0 0 0
+      rpy: 0 0 0
+    source_dependencies:
+    - franka_description/robots/common/franka_arm.xacro
+    - franka_description/robots/common/franka_robot.xacro
+    - franka_description/robots/common/utils.xacro
+    - franka_description/robots/panda/joint_limits.yaml
+    - franka_description/robots/panda/panda.urdf.xacro
+    - franka_description/meshes/visual/link0.dae
+    - franka_description/meshes/collision/link0.stl
+    - franka_description/meshes/visual/link1.dae
+    - franka_description/meshes/collision/link1.stl
+    - franka_description/meshes/visual/link2.dae
+    - franka_description/meshes/collision/link2.stl
+    - franka_description/meshes/visual/link3.dae
+    - franka_description/meshes/collision/link3.stl
+    - franka_description/meshes/visual/link4.dae
+    - franka_description/meshes/collision/link4.stl
+    - franka_description/meshes/visual/link5.dae
+    - franka_description/meshes/collision/link5.stl
+    - franka_description/meshes/visual/link6.dae
+    - franka_description/meshes/collision/link6.stl
+    - franka_description/meshes/visual/link7.dae
+    - franka_description/meshes/collision/link7.stl
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

@@ -1,0 +1,177 @@
+model: anybotics_anymal_b
+method: none
+confidence: none
+upstream_repo: https://github.com/ANYbotics/anymal_b_simple_description
+upstream_file: urdf/anymal.urdf
+upstream_commit: null
+latest_upstream_commit: 988b5df22b84761bdf08111b1c2ccc883793f456
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: anybotics_anymal_b/anymal_b.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 1b93125c79bb95e4e55a1d6471adb2cd92c71feb
+  timestamp: '1662561310'
+  date: '2022-09-07T07:35:10-07:00'
+  subject: Initial launch of MuJoCo Menagerie.
+  file: anybotics_anymal_b/anymal_b.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: fb36886b3023db08c198264e1e9956ab202c3e3b
+  date: '2026-11-02T08:30:24-08:00'
+  file: anybotics_anymal_b/anymal_b.xml
+- commit: ac6b2b09983786f3036cab1000221017fa2193b4
+  date: '2026-05-18T15:33:00-07:00'
+  file: anybotics_anymal_b/anymal_b.xml
+- commit: c5d2e83f49a2a1201153a686de0d26cc02b3bd98
+  date: '2023-12-06T13:53:43-08:00'
+  file: anybotics_anymal_b/anymal_b.xml
+- commit: ec982782ddc3b63a41cd9010e406ed272ac49a31
+  date: '2023-05-02T17:58:56-07:00'
+  file: anybotics_anymal_b/anymal_b.xml
+- commit: 1b428b08bb26ca6024e7b21e8ff21a59f847eb87
+  date: '2022-09-13T08:40:03-07:00'
+  file: anybotics_anymal_b/anymal_b.xml
+- commit: 1b93125c79bb95e4e55a1d6471adb2cd92c71feb
+  date: '2022-09-07T07:35:10-07:00'
+  file: anybotics_anymal_b/anymal_b.xml
+source_candidate: null
+source_candidates:
+- commit: adc53f590da8a1398bef6a17d17672599b07d7ad
+  timestamp: '1554736419'
+  date: '2019-04-08T17:13:39+02:00'
+  subject: Add anymal b simple description.
+  file: urdf/anymal.urdf
+  deleted: false
+  matches: false
+  mismatch_count: 30
+  comparable_quantities: 66
+evidence:
+- url: https://github.com/ANYbotics/anymal_b_simple_description
+  document: anybotics_anymal_b/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/ANYbotics/anymal_b_simple_description/blob/master/urdf/anymal.urdf
+  document: anybotics_anymal_b/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/ANYbotics/anymal_b_simple_description/tree/master/meshes
+  document: anybotics_anymal_b/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/kevinzakka/obj2mjcf
+  document: anybotics_anymal_b/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: 'No public revision matches all comparable quantities. Class: NO MATCHING
+  SOURCE; never counted as STALE.'
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - anybotics_anymal_b/anymal_b.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.58
+      rotation:
+      - - -1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - -1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - base
+    - LF_FOOT
+    - RF_FOOT
+    - LH_FOOT
+    - RH_FOOT
+    assets_loaded: 17
+    mesh_conversions:
+    - file: meshes/anymal_base.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_hip_l.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_thigh_l.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_shank_l.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_foot.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_hip_r.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_thigh_r.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_shank_r.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_foot.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_hip_r.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_thigh_r.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_shank_r.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_foot.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_hip_l.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_thigh_l.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_shank_l.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    - file: meshes/anymal_foot.dae
+      conversion: COLLADA to OBJ with scene transforms, no textures
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - urdf/anymal.urdf
+    - meshes/anymal_base.dae
+    - meshes/anymal_hip_l.dae
+    - meshes/anymal_thigh_l.dae
+    - meshes/anymal_shank_l.dae
+    - meshes/anymal_foot.dae
+    - meshes/anymal_hip_r.dae
+    - meshes/anymal_thigh_r.dae
+    - meshes/anymal_shank_r.dae
+    - meshes/anymal_foot.dae
+    - meshes/anymal_hip_r.dae
+    - meshes/anymal_thigh_r.dae
+    - meshes/anymal_shank_r.dae
+    - meshes/anymal_foot.dae
+    - meshes/anymal_hip_l.dae
+    - meshes/anymal_thigh_l.dae
+    - meshes/anymal_shank_l.dae
+    - meshes/anymal_foot.dae
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

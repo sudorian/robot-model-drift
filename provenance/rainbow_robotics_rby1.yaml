@@ -1,0 +1,177 @@
+model: rainbow_robotics_rby1
+method: none
+confidence: none
+upstream_repo: https://github.com/RainbowRobotics/rby1-sdk
+upstream_file: models/rby1a/urdf/model.urdf
+upstream_commit: null
+latest_upstream_commit: 300a585c297d1bdf8554312c3a1659610a9823f5
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: rainbow_robotics_rby1/rby1a_1.2_no_gripper.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: bef9f831f8797e77f6f28ebbe7205eaf641e3a54
+  timestamp: '1778283464'
+  date: '2026-05-08T16:37:44-07:00'
+  subject: Rainbow robotics rby1 _ new model update (#238)
+menagerie_commits_involved: []
+source_candidate: null
+source_candidates:
+- commit: 80a86171c950ba97ea363fff62c18c46dda3beaa
+  timestamp: '1794295915'
+  date: '2026-11-10T16:31:55+09:00'
+  subject: 'fix(models): apply measured-mass CAD inertials to A/M v1.0-v1.2 URDFs'
+  matches: false
+  mismatch_count: 111
+  comparable_quantities: 146
+- commit: 7025ce81ef44f506686f91c59a0a5470a88c1c98
+  timestamp: '1787729106'
+  date: '2026-08-26T16:25:06+09:00'
+  subject: 'fix(models): correct the torso_2 joint limit to [-140, 80] deg'
+  matches: false
+  mismatch_count: 77
+  comparable_quantities: 146
+- commit: e1cb14bb8136e9c85845b37c102aee710cf543bb
+  timestamp: '1760078380'
+  date: '2025-10-10T15:39:40+09:00'
+  subject: 'fix(urdf): fix inertia values for left/right arm URDFs'
+  matches: false
+  mismatch_count: 77
+  comparable_quantities: 146
+- commit: 31829b548b4ed924f4109fb98e0ff672802928f3
+  timestamp: '1750389595'
+  date: '2025-06-20T12:19:55+09:00'
+  subject: 'fix: correct shoulder 0 link frame orientation in rby1a urdf model'
+  matches: false
+  mismatch_count: 59
+  comparable_quantities: 146
+- commit: 3db34c88970dd978be369684734e789786f75f1b
+  timestamp: '1750148238'
+  date: '2025-06-17T17:17:18+09:00'
+  subject: 'feat: add model A v1.1'
+  matches: false
+  mismatch_count: 57
+  comparable_quantities: 146
+- commit: 3c106e47cfa7fbc1842967603d9c1aa8a8d648b1
+  timestamp: '1749780739'
+  date: '2025-06-13T11:12:19+09:00'
+  subject: 'model: rename urdf robot name'
+  matches: false
+  mismatch_count: 57
+  comparable_quantities: 146
+- commit: 21bda5147c18762c42c4a0724f9c789fb771bfae
+  timestamp: '1740472364'
+  date: '2025-02-25T08:32:44Z'
+  subject: 'fix: adjust wrist yaw2 range of motion in model.urdf for A, T5, and M
+    models (#85)'
+  matches: false
+  mismatch_count: 57
+  comparable_quantities: 146
+- commit: 40bee17a0903dfbcccaa49f477e4bf103cdfe6b6
+  timestamp: '1733382333'
+  date: '2024-12-05T16:05:33+09:00'
+  subject: 'feat(model.urdf): update joint limit(torso_3)'
+  matches: false
+  mismatch_count: 57
+  comparable_quantities: 146
+- commit: 287d06b9a67b8c9c896bbfcbd632d74e8328660d
+  timestamp: '1733301275'
+  date: '2024-12-04T17:34:35+09:00'
+  subject: 'feat: update joint limit'
+  matches: false
+  mismatch_count: 58
+  comparable_quantities: 146
+- commit: d57bf0c8a694eb74fe9f0d6bc11144d10c32dfb2
+  timestamp: '1733213350'
+  date: '2024-12-03T17:09:10+09:00'
+  subject: 'fix: make joint values realistic (#33)'
+  matches: false
+  mismatch_count: 58
+  comparable_quantities: 146
+- commit: 2d06757bdcd2f8790b422202105f168914e2c80c
+  timestamp: '1732172757'
+  date: '2024-11-21T16:05:57+09:00'
+  subject: 'feat: expand gripper tip collision area'
+  matches: false
+  mismatch_count: 58
+  comparable_quantities: 146
+- commit: 53cffc4fefb9d0ca45207c88dae0031a89b78a62
+  timestamp: '1730976879'
+  date: '2024-11-07T19:54:39+09:00'
+  subject: 'fix: align mobility SE2 and joint velocity direction with RPC program
+    for simulator consistency'
+  matches: false
+  mismatch_count: 58
+  comparable_quantities: 146
+- commit: 691b97422ce6d73f1cd10d0c5e7424404702d354
+  timestamp: '1730106182'
+  date: '2024-10-28T18:03:02+09:00'
+  subject: 'fix(model.urdf): Change velocity limits for urdf torso_0, torso_1, and
+    left_arm_5'
+  matches: false
+  mismatch_count: 58
+  comparable_quantities: 146
+- commit: d42323fa62df99da58e00e2470f140928b1ae3a4
+  timestamp: '1727231391'
+  date: '2024-09-25T11:29:51+09:00'
+  subject: Merge remote-tracking branch 'origin/dev'
+  matches: false
+  mismatch_count: 58
+  comparable_quantities: 146
+evidence:
+- url: https://github.com/RainbowRobotics/rby1-sdk/blob/main/models/rby1a/urdf/model.urdf
+  document: rainbow_robotics_rby1/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/RainbowRobotics
+  document: rainbow_robotics_rby1/README.md
+  commit: 2af6ce4e9cdaf9b12d3b7097571bd440ab9adfc8
+  current: false
+- url: https://github.com/kevinzakka/obj2mjcf
+  document: rainbow_robotics_rby1/README.md
+  commit: 2af6ce4e9cdaf9b12d3b7097571bd440ab9adfc8
+  current: false
+reason: 'No public revision matches all comparable quantities. Class: NO MATCHING
+  SOURCE; never counted as STALE.'
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0

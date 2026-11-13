@@ -1,0 +1,377 @@
+model: boston_dynamics_spot
+method: unknown
+confidence: incomplete
+upstream_repo: https://github.com/rai-opensource/spot_description
+upstream_file: spot_description/urdf/spot.urdf.xacro
+upstream_commit: null
+latest_upstream_commit: 156d1802bfb117f219dbfce7597d283d5fabc968
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: boston_dynamics_spot/spot.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 65f5e9ae03108ed1655c49faef39054c273d75a4
+  timestamp: '1717178286'
+  date: '2024-05-31T10:58:06-07:00'
+  subject: Add Boston Dynamics Spot.
+  file: boston_dynamics_spot/spot.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: fb36886b3023db08c198264e1e9956ab202c3e3b
+  date: '2026-11-02T08:30:24-08:00'
+  file: boston_dynamics_spot/spot.xml
+- commit: b3435c4841c782ded22bd8e6f2a0b875df38cd75
+  date: '2026-11-02T08:20:21-08:00'
+  file: boston_dynamics_spot/spot.xml
+- commit: 95869995fc8ae4743691ce16bdb211cca9278b0b
+  date: '2026-11-02T12:30:56Z'
+  file: boston_dynamics_spot/spot.xml
+- commit: ac6b2b09983786f3036cab1000221017fa2193b4
+  date: '2026-05-18T15:33:00-07:00'
+  file: boston_dynamics_spot/spot.xml
+- commit: 4ae7879207d2afffb0b2b9dce1c0bae4d2682b2f
+  date: '2024-07-19T23:40:08-04:00'
+  file: boston_dynamics_spot/spot.xml
+- commit: d82891f8b6c576f9f6a9df308f3a1155ebedbc40
+  date: '2024-06-01T09:30:10-07:00'
+  file: boston_dynamics_spot/spot.xml
+- commit: 65f5e9ae03108ed1655c49faef39054c273d75a4
+  date: '2024-05-31T10:58:06-07:00'
+  file: boston_dynamics_spot/spot.xml
+source_candidate: null
+source_candidates:
+- commit: e71feccf77ab59124e62887de3378d027877bbbb
+  timestamp: '1762791058'
+  date: '2025-11-10T11:10:58-05:00'
+  subject: Change to new RAI Institute copyright (#19)
+  file: spot_description/urdf/spot.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 0aa5a71d14b214e649992eb6247ec0ea681cfd75
+  timestamp: '1754579019'
+  date: '2025-08-07T11:03:39-04:00'
+  subject: added state interfaces for k_q_p k_qd_p (#18)
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 7aab057e08efa804482c22dd5a11bbbde81b2aa8
+  timestamp: '1754578558'
+  date: '2025-08-07T10:55:58-04:00'
+  subject: added state interfaces for k_q_p k_qd_p
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 079c78d857d878539ce485d8912aa338f63cbed2
+  timestamp: '1753376624'
+  date: '2025-07-24T13:03:44-04:00'
+  subject: Add RealSense camera mounts to accessories (#17)
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 3919ec13217d5441026a79afe787d6b0a6b6b457
+  timestamp: '1749830424'
+  date: '2025-06-13T12:00:24-04:00'
+  subject: added 'standing still' initial values
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: a38f992450a903ddb960d64d13d4c505b173a4b6
+  timestamp: '1749502811'
+  date: '2025-06-09T17:00:11-04:00'
+  subject: Gaddison/sw 2455 add twist state interfaces (#14)
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 57824d1d6160cd25c64be6540bd1a54cbab3fc7c
+  timestamp: '1747838081'
+  date: '2025-05-21T10:34:41-04:00'
+  subject: fixed indentation
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: a0899f682c15d416d4fca923e2317f49d33dc4fd
+  timestamp: '1747788934'
+  date: '2025-05-20T20:55:34-04:00'
+  subject: 'fix: typo in xml tag ending'
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 456b8025acc937fefe8ffa7e1477f6b692f7b961
+  timestamp: '1747788933'
+  date: '2025-05-20T20:55:33-04:00'
+  subject: added a sensor for odom to base twist. naming between the pose and twist
+    sensors necessary
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  error: 'mismatched tag: line 169, column 14'
+  matches: false
+- commit: 19cd66daf4d1cc815df01196143524b9ce26f135
+  timestamp: '1745350572'
+  date: '2025-04-22T15:36:12-04:00'
+  subject: Update pose interfaces names to match  ROS 2 control standards (#13)
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 820e39c21458563dc699f99faf9bf06a751853ff
+  timestamp: '1742226825'
+  date: '2025-03-17T11:53:45-04:00'
+  subject: added odom to body and vision to body transforms to ros2_control xacro
+    (#10)
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 98267e7f6c7dba9b287b6bf0869b264d832b93e2
+  timestamp: '1741292085'
+  date: '2025-03-06T15:14:45-05:00'
+  subject: add foot contact sensor to ros2_control urdf (#9)
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 10f821e050cde63983a9ea20436b1e607261b061
+  timestamp: '1741278771'
+  date: '2025-03-06T11:32:51-05:00'
+  subject: fix tf arg (#8)
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: a5b4e5da9889f23f7f070ef471c91af45750c0f9
+  timestamp: '1741130653'
+  date: '2025-03-04T18:24:13-05:00'
+  subject: '[SW-2052] add imu sensor to ros2 control urdf (#5)'
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 677e8a9456a24aaee58dbc9228a6539611791198
+  timestamp: '1740755980'
+  date: '2025-02-28T10:19:40-05:00'
+  subject: '[sw-1958] change web animator to use spot description (#4)'
+  file: spot_description/urdf/spot.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 19e9653b0be81091120827a4676b14df957d3f3e
+  timestamp: '1740500836'
+  date: '2025-02-25T11:27:16-05:00'
+  subject: SW-2049 add joint gains as a command interface for spot ros2 control (#3)
+  file: spot_description/urdf/spot.urdf.xacro
+  dependency_change: true
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: ac03d86342b3737e5c7ccaf8cca5873b4edfcc0f
+  timestamp: '1740064052'
+  date: '2025-02-20T12:07:32-03:00'
+  subject: Configure leasing mode for Spot ROS 2 control hardware interface (#2)
+  file: spot_description/urdf/spot.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 54919caf7aaa6d793fecd332e366d5128d4cc1fa
+  timestamp: '1739926115'
+  date: '2025-02-18T21:48:35-03:00'
+  subject: Configure leasing mode for Spot ROS 2 control hardware interface
+  file: spot_description/urdf/spot.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 37ecc6a55dd8bc874fa4e80376d838fec33a167b
+  timestamp: '1739212843'
+  date: '2025-02-10T15:40:43-03:00'
+  subject: Complete Spot ROS 2 control hardware interface configuration (#1)
+  file: spot_description/urdf/spot.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 3879a6f3c140d09f0eb1187f2c37852684e1ceb6
+  timestamp: '1739210432'
+  date: '2025-02-10T15:00:32-03:00'
+  subject: Complete Spot ROS 2 control hardware interface configuration
+  file: spot_description/urdf/spot.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 0e9260c613c1aeb144d782c921b0a633b55a5a69
+  timestamp: '1737492067'
+  date: '2025-01-21T20:41:07Z'
+  subject: reorg
+  file: spot_description/urdf/spot.urdf.xacro
+  rename_from: urdf/spot.urdf.xacro
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 11d09d75c061259e55fbadb000f5e533db954795
+  timestamp: '1737490889'
+  date: '2025-01-21T20:21:29Z'
+  subject: reorg
+  file: urdf/spot.urdf.xacro
+  rename_from: spot_description/urdf/spot.urdf.xacro
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+- commit: 3295adce8008ba8a2cff0fc9a2f52494c8dfb911
+  timestamp: '1737483179'
+  date: '2025-01-21T18:12:59Z'
+  subject: init
+  file: spot_description/urdf/spot.urdf.xacro
+  deleted: false
+  matches: false
+  mismatch_count: 6
+  comparable_quantities: 6
+evidence:
+- url: https://github.com/bdaiinstitute/spot_ros2
+  document: boston_dynamics_spot/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/bdaiinstitute/spot_ros2/blob/main/spot_description/urdf/spot_arm_macro.urdf
+  document: boston_dynamics_spot/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/bdaiinstitute/spot_ros2/blob/main/spot_description/urdf/spot_simple.urdf.xacro
+  document: boston_dynamics_spot/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/kevinzakka/obj2mjcf
+  document: boston_dynamics_spot/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/rai-opensource/spot_description
+  document: .gitmodules
+  commit: 949feb7b0d702d1923e5b5dd5c0a4a7728ddc88f
+  parent_repo: https://github.com/bdaiinstitute/spot_ros2
+- url: https://github.com/rai-opensource/spot_description
+  document: .gitmodules
+  commit: 949feb7b0d702d1923e5b5dd5c0a4a7728ddc88f
+  parent_repo: https://github.com/bdaiinstitute/spot_ros2
+- url: https://github.com/rai-opensource/spot_description
+  document: .gitmodules
+  commit: 949feb7b0d702d1923e5b5dd5c0a4a7728ddc88f
+  parent_repo: https://github.com/bdaiinstitute/spot_ros2
+reason: Unresolved historical compilation prevents selecting or rejecting a matching
+  source. Pairwise M/H differences are reported with unknown provenance.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments: {}
+    source_dependencies:
+    - boston_dynamics_spot/spot.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.75
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - body
+    assets_loaded: 22
+    mesh_conversions: []
+    nonphysical_normalizations: []
+    xacro_arguments:
+      tf_prefix: ''
+      arm: 'false'
+      gripperless: 'false'
+      feet: 'false'
+      add_ros2_control_tag: 'false'
+      hardware_interface_type: mock
+      hostname: 10.0.0.3
+      port: '0'
+      certificate: ''
+      username: username
+      password: password
+      leasing: direct
+      k_q_p: ''
+      k_qd_p: ''
+      include_transmissions: 'false'
+    source_dependencies:
+    - spot_description/urdf/accessories.urdf.xacro
+    - spot_description/urdf/empty.urdf
+    - spot_description/urdf/spot.ros2_control.xacro
+    - spot_description/urdf/spot.urdf.xacro
+    - spot_description/urdf/spot_macro.xacro
+    - spot_description/meshes/base/visual/body.obj
+    - spot_description/meshes/base/collision/body_collision.obj
+    - spot_description/meshes/base/visual/front_left_hip.obj
+    - spot_description/meshes/base/visual/front_left_upper_leg.obj
+    - spot_description/meshes/base/collision/left_upper_leg_collision.obj
+    - spot_description/meshes/base/visual/front_left_lower_leg.obj
+    - spot_description/meshes/base/collision/left_lower_leg_collision.obj
+    - spot_description/meshes/base/visual/front_right_hip.obj
+    - spot_description/meshes/base/visual/front_right_upper_leg.obj
+    - spot_description/meshes/base/collision/right_upper_leg_collision.obj
+    - spot_description/meshes/base/visual/front_right_lower_leg.obj
+    - spot_description/meshes/base/collision/right_lower_leg_collision.obj
+    - spot_description/meshes/base/visual/rear_left_hip.obj
+    - spot_description/meshes/base/visual/rear_left_upper_leg.obj
+    - spot_description/meshes/base/collision/left_upper_leg_collision.obj
+    - spot_description/meshes/base/visual/rear_left_lower_leg.obj
+    - spot_description/meshes/base/collision/left_lower_leg_collision.obj
+    - spot_description/meshes/base/visual/rear_right_hip.obj
+    - spot_description/meshes/base/visual/rear_right_upper_leg.obj
+    - spot_description/meshes/base/collision/right_upper_leg_collision.obj
+    - spot_description/meshes/base/visual/rear_right_lower_leg.obj
+    - spot_description/meshes/base/collision/right_lower_leg_collision.obj
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

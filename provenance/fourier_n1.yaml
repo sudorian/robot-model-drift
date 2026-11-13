@@ -1,0 +1,156 @@
+model: fourier_n1
+method: dated match
+confidence: medium
+upstream_repo: https://github.com/FFTAI/wiki-grx-mjcf
+upstream_file: models/N1/urdf/N1_raw.urdf
+upstream_commit: f29a87905bdcfc32fdac9c5342644630fd27156a
+latest_upstream_commit: 3079af890e8db4d243e5729abfa9860ecf7487f6
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: fourier_n1/n1.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762
+  timestamp: '1746371732'
+  date: '2025-05-04T23:15:32+08:00'
+  subject: add Fourier N1 robot content to the project
+  file: fourier_n1/n1.xml
+  deleted: false
+menagerie_commits_involved:
+- commit: 98a70c569c4c1b6da467a20012f766ee1f8dc521
+  date: '2026-11-02T08:55:18-08:00'
+  file: fourier_n1/n1.xml
+- commit: fb36886b3023db08c198264e1e9956ab202c3e3b
+  date: '2026-11-02T08:30:24-08:00'
+  file: fourier_n1/n1.xml
+- commit: d9415a3076f921fdb9735d45d609a596df722468
+  date: '2026-11-02T13:47:03Z'
+  file: fourier_n1/n1.xml
+- commit: ac6b2b09983786f3036cab1000221017fa2193b4
+  date: '2026-05-18T15:33:00-07:00'
+  file: fourier_n1/n1.xml
+- commit: d2f75dbad932f4cd236152c2889f555d170f4796
+  date: '2025-06-17T17:58:16+01:00'
+  file: fourier_n1/n1.xml
+- commit: 56c2437f1549f50a84f83d15bf10f3c17b865869
+  date: '2025-05-10T09:19:58-07:00'
+  file: fourier_n1/n1.xml
+- commit: 9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762
+  date: '2025-05-04T23:15:32+08:00'
+  file: fourier_n1/n1.xml
+source_candidate:
+  commit: f29a87905bdcfc32fdac9c5342644630fd27156a
+  timestamp: '1746240483'
+  date: '2025-05-03T10:48:03+08:00'
+  subject: refine code for FourierN1
+  file: models/N1/urdf/N1_raw.urdf
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 164
+source_candidates:
+- commit: 11da5a77d366eaeba52d83cc2c92ea61a29a487f
+  timestamp: '1753878885'
+  date: '2025-07-30T20:34:45+08:00'
+  subject: refine content
+  file: models/N1/urdf/N1_raw.urdf
+  deleted: true
+  matches: false
+  note: Source file absent at this touching revision; no numeric value to compile
+- commit: f29a87905bdcfc32fdac9c5342644630fd27156a
+  timestamp: '1746240483'
+  date: '2025-05-03T10:48:03+08:00'
+  subject: refine code for FourierN1
+  file: models/N1/urdf/N1_raw.urdf
+  deleted: false
+  matches: true
+  mismatch_count: 0
+  comparable_quantities: 164
+evidence:
+- url: https://github.com/FFTAI/Wiki-GRx-Models
+  document: fourier_n1/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/FFTAI/wiki-grx-mjcf
+  document: fourier_n1/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - fourier_n1/n1.xml
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.7
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: Effort from supported scalar actuator envelopes; force from joint
+      caps or supported envelopes; velocity unavailable unless explicitly represented
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - models/N1/urdf/N1_raw.urdf
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo
+  S:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    source_dependencies:
+    - models/N1/urdf/N1_raw.urdf
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+    compiler_warnings: []
+    limit_semantics: URDF effort/velocity declarations are retained metadata, not
+      enforced by MuJoCo

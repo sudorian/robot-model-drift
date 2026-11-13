@@ -1,0 +1,111 @@
+model: arx_l5
+method: pinned
+confidence: high
+upstream_repo: https://github.com/ARXroboticsX/ARX_Model
+upstream_file: X5/X5A/urdf/X5A.urdf
+upstream_commit: af6fe43c873008a85bce6195c0f2160f1a1c14ce
+latest_upstream_commit: e58172bd0874ff8c940700dc87f64a9ce951718d
+menagerie_repo: https://github.com/google-deepmind/mujoco_menagerie
+menagerie_file: arx_l5/arx_l5.xml
+menagerie_commit: 370c43965323c0944b433b202aac5058b5f907a9
+menagerie_change:
+  commit: 46c6ec86cd03ceb023450b2003c762ee07f17281
+  timestamp: '1742446212'
+  date: '2025-03-19T21:50:12-07:00'
+  subject: add ARX L5 arm
+menagerie_commits_involved: []
+source_candidate:
+  commit: af6fe43c873008a85bce6195c0f2160f1a1c14ce
+  timestamp: '1733471386'
+  date: '2024-12-06T15:49:46+08:00'
+  subject: V1
+  matches: false
+  mismatch_count: 35
+  comparable_quantities: 53
+source_candidates:
+- commit: af6fe43c873008a85bce6195c0f2160f1a1c14ce
+  timestamp: '1733471386'
+  date: '2024-12-06T15:49:46+08:00'
+  subject: V1
+  matches: false
+  mismatch_count: 35
+  comparable_quantities: 53
+evidence:
+- url: https://github.com/ARXroboticsX/ARX_Model
+  document: arx_l5/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/ARXroboticsX/ARX_Model/tree/af6fe43c873008a85bce6195c0f2160f1a1c14ce/X5/X5A
+  document: arx_l5/README.md
+  commit: 370c43965323c0944b433b202aac5058b5f907a9
+  current: true
+- url: https://github.com/ARXroboticsX/ARX_Model/tree/master/X5/X5A/urdf
+  document: arx_l5/README.md
+  commit: 46c6ec86cd03ceb023450b2003c762ee07f17281
+  current: false
+reason: Source selected using the ordered amended provenance rules.
+compilation:
+  M:
+    geometry_stripped: false
+    missing_explicit_inertials:
+    - base_link
+    assets_loaded: 10
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+  H:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0
+  S:
+    geometry_stripped: true
+    missing_explicit_inertials: []
+    assets_loaded: 0
+    mesh_conversions: []
+    xacro_arguments: {}
+    registration:
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+      rotation:
+      - - 1.0
+        - 0.0
+        - 0.0
+      - - 0.0
+        - 1.0
+        - 0.0
+      - - 0.0
+        - 0.0
+        - 1.0

@@ -1,0 +1,26 @@
+# Entry points and construction arguments only. No physical values or expected
+# classifications are supplied here; all quantities still come from compiled sources.
+ufactory_lite6:
+  repo: https://github.com/xArm-Developer/xarm_ros2
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  arguments:
+    robot_type: lite
+    dof: '6'
+    add_gripper: 'false'
+  evidence: Menagerie describes the six-axis Lite 6 and provides a no-gripper variant; the manufacturer device wrapper declares robot_type, dof and add_gripper arguments.
+ufactory_xarm7:
+  repo: https://github.com/xArm-Developer/xarm_ros
+  file: xarm_description/urdf/xarm_device.urdf.xacro
+  arguments:
+    robot_type: xarm
+    dof: '7'
+    add_gripper: 'false'
+  evidence: Menagerie names xArm 7; the manufacturer device wrapper declares robot_type, dof and add_gripper arguments.
+shadow_hand:
+  repo: https://github.com/shadow-robot/sr_common
+  file: sr_description/robots/sr_hand.urdf.xacro
+  arguments:
+    side: right
+    hand_type: hand_e
+    hand_version: E3M5
+  evidence: The README links a component macro; the manufacturer's standalone hand wrapper supplies the complete right-hand E-series construction. Both Menagerie hand variants are self-checked; this recipe compares the right hand.

@@ -1,3 +1,4 @@
+# Manual only: start it from the Actions tab with "Run workflow".
 name: Robot model drift survey (manual)
 
 on:

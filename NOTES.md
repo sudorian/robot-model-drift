@@ -1,5 +1,7 @@
 # Work log
 
+This is the raw development log, written by the coding agent (GPT-6.1 Sol in Codex) while it built and ran the survey. It records each command and check in the order they ran, including failures and the identity and resource checks before each commit. It's kept for transparency. For what the tool does and what it found, start with the [README](README.md).
+
 ## 2026-11-13 — setup and acceptance gate
 
 - Scope: work stayed inside this repository; another job was running on this machine, so work was isolated from it. No GPU/MLX; at most two worker processes; heavy commands use `nice -n 15`.

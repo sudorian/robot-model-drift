@@ -6948,3 +6948,5897 @@ fatal: could not fetch 3723af04c15aea30234a540172f84fa6ca8b0c38 from promisor re
 - Moved the unpublished issue text outside the repository with unchanged contents and removed repository references to its file. The workflow now has only a manual dispatch trigger; scheduled execution remains disabled until tested. README describes the manual trigger. No network command was run.
 - Validation: **64 tests passed in 14.66 seconds**, including offline H1 acceptance. Parsed workflow triggers contain only `workflow_dispatch`; no repository reference to the external draft file remains. The moved file matches its previous committed bytes.
 - Preparing the single-commit amendment with unchanged message and author/committer identity. The final ZIP will be generated outside the repository from amended HEAD with `git archive`, then checked for draft, cache and Git-metadata exclusions. No push is performed.
+
+## 2026-11-14 — cold-cache coverage and CI status fixes
+
+- Initial Git/resource checks succeeded; project size is 3.0 GiB, including a 2.8 GiB warm cache, within the 15 GB budget. Identity remains Dorian with the public GitHub noreply address. Published artifacts and warm caches will be restored after six isolated cold-cache checks.
+- Initial offline probe for the abbreviated i2rt pin failed with Git exit 128: unknown revision. Investigating the full README revision and upstream availability before deciding its provenance.
+- Moved the warm cache aside and created an empty cache for independent source acquisition. Both temporary cache names are ignored. Published result/status baselines remain in the current commit.
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false clone --filter=blob:none --no-checkout https://github.com/google-deepmind/mujoco_menagerie.git .cache/menagerie` — retrieve source commit/tree history without model blobs. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. Cloning into '.cache/menagerie'...
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie fetch --no-tags --refetch --filter=blob:limit=100k origin HEAD` — retrieve omitted source/mesh blobs below 100k for CPU compilation. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/google-deepmind/mujoco_menagerie
+ * branch            HEAD       -> FETCH_HEAD
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false clone --filter=blob:none --no-checkout https://github.com/i2rt-robotics/i2rt.git .cache/i2rt-robotics__i2rt` — retrieve source commit/tree history without model blobs. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. Cloning into '.cache/i2rt-robotics__i2rt'...
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/i2rt-robotics__i2rt fetch --no-tags --refetch --filter=blob:limit=100k origin HEAD` — retrieve omitted source/mesh blobs below 100k for CPU compilation. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/i2rt-robotics/i2rt
+ * branch            HEAD       -> FETCH_HEAD
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2ec6edf37a4b624dd94e1edf18a57222924f0b89 from promisor remote
+
+- Offline Git read failed (exit 128): `('log', '--all', '--no-renames', '--raw', '--no-abbrev', '--format=%H', '--find-object=2ec6edf37a4b624dd94e1edf18a57222924f0b89')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch aedd87ad73b1179062db4658a46b884d07c40dda from promisor remote
+
+- Cold-cache diagnostic: exact rename traversal failed on an omitted blob as expected. A metadata search using --find-object also failed with Git exit 128; using raw diff-tree metadata instead, without pickaxe searches.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2ec6edf37a4b624dd94e1edf18a57222924f0b89 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2ec6edf37a4b624dd94e1edf18a57222924f0b89 147b9af8b95c50cc10f36e07659dca46612e0b1e 4eb296bec95a128de5dc3d52c3750db7b01bb956 745e8b6f73b87c67918fefde86557b5c3548ebaa 0ec1224df779136c1b5bfb53af1267f45e832f12 03a13fbea4ea17eb35c62ba01a3cd820433cf403 d597a051d6dfd2e9b71b2652cada1eb4fdac96f0 b065de193333a5cf1d7221404fb6d6af5eae7e24 736495bc495a17404eec1a3ae5190905f744775a 41dcd970115d22829c110e26548bd894f16ea082 d5f7aa0ebfb651f5542593360a6ee17250f78f9a 28cabf6f0aa8eca73c8136d6fbc509d4b8ff952b 1b397ba56712747f9252b3079ff81e38833918f4 c68592995919fa78ff07ffc848fc0699e9731b5c 2d180f05b010e5151797fd1e80c371fc8488239b afd1996e7a6ff1fc44a4c44c1af0de6ad1cefa7b ad2475d4f51d59cd6fd8f4975ea53f2ea6321dad eb2ea3c262493fdd9ebcede5a18728d88c60f8d0`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 18 objects requested, 4177261 stored object bytes, 1 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f9ad9da087272dd1916f7f3f872d5236f6a0c0fd from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f9ad9da087272dd1916f7f3f872d5236f6a0c0fd`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 19 objects requested, 4323622 stored object bytes, 2 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f29ff2628b6a8bf620b4f9fb7039df790749154d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f29ff2628b6a8bf620b4f9fb7039df790749154d`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 20 objects requested, 4637874 stored object bytes, 3 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2c3ab29ec2ebba230d78d6a708c880dfa44761fb from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2c3ab29ec2ebba230d78d6a708c880dfa44761fb`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 21 objects requested, 5780360 stored object bytes, 4 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 924bb0a9ccc6a507e5628b3a2b83c36f59d744d8 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `924bb0a9ccc6a507e5628b3a2b83c36f59d744d8`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 22 objects requested, 6480957 stored object bytes, 5 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a2a135543a76f5df78d3888206996f8fdea17fbd from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a2a135543a76f5df78d3888206996f8fdea17fbd`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 23 objects requested, 6528802 stored object bytes, 6 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 9fe240f25985e186851dc8debf66d11268d7ad42 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `9fe240f25985e186851dc8debf66d11268d7ad42`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 24 objects requested, 7159431 stored object bytes, 7 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch db3a82820429a5ab4c39d30f2415b412f75dc1ad from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `db3a82820429a5ab4c39d30f2415b412f75dc1ad`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 25 objects requested, 7206390 stored object bytes, 8 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 550716b85041a917e8b2cde6f2fadee9b7341804 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `550716b85041a917e8b2cde6f2fadee9b7341804`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 26 objects requested, 7245757 stored object bytes, 9 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 56c2bf45abd6d8ce6d5bfe6d732a98a04d3d4126 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `56c2bf45abd6d8ce6d5bfe6d732a98a04d3d4126`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 27 objects requested, 8246855 stored object bytes, 10 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 89d51e5cd3df49ed1041fcb4258e4e879f0b32e2 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `89d51e5cd3df49ed1041fcb4258e4e879f0b32e2`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 28 objects requested, 8300469 stored object bytes, 11 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f4490e198523fbd1b1adb25c822b3a87e9f8cde8 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f4490e198523fbd1b1adb25c822b3a87e9f8cde8`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 29 objects requested, 8796945 stored object bytes, 12 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6f22241063df81a5e97674d2c328584529ef7a81 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6f22241063df81a5e97674d2c328584529ef7a81`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 30 objects requested, 8848003 stored object bytes, 13 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d4a1b1413af1d8ca04fc59581b6fb6a20aefac07 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d4a1b1413af1d8ca04fc59581b6fb6a20aefac07`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 31 objects requested, 8897848 stored object bytes, 14 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 234a7c6288eedfcbb3fd3fba78dcbd3e6284a6ac from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `234a7c6288eedfcbb3fd3fba78dcbd3e6284a6ac`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 32 objects requested, 8946545 stored object bytes, 15 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b2d121bdf9f82e0798da4ee97c69426c0ac61130 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b2d121bdf9f82e0798da4ee97c69426c0ac61130`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 33 objects requested, 9023808 stored object bytes, 16 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 7e64cd778ee19102e61c18760019ec08bf5826cf from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `7e64cd778ee19102e61c18760019ec08bf5826cf`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 34 objects requested, 9093823 stored object bytes, 17 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a5c87b9b1f6f35a0d304520a64d722fce46399ee from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a5c87b9b1f6f35a0d304520a64d722fce46399ee`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 35 objects requested, 9145093 stored object bytes, 18 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 97ce428312cca564d967d40a179d62eebe6113a4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `97ce428312cca564d967d40a179d62eebe6113a4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 36 objects requested, 9199643 stored object bytes, 19 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch dd39250c92fc4b2c9a199f822d67d05f597e0691 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `dd39250c92fc4b2c9a199f822d67d05f597e0691`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 37 objects requested, 9277450 stored object bytes, 20 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0e58ac61f76b332db341814ad90d74a80a08a42d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0e58ac61f76b332db341814ad90d74a80a08a42d`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 38 objects requested, 9328353 stored object bytes, 21 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e883c37fefcce519944d4a80f07dfd1c9e021692 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e883c37fefcce519944d4a80f07dfd1c9e021692`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 39 objects requested, 9420047 stored object bytes, 22 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5ef8d71905df344ca70250abfbfa55a41e654745 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5ef8d71905df344ca70250abfbfa55a41e654745`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 40 objects requested, 9489634 stored object bytes, 23 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 8c5459d693f248a4225b1e42e80039d07cef3831 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `8c5459d693f248a4225b1e42e80039d07cef3831`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 41 objects requested, 9542963 stored object bytes, 24 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6077b622cd7a06473ce703221106f5c5e731c6cb from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6077b622cd7a06473ce703221106f5c5e731c6cb`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 42 objects requested, 9811597 stored object bytes, 25 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch fefe061fa3bbc98a09cb1236f232556fb0c13d44 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `fefe061fa3bbc98a09cb1236f232556fb0c13d44`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 43 objects requested, 9913503 stored object bytes, 26 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4adfc2d3621ff44dc83d042f0b375b8420c6eb8c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4adfc2d3621ff44dc83d042f0b375b8420c6eb8c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 44 objects requested, 10001796 stored object bytes, 27 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f5a73534e71a4ac9a518802d8fe3b582e1281623 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f5a73534e71a4ac9a518802d8fe3b582e1281623`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 45 objects requested, 10040291 stored object bytes, 28 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e5622b5e62b63de72379f600f288a50333a7e55d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e5622b5e62b63de72379f600f288a50333a7e55d`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 46 objects requested, 10093771 stored object bytes, 29 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b8b354583edf3de432fe3511b73cc03c734fd560 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b8b354583edf3de432fe3511b73cc03c734fd560`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 47 objects requested, 10133549 stored object bytes, 30 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6b6f5ee6ea996a33b198ce3e0580b50d5a30696f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6b6f5ee6ea996a33b198ce3e0580b50d5a30696f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 48 objects requested, 10554986 stored object bytes, 31 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 7fde8264152a29a2929cb53b5d38e7a3f12a759c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `7fde8264152a29a2929cb53b5d38e7a3f12a759c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 49 objects requested, 10604874 stored object bytes, 32 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch bea66bcdd237eca0971238ac4bb85ab6bdcc2510 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `bea66bcdd237eca0971238ac4bb85ab6bdcc2510`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 50 objects requested, 10721717 stored object bytes, 33 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 9a50f9c7171e911ce4072fead77ea9d225698dc5 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `9a50f9c7171e911ce4072fead77ea9d225698dc5`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 51 objects requested, 10750210 stored object bytes, 34 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ff6895ae234a94c80e6b92bae235536053b63a91 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ff6895ae234a94c80e6b92bae235536053b63a91`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 52 objects requested, 10857170 stored object bytes, 35 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b4e07e09eaaaedd9f4d2d46d15a48cc707e97e44 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b4e07e09eaaaedd9f4d2d46d15a48cc707e97e44`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 53 objects requested, 11013837 stored object bytes, 36 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e6c71f1dd5e873d089e4e8e56821cedacf39888d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e6c71f1dd5e873d089e4e8e56821cedacf39888d`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 54 objects requested, 11053768 stored object bytes, 37 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 40e0d81827fb1f9ff69424d0328d355cf2c803a7 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `40e0d81827fb1f9ff69424d0328d355cf2c803a7`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 55 objects requested, 11288329 stored object bytes, 38 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1270421db3b4cb27dfc09dd8e27ac02fc4d9f738 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1270421db3b4cb27dfc09dd8e27ac02fc4d9f738`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 56 objects requested, 12654975 stored object bytes, 39 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch bb9e5c8bcd178c12fc3c627ea0e8bc0b2aaacc6c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `bb9e5c8bcd178c12fc3c627ea0e8bc0b2aaacc6c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 57 objects requested, 12698531 stored object bytes, 40 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 88dc821034993a4b3806464b54d57e67212ac13d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `88dc821034993a4b3806464b54d57e67212ac13d`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 58 objects requested, 12731478 stored object bytes, 41 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b3fd9672bf3c5d2e68eab80d8a994a85ed2af775 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b3fd9672bf3c5d2e68eab80d8a994a85ed2af775`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 59 objects requested, 12875356 stored object bytes, 42 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch bc12f3761ecdb888f9638ac32dc98e7038dae6ba from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `bc12f3761ecdb888f9638ac32dc98e7038dae6ba`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 60 objects requested, 12949346 stored object bytes, 43 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d1f54f21c7a9b74b882f9b756d44b7b1a0b798b9 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d1f54f21c7a9b74b882f9b756d44b7b1a0b798b9`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 61 objects requested, 12986642 stored object bytes, 44 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c5704d9a2afb0e5ea150f66d8f5b6c31af52c4f3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c5704d9a2afb0e5ea150f66d8f5b6c31af52c4f3`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 62 objects requested, 13028121 stored object bytes, 45 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 98830d3f7300006cefc97b8ed5ad653453a440fa from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `98830d3f7300006cefc97b8ed5ad653453a440fa`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 63 objects requested, 13063737 stored object bytes, 46 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f616aac0eb9ac0c0dddd1315063aa3cf985cba48 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f616aac0eb9ac0c0dddd1315063aa3cf985cba48`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 64 objects requested, 13487081 stored object bytes, 47 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c6e49adeec824ee5aafd7b5681903e8af0ac00ba from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c6e49adeec824ee5aafd7b5681903e8af0ac00ba`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 65 objects requested, 13523999 stored object bytes, 48 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5a875e909cae9b7ab0d1eeec9537626f372301c1 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5a875e909cae9b7ab0d1eeec9537626f372301c1`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 66 objects requested, 13720975 stored object bytes, 49 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch fcfebf9df9c77558f3f5ca8ffae029c942e4edcf from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `fcfebf9df9c77558f3f5ca8ffae029c942e4edcf`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 67 objects requested, 13940609 stored object bytes, 50 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 8170d2a44438badeb895f12a77d5e440851dd962 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `8170d2a44438badeb895f12a77d5e440851dd962`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 68 objects requested, 16529713 stored object bytes, 51 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6bdf5326da6fdad6a03cb7bf03aff7c48ae353fc from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6bdf5326da6fdad6a03cb7bf03aff7c48ae353fc`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 69 objects requested, 18144605 stored object bytes, 52 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ce6daa94c3ef706c8a10da7754b3067f3906dec3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ce6daa94c3ef706c8a10da7754b3067f3906dec3`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 70 objects requested, 20094994 stored object bytes, 53 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c4d67c0fa8b36c2554b28aa83235277d516bd745 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c4d67c0fa8b36c2554b28aa83235277d516bd745`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 71 objects requested, 20246098 stored object bytes, 54 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 23806d779bcb59dfa3642914fe348c194a68dc44 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `23806d779bcb59dfa3642914fe348c194a68dc44`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 72 objects requested, 20315773 stored object bytes, 55 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 223b0f17810900c76ea9c6661f154a755d0da212 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `223b0f17810900c76ea9c6661f154a755d0da212`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 73 objects requested, 20775018 stored object bytes, 56 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0fec6998a247154f014eb5ba80cabe1a3fceb1b8 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0fec6998a247154f014eb5ba80cabe1a3fceb1b8`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 74 objects requested, 21510792 stored object bytes, 57 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 3745c09da6cd2628aaa324415f971bbb4942bdca from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `3745c09da6cd2628aaa324415f971bbb4942bdca`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 75 objects requested, 21843318 stored object bytes, 58 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 111c586e18fb0f44cee7e4593d24c71382a6e9b4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `111c586e18fb0f44cee7e4593d24c71382a6e9b4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 76 objects requested, 21872162 stored object bytes, 59 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 043db9caeaa59dcb0a6bf570956b0904eb60ba63 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `043db9caeaa59dcb0a6bf570956b0904eb60ba63`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 77 objects requested, 21989259 stored object bytes, 60 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 08b99ca6c5976f40bf3501914028184042132311 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `08b99ca6c5976f40bf3501914028184042132311`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 78 objects requested, 22141068 stored object bytes, 61 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 76e4995043253f4c67b8a10b7b8042a0f46d6063 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `76e4995043253f4c67b8a10b7b8042a0f46d6063`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 79 objects requested, 22421881 stored object bytes, 62 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4e59144e96f163f0ae7814152b5a1fca7a6f2e05 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4e59144e96f163f0ae7814152b5a1fca7a6f2e05`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 80 objects requested, 22552023 stored object bytes, 63 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1f8efef2a91c06175a0c35bc03eae5c16d3fa6a4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1f8efef2a91c06175a0c35bc03eae5c16d3fa6a4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 81 objects requested, 22984175 stored object bytes, 64 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 77557ec632a21daf3d77ca317d8755c9994739c1 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `77557ec632a21daf3d77ca317d8755c9994739c1`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 82 objects requested, 23938024 stored object bytes, 65 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 842f9e16ae60cae48eed82e9a15c852193447400 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `842f9e16ae60cae48eed82e9a15c852193447400`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 83 objects requested, 24527638 stored object bytes, 66 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c3ec9e770312563a654269334ed9f0815ee8867e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c3ec9e770312563a654269334ed9f0815ee8867e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 84 objects requested, 25145889 stored object bytes, 67 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 9c1d93e48cb9baed925595920f19fc0a6182fd81 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `9c1d93e48cb9baed925595920f19fc0a6182fd81`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 85 objects requested, 25903913 stored object bytes, 68 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5724703ce4765cb516bb99a99518518a2dd38b62 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5724703ce4765cb516bb99a99518518a2dd38b62`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 86 objects requested, 28469856 stored object bytes, 69 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b82ad113331be15f1fa5569b2d113ed06c8facec from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b82ad113331be15f1fa5569b2d113ed06c8facec`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 87 objects requested, 28703562 stored object bytes, 70 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch dcaf6656a68898ba35ec9920b7e774dfa9cbdb55 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `dcaf6656a68898ba35ec9920b7e774dfa9cbdb55`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 88 objects requested, 28944058 stored object bytes, 71 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ae77b604718a8c17a8abee1e026c29ea7423dc3e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ae77b604718a8c17a8abee1e026c29ea7423dc3e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 89 objects requested, 30700562 stored object bytes, 72 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 3a59353b59ff7aad7f6e7e94028fe7cc5ff54f39 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `3a59353b59ff7aad7f6e7e94028fe7cc5ff54f39`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 90 objects requested, 31475111 stored object bytes, 73 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1c2ba81a461dafb14fb540f01a5eb4cfa872abb4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1c2ba81a461dafb14fb540f01a5eb4cfa872abb4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 91 objects requested, 31818237 stored object bytes, 74 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2a26f4e099811df59d9168cd4dd3617b5a5bbcdc from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2a26f4e099811df59d9168cd4dd3617b5a5bbcdc`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 92 objects requested, 32047071 stored object bytes, 75 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0c56511a1efc7363a3eb70537adc4c0d940d53eb from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0c56511a1efc7363a3eb70537adc4c0d940d53eb`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 93 objects requested, 32147834 stored object bytes, 76 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2a24b89e4a9e376a9106d335825878255dd2303a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2a24b89e4a9e376a9106d335825878255dd2303a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 94 objects requested, 32176736 stored object bytes, 77 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 69c3fa3fa75badc7128577c8b379e3604e5387f4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `69c3fa3fa75badc7128577c8b379e3604e5387f4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 95 objects requested, 32248930 stored object bytes, 78 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch eaca0818b6bf9f457b7e07ae6d13c3e2d0d6f649 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `eaca0818b6bf9f457b7e07ae6d13c3e2d0d6f649`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 96 objects requested, 32277927 stored object bytes, 79 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 9677ad62c304b9f124345c57261b672c2ce09903 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `9677ad62c304b9f124345c57261b672c2ce09903`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 97 objects requested, 32459129 stored object bytes, 80 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 84b4a855f1092b93f0636c3da3501fd92552f94f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `84b4a855f1092b93f0636c3da3501fd92552f94f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 98 objects requested, 32642550 stored object bytes, 81 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0804405a23d853f7f3239cec536b304a42d05919 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0804405a23d853f7f3239cec536b304a42d05919`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 99 objects requested, 32791839 stored object bytes, 82 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 7236f3a79719aa1579e470d41c310edb22b3819a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `7236f3a79719aa1579e470d41c310edb22b3819a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 100 objects requested, 33049986 stored object bytes, 83 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 3199185ace7661e9e9386106806e732d910e4fb8 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `3199185ace7661e9e9386106806e732d910e4fb8`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 101 objects requested, 33215997 stored object bytes, 84 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c8248980de5629a8d282d880012ec9e6a4363e1f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c8248980de5629a8d282d880012ec9e6a4363e1f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 102 objects requested, 33731591 stored object bytes, 85 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c485bc1ac09832205ee74a07121d8efc04df63dd from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c485bc1ac09832205ee74a07121d8efc04df63dd`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 103 objects requested, 33912481 stored object bytes, 86 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4743d91076827922ed879316cd621631658de35f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4743d91076827922ed879316cd621631658de35f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 104 objects requested, 34095610 stored object bytes, 87 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a1f0e6bca99812e090d2522123213eecd516f5be from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a1f0e6bca99812e090d2522123213eecd516f5be`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 105 objects requested, 34244907 stored object bytes, 88 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 663578bf37be72f63ece9d6ff4b9f31f80d6d4fc from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `663578bf37be72f63ece9d6ff4b9f31f80d6d4fc`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 106 objects requested, 34502713 stored object bytes, 89 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch bb7a4ebd4eab848f2c5bce25f97ab59edcf908b9 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `bb7a4ebd4eab848f2c5bce25f97ab59edcf908b9`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 107 objects requested, 34668579 stored object bytes, 90 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 3d1dd95a55e00b98e6ad5dff81062043e9947ee2 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `3d1dd95a55e00b98e6ad5dff81062043e9947ee2`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 108 objects requested, 35183204 stored object bytes, 91 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 80b414095c33062b3b5a0d33d2abf0f699aafc51 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `80b414095c33062b3b5a0d33d2abf0f699aafc51`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 109 objects requested, 35290022 stored object bytes, 92 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f25fb5e7763db8b0a5a643b6473968ca40e5d5cb from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f25fb5e7763db8b0a5a643b6473968ca40e5d5cb`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 110 objects requested, 35398231 stored object bytes, 93 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 16b83dadad4113c1f1b66e1896a453f30ec1dfc5 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `16b83dadad4113c1f1b66e1896a453f30ec1dfc5`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 111 objects requested, 35475134 stored object bytes, 94 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch dbef286bffa62b6749f84fd9a982d3d2cdb83625 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `dbef286bffa62b6749f84fd9a982d3d2cdb83625`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 112 objects requested, 35581819 stored object bytes, 95 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 194195dde8c0447d5dfee6daf98bad62e2c967ce from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `194195dde8c0447d5dfee6daf98bad62e2c967ce`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 113 objects requested, 35690041 stored object bytes, 96 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f56b828e85403c6d71a36716d649f3bf1ce84d6b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f56b828e85403c6d71a36716d649f3bf1ce84d6b`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 114 objects requested, 35766652 stored object bytes, 97 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4c865f5d738222159a754ec5430eccde9e1ba018 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4c865f5d738222159a754ec5430eccde9e1ba018`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 115 objects requested, 36008756 stored object bytes, 98 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a93df1cdd97567391598b3723fafad0283979599 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a93df1cdd97567391598b3723fafad0283979599`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 116 objects requested, 36500072 stored object bytes, 99 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 981d48f1c21428508d02d45af50c540d02517707 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `981d48f1c21428508d02d45af50c540d02517707`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 117 objects requested, 36596710 stored object bytes, 100 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 35f3af198325c01ac65fb76d7b7961c4bae2cc43 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `35f3af198325c01ac65fb76d7b7961c4bae2cc43`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 118 objects requested, 36868289 stored object bytes, 101 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ff6d70fc8dc11e71a32a9b178c017c5e0fc56d12 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ff6d70fc8dc11e71a32a9b178c017c5e0fc56d12`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 119 objects requested, 37015089 stored object bytes, 102 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 3a48e4d41e84e4043a4421aef3b83ebb09385807 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `3a48e4d41e84e4043a4421aef3b83ebb09385807`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 120 objects requested, 37257868 stored object bytes, 103 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4aff50b5d448f2989661643bda73a6ab3331ace9 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4aff50b5d448f2989661643bda73a6ab3331ace9`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 121 objects requested, 37749299 stored object bytes, 104 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5a4f5a34801311c95f18b011f9d12a1dc9d71895 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5a4f5a34801311c95f18b011f9d12a1dc9d71895`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 122 objects requested, 37846194 stored object bytes, 105 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 427ab9e46f6ee59907e65abad9568673b1395d90 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `427ab9e46f6ee59907e65abad9568673b1395d90`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 123 objects requested, 38118138 stored object bytes, 106 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 9887b9953fd5f336043476e275fa115f73674bdc from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `9887b9953fd5f336043476e275fa115f73674bdc`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 124 objects requested, 38265235 stored object bytes, 107 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1599670e44c3a9d9a00e50557f03571c6907682c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1599670e44c3a9d9a00e50557f03571c6907682c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 125 objects requested, 38345256 stored object bytes, 108 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4a8ca3c2d29bf73d0c8700cc62877eed36804b56 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4a8ca3c2d29bf73d0c8700cc62877eed36804b56`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 126 objects requested, 40733616 stored object bytes, 109 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2d19c7e215db68d13bca88c33c403137253ed108 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2d19c7e215db68d13bca88c33c403137253ed108`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 127 objects requested, 41325010 stored object bytes, 110 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 58df00ef168dd2356a25f28108996339d7691039 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `58df00ef168dd2356a25f28108996339d7691039`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 128 objects requested, 41379927 stored object bytes, 111 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d19935cabccfd27ffeae05a023a4f24334bc081e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d19935cabccfd27ffeae05a023a4f24334bc081e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 129 objects requested, 41594538 stored object bytes, 112 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 23c94750886f499d5b3f13ed1dab6c69cde7eda6 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `23c94750886f499d5b3f13ed1dab6c69cde7eda6`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 130 objects requested, 41811264 stored object bytes, 113 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5c75b1a581c58989eab22a65e9614cf684f9f172 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5c75b1a581c58989eab22a65e9614cf684f9f172`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 131 objects requested, 42509461 stored object bytes, 114 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 210040a49bb2113f370225cfaaac2eb04ec2450b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `210040a49bb2113f370225cfaaac2eb04ec2450b`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 132 objects requested, 43167921 stored object bytes, 115 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d1d6c05caa146ce780826b0ccee4afe0c21dbd1a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d1d6c05caa146ce780826b0ccee4afe0c21dbd1a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 133 objects requested, 43715890 stored object bytes, 116 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1d456f16267cc87342f0dbbe2f9cb5aa539f946d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1d456f16267cc87342f0dbbe2f9cb5aa539f946d`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 134 objects requested, 43837484 stored object bytes, 117 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d4075df56e7481c59f26f83f90179b575f111d89 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d4075df56e7481c59f26f83f90179b575f111d89`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 135 objects requested, 45225416 stored object bytes, 118 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch fcc8c8e025cedb96dc290ba449b6793e370ab17e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `fcc8c8e025cedb96dc290ba449b6793e370ab17e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 136 objects requested, 45844646 stored object bytes, 119 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4a3a64922f4e9df2d408b9e2945fab696181e1c9 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4a3a64922f4e9df2d408b9e2945fab696181e1c9`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 137 objects requested, 46309482 stored object bytes, 120 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6052cc3213835251a96c8113304f98389ca09a3c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6052cc3213835251a96c8113304f98389ca09a3c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 138 objects requested, 46504685 stored object bytes, 121 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch bca9cd9226cd4254ee825758b1b61c34877a26c6 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `bca9cd9226cd4254ee825758b1b61c34877a26c6`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 139 objects requested, 47411644 stored object bytes, 122 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e5846326dc656ce464b5421c3c8f0ed001222d0c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e5846326dc656ce464b5421c3c8f0ed001222d0c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 140 objects requested, 48069756 stored object bytes, 123 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a23c56071824c8f653e193c04a16da4e2e63ee69 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a23c56071824c8f653e193c04a16da4e2e63ee69`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 141 objects requested, 49161349 stored object bytes, 124 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 7cd43f0980e6689ed4669e51bc6156c9232c5bc9 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `7cd43f0980e6689ed4669e51bc6156c9232c5bc9`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 142 objects requested, 49340459 stored object bytes, 125 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 60bdf2f282f0389b8116532b347eef5884464cc0 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `60bdf2f282f0389b8116532b347eef5884464cc0`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 143 objects requested, 49382551 stored object bytes, 126 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a9ff8688b6e37d8036d3cdf14f86db31c40ce167 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a9ff8688b6e37d8036d3cdf14f86db31c40ce167`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 144 objects requested, 49965891 stored object bytes, 127 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 48b16538f7caf980cc11142a00fdf1c370632b37 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `48b16538f7caf980cc11142a00fdf1c370632b37`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 145 objects requested, 50007999 stored object bytes, 128 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6af50ec023f9ee463af4e22e9004265c14003fb2 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6af50ec023f9ee463af4e22e9004265c14003fb2`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 146 objects requested, 50056811 stored object bytes, 129 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 801f353215eb38c36893c33bae2ce0c9c0e7422b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `801f353215eb38c36893c33bae2ce0c9c0e7422b`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 147 objects requested, 50948502 stored object bytes, 130 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 59fbee11e6b4dcdcf1241504539b7d4ddacbf598 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `59fbee11e6b4dcdcf1241504539b7d4ddacbf598`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 148 objects requested, 51155311 stored object bytes, 131 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 91cf7e9a7858e9b653ded41778a2d688f000dc53 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `91cf7e9a7858e9b653ded41778a2d688f000dc53`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 149 objects requested, 51764557 stored object bytes, 132 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0294698da02b29f0dbc994598d7eecc95fee6524 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0294698da02b29f0dbc994598d7eecc95fee6524`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 150 objects requested, 52226969 stored object bytes, 133 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b6aee4d1494a2cbc6e40072783a614bc33258870 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b6aee4d1494a2cbc6e40072783a614bc33258870`
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 151 objects requested, 52226969 stored object bytes, 134 batches; caps 4096 objects / 536870912 bytes.
+- Initial bounded-history probe exposed additional rename blobs outside the source path’s direct change commits. Its metadata candidate list exhausted into singleton fetches, so the diagnostic was interrupted before the i2rt pin probe. Expanding the batch index to missing blob versions across repository history; no diagnostic source values are treated as survey results.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b6aee4d1494a2cbc6e40072783a614bc33258870 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b6aee4d1494a2cbc6e40072783a614bc33258870`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1 objects requested, 408316 stored object bytes, 1 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 8b607f05f0931b9c010cd13076122398b36c3604 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `8b607f05f0931b9c010cd13076122398b36c3604`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 2 objects requested, 825066 stored object bytes, 2 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 88954044ab5ad535aba2e4f4175706876fc2bd9e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `88954044ab5ad535aba2e4f4175706876fc2bd9e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 3 objects requested, 1091779 stored object bytes, 3 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 8527248258f0fe9f26fb2365cb90234e0cc5fad2 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `8527248258f0fe9f26fb2365cb90234e0cc5fad2`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 4 objects requested, 1362828 stored object bytes, 4 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ec1e3f0e1e1c431b25d429dcd62da2dc4ecbab18 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ec1e3f0e1e1c431b25d429dcd62da2dc4ecbab18`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 5 objects requested, 3059098 stored object bytes, 5 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d5e8dff8ad794fa04db501850ad66c8c3d37f6d1 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d5e8dff8ad794fa04db501850ad66c8c3d37f6d1`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 6 objects requested, 3957059 stored object bytes, 6 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 3dccacc6c839c272779c80d533acf72de8ea2a7a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `3dccacc6c839c272779c80d533acf72de8ea2a7a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 7 objects requested, 5221825 stored object bytes, 7 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5747e00aa484510b118a321369a578469f05b574 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5747e00aa484510b118a321369a578469f05b574`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 8 objects requested, 5363786 stored object bytes, 8 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e816ee9267670ed8064882284817b56e1e25523f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e816ee9267670ed8064882284817b56e1e25523f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 9 objects requested, 5688326 stored object bytes, 9 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1333b4fcab83e736d944ca6d9f0709c1c6704e8f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1333b4fcab83e736d944ca6d9f0709c1c6704e8f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 10 objects requested, 6266424 stored object bytes, 10 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b58ece6be61bc3e43442a59fd1499602aa371581 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b58ece6be61bc3e43442a59fd1499602aa371581`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 11 objects requested, 7163838 stored object bytes, 11 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch fe9c2247fd8e640ecfef81912356ffffb23f1212 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `fe9c2247fd8e640ecfef81912356ffffb23f1212`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 12 objects requested, 7400342 stored object bytes, 12 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 43e46eb2ae87973735bc57f89bf1e00484e020f1 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `43e46eb2ae87973735bc57f89bf1e00484e020f1`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 13 objects requested, 8528418 stored object bytes, 13 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ee4f3366750a17dd29b780cb8f25079f3622da58 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ee4f3366750a17dd29b780cb8f25079f3622da58`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 14 objects requested, 9789086 stored object bytes, 14 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 93db805089551f5677bd2d3e8b6a3d4c64e3da49 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `93db805089551f5677bd2d3e8b6a3d4c64e3da49`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 15 objects requested, 10416875 stored object bytes, 15 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0c86e92aa91df609cde4cccc65b8faa4717ca225 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0c86e92aa91df609cde4cccc65b8faa4717ca225`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 16 objects requested, 10514082 stored object bytes, 16 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 16bfbf2f51fa4262d634ef19be4a2198622caa9a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `16bfbf2f51fa4262d634ef19be4a2198622caa9a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 17 objects requested, 11392828 stored object bytes, 17 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f5f0e8f9f68f7010edee2b9166f94d4ad15b3c2c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f5f0e8f9f68f7010edee2b9166f94d4ad15b3c2c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 18 objects requested, 12668543 stored object bytes, 18 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 7142b5b496eff008ef6bdcb17d28ef8086db0e5c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `7142b5b496eff008ef6bdcb17d28ef8086db0e5c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 19 objects requested, 13375120 stored object bytes, 19 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f8bed8548ba0fa1ae61ae0d1abb763ca5e654d81 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f8bed8548ba0fa1ae61ae0d1abb763ca5e654d81`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 20 objects requested, 14518393 stored object bytes, 20 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6ad622a0bb395225438c802c06c077e984fad09b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6ad622a0bb395225438c802c06c077e984fad09b`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 21 objects requested, 14671703 stored object bytes, 21 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ec46e3b0f2749e40c41850b149e83f1463ea2bb4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ec46e3b0f2749e40c41850b149e83f1463ea2bb4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 22 objects requested, 15652429 stored object bytes, 22 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c737f3883169ff841f81f909c9482bef600cb68a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c737f3883169ff841f81f909c9482bef600cb68a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 23 objects requested, 17119324 stored object bytes, 23 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 7871a027f6e91e92475efeea63622423d6d744aa from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `7871a027f6e91e92475efeea63622423d6d744aa`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 24 objects requested, 18658184 stored object bytes, 24 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5242d2f5f60c59829c6bd02f7c27befbd9ae3713 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5242d2f5f60c59829c6bd02f7c27befbd9ae3713`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 25 objects requested, 18971543 stored object bytes, 25 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 670f846bbabc8b91239d01027e950c7966b35ecf from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `670f846bbabc8b91239d01027e950c7966b35ecf`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 26 objects requested, 19499362 stored object bytes, 26 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 023781bd1f54ccc0fc4fd5d44e2d5216d51bf2db from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `023781bd1f54ccc0fc4fd5d44e2d5216d51bf2db`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 27 objects requested, 20399037 stored object bytes, 27 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 35102bca84b0de28672d3009dabecd4c0a466ec8 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `35102bca84b0de28672d3009dabecd4c0a466ec8`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 28 objects requested, 20635851 stored object bytes, 28 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a111086efc339e0d8d4a49f68a709b0acb9f7926 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a111086efc339e0d8d4a49f68a709b0acb9f7926`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 29 objects requested, 21583357 stored object bytes, 29 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 60cef4ff903c91e83e922f8ab6fd25addbfbab67 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `60cef4ff903c91e83e922f8ab6fd25addbfbab67`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 30 objects requested, 22845445 stored object bytes, 30 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 7c8c44fe00310c8f5a150beb54efb529ab3e45d5 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `7c8c44fe00310c8f5a150beb54efb529ab3e45d5`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 31 objects requested, 23466301 stored object bytes, 31 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 04cd7eff9970f07252f7151cb00e2799af9e8654 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `04cd7eff9970f07252f7151cb00e2799af9e8654`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 32 objects requested, 23567368 stored object bytes, 32 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c44d361e2b404f991786af50d72af99032a9d56e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c44d361e2b404f991786af50d72af99032a9d56e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 33 objects requested, 24445152 stored object bytes, 33 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1fc8eaee6f651d8198d1da8db1d89e9715aed18a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1fc8eaee6f651d8198d1da8db1d89e9715aed18a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 34 objects requested, 25623237 stored object bytes, 34 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 20cf63252a456340a7dc79f66e04f41a6acce2b6 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `20cf63252a456340a7dc79f66e04f41a6acce2b6`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 35 objects requested, 26293224 stored object bytes, 35 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ea096a07abc86cf88165bb9d7b13572c7e20f906 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ea096a07abc86cf88165bb9d7b13572c7e20f906`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 36 objects requested, 27410374 stored object bytes, 36 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c92beda1b8384eb703cf150e4a8eb728a6cc2dfe from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c92beda1b8384eb703cf150e4a8eb728a6cc2dfe`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 37 objects requested, 27550080 stored object bytes, 37 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c6c99a7825bd847a9148d112fb547b3fac541b5b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c6c99a7825bd847a9148d112fb547b3fac541b5b`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 38 objects requested, 30722820 stored object bytes, 38 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2564e2d9635332ebd9e7eca24d5cc8cf67d416d4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2564e2d9635332ebd9e7eca24d5cc8cf67d416d4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 39 objects requested, 30962941 stored object bytes, 39 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 71f910e7ca6ac1f192e3f91d4cbe888f445126a0 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `71f910e7ca6ac1f192e3f91d4cbe888f445126a0`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 40 objects requested, 31631074 stored object bytes, 40 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ae6d020c53e480b0b8763e76b132d26924b8b579 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ae6d020c53e480b0b8763e76b132d26924b8b579 ef7053d4717680334c8a8283d96f5a8eab9b016e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 42 objects requested, 33533962 stored object bytes, 41 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 11f9d915830e7ed774659360ba3d1bfca5a5bb92 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `11f9d915830e7ed774659360ba3d1bfca5a5bb92 e82215d6d3860979a785bf58cc4d1f0dd9f5fa3d`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 44 objects requested, 33763779 stored object bytes, 42 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2c4d1e97e0150fbd781830a47e791f4df2ef473e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2c4d1e97e0150fbd781830a47e791f4df2ef473e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 45 objects requested, 33985140 stored object bytes, 43 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch edb0003732b3692aa2393d54c451248a9954886b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `edb0003732b3692aa2393d54c451248a9954886b e57a8fb3f8e3d9e34ca55327ff60efb762f39247`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 47 objects requested, 34095633 stored object bytes, 44 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 234ab3505dbca23eb46a1269ee265b2094b4b688 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `234ab3505dbca23eb46a1269ee265b2094b4b688 2c4b4a695e4f9aeea5459a7adcdcf9bdc540cea2`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 49 objects requested, 34636306 stored object bytes, 45 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 9a971ae0ddaaca8c8c6cad3bfc731f79d2a6c09f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `9a971ae0ddaaca8c8c6cad3bfc731f79d2a6c09f 89b6563ed8a3381fc37f77b526f5db9e000a5d88`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 51 objects requested, 35254829 stored object bytes, 46 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 123d480326a808e55b41945124eec79133a7f9f6 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `123d480326a808e55b41945124eec79133a7f9f6 2d0804fb622a07206866761f887e76c7240cc2fc`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 53 objects requested, 35378063 stored object bytes, 47 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 500771b948442833758a013f25bc5e8360fb1464 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `500771b948442833758a013f25bc5e8360fb1464 67c98d0cccf476a51062f9ba7df4a6d02f049c61`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 55 objects requested, 36071209 stored object bytes, 48 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 92d37234d840a6e9e44d68e1484b950f8c5ead96 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `92d37234d840a6e9e44d68e1484b950f8c5ead96 9ee99176cafbdc6cf504d4ab9813d47fba01beff`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 57 objects requested, 36669761 stored object bytes, 49 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 15ddff1a765273ff7af2d33bcf937660e3ce4f66 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `15ddff1a765273ff7af2d33bcf937660e3ce4f66 18f2144547b68b1152cdc4497e6cce23c032f643`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 59 objects requested, 36752380 stored object bytes, 50 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0f07a90aade5abeb0d2f2cf8a2f830dcbf1b85c0 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0f07a90aade5abeb0d2f2cf8a2f830dcbf1b85c0 f474b68cb88b9a9f94cabfa62823c1e0835aef69`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 61 objects requested, 36837003 stored object bytes, 51 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1b486498c37424ad926487477e7d3f7def56d86b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1b486498c37424ad926487477e7d3f7def56d86b e701c021cdc2b1031962f0e28a36c060e47c8d29`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 63 objects requested, 37045674 stored object bytes, 52 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0095d91f07717fc055bf19642b81450d58cac7d3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0095d91f07717fc055bf19642b81450d58cac7d3 e1854a90d065b7d72343ad2cb146700dac385ef8`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 65 objects requested, 37250098 stored object bytes, 53 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch cf7605fffd533e79dff7cbc5444444fb903a18ff from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `cf7605fffd533e79dff7cbc5444444fb903a18ff`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 66 objects requested, 37608146 stored object bytes, 54 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 24a3152a1a987faa345807d54b62b63213acbb17 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `24a3152a1a987faa345807d54b62b63213acbb17`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 67 objects requested, 37812806 stored object bytes, 55 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ccb79fd3a95e1053aa5ebb13665b323d4c4df205 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ccb79fd3a95e1053aa5ebb13665b323d4c4df205`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 68 objects requested, 38518062 stored object bytes, 56 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2c3d93e1442328e05d3d4c7b9d035b08e1d343e9 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2c3d93e1442328e05d3d4c7b9d035b08e1d343e9`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 69 objects requested, 39590469 stored object bytes, 57 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5dbe5509e0d4df4501c101e3fcdf653bacc11b5d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5dbe5509e0d4df4501c101e3fcdf653bacc11b5d`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 70 objects requested, 40409824 stored object bytes, 58 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2133d804634a9b997a633f3043fa53087b47a270 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2133d804634a9b997a633f3043fa53087b47a270`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 71 objects requested, 40538779 stored object bytes, 59 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 404d2b9c72c88b45d5cb5b22b9c6ae4c2706ff47 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `404d2b9c72c88b45d5cb5b22b9c6ae4c2706ff47`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 72 objects requested, 40897687 stored object bytes, 60 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0ee76be2bc8c2b8340a00091b3eb9ac3c91fe8a3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0ee76be2bc8c2b8340a00091b3eb9ac3c91fe8a3`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 73 objects requested, 41101997 stored object bytes, 61 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b65d7fb37be73452779af2e8c22bc1b2ed48135a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b65d7fb37be73452779af2e8c22bc1b2ed48135a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 74 objects requested, 41798365 stored object bytes, 62 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5b13ce3f3cebda040c4b15800617b57308a98fcf from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5b13ce3f3cebda040c4b15800617b57308a98fcf`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 75 objects requested, 42861399 stored object bytes, 63 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c0103a1deefc67baff78a4dac8a49a79acc7dada from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c0103a1deefc67baff78a4dac8a49a79acc7dada`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 76 objects requested, 43679588 stored object bytes, 64 batches; caps 4096 objects / 536870912 bytes.
+- Targeted regression run: 19 passed and the live file-size-limit test expected a nonzero Python exit, but buffered close ignored the write error. The file remained capped at 4,096 bytes. A direct flush probe raised File too large at the same limit; updating the test to flush explicitly. The Git object cap/fallback tests passed.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4c498d24a951e8c9647bddae7b874b925d016e71 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4c498d24a951e8c9647bddae7b874b925d016e71`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 77 objects requested, 43808316 stored object bytes, 65 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 98f4eda82bd06a4bdc59cf9d02a354a13155dec5 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `98f4eda82bd06a4bdc59cf9d02a354a13155dec5`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 78 objects requested, 45170784 stored object bytes, 66 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 247c03ca24bd41d1542c82dbaaf315d86f6cc38b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `247c03ca24bd41d1542c82dbaaf315d86f6cc38b`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 79 objects requested, 46807277 stored object bytes, 67 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 01593e34b366d5ba09b31c02b6977825717de765 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `01593e34b366d5ba09b31c02b6977825717de765`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 80 objects requested, 46881126 stored object bytes, 68 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 8e60adc94288f09bdd2f1ff68bd4bd890b3c9fd4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `8e60adc94288f09bdd2f1ff68bd4bd890b3c9fd4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 81 objects requested, 46921626 stored object bytes, 69 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 8c5de2d72e4d7d5579ac65ef00946658e117e1ee from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `8c5de2d72e4d7d5579ac65ef00946658e117e1ee`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 82 objects requested, 46943084 stored object bytes, 70 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 056447fa39b2fa83e91dd72635b85bae6c5fa98c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `056447fa39b2fa83e91dd72635b85bae6c5fa98c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 83 objects requested, 46969248 stored object bytes, 71 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 60aa791d426475975e4ec0b1d7689e036949a757 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `60aa791d426475975e4ec0b1d7689e036949a757 bb546654feea133b0b3a424371c1096e6c112b58`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 85 objects requested, 47830347 stored object bytes, 72 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0693be32f9c4e56a2eae76532a2e8b8aa6036055 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0693be32f9c4e56a2eae76532a2e8b8aa6036055`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 86 objects requested, 47985873 stored object bytes, 73 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 3be09bac136911a40de8d6c7b31a093530b4827d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `3be09bac136911a40de8d6c7b31a093530b4827d`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 87 objects requested, 48123427 stored object bytes, 74 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b605c8982db18b6a393824261ad339f8e9b7f4e1 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b605c8982db18b6a393824261ad339f8e9b7f4e1`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 88 objects requested, 48444113 stored object bytes, 75 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2be2cec6e810179c185fee2cf389297f7ea42e2f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2be2cec6e810179c185fee2cf389297f7ea42e2f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 89 objects requested, 48600234 stored object bytes, 76 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1994df8712703b920a64dc52ddcbfb30a317cca3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1994df8712703b920a64dc52ddcbfb30a317cca3`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 90 objects requested, 48737779 stored object bytes, 77 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e2e4f9fc2bc558977b1fc2dd26efa3e21c683289 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e2e4f9fc2bc558977b1fc2dd26efa3e21c683289`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 91 objects requested, 49058433 stored object bytes, 78 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 24fd45dd205d7250aacaaa2632bea22babd0d682 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `24fd45dd205d7250aacaaa2632bea22babd0d682`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 92 objects requested, 49109315 stored object bytes, 79 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b14dfb1f641f3931708eb608e6d6ad26c0d437d7 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b14dfb1f641f3931708eb608e6d6ad26c0d437d7`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 93 objects requested, 49213871 stored object bytes, 80 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch cf9eb06a400439aa2163c93b98ea2ecede500fcb from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `cf9eb06a400439aa2163c93b98ea2ecede500fcb`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 94 objects requested, 49268159 stored object bytes, 81 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 7fc809ef32a6aa1d818b829f3ae7ebdc7d0af701 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `7fc809ef32a6aa1d818b829f3ae7ebdc7d0af701`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 95 objects requested, 49322373 stored object bytes, 82 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 61dec2964484987d08dd5d33d7932adbba047329 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `61dec2964484987d08dd5d33d7932adbba047329`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 96 objects requested, 49507635 stored object bytes, 83 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 69d3d6b6b1f3d2ed5303a00907e748121a1ecaea from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `69d3d6b6b1f3d2ed5303a00907e748121a1ecaea`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 97 objects requested, 49690362 stored object bytes, 84 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d27dfe2cf0d6a2cc7d030aba882c459f43531905 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d27dfe2cf0d6a2cc7d030aba882c459f43531905`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 98 objects requested, 49833920 stored object bytes, 85 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ceb119800a19f675cdac870571377813350489d7 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ceb119800a19f675cdac870571377813350489d7`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 99 objects requested, 49941458 stored object bytes, 86 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 437364788939dae9fdca70ebae1a2a11be64076e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `437364788939dae9fdca70ebae1a2a11be64076e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 100 objects requested, 50275585 stored object bytes, 87 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d6fe8a048898e3c9fc821037e83c296b7bea75a5 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d6fe8a048898e3c9fc821037e83c296b7bea75a5`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 101 objects requested, 50464471 stored object bytes, 88 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 207ee115529e0599344fa6fb80b98fb44a724afb from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `207ee115529e0599344fa6fb80b98fb44a724afb`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 102 objects requested, 50803419 stored object bytes, 89 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 850c11023499f8bc57307e6325814ef10324fd51 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `850c11023499f8bc57307e6325814ef10324fd51`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 103 objects requested, 50991926 stored object bytes, 90 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1f031f1a395d63c248b2a35404b3f57c9d36ebe2 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1f031f1a395d63c248b2a35404b3f57c9d36ebe2`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 104 objects requested, 53123929 stored object bytes, 91 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 78a86c54d95729d82c4ee693867cd80c2966fb9d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `78a86c54d95729d82c4ee693867cd80c2966fb9d 58f397425f679d266ff6c493f58b479ccee05626`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 106 objects requested, 53607740 stored object bytes, 92 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c585e1a96d44b3da2e87fa12453c828443ed4cd6 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c585e1a96d44b3da2e87fa12453c828443ed4cd6 43f412baa1f41dd997af2d5cd644bd250bc31491`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 108 objects requested, 53698240 stored object bytes, 93 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 681c5e60c2986cabbde9dc01a234a3667b16f27c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `681c5e60c2986cabbde9dc01a234a3667b16f27c 33ab4b7f86c2748931d7b3c3c56cc260723f7feb`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 110 objects requested, 54133587 stored object bytes, 94 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0f5d18c580f5b882f36dcac875359e3085689f56 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0f5d18c580f5b882f36dcac875359e3085689f56 1bc483062982bf592d517541aba8f321b381d1ae`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 112 objects requested, 54209000 stored object bytes, 95 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a329b53afa749054c092c734725e63640746fcb8 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a329b53afa749054c092c734725e63640746fcb8 69cd7bb31d1b9144612142b685eb279a0e974de1`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 114 objects requested, 54465711 stored object bytes, 96 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 035800c5554236339ab6f5c19c6d4297dc5f125e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `035800c5554236339ab6f5c19c6d4297dc5f125e d91c8552ca0bafffa37f6c90605322e1e67b5577`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 116 objects requested, 54923084 stored object bytes, 97 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 86b7f3777e9c56a2be4dfa5965b6a1b0a1c74b8b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `86b7f3777e9c56a2be4dfa5965b6a1b0a1c74b8b 12518adf983de76fc826247dbe5cb59141c3d2c3`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 118 objects requested, 55063184 stored object bytes, 98 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6632373783de046a9aaac5037a168087829f28d9 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6632373783de046a9aaac5037a168087829f28d9 2d4568be682eb3441aeee31ef4f5adef76ed767c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 120 objects requested, 55111516 stored object bytes, 99 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0a8cae126cc38f4ffc061ac11cfb0a37b61c04dc from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0a8cae126cc38f4ffc061ac11cfb0a37b61c04dc d5462ca4010d18008ced94d9ccd8ca27a3f2ae35`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 122 objects requested, 55532245 stored object bytes, 100 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 90f97cacd2b13d81d076498d74ab589173fd1a04 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `90f97cacd2b13d81d076498d74ab589173fd1a04 aea8018a339c79d4c71f8bb6f9690be7855545bc`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 124 objects requested, 55671388 stored object bytes, 101 batches; caps 4096 objects / 536870912 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt_yam/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 362801c3e88d3e0103b0b1e92a8caaccd57830c8 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `362801c3e88d3e0103b0b1e92a8caaccd57830c8 3f472110b0da125fecc100f206920e6910757237`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 126 objects requested, 55720781 stored object bytes, 102 batches; caps 4096 objects / 536870912 bytes.
+- The second diagnostic was interrupted after showing that many required rename blobs were distinct geometry files with one version each. Batches now include missing versions and neighboring files from the same Git tree directory. Raised the per-source stored-object budget to 2 GiB (4,096 objects, batches of 64), still below the acquisition guard’s reserved 3 GB headroom; pack reception is limited before writing.
+- Discarded the diagnostic cold cache and created another empty cache. The six CLI checks now start from genuinely fresh source acquisition, without reusing either diagnostic blobs or warm sources.
+
+- Cold-cache validation command: `./drift check i2rt_yam --fetch` (serial, inherited nice 15 and single CPU-library thread).
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false clone --filter=blob:none --no-checkout https://github.com/google-deepmind/mujoco_menagerie.git .cache/menagerie` — retrieve source commit/tree history without model blobs. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. Cloning into '.cache/menagerie'...
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie fetch --no-tags --refetch --filter=blob:limit=100k origin HEAD` — retrieve omitted source/mesh blobs below 100k for CPU compilation. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/google-deepmind/mujoco_menagerie
+ * branch            HEAD       -> FETCH_HEAD
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie fetch --filter=blob:none --no-tags origin HEAD '+refs/heads/*:refs/remotes/origin/*'` — refresh the upstream branch tips before selecting latest H. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/google-deepmind/mujoco_menagerie
+ * branch            HEAD       -> FETCH_HEAD
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1638e0cbf2233d22d0341010298174400ef50ca4 1b6af2df04c179b07d5662f6eb39d044a692e49c 325e84222a27efef4acf20f88502b7280e2fdab8 46dfefe48b484d0cd34d7c914d863bd09c184561`
+
+- Network outcome: exit 0.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d2c0a221c89d00a8488d34d41f7753aba9158427 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d2c0a221c89d00a8488d34d41f7753aba9158427 00eedeb0c43552b77d9b2cd05c02bf87dd7f3a7b 0b3018ad228d55bed7b3ffd436c7ba157448832e 119666bf07dd5455771669e7b75f297b6f3856af 1503230a6f23490f63a1b7c127ef1754e031e12a 1b261342dbf42c0ae2806ad97347b7283e7a6f3f 1d25e382a3f81d38785845d04c26b4a379e50869 220577bf0ad3aae428b14b46375d7e776550f359 2a02b2c88353ae355660910d35aeea58f845e16e 2cd070184322cbdb485b2b36dcad4e7138be572b 2d8f09beea598d9072d024a347f23755cd856a0e 2ec6edf37a4b624dd94e1edf18a57222924f0b89 307e36f3473bcc96dc0d308eeca95a434bbeb27c 363577f1a6e20307f5ccca3e597cf63887e8bb5c 36bcce79c01670e67865ada0b4a36733b27d447c 3e27597c7c76c9f4d11e030fc8f1c97fa48502ac 400638755dd8862abf548878fdbc8a8e284d39fc 480294613d22a5e1a7f589f93642e09247a926f2 4a344c92399b9b0d8098f8a7e86334b48ddb7f81 4a5c67b86535b9ef98869d8b625f5395077a02fd 4d3ac545007b6fc80312b420635f274ddd03469d 58feffdf77b2d1df90b6e3918fa19fd5df6db450 5a6021d62d8e94fa647a05a9968de79bd237961f 5a8eeef78b71d09a1e34bb007232759cc3ec72fb 5bf35d05f979912d16654ded50273c25a70588d6 63fb21258ae2dd99266562e79f45288c021790a0 75576532d0a64f0c11f45c6d296678f99cb9b0fb 82f4ba2be7a155bdd157b471c344168d0fa558e1 898e6484e7f3053cac9db6db466c5ddfaba880aa 908630225ac62a60eee2681609cb20ebf7b3332d 963f4ff9c364e58f0559d9c0066422feb8ceee5c 96599a9ac48cb966395725c251ca7538254fb492 9d26125e59b6466d4c765361603cd7778027f625 a100c210a1fc2db231e476910fa653d72e5194f6 a2f5eb16081b76c9b63a34f367bcf0b2db717d36 a3e2acda133058c5279f27d157e471285577eea7 a92f6aeb2eadb13b5180aff0e1d18d37fd5660b0 aabd51b7263f3d6dfda442316948c16fbcd13949 aedd87ad73b1179062db4658a46b884d07c40dda b3b3185d76192b1dc46eb2be33cb89ac66e39160 b7d9662954dc1b862ec9b616eca944bff11832ea cde22d578d987eaa283bc911bbbf295dad169c5e d0c942e73a6f617af18d31771bfc38501462e29f daa4ce504f9029d1ed732cc82055a7fc2e6dfee7 ddbb38906f3ac76cf8833a8cebe618c60df1b61d ddece84ac26389f193d96e63c84cc7fc0b432702 e55e15d77ec870548a7e0d2143d6bf2c5d3b8f18 e63931ad96c89ac29242589546edf75f578b6adb fb3599df3843998950de4aa955cfdf149a22c6a4 fe2ebe33385215e26b9c70a47665106a573c33fe 1b486498c37424ad926487477e7d3f7def56d86b e701c021cdc2b1031962f0e28a36c060e47c8d29 1270421db3b4cb27dfc09dd8e27ac02fc4d9f738 99378f6f4f634765ba4cb0c3865cee9a95beafb0`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 54 objects requested, 2082543 stored object bytes, 1 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch bb9e5c8bcd178c12fc3c627ea0e8bc0b2aaacc6c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `bb9e5c8bcd178c12fc3c627ea0e8bc0b2aaacc6c 5a875e909cae9b7ab0d1eeec9537626f372301c1 88dc821034993a4b3806464b54d57e67212ac13d 98830d3f7300006cefc97b8ed5ad653453a440fa b3fd9672bf3c5d2e68eab80d8a994a85ed2af775 bc12f3761ecdb888f9638ac32dc98e7038dae6ba c5704d9a2afb0e5ea150f66d8f5b6c31af52c4f3 c6e49adeec824ee5aafd7b5681903e8af0ac00ba d1f54f21c7a9b74b882f9b756d44b7b1a0b798b9 f616aac0eb9ac0c0dddd1315063aa3cf985cba48 fcfebf9df9c77558f3f5ca8ffae029c942e4edcf`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 65 objects requested, 3356617 stored object bytes, 2 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 8170d2a44438badeb895f12a77d5e440851dd962 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `8170d2a44438badeb895f12a77d5e440851dd962 283952eb504735673aa855ea56ba98b1035bb891`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 67 objects requested, 8426856 stored object bytes, 3 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6bdf5326da6fdad6a03cb7bf03aff7c48ae353fc from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6bdf5326da6fdad6a03cb7bf03aff7c48ae353fc ce6daa94c3ef706c8a10da7754b3067f3906dec3`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 69 objects requested, 11990981 stored object bytes, 4 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c4d67c0fa8b36c2554b28aa83235277d516bd745 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c4d67c0fa8b36c2554b28aa83235277d516bd745 043db9caeaa59dcb0a6bf570956b0904eb60ba63 08b99ca6c5976f40bf3501914028184042132311 0fec6998a247154f014eb5ba80cabe1a3fceb1b8 111c586e18fb0f44cee7e4593d24c71382a6e9b4 1f8efef2a91c06175a0c35bc03eae5c16d3fa6a4 223b0f17810900c76ea9c6661f154a755d0da212 23806d779bcb59dfa3642914fe348c194a68dc44 3745c09da6cd2628aaa324415f971bbb4942bdca 4e59144e96f163f0ae7814152b5a1fca7a6f2e05 76e4995043253f4c67b8a10b7b8042a0f46d6063 77557ec632a21daf3d77ca317d8755c9994739c1 842f9e16ae60cae48eed82e9a15c852193447400 9c1d93e48cb9baed925595920f19fc0a6182fd81 c3ec9e770312563a654269334ed9f0815ee8867e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 84 objects requested, 17639765 stored object bytes, 5 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5724703ce4765cb516bb99a99518518a2dd38b62 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5724703ce4765cb516bb99a99518518a2dd38b62`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 85 objects requested, 20205708 stored object bytes, 6 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b82ad113331be15f1fa5569b2d113ed06c8facec from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b82ad113331be15f1fa5569b2d113ed06c8facec 87c725a6ce5bae98d62b5457f8ee237de7a1205e 0804405a23d853f7f3239cec536b304a42d05919 0c307171ebcbadf31a62cb588e135c430319a0c0 0c56511a1efc7363a3eb70537adc4c0d940d53eb 144e4d79407bb98c25b96aaa4aa0e0c12cca4e96 14a5ec40a40508e800c54bd26f09fb516259df3d 1599670e44c3a9d9a00e50557f03571c6907682c 16b83dadad4113c1f1b66e1896a453f30ec1dfc5 174f4d0577aa073d33d68d18848ad5cc800da65f 17db6662d5d76399140b92b873928a9f70d062e5 194195dde8c0447d5dfee6daf98bad62e2c967ce 1c2ba81a461dafb14fb540f01a5eb4cfa872abb4 21b179bafd9b110344c77ad573b62f6f5751a10b 258245462cb01b8949b1a982bb9aec19b09e084b 2a24b89e4a9e376a9106d335825878255dd2303a 2a26f4e099811df59d9168cd4dd3617b5a5bbcdc 31608de90ae5c92bc129005a217ff75cb9a333a1 3199185ace7661e9e9386106806e732d910e4fb8 35f3af198325c01ac65fb76d7b7961c4bae2cc43 3a48e4d41e84e4043a4421aef3b83ebb09385807 3a59353b59ff7aad7f6e7e94028fe7cc5ff54f39 3abfe89196f473e2a9c0bce30f6a5580bae18776 3d1dd95a55e00b98e6ad5dff81062043e9947ee2 416cde54708fe568860d0a3e63c0765cb84828f5 427ab9e46f6ee59907e65abad9568673b1395d90 4743d91076827922ed879316cd621631658de35f 4aff50b5d448f2989661643bda73a6ab3331ace9 4c865f5d738222159a754ec5430eccde9e1ba018 522e9076ff25dde482785558d14fa07328be631e 5a4f5a34801311c95f18b011f9d12a1dc9d71895 5d00e058df69317e59072d1f45886f8df77b9fd4 5f136d9232be76bf364674e4b5476d527889b6c9 6249aca77586ea8324ab8d9b2d62cd866500c641 62556e76d9e258e8b7d0dbd7825fed29f35ee827 663578bf37be72f63ece9d6ff4b9f31f80d6d4fc 69c3fa3fa75badc7128577c8b379e3604e5387f4 6cd9b48ece7b225520f5cd007f23ae94f58a2b7b 70ac2363a11e476f991a08dbc9cf68f4bc0aa254 7236f3a79719aa1579e470d41c310edb22b3819a 7d5408bb0183da6ac0c52403e30e90cafcac4d83 8007c4cd19ac3593a0c831ad85aa447f44b70fe0 80b414095c33062b3b5a0d33d2abf0f699aafc51 84b4a855f1092b93f0636c3da3501fd92552f94f 85168700cdc90a2ca73d09949480d66275d31910 9677ad62c304b9f124345c57261b672c2ce09903 98149fbb2d51b7610369cf3d4fc4a4db20014004 981d48f1c21428508d02d45af50c540d02517707 9887b9953fd5f336043476e275fa115f73674bdc a1f0e6bca99812e090d2522123213eecd516f5be a2d97215e18c798a1682580e7617a6569265e402 a93df1cdd97567391598b3723fafad0283979599 aa644bbd66b5a738c6917736d48587c4c98cac25 abfddb029478d23410e5174c48cc4ce86ba8205c ae77b604718a8c17a8abee1e026c29ea7423dc3e b208b5ccc7c2f2ca8492236e8854a1dcdb516014 b77a3a1008e94c7530b0746ac104cdcf203ce313 b7aa471be2fd8c3f4766729fde6a8483e1ba19c4 b7d7682cef105bbc4da9f6c7dfc73a70af423f4d bb7a4ebd4eab848f2c5bce25f97ab59edcf908b9 c485bc1ac09832205ee74a07121d8efc04df63dd c664e51167e30f76651b0be3193b84aa025ad59d c8248980de5629a8d282d880012ec9e6a4363e1f c8d8661fa076139e15036cf46faac153e40ede1a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 149 objects requested, 35340790 stored object bytes, 7 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch dcaf6656a68898ba35ec9920b7e774dfa9cbdb55 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `dcaf6656a68898ba35ec9920b7e774dfa9cbdb55 ce9886321bfe07e74b7ce6208f46a3ffc19e5324 cf3265c62953eedf3f6f6d753855b0de58c04c40 d591a5ec40dca2920d1f560be99c106be8651f23 dbef286bffa62b6749f84fd9a982d3d2cdb83625 e5397d88784c40bc0d276b400c969d54a5680579 eaca0818b6bf9f457b7e07ae6d13c3e2d0d6f649 f087a829e942ef717066321cdae81631fa24328d f0a37b6a891b8f55cd1920e6741b1227973e3231 f25fb5e7763db8b0a5a643b6473968ca40e5d5cb f56b828e85403c6d71a36716d649f3bf1ce84d6b fe05ac47a4e40a1675fb653ef68b367528f72ab2 ff6d70fc8dc11e71a32a9b178c017c5e0fc56d12`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 162 objects requested, 37060126 stored object bytes, 8 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4a8ca3c2d29bf73d0c8700cc62877eed36804b56 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4a8ca3c2d29bf73d0c8700cc62877eed36804b56`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 163 objects requested, 39448486 stored object bytes, 9 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2d19c7e215db68d13bca88c33c403137253ed108 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2d19c7e215db68d13bca88c33c403137253ed108 0294698da02b29f0dbc994598d7eecc95fee6524 034368210348d43b44f7c3fb99c74f8fe1179571 17a42d568b2e30b9f2fe4e3e2d49a1d7dd0e39bb 1d456f16267cc87342f0dbbe2f9cb5aa539f946d 210040a49bb2113f370225cfaaac2eb04ec2450b 235c7c725c216c58337ad9d8dbb8e441b9fa6561 23c94750886f499d5b3f13ed1dab6c69cde7eda6 3b4ca2e4f568624871cfafcbc90ace0b869b76b0 48b16538f7caf980cc11142a00fdf1c370632b37 4a3a64922f4e9df2d408b9e2945fab696181e1c9 4fb5f2c2904a569c5fe0432843003665089472aa 58df00ef168dd2356a25f28108996339d7691039 59fbee11e6b4dcdcf1241504539b7d4ddacbf598 5c75b1a581c58989eab22a65e9614cf684f9f172 6052cc3213835251a96c8113304f98389ca09a3c 60bdf2f282f0389b8116532b347eef5884464cc0 6af50ec023f9ee463af4e22e9004265c14003fb2 7cd43f0980e6689ed4669e51bc6156c9232c5bc9 801f353215eb38c36893c33bae2ce0c9c0e7422b 91cf7e9a7858e9b653ded41778a2d688f000dc53 a23c56071824c8f653e193c04a16da4e2e63ee69 a9ff8688b6e37d8036d3cdf14f86db31c40ce167 bca9cd9226cd4254ee825758b1b61c34877a26c6 c6124a7afd92a2c495f23a695ca08382d388055f d19935cabccfd27ffeae05a023a4f24334bc081e d1d6c05caa146ce780826b0ccee4afe0c21dbd1a d4075df56e7481c59f26f83f90179b575f111d89 e5846326dc656ce464b5421c3c8f0ed001222d0c fb437695d7567e0a1fbc2d0f87196e309e366b28 fcc8c8e025cedb96dc290ba449b6793e370ab17e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 194 objects requested, 51633662 stored object bytes, 10 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0095d91f07717fc055bf19642b81450d58cac7d3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0095d91f07717fc055bf19642b81450d58cac7d3 e1854a90d065b7d72343ad2cb146700dac385ef8 309efcaea6ee6e07229f803afaa36fd0e1b9f8fd 776e87fc0db37f5aec6e590bc00f7592540b83d4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 198 objects requested, 52975164 stored object bytes, 11 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 01593e34b366d5ba09b31c02b6977825717de765 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `01593e34b366d5ba09b31c02b6977825717de765 056447fa39b2fa83e91dd72635b85bae6c5fa98c 8c5de2d72e4d7d5579ac65ef00946658e117e1ee 8e60adc94288f09bdd2f1ff68bd4bd890b3c9fd4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 202 objects requested, 53133667 stored object bytes, 12 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 60aa791d426475975e4ec0b1d7689e036949a757 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `60aa791d426475975e4ec0b1d7689e036949a757 bb546654feea133b0b3a424371c1096e6c112b58`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 204 objects requested, 53994766 stored object bytes, 13 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 78a86c54d95729d82c4ee693867cd80c2966fb9d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `78a86c54d95729d82c4ee693867cd80c2966fb9d 58f397425f679d266ff6c493f58b479ccee05626 035800c5554236339ab6f5c19c6d4297dc5f125e 07f86b68cd41523e46a7b1ad0803277d50659fae 0a8cae126cc38f4ffc061ac11cfb0a37b61c04dc 0c379977a80adf36659ffacc6f9911b8289ad626 0f5d18c580f5b882f36dcac875359e3085689f56 12518adf983de76fc826247dbe5cb59141c3d2c3 1bc483062982bf592d517541aba8f321b381d1ae 2050dcec68eb7ec584f4dd59d1ac5bf0d5aa3997 2d4568be682eb3441aeee31ef4f5adef76ed767c 2fdce4d18a43f3c4052c38b3c3142c545be8851f 33ab4b7f86c2748931d7b3c3c56cc260723f7feb 34a85ad7a76ef86e93131c129cb1115d4142ebbc 362801c3e88d3e0103b0b1e92a8caaccd57830c8 39396826d2e2b3229b81518007084324e9a5f14c 3f472110b0da125fecc100f206920e6910757237 40b311a3b3eaa202b96f3d0b3cc00e8b174c0e43 41e0ea9f3a6aee02852b517a365035ece5dad06d 43f412baa1f41dd997af2d5cd644bd250bc31491 48134f755c5fa012fc802c9caa732d1c9f9911e2 4a7ca0e5fc6da1f491568d44668aa08b4acc7cbb 4b7b5a662efac22383b2915cff4ef14f7defbb9d 52133db0f59d05c3e647743ad63c8de2a7a2d465 555bd001e41856afb27ff3e83665bfef6af55723 60d29a4480f0c34fe29ee7a00ff20f6cd54e294b 62f34fa4f5a06e0a10863d44e5510319a00714a9 645b36e3ee4d87bab3f29fc21b3c105384e5e0e0 6632373783de046a9aaac5037a168087829f28d9 681c5e60c2986cabbde9dc01a234a3667b16f27c 69cd7bb31d1b9144612142b685eb279a0e974de1 7777f537f9f5ab0efff27e4b69ef815f1b0ea0b7 79db9a331c6fd86d39d0a42e33288a4c0cb59d5e 7c04e0740fcd39b993841ddac0ea81f5a477d845 86b7f3777e9c56a2be4dfa5965b6a1b0a1c74b8b 8a0cd9449d99e3e7d1ebcd5425b958b2a66fdd33 90f97cacd2b13d81d076498d74ab589173fd1a04 91bd58d9a22b17f1d757968e7d603df4e5a4ac3d 99441a59c6e049470b3380537852043402b74569 9f22aa0418f75f778d39c243ae73ecb75fda2d4f a329b53afa749054c092c734725e63640746fcb8 a884665d851bedbb9413d49359c86a50b9203144 a9e06218db3f7dd3637cd2bbc597634ccd035efb ae33e55a2e11835629c3626513970463493ca99d aea8018a339c79d4c71f8bb6f9690be7855545bc ba4df890fc27eb05625b1913d384dabbf923cbc7 bc5f88b81ea8ba5a118ad1787dbc1c3394b880cf c585e1a96d44b3da2e87fa12453c828443ed4cd6 ce1b704f0b560e957c5bdf8d60bb57f4dbb69664 d1f90f2bc9ffa6f9acee6a5b6f93e7b9c33800ae d5462ca4010d18008ced94d9ccd8ca27a3f2ae35 d58b368533179870f13f138cf932b133ee624388 d62a77170be512d1f71889147653e8237ea5f7d0 d91c8552ca0bafffa37f6c90605322e1e67b5577 e1dab367bcd3bad59deac9a307265e94b1115fc3 e29d0746f9dc465a0ef441dfb44f3a6f47bea01a efb15841add7760a1e17a758e923f4ca3e67f184 f6465e9834d1e71a90bcab07d6afc2594b989d05 f8d797b11f8fdf237221fcf9826d6339706a1a98 fc26ae189eb6ec26f4125f1f8d8cc4b429446e81`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 264 objects requested, 66532199 stored object bytes, 14 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 055057980307307d73ad489d7052e17c4f976ab8 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `055057980307307d73ad489d7052e17c4f976ab8`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 265 objects requested, 68271513 stored object bytes, 15 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e91595837b0036f62a7e1358115c58d3d96f03a1 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e91595837b0036f62a7e1358115c58d3d96f03a1 04f1808adec3e69cf8f9dbf9ee0aee46c0ba205f 09fdf1e616cd8a3a8c5843680428779aa4d77aa5 0e5eb20fdec1c1a69042147e7b0c1fdf5c2b4e50 0f41566d28e3b4692be4b4f34edd77e573ace998 0fecd5dedd35d6573dad655e8f92c3114b3aa24c 1166f7519fbdb93cd60bc7c292fc897548bd1598 13f021272e166c5ba16d531d5f7e4f8d8dc2a8f7 147430365f5cbe24c9123eef0ee2a828e0f92fbf 1927bae6f6f253edf50858e42793445da672ea87 1a18a76668f5ce43aac4ca24c5bb8b9c81e929d4 1ab89dc0de15a35a203e11e3b900dd0eb924da36 1d89d00a36f23c215f4b24ea869673e62f1694a8 1e69ba80230ca6e16ffdcfc696f200d4db272b45 1f582e77cf888fa0a79a23e7d112e3ec151f4b61 1f8e6cac46959e66a02adcd728528aa77d4cbad1 2be6bb97cc451b82f05055580aaf285485ccaaef 2d115e358a30a5cb6f456365860fad8a89a84d51 317a56f2c6a2b82861953b4053379e56e9388f42 32517b6625742a03da3e68ed333f68f7d3f03255 3502bbb930aea4e28968e33b14eb6ece2dc0c944 35d76422693d5eff13dedc95a8284ca72c0bd648 364e79b53f5e54da2351f307322675ee6ab08e81 3b56b0bd8df3dbf87dca0159558d87e6fc97220b 3c9fc683757a09bb8b622b5d77bdf07dc7cb635c 40d9239052d5b48569f58e28abd6f2ded13090a5 4cb8cf218a5e4f2af702c564c56fddd4890ea170 5284cd832a81c26e84d24582e14d4a803c42d877 55f8aaf7f83cdac465a89e35a321291748c65dad 56a487d917cdc2322c43331b1c107a9eedacc60c 57bc146367d898a85acdfa5d41106d6600500e73 5ad110afebf2f02f5ee1f33a3394ec3852d3d841 5e1de80a118f4d12f7a7aa153ffb17bf2b022bd1 6843711fac2cd3859de7ea493984dc0670b5f3ba 6eacc7816a76cd2253582a53355782c0e7537ca8 73646af98c6d2e961f6126e8df61a829e75ab2ed 74d66dcd3ba858fa1e2089a77e5d48b1a8588671 75238e7d4a895ae3b9525e6e1ea8ad5618c0ec5f 7aff83ed6d52632c91c9829d2fa25116c3f241bf 87e43ec25397214e5d325513276cdb3d8c97b6fe 8ce28017dfd3377920c34846b297c576d1ff8e2c 8fc3d6a199f3773de69f7fa97ecc45903436f218 910184733fd5ea3d48a75e6d4e11c336755efb6b 92d53948c3b5c824bbcd10212629b8940944ef26 962cd348aaaf909f7e5df1f61a0b4b70bbe47211 971b3c1280760b570fa4c8bd9eca27b2844e8a20 99b3deb4f7b25c5e05ccdb4e8ffaad98810540c3 9caeefbd0c6260dd1fa9ee4e45de3ae5377f35c6 9db7b0096e38467e37e9260d97e8affd27ac0ff6 9edbd0efbdbc3afd471989e1840fb3aeb3630853 9f5e1e94c7e53bba273ea636c02b0aa4d95a7190 9ffb6110c30772fb64e9f13ecd33573e9d6efef2 a03182814a359c2b9b24e9ed124f32a6a181b233 a2cd8d2c2bd0124ea893837f8a44362a7319a795 a7ea5cc653246ba0f0d0de863dff47611e265b8b a94316a89fe0d57223b8341a9b92db869edd1eec b235e1578b9468d6a4687dbef068ca06904a04a2 b37348331e6580718ae7ead5b9704777f3afd14f b4cc24efa435bf477a369047e7fb8920d8388ab3 b5d1339ead15696e207f62045df9c5bdc5891613 bcaf48f1147531b97d0788e98e119e66af093f59 bdae0bb6fddbcca54e07ca7f072153db33519a39 c2fd12f85e7fd560e2821cd3354c90a2a5f8e05c c379dc967b7404bd5ef7e74984d268c68d118898`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 329 objects requested, 81489917 stored object bytes, 16 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ecf6a42ff08c02bf82e2e605384b9055e41bae4c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ecf6a42ff08c02bf82e2e605384b9055e41bae4c c6179315c01edb8882843cdbddaba5dfc1e30a88 c8a9c02301864d09a56f5250f054b340628e0bad c9ead61fb978b79f0ce071f8c5bebe7b7688dc34 cfb3f813a8c23167bf6d95d9f5eb3fcba6cc584a d207b9d81eede267c89ba970d6f9af80069f3362 d5bd4bdaaff33a260538c32c46805b36687055cb db8e889bcba2d70588c54b350dcf4ce90899ba8e dcd4152012fd3e0f5be86ce7ae4e11b538aec28c e2c955ece9d099362a9af9ad8f14360fa6529b6a ec29505eb4de005ee23b1f6864d4c1810a52dfc5 ee66921433cfdb4db6cb2f2e0e725d1e53e9d218 f147ae1714314db77e1ddd8b8dea486522ece0b1 f3c352a9f61c1e660d82586f0843b9596889d95f f49212a89435cdeb0bb9561b27e3e01ba72a99f7 f7140da27ec4a5a5fb9c85f098c7f850340c391e f7e98f76817aed6fd66703ff6ff65bb62871ce95 f9e5ec2b41448e4ecb076d773fdcbb5d1f30d841 fb46344a8617025ce9ef4bdd1ae97de73fb0e0f8 fcde7b1190290cb45719cfb3398fd2b3c57ac5b1 fe4a7f0fe47c94f4b04b029d92a3930ba6882069`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 350 objects requested, 87027852 stored object bytes, 17 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 07014fb52522760d2e7c1f73ba78721d591508f4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `07014fb52522760d2e7c1f73ba78721d591508f4 29b43a739eb480c068bc0b135eb0a847246b825a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 352 objects requested, 90278987 stored object bytes, 18 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 88e32af1cf1e84c6c1a01506481630393b90b8dc from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `88e32af1cf1e84c6c1a01506481630393b90b8dc d3356def0a0b545e24f2ec4b23f25225c448dbac 039065e91d8e92ed12aed91f3540c36c605197b1 086ba14a4b81df27b719da3ed1381d003cbbbf90 0b308459702bf47c8e1a17b60486a6f9c6aa77f2 0d33a7a62852130a5f2283ac632d625aafa0ee03 154c260c3664c349a83ea86cec2586368544a5c8 1611d55faf3a901e13e51e499c19d9fff438c7db 19c1fe6897eefd1b8d423f841ed6f6ed5fe8564c 19d7b0f6621e64114fc0ca49f87e8ebeade4d713 1d5a6da95d89779941dcb555b7683ae3dc0d98e5 2079b42a15233eab3f6a08e492bbd99908cc358b 260d164a26d21e38c40651a7066ecd8041bc4cf8 2a35c5f8240c9fa0b163e201b01a458e3af8fa08 31d0e2d21d35cb320828f03cc60d9e9171858408 32d853f4dc53639324923eadfd6eca1c0c101350 33fb68f14f85785ce5399a4a2e806ef30aeda624 3407ced4ad2998d448852ff06f82414a98f133ec 3a28c781c3de90a5b23c1d78e1faf357888f5ec7 3f809da9d0f0764dfa780b231edf9a0e8f729ce8 3fcd6f303523ad716ae56013a9b06acdd8b413d6 428533ad0c7ba766f46a8ff572527b277c5b3928 45e0df699a4a8ae7d81f6c0473d0d53e876874f4 49d5e9f85dc38178073cfe0ff0cc007f9e0ea5fc 51f418a02bc35ae501e2243ffff81457c2fc85b4 5218f67d8acfc17bf5b66b5d340b87ff557dff73 63d7ee31d5e6fa30d2c3606a39be1725a94a0fde 68939812c597aad9ba068516731de9c6d6bd324f 6bce09cfb9561bf387ab052a2ec0d0b514cfa269 6c26fef45b217e1be6051e94a3431fe6eb049e31 6eed490471f8963cffb39fc15d5cd0e783072760 762c0a8583367c5450efcfc74007c80d6b25ae14 77b8a6d245b45955ecea73c18c80fffb977f23f6 79c6d938fb6d03ff41af99d0e08433d911145108 7d1e138ec2751b83f1da29f3fd39f8eb12c1b46b 808070d219889642d6f05eb8dd8c1f950389adad 8401d38867a01d803775ed976da83a907b163003 860d25fc767ed54c5c5ab92981de716a88496dc2 8749d9aa715b994cd6c08fd193adfee3561c79f9 8ff85cf7722b24050e56cc4af50eeb24d48eb8c8 9583da6e7d172aae2094b45362c50a2e31618204 95b0df54d5938c187592c4576af1f833bde448bc 9bced845948e2c2777d9ff13d9f89c536dbc65d3 9ff9ebdc5ce9055b2c2b0abb83de8d3fd6a04b83 a1816531102045e49d1bb7e533df8eb1dea2e87f a1d5d92c7bf6549927ae704fa98cffeb512ad040 b1475760a6c8bcd12252f74b55482faaf5202359 b1d7f5cbf1edb7d478edc1f5c88cd9246435454f b6d9e12ecbf5498f72c6dfa58cb57e75d81fb0ce b7bc2ea8e5e2cbc46ce832860ff1b529c20af8f6 b81d9466e2c535ab2c8e1a4d665d3e2d361eedbe cce0b5e2c658ad25599e9897dfd606b3e4b46b9f cfe54465de0126d409f9008c4060d39da0315810 d598fc55e7da0843f957d664d79a6da3416d68c0 e38e8219d9de25c60f494a8eb6b5d2039b4f5c4f e8d5482bd622c7223b3f841c057dbaa3f07b1e9d ef541608c6e1722dc09c3752a06675110fbef7d7 f46132d3763fc99b72d2866a28af46539880b0f8 f49e713092445a09b81f03552acf9e9d1b43b18e f87d32aa31656ceb036a4bedfddba0d9378b1336`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 412 objects requested, 99940969 stored object bytes, 19 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 01e9cc58645e568cf28addcadea57f8517c857f3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `01e9cc58645e568cf28addcadea57f8517c857f3`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 413 objects requested, 102120242 stored object bytes, 20 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 7987a092a743500df9d899b85749fb8c713ed5db from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `7987a092a743500df9d899b85749fb8c713ed5db 02938dc1f6aac87c590c48a01a9dba3459d0bda9 0374447b70d05fc5ca1c7ccbee1f8e1734797558 0af20cecb0dc981d9fa5bff4e4ec8ab48983feb1 0cefd0dfb61f54b1d3d0c1880db2c08b67cede1b 13d1f24507e3820f1f01c5709a91b6ac294e8785 14fc13352037d8f6116f7702178c757ea74b2119 1ac7732b9eb63742e1dd71501529b51dd5a1bd8b 25a56808f82d738c8afa1e66ff1d006d18c27915 2bf68bd3dd32488030b4c2775812cc83c53151b7 3615c5b783da4ea36eb77ff479c1d4463f1289d3 3788edc38b1a0c9e3962a048daa66e50b24637d2 426a4ff0c5b9324acd68e1d86abedf292bb41e73 477571138f1deca33f5fc7f574fdf73857f5fb44 49b5d35bd7856782fa5be6bb31c7c111752c31ef 4b96cb6ee70d365910885de3e0c61d48f4fbdd6b 50004baa205ffa9a1b42dd4b6731f2da60775300 583e2c8523a279b499d3510f8f2fac9d8eab6c0d 6bffb17f351bcfd83dee0e0dcfc0c40f2a725131 711088cee6008bcfee511c7228aa8e738ac6173b 73c2d379824371ead861a3ba77d3cc2e2d1e0616 76753c65cf83c260f9adddf330bfe43a0c1d8233 7792d5ad7f76b7ec6324f49f772f345fcf9a223d 8683d7b3fb32a2464e7cd1551e980494a5deaa67 8b480ddbf18288ceb7c520b768ff71caa400e8b6 9af5538d37787b414d5f4abb0f023df624d05fd9 9cd4de8e3bacb999cbfbf3c5d7e39d9fc5688f0d a170827cfb6973b7898b043402893da647407df3 a4bd84f7bd06b6994d3b553a4996af5be481115e aa0c6229b838facc5262fa22547dd6a639bc3407 ac13bd7f06a6480a55c91cb7b4c8b11c391990e0 aee8b021a8efa46a27e8582e93696356417615e6 b9622a397779d105daa2e7d3165a06e8740cc199 b9a0481e3ff04ca5a0e8afeea1bf03772b8df6bc bf39d89fa6081774f0a3c608de6c0889f263d58d c283f2a6db8666c75733f343d58bef5cf4bf9c7c c6328c3dc14d7811815dd4092dfa093c84180895 c70a39768695173912951296eff00174b0f1df2c c84c8b01763c8f522735004081b0dc724a2b096c ca403cb497f65494f0e348723cd9c2a3f934f471 cb628535cba2af8ffd590d1aaec494d0ea94b4f4 d5ee934f1ab395c454a6792395fbc790a936b436 e492de352da79511df5ddca51c12cce98935ad47 e7a48883b07a337d314bca392a5b62f844f628b6 ecfb87cac9f17339bb17b74814837eda7ddf88a6 f1a98f9c0baf72daae7ccce3ff179f716d7e8be5 fac531425f4d706bd9ca3236ec49b76717b4a673 fb448150594c1298b86c8a0644e98b9e5786c42b fb680593550a1c472a28a7f63d0ca45c5887d088 ffc0a86fcffb7c99eb9016ec0890b202ac96b403`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 463 objects requested, 118926200 stored object bytes, 21 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 081182877783f4f039279ba9efba301fb4d38a10 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `081182877783f4f039279ba9efba301fb4d38a10`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 464 objects requested, 120708711 stored object bytes, 22 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 53cd0c7137cfa28a6da0b05f6a66de94000a4936 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `53cd0c7137cfa28a6da0b05f6a66de94000a4936 0592565d4b0e00b0bb754d2b65f20f87a1916169 05fd831c802a239b70f725c3a83bb98d47fb48d4 3a3d2275637f86a5cfe05d5af39752dba5c47ce5 7c4da2cf53ee67732b1fb3b59490fb78b1a4354e 7e3615d8dd74af5807966d5a8e4612044dfc6cd5 99b477bc8e0750ed547c3a65e948224474dd90f1 9f510d7f5916eb8fb6c82eff797f4ee1f270fc69 a9d1ee18170258df084cf8c7c83cadce08f0d435 d0ca5602369d960e0aae3f8d635ca03ef24eba5e f06926a1cc15ba2810d486f106ef27950cd7a156 f1a7e963a8f8529a9d93fbbc3db31439c72ed053 f249aa810219b2d75d79d15cea9ab99791f7015a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 477 objects requested, 124338230 stored object bytes, 23 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 168aaf8d0d4361d763b61a948466940a8d94cee3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `168aaf8d0d4361d763b61a948466940a8d94cee3 9aa9a55d35330395f0c0312edae2404384a34bd3 0197514a52125efc5417a7bf739f2a6a879d9bfd`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 480 objects requested, 126706984 stored object bytes, 24 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2bcffc2c39d29972b6cb01c8c876e9c759e091fd from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2bcffc2c39d29972b6cb01c8c876e9c759e091fd 116b22432e5b27607ecd0e586ba7a2cebda6d02e 41db77d31a7e200507e098807658f49246b878ad 59bc234cd7231dc9712efdfce15518e55179eb37 62af27a2bcbd1d9ceb3ac6a8fcda9e28b437ffee a401cf1eb5c242946ecad1c6d0c38d52eee7047f a84c0b1aac0c9b9b080e53d8020a1fef41a16b1f afd7c60b3659563aea12a0f277987318637b944c d7e6a4c7ee042d6500d453d393a4d2cb8d611fd3 e27cce3777b1c721159e4de741aebd08e0094285 f3164b46f0d09c93ac50ff87397ebdd7fbb10862`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 491 objects requested, 128586935 stored object bytes, 25 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch fb15bf2e92218540ed99a4d586809ebc0dc68d5d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `fb15bf2e92218540ed99a4d586809ebc0dc68d5d 4882331da67c0483b373b007e9e31c1230426a35`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 493 objects requested, 130938673 stored object bytes, 26 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 9bf347a3525e335412fd807f996bd835367694a3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `9bf347a3525e335412fd807f996bd835367694a3 167f0d5cd0b0f599fec5db0ac23514e813905ca3 296d9c5610d3b70d5bb0093744c82835b5835671 acbbe154e65ccd34b22df7a684d32333d3790eb6 ce3a9efa219375effaeb56ffe6141adf64460bd2 d94c9143d6222a32139aa1a92009d9a70506e9c0 f05afc8bef359fdbb6331a1c75ed6ec3fb6c351c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 500 objects requested, 133541429 stored object bytes, 27 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 85514be53a94e92bff42fbefca2e669a592c33bd from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `85514be53a94e92bff42fbefca2e669a592c33bd`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 501 objects requested, 136399265 stored object bytes, 28 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c62d2f0c9aad262462fbb5f87d5625cb577ad5ff from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c62d2f0c9aad262462fbb5f87d5625cb577ad5ff 022eff828839809f510a02bf77fe3767ffdbfd44 073093c287c72a9f18c5fc3410fce7a0655f23c1 0e0810661fd8d56958fa67cb0249c629458c219a 115eec0241b0d17333cccc73b65a3ce170982e29 14b8d9aa4ea81f511da32a201ed6fa9e2996f3f7 1a7b2dce243fc57c7bf6f2116625c07481be1f0d 2cb5c7fa58713ef3a4528cbe0542dc46c07a7efd 395a24e26ae4a127f25059ad16bc5edc0fb22044 49a78c93219eb4e887321010b2147cbd9e14ae96 55633d38cc696f9220bbf9bca87862c5687fbd17 55ec5264ccb4d4262889a33c39c4d51ed8e273d5 58b5e22c5c682e05c5d4b8bee5dd7cfe85b8cf62 5bb465a31c27edea7e544e7ad4a96a3d6e7b4810 5bd428f99ba96c665f32a69e60f344ebf18e36ec 5ed8106552c1e031e0ff61079abae0719da961d4 5f85418a151c4d7d9449cdb997938818fb1851a0 671fd7751d874692bc27a8e78ebba057daead760 7584c6b8d628be706f0bfb82aa5c57f0d2baaa42 920698b80fc6aa7be8ce351027514bda45da0288 93c91aa09b0be88f0afbc5f880afb079e2b781db a256bb9765cfd21a81a5157c8fb5fbf4f9fe00ac a3259c84497cbd17368b4d4633042a6fbb321da0 b26585824e8c56063468d459b7cc6186a460f816 b5ad461c32d96652a13fb1e043645c24f7cff9dd c0718f67ad1ad3b9cf197a8ab21b85d4a544a3e1 c102a4c973e8ed55762bbe682e0975a3725f2cf4 c358e6e1e65bf5d7ba37ed5b74c01ec109909465 d39026e0d700403affa73fefc3cfb5fe2cee5b26 d4265c8168406e5380615ce9ccb7a1e36db49aac d43ba9e56047e51c10211566734be2c03cefa94b d9bcf55ab0c1c721f04ef3137daa9b9c9ed937ae ec85701a63daf6d791c35717848664df35809aa8 fd28a1f9a7361efb0a46fdb689282581f843b404 04d199578fe515bb61b6906593e19c5817550339 42fd55d2d68bacb99ee1398a9a2efe55c803bb30 513e6377bf243dab7dbfe21d3419d41965546325 68540414f4191ed770e9d4563afc4d1c7af82f53 a6d7c6352de30e3b27d4ef2466b0a5f7fa74f81b ad4d0af789fe349259c37d5e0a5dd77f221a62c4 b460ddb22a51d7a3886694fe41c5420dd5a89ffd b81d15431055e9d20591631475213dbd8d60011e fc9296e1937d054368a21235fab7777a628205d2`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 544 objects requested, 147353978 stored object bytes, 29 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c7f59eb832c37015ce239f42db4cede60b1c0614 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c7f59eb832c37015ce239f42db4cede60b1c0614`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 545 objects requested, 149615650 stored object bytes, 30 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6347ccab66e4bb7efd08d947e52ad5e5f9e64db2 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6347ccab66e4bb7efd08d947e52ad5e5f9e64db2`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 546 objects requested, 150184712 stored object bytes, 31 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0a35a8ae68fa0b8d24507f2cd2a142a59b8fc91e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0a35a8ae68fa0b8d24507f2cd2a142a59b8fc91e 146b69b50b2fd61546c3dc7a4860a037874f084e 14bbff58f2f200dd1e1b97ba5226da3f768b69e4 1df304c0eb9e8630f3be09b39154c1955ad0771b 326b1d797fe0725450391d05fbd46f1cdcd8a8ca 3bbf04a6de017405f402d8b95c3b22d441389a57 69ecb7695c73980fa9e76563d5a66fca373db44a 78bc722ab2d8ac217b57dc2b85860a9597c771ee ac791a3548a21d8ae1650b4b14d173605e6f85bb`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 555 objects requested, 152355364 stored object bytes, 32 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 34859550bb2e0ad045770d6f37036cc3c74df1ab from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `34859550bb2e0ad045770d6f37036cc3c74df1ab`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 556 objects requested, 154043069 stored object bytes, 33 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c40c530466b584a460a6edbec2e904c39cf697a0 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c40c530466b584a460a6edbec2e904c39cf697a0 1695475f84082405c6b9161dabb6ecda21ac9f53 1903562ef70c28abfe175893fec2819e99e19e6b 1f7848b1a78523d86600b307413c2af1fb96bb27 225ca9f05c284bedf2453ca61b251743081b5cde 30f3016889842f980f2634d2152372152183780a 55b239f50d9d7d358fdcfc375c5871a2a81cf07f 607b3f409600915fae45946862ce3b6ccb63ad7d 7dfc780791c56536da3bef8164bfa64d7be1d8a9 88ea37e8e09aafdd1978e2cae398cd4c96c54e29 b2e0259f527df00081ff6ee9a7d01b823a9db489`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 567 objects requested, 155415253 stored object bytes, 34 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 054f46f7e925a2d69a345940fe3f4b64b3b5ffff from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `054f46f7e925a2d69a345940fe3f4b64b3b5ffff`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 568 objects requested, 157540220 stored object bytes, 35 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e2944a9d8b3a343ed0b660866c85c7a7bb0e06dd from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e2944a9d8b3a343ed0b660866c85c7a7bb0e06dd 09b7fb891846897c8ce9acf42c0218cee1212baa 0f9875ef905d830fd39df1a48e39c1ef14d5403d 1f92c6d87d9bbfd0c88411d85c518793b7459bed 22a3fc7c589df798474707c13a47b906db165758 274710cffa39f108def635429c0cb77cc11b803b 574658fcfb36722fa155396cb362c9b3b08dc482 6427894ea17c9705750aaa7a0634dd95fe4507fd 76c12d4b6f4f7579440cba59b96dbd54607d6618 80d38cefcc278f6725b353ddfc32d0e52545fd6f 848d28d67d0df396f0649f2bdc3d025043c0ad84 9abae54668d48576e589b635387a54758c1eb49b bd52bffaa1d56b7704a8ac45dbfb980b286f6145 c5ff5f553230e9c667775a61f6018cdb68d7871b c7393370758780539f72b58a2d4b30afd3d380d5 dcfecd6b9b33c15e2e5f3c98ac6791523440dcd1 eac757a4d9adf76069b198fc8c8a744f269a7315 f6ffd1fa46f48b3cfe536bf3e4988f709f993a0c fee67668f9e2c139973a95336b209854e04b0ead`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 587 objects requested, 164448942 stored object bytes, 36 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch fdd2b134643a45c1f1709ed72c2473193532e2aa from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `fdd2b134643a45c1f1709ed72c2473193532e2aa 00695747378851c909fef33b091b852c33b02458 5340868d1a5061b17ee8c22db52fa8b74fc56cbf 5f3ab9767774c4e9c3eb37414682603d1531827d 8050b4dc9ad8970f857cb8674d589522bd9d317f e43098ce7cad557668294e6c3f4cc1f2d065306b fe21f53f9c7ae093ff3508d64a3d19a5106f46f9`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 594 objects requested, 169220159 stored object bytes, 37 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch cefd0c8069c2dff48ad5f8213ba88c468602c937 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `cefd0c8069c2dff48ad5f8213ba88c468602c937 3cda3f75c158007ea1526679f9f3a1d036eb77ad 5fae3cd5f3644d1411a2651e05bc5dbef0014413 7007580faa8f17184b8f1374e1528dc27462e4e7 a592f22c03560db57da2c506a5e664b4a670c06c a820970cc69181066f384e143c197659b610f76c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 600 objects requested, 169880048 stored object bytes, 38 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1a966f0ef8a513e3546a6efcb51ac52cba166a26 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1a966f0ef8a513e3546a6efcb51ac52cba166a26 a3725950575e7e9c7e8254bfd46f0cc4d063fef8 c139310128a6f165849531a5f33619343aa44e35`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 603 objects requested, 170145594 stored object bytes, 39 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 37a82c0a32712e1bd712c844b8670ca718d125b8 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `37a82c0a32712e1bd712c844b8670ca718d125b8`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 604 objects requested, 170314178 stored object bytes, 40 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch af64fe9b65e4033611bbb4f043b521c05515dfc6 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `af64fe9b65e4033611bbb4f043b521c05515dfc6`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 605 objects requested, 170628828 stored object bytes, 41 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 38e248ce7a00679aca49d0be7a869e30ad9ca807 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `38e248ce7a00679aca49d0be7a869e30ad9ca807 ec8b51a60f800c301f26da8e721f49aa4f271205 f7418ca280b5a368c02ebf15c71d034eb475d44f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 608 objects requested, 171409172 stored object bytes, 42 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b955dd77bb3af8f857c266a88699f63546ecfb37 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b955dd77bb3af8f857c266a88699f63546ecfb37 24bc6e5fb388a908d4b67f827e406c845e8f8e3b 2ea1a4f753a286cf465f009a5e3705855cfe0d31 55ab0f11ed8bf0852357529cd9f53e45e70e638d e09faf6ffec50290c3fead71d01970033f99bb00 eeafe5f9300e9eaa7c6ae950a3d86caeca8a1029`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 614 objects requested, 172123850 stored object bytes, 43 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ac354d72e9a0a7562ed0c09234a1230534487d28 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ac354d72e9a0a7562ed0c09234a1230534487d28`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 615 objects requested, 174061097 stored object bytes, 44 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a294d59958514d9c32f036e1f5f068a49b509d48 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a294d59958514d9c32f036e1f5f068a49b509d48 015de6e3b90f04faf6cc0916cb41b6bb5cce40c2 4355323e4c27782e967bc89df7846ee656a4fd9e 51f97d40def82a1018f3f716923879b7839f3c16 59fa308f4e9744331b1d0183e414a7ff3ddde488 65518489e87509ec05780b8e68da9b670f70c3be`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 621 objects requested, 175156891 stored object bytes, 45 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4426bb41c9849d0c8e72f2f7d8b7396251e1348a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4426bb41c9849d0c8e72f2f7d8b7396251e1348a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 622 objects requested, 175565221 stored object bytes, 46 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e4e990d3a1a232798b6a0c994b0efe78481745ec from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e4e990d3a1a232798b6a0c994b0efe78481745ec`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 623 objects requested, 175696364 stored object bytes, 47 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c0c6a15037ad73302044be79b4b813b06629b8f3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c0c6a15037ad73302044be79b4b813b06629b8f3`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 624 objects requested, 175753246 stored object bytes, 48 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 431e6a2d442102ad09ba46cdf81851c9f1dbce0f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `431e6a2d442102ad09ba46cdf81851c9f1dbce0f 7a789d598113c73c666fe9b211c0accbf582399e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 626 objects requested, 175950588 stored object bytes, 49 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 316042010354ddbf00a953f013c1b1ec508d89f0 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `316042010354ddbf00a953f013c1b1ec508d89f0 187ea47b8ff2e1a2f92cf039cd87d889ed73a3f7`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 628 objects requested, 176098526 stored object bytes, 50 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 71f9a4b27a99429cfa48ebbec39b8ce735dafd0f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `71f9a4b27a99429cfa48ebbec39b8ce735dafd0f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 629 objects requested, 176213697 stored object bytes, 51 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a7eb856678ad595409158e3719b2da58e1f5a350 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a7eb856678ad595409158e3719b2da58e1f5a350`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 630 objects requested, 176574710 stored object bytes, 52 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 7e4c077212b7f1a9947b4d90eb0aeda441f1c909 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `7e4c077212b7f1a9947b4d90eb0aeda441f1c909`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 631 objects requested, 177361161 stored object bytes, 53 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1e89c7eee368765a4ef53978aaea5497fc33027f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1e89c7eee368765a4ef53978aaea5497fc33027f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 632 objects requested, 177718554 stored object bytes, 54 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f63898f70af94882b3159efac310d78438e7c344 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f63898f70af94882b3159efac310d78438e7c344`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 633 objects requested, 177828692 stored object bytes, 55 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 3bf8d67d29835de823a42082bf7bf61380a86f69 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `3bf8d67d29835de823a42082bf7bf61380a86f69`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 634 objects requested, 178216275 stored object bytes, 56 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 65cada9198d8a3db274acf563ffb45185e2e54f6 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `65cada9198d8a3db274acf563ffb45185e2e54f6`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 635 objects requested, 180935541 stored object bytes, 57 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c20556bcc72e2493548e1c778c7823c33a3f3782 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c20556bcc72e2493548e1c778c7823c33a3f3782 e1788064cc747dae46ffbc22e9ddb48cd3c3f532 010d73d70a66dea2e5d468d7b3c226f7d93b7282 02887d50f86187ab60b391de98e4bc34f55ed6b4 0380ed965d0e5f98773f75818ba55e86846631c6 0d181f04e74a3c5963365708703e8062f7c24c4f 0e8ead0cc3f7e05f089b9c32e5a125a02f514393 0f1d2ee261e6cdb2efa0868222582a4aea2c0013 120c5ab9b63fa58c14e77f11fb9d8203f6087372 13c22093a7978a079e470a2847f6fa213f812481 1582358d61c6c16159f5b87e10374118d5b5296a 171957625ff886dac72b522c5786a2e67879c6f8 1877a242b31c67bb02d3676a905aca9e2770003c 1c410d47174ce500e9d20ae1d7461a50e40e4c9e 21fa21e290850c13b3768c238c4c6270b77a1155 2353142e21c9cc28927112ff18dd4324e7b8b523 25547c9352fcb8233039b9955e6652e17f7df5ac 293adc0bc8159493329ff15e11946b6947bb12e0 310bae35b4a6555700e4991e5c5c3bc10b074be2 3387fd62faccc00aa3229e5abae492770a77a3e6 33f279360433feb76dffc0ae6e96067b96cae33b 39421ab3ef62955b329550f0f01d76edfe6666f8 3a442c3b9ff677e1770745e35e3fad9c8052790a 3a613128cd4387c72c127ebd7a98b99fd9bff5ef 41a2a9d6cf297225d478ad466adb977bad6beb46 43853713f2a86f42440bf254e9d5bd2f12729fef 48bf9a8fba3efa454371c9514e9ea63910f33e6f 48f481088aeebf0b27fd758380fd8a3a2a3dad26 4960b89e839c62d1d1849b85aad689b13a419d71 4b130cbb3fbf13305e55bbac064cfd701fd7d6bb 4bf4570f19ec3dfc04afce049232f640f13e48db 4cabc87c954f175585c697635e947113d81d5a3e 53e740f2a89b2692b12d41d49eddeb53b23c6243 5637a119e628f3fbfbd333f545af715ce9ec1daf 571524a19b6ad3d42254804946a6b5b3975d633a 581c8f0ce8275d272a94393282b358f5da6253b0 586b9c5e06990512486b1fce764988f25c6d4698 5e518ef5a93a9913524990706ee8a539e24c0052 5e5d2d4cbe7e09b353914ec9df328fa7395bafb4 68a3b0f93af2a549e32328abdf300523b74c6da1 694ed4ae92735fd89147f355d2b583677fc2f80b 69bb1377c0df79c219e85c5d6982ac1c2a171993 6cc907a397351fcf8579922321972c1100ffad54 6dd951e385832e142fc70d22726fb7111fa9e1f0 6e39eeb63d4686d1a41bc0f558e6cc6c349677dd 6e8c93a9d407090e655aa8959d9b0ed746a013e3 6ff0d27aa9daa0b0cf2860d98644ccf02c458916 748546df651d446a3f0092262ebc41d1938465b1 77fde4f06530e1fdca14f90042a4f8a68673da80 78d8e85c5bab36022a6ef5d6ed6d1d24684403b3 7c87a957d573d9b4b78d8862d457aa9ffc5a6d22 7cafd9d99c08d9e0a73530135aa57cbf3a2ac4f8 7dfd80d5fb5840d8e82bd1ebaed404734a86db3a 7ea879ff9e3f3c712863aa1e8661605a0a89443f 8358479eceabcac5499a5950a81b870eb877af0d 861a9d7ae4113961cdf52b9bbdbf1e3eee886988 87c01375fe1f67d63d35b576308a6f620bb4acfa 891b49df8db95c729fe98b93c76e13b68cbfa38f 89977cbdef1941274c83a24d675253192d994396 8b53e9d336b259bc3bf645ba6bdb363838b78404 8bacbbc7aa7c5a94704f49b51a1a1171aa8e036f 8e7eb78df0e7d4dade3801a39399b3add19cc975 913a1ca3f9390ce80acbabb00bff149ee7b30b4a 9158cf508010655ac67208a18f9df0771ba1dbf7`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 699 objects requested, 194239054 stored object bytes, 58 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b787ec7d41e9cac5f2e137e0ad3b5271801e5402 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b787ec7d41e9cac5f2e137e0ad3b5271801e5402 dec655553751fc1f618b261d2e836ac48c782778 91e26ba5944c7029f6fd4fc8e1ca3b52524ca40d 92df2926c3fdc53636bc4a57f3346b14a93a09e3 9446a24469e97b2760cc8a94ce9cbea4dbac012a 94a004568d3a28b6d1791460bc488554b636508e 951451e5769432ea1906dbd7a2f6e1e08137d57a 976c2ae7e5fa4078ab5727ef9bc17908adad1bb6 98032e76cd469c3f9d4472cecf8bf56fce46ebf7 997bb751c272fa1dbe3aba081e77f73a89759d6c 99a1cf8e26f382d3eeb76db760b80e7dfa58a753 9a7e708b1e90ec3a58c7c72962be08782044362e 9f85acabaff199a622ca78fc6dc1475040d7b571 a1588789dd679e6339591d3ff5676eda9caa5c4d a30acc4344eeb5761a6da2fd0f01c6eae9575f5f a36d001ed060ce8f5f2bdba30840c8dbe51117be a6c8c8de1ff6c8aa72bfc7bc7502904ad9494eba aa5901a2f3e0614147968148b0189acfa76f9be7 ab3a7fd555a9f8277f80d7121a05d1f7a936cb72 ac04c0fd0bf166139d0060ba74677b23500b6943 b38f1e17582cfe8c98f4b49d83bfad08f42b270a b457ca4d44563e673330ed6e016155f9886517d3 b5530f66e2a295cc609b00075573319d33361f33 bba4be9d0315f1fe1b11e63be03b9b858b2b31fa bf58c3d18e56e414d4d7d41d744ff6e0cfee194c c14803d97a49c5d222bfb289c1573453ff2c60b0 c4023539ed6680695b56e76f7d26ad5decee2e98 c4fd30a0604d5ffef3dc82cacf37658454144a62 c5e7ad5c1f399a13c159ca4ad2ba6c2378f2ad75 c802951cbc42bccece32f22fa69ecd1f63043c8f cf265cef4d94b137196d41d0c6798786afa7693f d1ea3cf8ebfec3167c5e015ce966d8b0cb7e0f96 d486a19ad41ff406816f7ebf51bfaa8f5e0abdeb d5a8856daa696a2db6aec62fd6f4cfb833185973 d7c73e35b6d4a93f158f8a609bba95ca9b7d8160 d850d55aa911a850249df9ca13e7d933f93a579d da2e655f5d02de491dfb00f68768d4d08d60bbaa db8f1f07215b72c4d06e64113f1f193a05bd6562 db9b3b55d8176d7dc6f158521b4c1af3d4ad6971 dc3d2fab2b8352096cfc8dfe4237800118d4aa30 e10c6acccf5d4b5c1f85b46f355d292f2584e704 e317f6d86b1fa04135c3ed9ae9f6ec99abfe68c6 e45811cd6a23a4eec75c9c48894f965f46b2086e e586f916b151f031332b4b31f1437af2143f182b e59162fe9d29d2f26f2b4431f2c20a04f2ef572b e5c7a578cbaec54ab24106f8fee82b9c8e78627d e7882bcc5977c809e697a01ebe3c4c673691cf97 eb3c5bf6bbdb6e65ef379907b1e451a1099e8994 efd4f9d53c17bcde2069d30a548bed6c3da51d91 f425011dfddb32e957b7304e74b7c2b9c4645cf2 f8706579cd1e803349f9f84bc3f4c465374130cc fd02ac38380a2e27cde76cff02793893d203e6c7 febefa4662cbaeb411950036031c2aadd7ccbea6`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 752 objects requested, 210970677 stored object bytes, 59 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f9af9ee7bd02de80e297b0b8808983d096abe18d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f9af9ee7bd02de80e297b0b8808983d096abe18d 1f71bb357ad2e596248617e26dbaa25954b11158 54cbad77e8d79786229ff0c90db9208ee68be30e 5e365a6883061854180280381a967cd3aacbeb8e 6c7bc6cfb34fa4bef32fcb3251cb8df1cb9d362d 7bffca4a165074391b0c80dcdf78f8e25aa1f055 cdf011e0ab2e46e98a807b53b1b31ec51d9ecc6d`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 759 objects requested, 216737280 stored object bytes, 60 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0747d170ba796c1861dd3005e2ab051e0c8699c0 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0747d170ba796c1861dd3005e2ab051e0c8699c0 038371890dff2865d6b9d617bbfd52c0421d13e3 13cafac97df5d569439897c3e7d5105440061928 1923adf9611456ff8236aa27890267c2bc31aa6f 334f82e05936c6c91a97b7cdda362a4be2a2fa91 369ace253d691f7ae6885bfcb7f6b42c85cb4e11 48adab72758acdc12a9a5dadae710a2e59c6a19e 495a970c08352cf6b9b461d6f825cef8c0d39f9e 4da08840068079b5ffa0a43f6db23d35e23046d4 5677bc679b488664fe52e3322f132a336f75bbf2 740ec8dfee1754d22bad22dfabf0ede6fb8ead23 786caf89e25e4ac1a52a9f88f77ea18addfac5bb 91292ef2e5574c9e835ddf0d8dc6a98dc2a43dfa 9801fa3ede0231387066da69cca8c7cd056217b5 a34b810b292e9d8823529e6f17285e167d91cf90 af72467d612ab67c8f0e2cce7bd03f26e23d11ae b840ce75aef1db42fb6054b0abef4909bf28b6b5 bb3f377cb2b8cd9c922b58b832bd52554a6972d0 bc2e093e0bcf9ccb5905f59dde8be84ac7d1d6fc c75e035369a44f3719b07668c7edbf3736faf64a d407bf3b4e8650f5687cf6e6250142958b9a11f8 d661f90d3715683fbff65a27796d3b5337b7f7ae da042599a801086a79d25a33fb88ec0788d5d971 da2008485beb62781db958d413362266a1b38fca fafee57d52710e1c0333bddf47375ce8e0403358`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 784 objects requested, 222197201 stored object bytes, 61 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4feaa6f0cf02cdd576c33eb70514a5015fe0410b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4feaa6f0cf02cdd576c33eb70514a5015fe0410b`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 785 objects requested, 224357303 stored object bytes, 62 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 847ec75164f3e87e150eda9393e0e8852737d69f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `847ec75164f3e87e150eda9393e0e8852737d69f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 786 objects requested, 225478287 stored object bytes, 63 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1b3bb6af165ee13361dec7b8346ba7f8b6c6b22d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1b3bb6af165ee13361dec7b8346ba7f8b6c6b22d 3cda9be71fb61d292b3c98848f0d820a11610422 69ace5fe7be5e9ae55b39111622959a931ab9b7f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 789 objects requested, 226375694 stored object bytes, 64 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f59d43e7a0dfc09a838cc6d7e368b323a17abe20 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f59d43e7a0dfc09a838cc6d7e368b323a17abe20 027df367fde5249b4c0ca8c83a3c0774a9b52a9d 04d158fe5a30a3cc58841906880ec7aca750cb43 09bd506e182a1d4d987ebf9e56c085d55ec7b135 16d3b6a16996a212131dfdf34ae418f08eac46b8 3ee632d37a0a93d7f44ab0616f634208f8bef078 65365cadeed313ee7579da35297b0ab7b6dc8514 6964c43136d00d7f7e375c1151abf9507a70adda 70504647af58acc1e5cacfec233aab2970d42d6e 8cf53fd147a770c6fc3fb4b750ad34c236ddac18 9aedd3a599b0d0675b6d41f719ffdabd64378377 a4a550c934491973e67e6f04bc4bc165d3e06ab8 c11fcb9e2889e92e44313078eda16d5e317b82bf d38f55e5aedd8d4c36885f9b288d5ec14dae5d7c d40ebd8b742ba0a389fc0cb9e588c2c6119ef37c d426003ed7c235951fbabb7f8c70a31d4aa7dfcc d5b09ca257f71dcd814226026567f5a6a093a766 d6fed6ccdc4b01573076c24f74d550609742d6db daf99592098f68e5d4f40650d47972cac3115464 db2e3c016fb6f798a3bfa5fe49395af06f349cf6 f883faf977735d3ebe3b1a09ca2308238ba9e204`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 810 objects requested, 236577813 stored object bytes, 65 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a0ee514f2b7521c6e2250f2b44a88edd00aecc78 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a0ee514f2b7521c6e2250f2b44a88edd00aecc78`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 811 objects requested, 238183364 stored object bytes, 66 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f3ea96a37c6d4663344f39eab9543f97611861d6 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f3ea96a37c6d4663344f39eab9543f97611861d6 17ab68ee27c38855af0c5f6d739a41c763244c03 208c1bc1cfd937853e267b80355fcc04ec793394 2388e8fc27ce79a2cf24380a785c752458764b94 49be584582226943dc5093b19239ffdf52cd759b 55e293bcd7ff13682f16c9aed462fa799289a00b 62bbf7dda86bd72c316f294acfa59af5fd239aaf 64b1a569531cfd5c8b371e94605bd18a1bca248d 7a1d6626d57a4a77a98cc842db9660a8bae3ebec 7e9957410ea746965be18322d50dc6364b062934 81f88024694cc149db460bbeed0e387d6be295be 893f78147cdbb4ad2ee245823f47ee42257db910 9d54046fc15709ea8ddfec0b06fa2ad53f1858a2 a964c76dbbeb733caa32486bae75f3885586ed41 f61af9477162857d0c83fd6c432caeea225c3bdc`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 826 objects requested, 241751931 stored object bytes, 67 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5d4bf7db2a02e4ab445af5b5d4839ffb1581c54e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5d4bf7db2a02e4ab445af5b5d4839ffb1581c54e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 827 objects requested, 243003460 stored object bytes, 68 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ab556802561e2d09b91c8a48e4f2edc2300b762e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ab556802561e2d09b91c8a48e4f2edc2300b762e 1237d1c4cf28f04e699a0a433ae4f20865cc291d 3611a875048605f2528ddafc3f84b1302e10cda9 3791270923ad6ac7c0b04fd454699937328c92b7 47e04bad96606d85fe5a25323b646cd956d56fcf 5ceb90334361db49656d98a47bd9848426b53491 5d510cdf5ab17bdc271fbff06a6e88cd8d09841f 6cb2644f60ad304daf12d353c3db940a0194f322`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 835 objects requested, 243882305 stored object bytes, 69 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 369b4a1de77521cab2e1bc5f1cf090a661f58bd7 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `369b4a1de77521cab2e1bc5f1cf090a661f58bd7 3fafce6e3a5313f3407d10f5ce2e9ebb02de46f0`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 837 objects requested, 246374164 stored object bytes, 70 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 96ab26c315d115d5dfb8664ad8cb87540711c3e7 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `96ab26c315d115d5dfb8664ad8cb87540711c3e7 95933a4555637532d57fcb903ed811c71c235632`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 839 objects requested, 246743403 stored object bytes, 71 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c629bbe669130c27606aca5c78d9d4528cbcbe15 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c629bbe669130c27606aca5c78d9d4528cbcbe15`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 840 objects requested, 248250654 stored object bytes, 72 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch eba3caa21990c28559553fe0003ae379514e7215 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `eba3caa21990c28559553fe0003ae379514e7215`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 841 objects requested, 248348130 stored object bytes, 73 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 54cba99693e8dd8aeb4ce3c1d36c510e07eec1c1 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `54cba99693e8dd8aeb4ce3c1d36c510e07eec1c1`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 842 objects requested, 249677530 stored object bytes, 74 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 552f425bd683ef6fa8b59821e216e8a9383fda68 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `552f425bd683ef6fa8b59821e216e8a9383fda68`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 843 objects requested, 249721232 stored object bytes, 75 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 25b2b15016c59b7b84bd15da6e6bd65151f8608f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `25b2b15016c59b7b84bd15da6e6bd65151f8608f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 844 objects requested, 250943671 stored object bytes, 76 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 14e6ba55e0618928b4438e8a3cf4aa70a22cfbc1 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `14e6ba55e0618928b4438e8a3cf4aa70a22cfbc1 05f648ccbd04941b757ab76552768d06108b66b3 50918d6f35eeca3adacfac2502e2ccda4f2efa56 6187f7dab64d9bc295179fe1491808004aa19594 6a86c1994c158d454ec26ee4323d2a74928a0148 748c29e701b65b7d59501000ea6de01d98272097 7675a218c15528c8916af7d4e565f7294fe6ddd6 84fd094181d86fb569957110418fe945d877d373 862a8c1fbb91475558031f6d1561deb1748497b3 a1512f71e3c62f287ead27d352982e55a826a47a aa59a12258289f80084afc2b47ec8b3c2458a85f af246df6f45aa9ecc78d78e83f94e2e0eac1ef39 da9641ffcb4a6b22698a89e8e70a6412e347bbda`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 857 objects requested, 251840237 stored object bytes, 77 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch be44a14c4819cd74840195d0f90a55df7ff110e2 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `be44a14c4819cd74840195d0f90a55df7ff110e2 cd10292c996c226999e033d4f0efb3c8a2914e86 fdadb53da86295f262b6a8eadcaa5684483787b0`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 860 objects requested, 254736274 stored object bytes, 78 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 9a93c31810d3c89a2eb7766fc0f56bf2cedd3091 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `9a93c31810d3c89a2eb7766fc0f56bf2cedd3091 ef7c2dba3153967b6f6301c113b1609d24e1167d`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 862 objects requested, 255069213 stored object bytes, 79 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 605d18167b1d367ae532fec441d5e213fc07e512 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `605d18167b1d367ae532fec441d5e213fc07e512 2c465633381d683f7e31852b4f8ee5fcbfc7ae02 56cf92dbee47b65c03e767cad4043b5f18593c9e 60a915e2f4f35c15480a898c64f70dfc3056d059 6b55e2c54622c78d56c1f1247cca80bd8949f6c9 8eec2c438dfe9a9b3476cdcf1e9b447b8b9da3c2 c846dbb08d0996823522313a62e8a4b113df388d d1b1f83135d99cc6612a27b2c0b19833f1dcacfb e2833e791ef10beaa533b34c0f6266600a8cf79e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 871 objects requested, 256406261 stored object bytes, 80 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 89071c5c2f2c148a7a0ca6d3cc21aca73ddbf0c3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `89071c5c2f2c148a7a0ca6d3cc21aca73ddbf0c3 0299f0857aefc179ef4fbcd70f17a6b11bffafdb 2f9ed640972f062222413c2d95c0055f5278e438 666352cc766228d5f6a8f696f338b08a4239b5c2 b345ab56d9e8069b2abbf8c746c188bb7ea91c2a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 876 objects requested, 258687573 stored object bytes, 81 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6a3263b5b510d6c597623b1b48e9aed612812f49 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6a3263b5b510d6c597623b1b48e9aed612812f49 04fc4805665c38e5f7a65b90adfe012200b41662 0e9963c387d349ce36cb27f65fae6ebe72de6094 1539adb628e97b42bf6ba3598aa97c4217e7085c 23926351ee6b7514c8c8f199ce3f94f18a2b4f40 41f2c0d76f853505dbe6027e9f690fbb54265be7 53f0eecae871ae24615afa2e4e4fb7c3426b8c3b 555d6f2ea304faf0a97de76e0dc47a34d4acbe94 7f91e37cfaa95173a63e35a7bc1d869ab3803c88 a24cc91df0608a9f83886d411584bb121d04f1c6 a5ca309d62ecfdcaba798f1ea20533b1111cf7d7 abeff0cec09e2f937f2db8f0c470b3d112f8a674 f1a486daf31cceae2b32a0dd156c12713c51fe86`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 889 objects requested, 260271240 stored object bytes, 82 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 48d351be2d61032666896ccd771762f13d1aa01c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `48d351be2d61032666896ccd771762f13d1aa01c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 890 objects requested, 261947430 stored object bytes, 83 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 671dc0bb8f84d5f3203ad8cf2a66748add423875 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `671dc0bb8f84d5f3203ad8cf2a66748add423875`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 891 objects requested, 263914591 stored object bytes, 84 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 38e405e82dbc49b937e8524e452b219d1df6a716 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `38e405e82dbc49b937e8524e452b219d1df6a716 3a97ffd6e0c55742b362f47d0210578c6457d346 025cf1ac995d3640ad2831325977be2eb7f99b7f 0f5773e00b8dca4871d973c2e88eec0c25bf54d6 344e09a7d051f3e910b96ad7f5ce54410a081d13 5053df51cdcccd1ced408b6aa8d6575e8bd484d4 5e8c5ae24baf5561240b9b59d150e1cd504edd9d 7e403bb120f4d75519a878b2aa70cb2124526fa5 9d97acbdfa5247af58493d2cb3385e0247c6fb6f e3820f839170814d2e9cc5a32386c65dc3d020bb`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 901 objects requested, 268921870 stored object bytes, 85 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 455274f418250af556dc5ccf2824750f05848d83 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `455274f418250af556dc5ccf2824750f05848d83 2ee5fba15de3ccd4c31774bc7a66de7aeefab770 01aa95ab97e07ed847684a7bc1ea6daa8f011140 021dd7fee46383d86267f60f5240aacb92628dfa 0aacffbb8168f0bb588f8cba3f37f9e2c6e0421a 0fabb63d37627cb77f64c5d2a46cf25d4acc66fc 179d61753d48b3a55165b81ded2c14e84deb81c2 1af670c0da4372d6a443776fb52d15c9fa7f6395 1e56afc8616e9aad4fb10d8412dc83e747c5704e 20f7bba0e0a1b604cbf575be403db1007fc5919c 26868d2282b7e38c2ba40e00968d2c92c421fbd2 2739846feb7efd21d99b1e5edc17276cd612be30 281e699055ffafe094f52a440547eb4b64f83bfa 2ba6076a8853edac5e3e17cffd2c256318e88d92 31be4fd45fa18987b35b3386fdce2ce98c798774 330e55a3b6bc04227a593aeddc5b93f46c5a0bee 371856427c7cc31ae7463c83f00ef6652c72d672 37f9dc233fe4b6a68c9eedd5f01260b15a1c9ff6 383093ab96ed3a099ab79f5d6ed144fc0b7067a9 3f5b4ed47ade68e83f617ef3fd65cb810e9b0e07 42434339abf5a0a3816f890389e3e61af3b1e03c 47b2eebdd36c7289679eebb9583c65a15514e194 4e5a7c98052ed1c378a39057fdfdf62051ecb385 524a0e21c8de1050d7555a8dd25f67af09212931 5877dee1d09cd8bc7ad9db556e1cb2a944bddbf1 5ae00a783df3e5744ebce98ab13f9f3591848e7a 5b751c767ecf03b29c707b19f1faf5367e8d33d2 5ba2fdeb4b1c0c623f495fb3cebcc2b2a3a4f21e 6010e8b2fa506ec00abdd1ecde87efbeb958fb26 6392be7739ca1275edcf1d78ce91d13976844e28 66b47ea29d60c0ba22f75272e43100be912b65a0 691a779b9c9f4c97f48eaa9edf9eb336ca3b4411 6dea51ad93c8a64ec9951f4914fa16f749ea176c 6ee97bd78bc2accc014499f4344f373d6c9740e7 72fa4ac8885edd02d7db3cf1f51b5402df1f10ba 75dc809bf899ee7b723a2f7f3f25132389dbc804 76d21a3d81e4e34520c5d6b3f28d7e43c1874364 778437ffe61731915fa4cb7cf2390e9cbe738c43 7be6860aa57498fca3349ba1d3e88ac337b0f2ef 7cd39cdaaebae2602553867a61e468b423b8b96f 7d595ed8fb2f20363c4b20eeb9e5b8f564c52191 7e1d01da831587f7b9d9fff232c8886db7a2e1a7 8069369afd690192ef592cbe502082ebb889fd38 80bca84aca41137f8270fb35e263dcc5d9658e43 8864e9f98103190883d1ba027aba5469925f2bca 89d231d7e896a8ca5955a692980aa7d4a83d8905 8a759a709750ad97e1f372db0ebbff246daedcc1 8b32e966348f646fe4e39fe929a10c6d2c766579 93e103a38dcc82654b2ef1a806d4675b8a938e4b 9741ac03391a978a787cc4d9214f9c9e5741f706 998a0a0f5c248b217cf82c5088d6d365d9654ecd a62a422085fdd5bb4813ae5a0e2aa49c0b3cd32a b6a6d12bff84306fd9856bd18174aebc07cc1726 b85b6457553d2336f5174bc84fe8bef752297919 be81a79ced1b650fe7e79782a4be1fc63b8f76d4 c141fbf5a61744444b4a6b70d5b8fe947ff167ae c44830f1fd519ee28750cad04d7d0adb209c265f cc35d512ba4b18fdf66a08047f1894bfcae1f082 d0a2657a0011c5069e26d80758b12195b130cac5 d1c080c86e1d11fb0c8e7e58afc57863acc78280 d1df2f433869e68dbce02bf7ade81b5eb5811055 d4261dd7ccf39dd9c54cad37c1982f1d50e6fccc d788902867014c5984e6029fce822508579f73dc deadd3c93aad69c31c3bd6e390878baa7574fb60`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 965 objects requested, 287145121 stored object bytes, 86 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f2b6ae7f29708e039619128afdfa3360c2b9011b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f2b6ae7f29708e039619128afdfa3360c2b9011b e0095a4724faea9347a9a8ba981c4ee0e8a2bb7c e54d6567a4e704682fdfcc66b17823b7ed80f2d5 e698311fb12d3f22f018b668c40dab667c39b8d3 e942923c50993a56cfeb29040066b1da1f9d5770 e9792098504b64b359fbffa983373e5e6fa1b50a f2e98e54e8f1980eb62ad25c7a838044c23bbadf f3c263a7ab3fc1e902bf2513064d4bc666c6b59f f653871e0c2eb39937e2b961a9d2454ad942eab6 f87ad3212b5d52b40d8017e5cf7fc3caf78e51e4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 975 objects requested, 289469233 stored object bytes, 87 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 9d56a7a72835d3524099e60d812c114b6f6c7376 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `9d56a7a72835d3524099e60d812c114b6f6c7376 8c4dde8b44175ab0e62e35c9cd82a5879a4f9330 9095fedbf9429da25fc1c743e1e139a0cc086b7e 13383a380c5c240ef2bb2cfb16da155f2c33872d 27bdf3ba72607924d414df9210f4e50d08c14794 2cfce25b058253df3b2647626558ff178f876753 74565bed8943e9e9767a911fbe888293416e292a a049a70e29f03f3f4a03dd8aded1e17f8cd8f285`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 983 objects requested, 296534003 stored object bytes, 88 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 3e8ac94d7e1cd6831fd27facf604b5d832193995 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `3e8ac94d7e1cd6831fd27facf604b5d832193995 11ef770c11e972aedfe15d3a16d0fb740a1da642 2659eb1c0ec2dca8bbbf3907ebaf2a536a1f7bba 353801bb05ff40db35bc93e53e15d510d158960d ae590bfc874b9c6f65bd0280a33891015175cb65`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 988 objects requested, 299822208 stored object bytes, 89 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b511be4fc23b0a9f8b2296e74ce1f24973c38b57 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b511be4fc23b0a9f8b2296e74ce1f24973c38b57 fad6aeddfba781df73f124d5bcb0bf87af0065cd`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 990 objects requested, 303089010 stored object bytes, 90 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f2e688236f56bd2738468a213ea61fd2f69baf0b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f2e688236f56bd2738468a213ea61fd2f69baf0b 01197551ce8ad7d7118590f949897c72a57b0e11 0b99756ffd7d3391abeff66fc510a1ae7c5a4c8b 1d9be4c392ba62a96a07043096d96d0a981fb9e9 1f45bc4fa84604cd8e69124084805104b96be188 5005be1de988534d0f4b94ec51eaf1ff41ba7970 551f12437a92cf72206aa56dca412c88220b6c4a 5c98393efeb90c26bef36279e000d738dff8ff9d 6b27378a4e44d27bf974ec7ba311f5725c4dc2da 710bbe9ee5190e182e31730acb0e9ec6ed4c87db 7c2fd2ce44ed9e4f1d550ca1847c7c9e58f91be1 bc661591f01c760072cb9f3fb6d80b2545bb1d53 e9a44eb668902b7f934f8328e4d33c6e38df8db9 ed2bebfc4c2febfef45a1c67c40397964a6df6e4 edc559eeb5b385e3df55573074e35ce1ef227a46 fb7e0b4963b9889fe6b1127bbca03844163b1bc7`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1006 objects requested, 307645986 stored object bytes, 91 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e3578b753170ecb363b679450e5ecf3b8a8a8496 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e3578b753170ecb363b679450e5ecf3b8a8a8496 03eebc0abc54ee45c60cc29b90e498c9ddffb66b`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1008 objects requested, 310061505 stored object bytes, 92 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2fb6869140aa6bf40538a0871a9d45784fa3ff49 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2fb6869140aa6bf40538a0871a9d45784fa3ff49 01d3c75b2246df403f5d4a81b034067b58952107 05e5512c79bbee0a324d401b1bfd40441b660c94 18174eed93d892134384a75b2bd69a724df35974 1d4e515c1479609d2fb7c17fd2069a6d2487dd6d 1ed90cc62457afbdb17915c47efe5f9cafcfae0b 335b2f19100e5cdc9b751cb3a83c3d9f49e4a227 3bcc4b8730b10e12c9be3d8b2b9b3409980221c5 5ade02bc0c560abaddfbf952589ec59891fa346e 5c85b2b0731d72ccf17a376e0247c3746aa34c93 5f798ca0768656ef8846059414370d51bf5d77c3 6c8ffd59e6b80a710b7770248e357788b04059f9 7943bab36d5f85416942ea4e682ca6453612b4b7 a59bb640fdbd932c6eba299ef5d3ed63994ea524 a98398f9edcef9fd01ed91c3304e7610e5ab08e7 be81370b2252d2e6b1799828d7c45db91442b867 c396d51d80a93035ed399e4762de83ba2c2d0874 d2a0af9bb69888d159134451dd1c3fc5075689c8 e5898ab498d663eeaf261daae7b9beb9ac37d843 f4c03e3af8c6c3f985946026b6815ebca4adcc06 f77ab2b8b8a67d83c8960df0a75479f5b8471fa9`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1029 objects requested, 315692853 stored object bytes, 93 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b3eed8dd86744b649bca62fd9503da76dbd11d6a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b3eed8dd86744b649bca62fd9503da76dbd11d6a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1030 objects requested, 318391004 stored object bytes, 94 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch de9300a101a05a08ca3b91a28f27d8c37cae82f5 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `de9300a101a05a08ca3b91a28f27d8c37cae82f5 19f0e2884421df72d4a36eb37775959507a6fa23 3d348980d0f1e04fad4abafba780335c518dfa2e 41739d476afbef165106c9eaae4016d2f2416485 4d56af222009af4bad85ec79a6ed6add5bd2cf04 63204e655417b36ccbf86c27c8f1a8a15fcfc900 8da06930e81b020de0b12af4dc9054db14c1f76a c5d8922016766b41c8cd3235b6d3870f7574802f f2531648bfb10be62a4f00c17693aaa1c2ce3741`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1039 objects requested, 323629311 stored object bytes, 95 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a9c5cdc321b04107676cd039d8ec756a1f7ff558 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a9c5cdc321b04107676cd039d8ec756a1f7ff558`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1040 objects requested, 324879764 stored object bytes, 96 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0d5c834be9c7214d7c6bf47972a4b4c92204b805 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0d5c834be9c7214d7c6bf47972a4b4c92204b805 6b01888221029df989316e3684c9abc3b0f47265 01aedfe24244cd7c257b29c63defedd61d711f8e 02e73fccf201dff853d04b8b5652ce5579f5f922 07d8b8481c8f5d4bacd675f05f9dc8132960d01b 0bebc754ff6bb7e83bacfaf3acd41bd7cd5237f9 11d6429c52647df8fe9694655c6fe1bc7c3c9471 16fc91485f407b6b37312598f007e5fb4caca06e 182dc60d500d729d6a5b10f607d9983fe88a1c1d 21f787eb32d6e566b8c7f86192b5cdda4641c27e 230fc9d26c0605a556bfb2f6aff403794c2698ac 27804febdd8f71a4c6271bcdb7e7065ec29b22d0 3b64b085211834653f12e617f6ac1aaa97e9d81a 4217590f8be8bc32ee434a1ce4185c400eb2fe61 4dfe27e8023cdc6162eff983973cac04a2f8234c 4fd034ec1bd1da8dac0ce3681a0a3b267ff521f7 503834260f224778e09961568b27a1cbbdfe1a63 50a6c83ac6d49e3242c557f575221245b83c83b4 54ec4b1f2121effb204453e1386960d6497b3a98 6d868969ab4b125a6510f5345dbce47e5a42c4b5 7851e4cfc14ad88f7fd727f2d3f75244f0f06d78 79a5cbc8261a8d2301a2f0b7d561dadd4348d691 7ea12ad79a0e6567d23d819753b2fe92d4cbb724 9185895554d557b99d03b69fa0a23048029f43cc 9b9d7e9ef98cb7cf603b8ddcde079a68cb3dbdb0 9f1e67e8c70390d542aeff00f51c6439075d139d b0fe80066801a6b6ae65e0f3a070e965fb2b4ae8 b8f6a25757995b5136549eec4d3d411b7bd0ef9f c2f18f641ac4bf53579fbeb8c674f70e66f35cd2 cd638196e16f786685d918e67f281003b6684316 d62e6a8968b05b042799896938e4051240585ea1 d83a5728ee632b5c77b1f6b100b48d46e65e2176 daf76f905194811f3d56e8a20709376b2671ef63 dea989b31a3369b7087e4b16f2cf43477980e17a e376c57b7bf404747a8250e8f4bf013ff5ffe68f e5f615e0183c9818e56a971b95b9b340ca13271a e9eb2aa68417aca96a42bc7850c9673e18e7ffa0 eb754862423fa814f420a6d3b67b4a79dd783389 f2496913d2e33a71dc95d26b263b649bcd9788bf f7cd39116a19de57fe5d1700049dae0119ac119b`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1080 objects requested, 334456574 stored object bytes, 97 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 47a482e8cf5491f9c3b794c952de9257b9af6aeb from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `47a482e8cf5491f9c3b794c952de9257b9af6aeb 4b234e5c4f09bce688b4e27d7fc6826bf72cb188`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1082 objects requested, 337754532 stored object bytes, 98 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 25107a3de8af5d2441e6c580e689feb0d99e41c6 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `25107a3de8af5d2441e6c580e689feb0d99e41c6 5b3fe58e21ba64c33633330d2d40bc33b4b10539 02689aeb311772b90e6b8eeb084535dea2d5f992 068f5c00c047a021321427f25eea79a5689bfeac 0968a6f41542f515ceb8fe52d203bf1bdc7c53cf 2111487ded5d96f43e71f371c100d9057932cb4b 22505187a49a0e828da529f8f69f15c6a2f1ca9c 236cd7be295b0cf37114a4c875727c6ec9d2294c 26c33219eb64634abb9504dd554bf79a420b9512 372ef75a52b980b1721bd18fa4d5ae805b8c43fe 37f88baec15ec3de8990b114e0d38ac407c17d1f 3bd01d8bf34fa481b808e60401ab9b699ae79d9f 3dd812152fb24d2017f8b7ca81c5dd82a9d584f3 41c4bec6d7b668fae18a57d1d1d68321bf12a32d 5459fa5805d822ecec64ab62a7766aeda54ea0a3 56602f3fa2472631e34e0b987901b9ab25c77bad 5f776c15955d3066e182ecf617229bf9b6ff07b8 614ed810dde95952e568bf861934a3884e723446 66872002fd7d3dd87ed680b6b9eff6eaf88b91af 69b272c645b64dd9094502a3dd295fb78f1f14d8 708d0f8a882238b87dd9500bd71a2e3988787ab9 785a1c471e0eafb1a00e1d21dae5a48b1e8a4e07 8159d7d1d75cfe690cc666c641ecf8f2a19f87cd 9d18e46f4e1e0d212bfd2f6196ba2131910bd3b5 a44022198eacae682556fb14031e8c1f5f91d94d a7a93fbf51b1b8ca19316d5445e075286490ac26 ac835a0381d075a4c9b7cd85c675f38892ba69d1 bade6fe9cc1875135c7f2336da6031e3d9bb0bed bd1b208f22c7f079a168562824ed42c44cf5b856 cef6dd3cc9bce65dff3814837db7570cda84bfcf d84fc9d4d9bdad6f14485820852e6f231cf4d803 dc71f88f985cfb2cba78215681a7b4d1f4157a71 e0aaef2544745cfd7f45a96978ed2581bac83af4 e9168fd1d93c13f3ef96f1bf963bb43cb0f5b88d ec1021c45f4d89079d0b98b90755b09fddca196a eedd1715401a18495a968546615714ae787333b5 f3576facd2c19623352ee7aa700eb919394ae1d3 fdce3e759091caeb087767fd2930866922d0e12c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1120 objects requested, 346655814 stored object bytes, 99 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 37e18bea616579d94b982f1e86944161256ae395 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `37e18bea616579d94b982f1e86944161256ae395`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1121 objects requested, 348598567 stored object bytes, 100 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1796d38ac76e266a008b838aa6ed867ec149a9d8 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1796d38ac76e266a008b838aa6ed867ec149a9d8`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1122 objects requested, 349610603 stored object bytes, 101 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5901473f09f0cfad82e41fcd36d03782108c4eb2 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5901473f09f0cfad82e41fcd36d03782108c4eb2 365d7e7f7b850eb9b6013923f32274c6e1626d5a 7eecece57038320ffdc83558af35f57bc3f71772 aeaa37a195840df8149f0872866671a159529fbc`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1126 objects requested, 349941356 stored object bytes, 102 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch cf7605fffd533e79dff7cbc5444444fb903a18ff from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `cf7605fffd533e79dff7cbc5444444fb903a18ff 0ee76be2bc8c2b8340a00091b3eb9ac3c91fe8a3 2133d804634a9b997a633f3043fa53087b47a270 24a3152a1a987faa345807d54b62b63213acbb17 2c3d93e1442328e05d3d4c7b9d035b08e1d343e9 404d2b9c72c88b45d5cb5b22b9c6ae4c2706ff47 4c498d24a951e8c9647bddae7b874b925d016e71 5b13ce3f3cebda040c4b15800617b57308a98fcf 5dbe5509e0d4df4501c101e3fcdf653bacc11b5d 98f4eda82bd06a4bdc59cf9d02a354a13155dec5 b65d7fb37be73452779af2e8c22bc1b2ed48135a c0103a1deefc67baff78a4dac8a49a79acc7dada ccb79fd3a95e1053aa5ebb13665b323d4c4df205`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1139 objects requested, 357848170 stored object bytes, 103 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 247c03ca24bd41d1542c82dbaaf315d86f6cc38b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `247c03ca24bd41d1542c82dbaaf315d86f6cc38b 069e4e34b5a9bdbd97274cefc9bf507796a03a91 ecb1d14f4d805e9d629db234b40fc5f1ac246287`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1142 objects requested, 359487538 stored object bytes, 104 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch beb81e349770cbbc6bd2ed5d24a69ffbe1822944 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `beb81e349770cbbc6bd2ed5d24a69ffbe1822944 0ac45b8583037edc025b615b3f4140a54ae734d2 15391a1da1a19a9622f4bb53646c1284d7df17b0 3018e56b3f1932163f7cc71bc65878ba8d4b4706 4597ca946d0f72ea9e810631e9a7ae369527305f 60a1518c6dde0f95af748bbed35172874e23eb4b 9496663fc39bcd9b86fa7bc2e9d261ea7ac4c64f a5ab25a30eb3d2ef1eecb653f41a34987fb12e75 d145d77bdabe4590a152ecf389d69dbc06f7ac8f d47befa61f2f147fd38afc92eb7ccbe66ed18d15`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1152 objects requested, 360722466 stored object bytes, 105 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 7e0c4cb675734d7984f30bb21edff83368525f58 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `7e0c4cb675734d7984f30bb21edff83368525f58`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1153 objects requested, 361047569 stored object bytes, 106 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 88211b817cecc4a7c0382328d4088d17b3bc5810 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `88211b817cecc4a7c0382328d4088d17b3bc5810`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1154 objects requested, 362736831 stored object bytes, 107 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 777c7fd8a016614c01f59df4173f9937e0e4e2b2 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `777c7fd8a016614c01f59df4173f9937e0e4e2b2 0fedea174f814555e8f423b278a05bc4c66a0b5b 49cf16e7d9bb4509f6dda45bab8168c1a8a24753 53e69d98396f000c0d2221ab57c435f21ed1c872 5e4bd903891f8e814718cfc6d626bf158e9de9a7 7add691448535ab18beb011a79e73bf007c23213 8bcec11ffd80fd15c097c4a28167c4d7bc65c409 9fb828a98ca6c96da0ebe78d8dbec97e233e02ee ad6f2c1b2f4a77cdf33b4cf971c3ac47d42f80aa d141d2b16e969a9553e0dda93ebae10dadc9d9bf df3e56e0ce3f8da178fbea3ef7dfe5e524f3f7a1 f22e2451240eaabd5003f2870c69aaa756feca3f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1166 objects requested, 370140521 stored object bytes, 108 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b6aee4d1494a2cbc6e40072783a614bc33258870 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b6aee4d1494a2cbc6e40072783a614bc33258870 8b607f05f0931b9c010cd13076122398b36c3604 b78fbc456fd3009fbbbb63a5034486db578e8baa f8041be5b88b863568bca3d8fd72e26c79468906`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1170 objects requested, 370971856 stored object bytes, 109 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 88954044ab5ad535aba2e4f4175706876fc2bd9e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `88954044ab5ad535aba2e4f4175706876fc2bd9e 8527248258f0fe9f26fb2365cb90234e0cc5fad2 d5e8dff8ad794fa04db501850ad66c8c3d37f6d1 ec1e3f0e1e1c431b25d429dcd62da2dc4ecbab18`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1174 objects requested, 374100381 stored object bytes, 110 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 3dccacc6c839c272779c80d533acf72de8ea2a7a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `3dccacc6c839c272779c80d533acf72de8ea2a7a 023781bd1f54ccc0fc4fd5d44e2d5216d51bf2db 04cd7eff9970f07252f7151cb00e2799af9e8654 0c86e92aa91df609cde4cccc65b8faa4717ca225 1333b4fcab83e736d944ca6d9f0709c1c6704e8f 16bfbf2f51fa4262d634ef19be4a2198622caa9a 1fc8eaee6f651d8198d1da8db1d89e9715aed18a 20cf63252a456340a7dc79f66e04f41a6acce2b6 2564e2d9635332ebd9e7eca24d5cc8cf67d416d4 35102bca84b0de28672d3009dabecd4c0a466ec8 43e46eb2ae87973735bc57f89bf1e00484e020f1 5242d2f5f60c59829c6bd02f7c27befbd9ae3713 5747e00aa484510b118a321369a578469f05b574 60cef4ff903c91e83e922f8ab6fd25addbfbab67 670f846bbabc8b91239d01027e950c7966b35ecf 6ad622a0bb395225438c802c06c077e984fad09b 7142b5b496eff008ef6bdcb17d28ef8086db0e5c 71f910e7ca6ac1f192e3f91d4cbe888f445126a0 7871a027f6e91e92475efeea63622423d6d744aa 7c8c44fe00310c8f5a150beb54efb529ab3e45d5 93db805089551f5677bd2d3e8b6a3d4c64e3da49 a111086efc339e0d8d4a49f68a709b0acb9f7926 b58ece6be61bc3e43442a59fd1499602aa371581 c44d361e2b404f991786af50d72af99032a9d56e c6c99a7825bd847a9148d112fb547b3fac541b5b c737f3883169ff841f81f909c9482bef600cb68a c92beda1b8384eb703cf150e4a8eb728a6cc2dfe e816ee9267670ed8064882284817b56e1e25523f ea096a07abc86cf88165bb9d7b13572c7e20f906 ec46e3b0f2749e40c41850b149e83f1463ea2bb4 ee4f3366750a17dd29b780cb8f25079f3622da58 f5f0e8f9f68f7010edee2b9166f94d4ad15b3c2c f8bed8548ba0fa1ae61ae0d1abb763ca5e654d81 fe9c2247fd8e640ecfef81912356ffffb23f1212`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1208 objects requested, 401736248 stored object bytes, 111 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0693be32f9c4e56a2eae76532a2e8b8aa6036055 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0693be32f9c4e56a2eae76532a2e8b8aa6036055 1994df8712703b920a64dc52ddcbfb30a317cca3 207ee115529e0599344fa6fb80b98fb44a724afb 24fd45dd205d7250aacaaa2632bea22babd0d682 2be2cec6e810179c185fee2cf389297f7ea42e2f 3be09bac136911a40de8d6c7b31a093530b4827d 437364788939dae9fdca70ebae1a2a11be64076e 61dec2964484987d08dd5d33d7932adbba047329 69d3d6b6b1f3d2ed5303a00907e748121a1ecaea 7fc809ef32a6aa1d818b829f3ae7ebdc7d0af701 850c11023499f8bc57307e6325814ef10324fd51 b14dfb1f641f3931708eb608e6d6ad26c0d437d7 b605c8982db18b6a393824261ad339f8e9b7f4e1 ceb119800a19f675cdac870571377813350489d7 cf9eb06a400439aa2163c93b98ea2ecede500fcb d27dfe2cf0d6a2cc7d030aba882c459f43531905 d6fe8a048898e3c9fc821037e83c296b7bea75a5 e2e4f9fc2bc558977b1fc2dd26efa3e21c683289`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1226 objects requested, 404653544 stored object bytes, 112 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1f031f1a395d63c248b2a35404b3f57c9d36ebe2 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1f031f1a395d63c248b2a35404b3f57c9d36ebe2 1b22500a490d9f82187958018d65345f28ee235b 39502f71bd43fc59553877874c647aa597c9ea89`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1229 objects requested, 406788745 stored object bytes, 113 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d96eabbe7524f7789a224589090066ebf03cab18 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d96eabbe7524f7789a224589090066ebf03cab18`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1230 objects requested, 406841625 stored object bytes, 114 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 9c1b7b37694951e261d026a895882ee26101ca1f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `9c1b7b37694951e261d026a895882ee26101ca1f 6f3cf827918cc4a0fa5b4206b9cedb2a2df595c5`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1232 objects requested, 409998387 stored object bytes, 115 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 09d683addadbc23f855eb19dc2463e0fa775ace4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `09d683addadbc23f855eb19dc2463e0fa775ace4 0a03f33f482ed5c1cb1ce8c2c04b8ceb1247b55c 4863d512b7fb3e0678902ead6fade8c686b3318f 6170da4856f829ccfe2e3a726d9bb09074a381b5 99de497b044ee599f874c14ab7a12454f3a93340 b2104b7133c3828d94873026028e89c942a3c56c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1238 objects requested, 410610161 stored object bytes, 116 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 3decfd3bec3581b8eaabb82ff1c2ac054030ac55 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `3decfd3bec3581b8eaabb82ff1c2ac054030ac55`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1239 objects requested, 411133356 stored object bytes, 117 batches; caps 4096 objects / 2147483648 bytes.
+
+- Rejected unrelated historical README template for agilex_piper: 0bee963312f0f4a25b53cdf9afe744ca73f2d68a heading '## UMI-Gripper Description (MJCF)'
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/CHANGELOG.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f9ad9da087272dd1916f7f3f872d5236f6a0c0fd from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f9ad9da087272dd1916f7f3f872d5236f6a0c0fd 08975a4036619130951be09f8c0b5163f7a8dd8a 0b553507026cdd21e401bded74b9e5340dbb486d 0e58ac61f76b332db341814ad90d74a80a08a42d 103a8ecfaa09c4dd0385dd53c223d26f5df5b584 154ec12b183273e25c0b67ad93dbbeac31883a8e 16605db3217caa8a9aae37cf6eb7b8e10ee7f529 168ee256f67bb93935715444a92748b38f7fb009 1bf067c1f87416008228d6f7bf5f9cad80bfa00b 1f4ec606ab21b889769cd990f812a4c4884c188c 234a7c6288eedfcbb3fd3fba78dcbd3e6284a6ac 26a21dbb104b99f4fc1c7b569d624ae256f96c0c 2c3ab29ec2ebba230d78d6a708c880dfa44761fb 2df4f49e59563cab88f2230c110de9d2ddbb0ecf 341a3ecbcae8b2b3170c1721926abd83b1d33d6a 3f48e736b5ca589adff4f6497602c53a535668d9 3fd9cbda254365c4ab92068b65780138a6b80309 3fe63f019200cac9860ab6f34a1d6e7a12f74983 40e0d81827fb1f9ff69424d0328d355cf2c803a7 442d11df89c7be63a34c4cc2e96e847c26478d3e 49255a6b82be626ff79ee6350b193819c74398e4 4adfc2d3621ff44dc83d042f0b375b8420c6eb8c 550716b85041a917e8b2cde6f2fadee9b7341804 5689ea1e2193bd8794ea24d0c121ae3ee4c6af00 56c2bf45abd6d8ce6d5bfe6d732a98a04d3d4126 5ac6c5974fa51b48b7f75f5b92b6faeef236410e 5ef8d71905df344ca70250abfbfa55a41e654745 6077b622cd7a06473ce703221106f5c5e731c6cb 67ec3c91f88360c7391ea0c5535c0706d44adfc5 6b6f5ee6ea996a33b198ce3e0580b50d5a30696f 6f22241063df81a5e97674d2c328584529ef7a81 750598d7e93a77819afab21bd7c94c7019a0a2ae 7e64cd778ee19102e61c18760019ec08bf5826cf 7fde8264152a29a2929cb53b5d38e7a3f12a759c 89d51e5cd3df49ed1041fcb4258e4e879f0b32e2 8a9eec4ee3fd2bba28882bd09f11aaa1587402ef 8c5459d693f248a4225b1e42e80039d07cef3831 8c74e8300129f0ad948dbc38a5d0bfe832eef268 924bb0a9ccc6a507e5628b3a2b83c36f59d744d8 97ce428312cca564d967d40a179d62eebe6113a4 9a50f9c7171e911ce4072fead77ea9d225698dc5 9f1236ec76ace4c351aa894f56582bd9c7933263 9fe240f25985e186851dc8debf66d11268d7ad42 a2a135543a76f5df78d3888206996f8fdea17fbd a5c87b9b1f6f35a0d304520a64d722fce46399ee b2d121bdf9f82e0798da4ee97c69426c0ac61130 b4e07e09eaaaedd9f4d2d46d15a48cc707e97e44 b8b354583edf3de432fe3511b73cc03c734fd560 ba5a7b747c5ed581eb221d99502d23717a42a4ba bea66bcdd237eca0971238ac4bb85ab6bdcc2510 ce8914e49cc392267283972b4982980866edde22 d3289a5d714821b5ccb728934161133b96e250b1 d4a1b1413af1d8ca04fc59581b6fb6a20aefac07 d4a80c6ad6650e40cb1d62c95af10f0af3a44381 db3a82820429a5ab4c39d30f2415b412f75dc1ad dca1d8ec4609f96890448e5af82530fe6e711264 dd39250c92fc4b2c9a199f822d67d05f597e0691 dfa070074072cd2a1b8cbe639dc187cc274c0524 e3c5c7023959b0b7b2bd2f70525f5c868ed7273e e5622b5e62b63de72379f600f288a50333a7e55d e5e78f713927619edd09d0f93d882dd111628e8d e6c71f1dd5e873d089e4e8e56821cedacf39888d e883c37fefcce519944d4a80f07dfd1c9e021692 f1617cdc13207ea4fc0cd77eb48f978b83726f11`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1303 objects requested, 422781668 stored object bytes, 118 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/CHANGELOG.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f29ff2628b6a8bf620b4f9fb7039df790749154d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f29ff2628b6a8bf620b4f9fb7039df790749154d f2ed7d0ed186481bcda73332e2899bd1a9697a98 f30b09ea075a9755bf5b065302bacf5b942f932c f4490e198523fbd1b1adb25c822b3a87e9f8cde8 f5a73534e71a4ac9a518802d8fe3b582e1281623 fa9a54d142a9738e001a967e8b4a1f1a0d03c0b5 fc0f84fdb99707ede0fb74db51d47dea0fa3f59c fefe061fa3bbc98a09cb1236f232556fb0c13d44 ff6895ae234a94c80e6b92bae235536053b63a91`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1312 objects requested, 425218538 stored object bytes, 119 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/CHANGELOG.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2bbc37a05f9de0f029014a4429d52c066ee8fa2e from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2bbc37a05f9de0f029014a4429d52c066ee8fa2e 05ed389e1051738911a40eda50cf414b5ee04a39 1e7f329e0880bb8a33e53a1691a00b74ac4904fb 32a3c93d352b3a058c2a7e3d19281208c99bc492 4e89cd132a4d230ae05a7a3fa527070960b82675 7c13be66341099fa7cba33f9d3b89db65b70f5d9 7e7214123d4f0079d4c70b2649fc275c8352f642 7f93a6a16fc2f0c4d0e476d11b39455bbc0f7792 8c3adf32779ee1096a7195b4548084ba3af82f8f 9b50966fa461551deb1519620ce059fc0261dadb c5dfe22ea6e74121119926b6d7b44ad6a4aff525 cbd38e7abd12f1d372896dc99860663b970ad4e4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1324 objects requested, 426773683 stored object bytes, 120 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/CHANGELOG.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a2f163972cc1c662bd5deb19ec608523d6fe088a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a2f163972cc1c662bd5deb19ec608523d6fe088a 22af403b570c57b66129d40f5b20d8321d3f3d5f e2136492299834f9297a72abd0e626f53d063881`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1327 objects requested, 427142515 stored object bytes, 121 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/CHANGELOG.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d1d5da4b1e52a2da3ab1f8f857787c7d36ae122d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d1d5da4b1e52a2da3ab1f8f857787c7d36ae122d a169fe249490d9d6263562371bb5795e72caa555 069321b662047750ce4b9631399160a949920bab 2c99271fa5c3b78980acefc5b201f5285d53869b 3196288f44c7b47f3c95b2769fef6551bfadf53d 40bb478ef0fb300012702b57e5fb295bbe1bb3db 5a46e5e60b9a41ff85e4c315af0e92d171dc164a 5d901dd7c574e40cbc185a98584f7888a2af3d9d 6144ae647a6f64e145e1bb85a30f5377d729c17d 6270795c2fa4b7dda9ef4a305f8e19bcf158848b 6a89811cf4e9850ea7384bf0e1a6298daf4cf98f 83e6298ae3688899d3fa03e858b024b7b411b94d 9cffd0c5ddf03ee18b114af44daa12f8e3d71352 ab1161eb7750497d929ab237e51e5f90091fd232 af61e6b6c690cd6df7cb7681f5d9004bb0ed79fd ce6fd0fd5a9e0f2e06dccf3abe6c8dd01b459bdf fabb634decb966ac317e3ddba5e3f7d6ee50919f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1344 objects requested, 429786464 stored object bytes, 122 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/CHANGELOG.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 38907b0d034b64f99bd44faf31357761a6d4cf07 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `38907b0d034b64f99bd44faf31357761a6d4cf07`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1345 objects requested, 430431211 stored object bytes, 123 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/CHANGELOG.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ae6d020c53e480b0b8763e76b132d26924b8b579 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ae6d020c53e480b0b8763e76b132d26924b8b579 ef7053d4717680334c8a8283d96f5a8eab9b016e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1347 objects requested, 432334099 stored object bytes, 124 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'agilex_piper/CHANGELOG.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e82215d6d3860979a785bf58cc4d1f0dd9f5fa3d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e82215d6d3860979a785bf58cc4d1f0dd9f5fa3d 11f9d915830e7ed774659360ba3d1bfca5a5bb92 0f07a90aade5abeb0d2f2cf8a2f830dcbf1b85c0 123d480326a808e55b41945124eec79133a7f9f6 15ddff1a765273ff7af2d33bcf937660e3ce4f66 18f2144547b68b1152cdc4497e6cce23c032f643 234ab3505dbca23eb46a1269ee265b2094b4b688 2c4b4a695e4f9aeea5459a7adcdcf9bdc540cea2 2c4d1e97e0150fbd781830a47e791f4df2ef473e 2d0804fb622a07206866761f887e76c7240cc2fc 500771b948442833758a013f25bc5e8360fb1464 67c98d0cccf476a51062f9ba7df4a6d02f049c61 89b6563ed8a3381fc37f77b526f5db9e000a5d88 92d37234d840a6e9e44d68e1484b950f8c5ead96 9a971ae0ddaaca8c8c6cad3bfc731f79d2a6c09f 9ee99176cafbdc6cf504d4ab9813d47fba01beff e57a8fb3f8e3d9e34ca55327ff60efb762f39247 edb0003732b3692aa2393d54c451248a9954886b f474b68cb88b9a9f94cabfa62823c1e0835aef69`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1366 objects requested, 435626736 stored object bytes, 125 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:agilex_piper/CHANGELOG.md')` in `menagerie`. fatal: path 'agilex_piper/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Rejected conflicting robot-variant link for anybotics_anymal_c: https://github.com/ANYbotics/anymal_b_simple_description/blob/master/urdf/anymal.urdf (repository variant b, model variant c)
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch fa54cce5a1709947083ff0c43c0e7ee18228f5fc from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `fa54cce5a1709947083ff0c43c0e7ee18228f5fc 32e8aa11f7defbeb4346d821d17289751efa732f 03670e84870633d07ae4e483389150317cf456d5 047ea700fc0181d213da2c51a25872bcefb02f90 04c32905c5e1e7ce2b7428b9acd8f4b35c36ca3d 04f5a2e1df841173a86f7c6a625c855ef07ce035 056589ab8ac4dc9540917f903a16d51468e78a05 0577ae321cd43006b002dd622b81f79cdef08a12 09c6a0698aafe1981169fe33b8b821e0aa501cd2 0b151c01d61e4f4b9bcd48865d54884b1e778944 0c63a12928b8ecb6189977bd95e531f3aac5e285 0d919030fc324ff63f432f58c6a2d42eb05cca35 0f9661832f802ce24ca34939185b73edfc7d591d 10e95ac268417dd9ae47f048fa6f21192e4e08e6 13c479d690e223da36d040c30244d0e85d701a84 192bc68b5adb8699460a57228ad780abf0125e76 1a510803274c8a59c1435b972c213e7364bb926b 1cd720dd75eb3f237d08018816aa2534a83f9423 2022e13227583c6fd9b1985623023b03d84cde4b 21e7b34ba2beb473d3b27c8d51ab5ded55e3cbee 2609eccb75bac238c5ac3968f9c907d50b24a86f 275ae6cafec44322b164e3d81ff6e2e8ec40c06f 28e00cd17ba2571b7e9783b3d9771c4a371dc34f 291c26f3855192550df94d9658f1ca73541ef019 2b8e430b60937f84f9001ffd450b74f2138f2eb1 2cd0f7ade8d1449699072eaa1de65c0610131d7a 2ef14f340b59fbabe0b6fab0562c088ff01ad8e9 2fc32fdd2354a6c9f0cf0d3daf127e792cd13e0f 3374061b0dc18e9e93d22752529f430a6dbe924f 33a7711b49f2eca1af1977c90ecfcf92b43264f7 33ea784b241447b6581c8e315cc23eec1ccc6f2e 363e4fe44c5313021f84e58058303ca97b471ff2 365bbf3b2cfac7d9973afcb47747b8da058eae3d 389598973b77e07dd4e59f03769943bb21773cb3 38c8957ba2d86170ec177032b5c1f77c83c2d4dd 3b1781b4ff52d99553a28144f56aade67f1b5036 3dea5d0e0f46f9d4ab24d3399d981d527f3b9aea 41f98c7a14fce1f40da9b5a1ff962507e9659d72 45b40b5ac7c73b9cd660742d91e5be9e42e3e6be 495a8d54159b9d95f50f657a65c732135c2520f9 4da73796f6005f38531235b21dc9a81bad2db6f6 520bf32682663fc677595cc99a188c763b0a4ee0 5e9d1f4cf7071a84466e4d3fb6ff5f2e26195182 6242be54d4e12102870c708e34d46a16e4bf631d 6899735352a97a2e69e02aa9a3ba732dbbf33a69 6c9c2387fb757b5ceb8a5ca5052ae1ef7f38e7ac 717403521a46605faa85900ab7f37bdbe6dd0d78 719e6dd9b0a6575c9e6a71af76e47115725eb5bb 7240328a87d314602209bea242ff2e92b12006e7 797fd3c613959a16d1d347e301afc3bd0304036f 7be6c0072e5a38d55f40b9a6139f6ed674c64dd1 7bf9274743f78f621423e5694d90dc3552b4157d 7c2faadb6a3af3aad65ab6776706aefca2bdf797 7ff189539d78d678a2d0d92e9133e0cc8256fccd 82a405a5cbc7eaa7556f39095cd28129c7d7b63f 860043eae2ce2804ddb7ee91c4f03b33ba57df49 89eb7f43c3d6a970345e0d83565d65d12449aafc 8b3a3aa64c52f515a57188067e288aa43bee4bd4 8bf0fc534ea5cfb5c2a76de7ce2a6f81446d4424 8ef6884deba426ef05f753acb80926f99a52b890 8f2168f8b475d537005dc41f101eb2378229edee 910e848cac2d39d0fd9bfe3a0f27ad8a201ca761 94d0483e3149fda61965e7f67f337b89593b9c0e 95dae819add7d94bf39a73da8934ff7fbb620da7`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1430 objects requested, 456858814 stored object bytes, 126 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 540b858ba56f93bdcea08ce8528d39236c8598b6 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `540b858ba56f93bdcea08ce8528d39236c8598b6 57460a156c8aade6e373cf2396acf4c07718389d 588bbd0617c235badeaa7aa62224d483072c5f28 6d640e72de49c125ec88111e2a3e5581333b0860 8d8562f812012ef52918d3eb32218efb06964eef dc1914839fe1f1a6e01b7fd774c93a67aef06de4 f0f801122e6481471a5381ca98050b78af38383a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1437 objects requested, 457444086 stored object bytes, 127 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 7c9c72c789ce6abd7fc246cbd14d00df993fdf58 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `7c9c72c789ce6abd7fc246cbd14d00df993fdf58 0f893c7256e49ae7bfecb3f8918bd17af470e459 205a37554f73058c482461221fad7cf9a45f6c99 538db581a858d864a71ee922b20b9fcb6b9c6ce3 7e5a374b076d42500ca47120a9acfdd39a247c61 922fd1afde79e82f1795ee62f63cd85c9ccec0ac b176bd830b22dc33fdb200d1c03b41e13d9c1015`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1444 objects requested, 458029605 stored object bytes, 128 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch eed7949787d0bef49380c4c69d649a0559e19aa4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `eed7949787d0bef49380c4c69d649a0559e19aa4 be395fb3966c5d194c5f86bc8114452fba729e13 9716c63b85f55f45fb6c1765356b115b3c0d3795 987bb7390ba297a745b92a54fa1934e593bd6a43 9a713dc84437f522605d9f96c7cdd176644a00bc 9a942c1f37e83d2e5d1315cff79e8178f6e73d7f 9f36a3c278eca6ccc8e88a1823d6a0ef32bb0bd6 a04c161102b534e4e10f4b3fcf8401574f089a19 a33a54752b520e7921a66f95fe75d919232dcd32 a475cfb988d3edc9ac821b19789ed6af2c1a121d a48876a277370f56ab8f2200606c7fa46d773799 a72aef30b2dc9f02061fdf21c1f1fc2fd5dacf25 a776f024d29f0a790859d60860b4d458a8c103de a8cbd0d200636be274852ea4202987f20018f311 a9f073d31511042b6de683777c380549aba42ff8 aa43a5a6237c6d6dad7b7dffa943a954c79c3afe abb90fa29fbe085e4d71680514486d37ce830127 ac4556d9a8f5f406cab9224085a9808f5207b2d3 af74dcd6d39ea59a50c54a3bb6b3dd5acf65ce3b b1bf244c439f64d0f567702291f8356cb1680042 b237b8635d861d92a5272aae4e1c17d11db79c99 b245448faa951628fb9a4c71f1e5c33c535eed15 b26cc0d97870e6528b5a2c3ead22e4cebf12c716 b46f859e2e6bea4681837163296dc5bf6251faad bdb5d2b1e4a7226a94023429841591c1977e4552 bdd93e94938e5bfb19449ab6d7780f94b0afde3b c4adbd293266894eddc3778f1faaa72d58e7e989 c9a2046d752cd21d52b21d6ad58b2dd52666a5e1 cfd5158755648000c7c4ec8ea4f57997c0ad25dc d38a3fe30f1565c19d803a7dcc2beff2b0def3b2 d543044d1d68a19e43ba3cf9944ef2b9ea4c96b2 d7b5f08bae8390f11b9687bd77285b09ecf29c97 da9e17d5ff8fddd2dea71d20e52c59d77165a716 dc4f930fc5105ba2f9e3522d749531cd0f1b0945 dc98012650855828a3f8ea9fdbd2d81ee89fa3f4 dfd37fd83c8a1f1b1ef3bd13e62b825864b8ba82 e06ac296a8905efb5ca6e02afd7bbb4529339412 e3bd0690d42bf09596d687d7b100d66355884497 e6521072e1c29bc226ba3760ee5aff62aa6502ac e84174b8f15280aed04f5fa39b90d0abd782fded ea352e6f2c33ea4ce523e6a9e030196f018fedcd eae8d14dc0bb1d9dba04f43e48a528f9bc6441fc ece84d7e22bd6fc6dc943e0796369587096e0cd8 f2e433f380e41c9799b67c0b53469775f1beb4f0 f50ddcebe36562d9706771f22dfa240f13962dc4 f5487456040e2062850015c459b1e57878f97e88 fb20846f0eb7317d5ec437714c0173507add12c7 fb872ba49153f29eea9b752ba120ddf7d6618ac1 fbd5698f05e5e0eca893ac354aa0bb2b1773cb48 fbe8b24bb41789c89cf01085a5dc169f38422447`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1494 objects requested, 469347263 stored object bytes, 129 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 34137048fb6418d7a174381cb493808c9d89fa4b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `34137048fb6418d7a174381cb493808c9d89fa4b 42ca337790d3cd5858629bced2ebb02c86f031e8 7994fc0a0c5f9bd296517092d96a157bf8454848 97a912ee41c7221e4b10447cd0018f05f1b51546`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1498 objects requested, 469483748 stored object bytes, 130 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b5e1465ad502e907e97d3ddc8788842fa5d190d0 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b5e1465ad502e907e97d3ddc8788842fa5d190d0`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1499 objects requested, 469637142 stored object bytes, 131 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4790f18e8c2e083c0331c822bbe3ec10fa8bb30c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4790f18e8c2e083c0331c822bbe3ec10fa8bb30c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1500 objects requested, 469682501 stored object bytes, 132 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 32d1fe5b6b6271f210382d2ef78b2ac0a61e4f3c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `32d1fe5b6b6271f210382d2ef78b2ac0a61e4f3c 9684904e36ac5ab32edb2c69daa974a2010946b6`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1502 objects requested, 469733633 stored object bytes, 133 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1a0b9940138889332d9f7e27ec208d8485ad73e7 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1a0b9940138889332d9f7e27ec208d8485ad73e7 28a9a96740590fe27e45f1972a13544951873ab3 78378bdeb148230e282053afac894c9371e9de07 b2e683310b96f9878b7696e6ee2c6bedbe8a9fcb`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1506 objects requested, 469871853 stored object bytes, 134 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d954b06e65028029290052050e70c828fcbbbfda from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d954b06e65028029290052050e70c828fcbbbfda`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1507 objects requested, 469905434 stored object bytes, 135 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch eeef0c6736d3a03ae07a4beefb8fea94ed761bd1 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `eeef0c6736d3a03ae07a4beefb8fea94ed761bd1`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1508 objects requested, 470059178 stored object bytes, 136 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 94f36673f1c70e81ffdeb550dc6d3b96bb72100c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `94f36673f1c70e81ffdeb550dc6d3b96bb72100c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1509 objects requested, 470091655 stored object bytes, 137 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2bc0f4d4f569e6f65560f0e8b8edcebd38884446 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2bc0f4d4f569e6f65560f0e8b8edcebd38884446 412a7c6a6596699af0be6bad16ecc2462bf3a255`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1511 objects requested, 470164181 stored object bytes, 138 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5182012b5747f12bdb6a9830e9929a034c5d76b0 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5182012b5747f12bdb6a9830e9929a034c5d76b0 a0312b1bba10cae3acd5d61a7caa41392ebc9b4d b0c95d70ad6e7bf19897217085c721188ae54f6d ce869ff75ec9a5316003f0bd5c49830beda52638`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1515 objects requested, 471211198 stored object bytes, 139 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e88705bbc2b590d792d2c37a127fd56404a3cf7f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e88705bbc2b590d792d2c37a127fd56404a3cf7f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1516 objects requested, 471256533 stored object bytes, 140 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 66a85e83ad68d96063ce46e52ec096b33941aac4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `66a85e83ad68d96063ce46e52ec096b33941aac4 92c35dc377456512691e55bfea31f4cea005476b`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1518 objects requested, 471307441 stored object bytes, 141 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 72eed2e154293c78d3fd726d10fce8f7d32a84df from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `72eed2e154293c78d3fd726d10fce8f7d32a84df 4353fb1a41ae0731248d0af90e767dfb684cb974 6d0162f0ca5069aa2fb21daace5a3e2a20a89013 d9791c829d1d3b90e670a6a0a07c0fa02b90b442`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1522 objects requested, 471464688 stored object bytes, 142 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 492befcdae6d1baefce9d7bec3a3e79f8c9af8f1 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `492befcdae6d1baefce9d7bec3a3e79f8c9af8f1 7000e1dfcb9792d613e511ca4126455507517404`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1524 objects requested, 471851820 stored object bytes, 143 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch bb3f27fd1ecd4a892a47002ce43278116e504ee3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `bb3f27fd1ecd4a892a47002ce43278116e504ee3 4a391100b141a6f99119fff31c98cf28fc9fa9a2`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1526 objects requested, 472235961 stored object bytes, 144 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'apptronik_apollo/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d492d60ea75a3c7678a018b02ea2526d254f33de from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d492d60ea75a3c7678a018b02ea2526d254f33de`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1527 objects requested, 472382372 stored object bytes, 145 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:arx_l5/CHANGELOG.md')` in `menagerie`. fatal: path 'arx_l5/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'dynamixel_2r/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 8f6eaf3811f265c501c6756349d2c0d624e8c488 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `8f6eaf3811f265c501c6756349d2c0d624e8c488 023225974e73ffd6acf8abc81337145a3945b339 20d8e86b367ba011e343ea95e347d29a23f93220 33055e8180ed8f132670a2a7edc56cd401364821 540859f42064643856e1f4fd5bdf60dc75b53e2c 84349145af7f7969c98f7e871b5ce6d817b7013c 851c0c64e39e84409456a3ccdc32a6b1018688ae 9d93608b8632550e1efce21a4d16245e30dc85d0 c25c944d88f5791f744867721b335ff89a625399 ce1cca5942963fc85f3596709d23cd8fe09a9665 dab439818ce86d21f5c40ddae1cc872554303d88 f794f1a51bd8884bb88502ff9284b5d8e34e900d`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1539 objects requested, 474443196 stored object bytes, 146 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'dynamixel_2r/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5e1556e443dd1f11645608cdd59dd1271a7adfe7 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5e1556e443dd1f11645608cdd59dd1271a7adfe7`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1540 objects requested, 475159716 stored object bytes, 147 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 506e432e7bacc14b8da3904691eb77e62704dfb4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `506e432e7bacc14b8da3904691eb77e62704dfb4 25998e41691cb3d509ec7575e28b2a664639b28a 7852e75684940481d1e274f0720e06299d98763e 988410335b929fbfadb4d088ecdcc1f32ad3d643 ecccbc45be4c06bb7abdb65ca1b975f4382df070 0029c98a9ba08b28891a90f1bfb4a42333866215 09db6dd7e6619e4eae20447bf3e0602e630e644b 0ec61a0fd27161a87894b8e5c183a1e454ec9cbb 10e7dcac0db196a3171bc6cdceca7c7cda201fb2 1128939d828396312e1f0995d5272b99790a6fe0 146ca874653ab6eb7b269d444209b7ec14bd204b 1f79f9b80fd33cb99ee18dd2fba40ddfe985772a 2200b9f9bc6a73ff36e202ebf4956f7e01d3ec63 237ab468be1244b81fba864fa663736f9da8480a 2574b3c77d48d9408388be084b50df64cc594bbe 2712d95eef6243917cfde4d8980e20737ca724ea 33bc2e0b7ee600b0c8e9677f9a39fdda99c8d988 368d019242ac7195a75ca939f5757f2c06749369 38f0c13b346daaed1ebece49ac8e2440eadbce5f 3ea00aa9e0cf63e63a7eddffac76d35b0d4916ea 422348a1c3b12be707d92af6b655030240a97af8 43655442a92e9a92b1f42f2744105da424ae369c 47ec64ef57219da3f60590401224324e7d9fd6e0 4b33b3a684cb7872083669f255f7641690caa309 5022fa8385c95dcdc590499799821f490762861b 5a6842e427fdba7f3a55e56c3fbb9c9144348d0f 5db6beb2891ae3b0305cf641da5dd37ff9169593 62f4712bc0d000e79f2099f692f477af34d4401c 65569b18939a676699687ac7f3cc8e1a30773e23 695ca77d18e057b8455cca2a08194cd397b4bc75 69968c37190f5046e8afcd581156e2c581af986e 6beb65520e2d3886c315ef2dae6df4917e3d2d37 7127183a283adabc4e471bd3854de807843075d6 73233ba90b9038961e85cf4e6fdb64873beeba7b 7da66ec99ff6a76a3c0f06200a0193fb5f241003 83821c8b9a5823f98a69115fcd2c391c82ce0599 8aab1bc1102a60a1766f1bc5fd03e32306c555a8 8aca3689ab73cf21ba04879eb648b361cd5f10a8 8c8761d7af2e84ec364e3b0d856fe8adcd2cb860 922cd68b25c0f19f63b0016e8b28134235062823 b16d309aabe262cc228334b2a483f22303d9ed75 b2fcd8ae5d74eba610c992ed98b8c0beb86b676a b68d7c6d712d8129f1ab9300ff39bb00debffbf1 c1ed3e89033f89f6a19d57050c5709fada1e2bdd c4b4703247c5e09ab7cfc30a672693d07a0909f9 cd656828364fd6870f08f0a39c5cc28fea7f3181 cfd57e011432d5a52de82c200c89b3ffc4b749f7 db47fd1516c9583ddd68ac16484115275ce161bd e36d24e361a65831559a9e7ba85305128cd0efd3 e3dd3ff3fd37ea10650b0956414e838314c23895 e86baa1947a4da6665b11db719ea4efe9ab2d63b e8c981a15d47e00bcc8a91a94a1d469f64a0cad9 ed3e5c37b72d233f1a08b2ec2e051852333b07cc f0eaef0ae6c23083b8b1a16660ca93f811561dd5 f1674023108ae2af615156d1c3c48e04a0765b70 f17cb91e023f66251e5cdf0ba4b0861761a1e544 f376d558c325a378ea93ca0ff30987cc684a9bde fb8b5c781cf073e015678d8073843b3fdfcace48`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1598 objects requested, 503153714 stored object bytes, 148 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch bb63b9c1cc162f0702c260481037dcfff9f5b03a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `bb63b9c1cc162f0702c260481037dcfff9f5b03a cda01ae11f439ea766b3302ec83b88463479588b 0f49cb3cb581b50e1e58e2841f4f918ca3a1b309 9d7837b3f349784e4d07851142e1042bf72a8db3`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1602 objects requested, 506666161 stored object bytes, 149 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6afb35df56218ca028cef432e86f2433574de8f5 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6afb35df56218ca028cef432e86f2433574de8f5 0350965f0f48b3aa9a669c940690cb3b5e490652 06ad89985a07922a8085288345a045d783835f4f 0a98f9dd5b9fdcd0bd2a433ed1caf502f9aace45 1095388adcea9e1edd2448740fa6be0a9d7ea4d1 178f23ec1a31843f46143c58d7a2932335b5ec37 1ba3a060611244c91d49954655264873a70b7e04 1d366fcc144dd1337c93bee494a12c885742f0a8 1d559d81f760c96823ac919d94a021df7a4d2476 2077240b144adbc7a1b079f1f01d4935f7d0c3bf 254ebc932056c57b478c343ea30cc0ab63dde3d8 2809d09caaa7aa7d41d8323501f302ed29a91e62 2e2a844b05c4a1b515b7c46ddba3d4878769ca52 3241a954ad1e51f2665dc4f50e4ae2189329ffb7 36ecc1ff64287edc1ae0c1c8f1ef911ffd6c0aab 37aebfe050bedc094ddbb3507081da7c9f09ec46 38cb42834972e71171afe46bab1d478f94921ddc 3ad69302f5b454e3b860642fd70baf10daf282db 45b1a12247245845638c2bc291833a661c3277f8 494f7d4cd0f7d4a8a7037b6905e7f3a1213632f7 617fdcfffd499cb8dad5d8468edc934d442e2633 70566b4203bf5800223b47de798bf6b5c2d2f0d8 70f5ebba30a44104f2e8adfea95b0fc44b8ab2c0 7387fe66e24c5d646df864376163053307ab4f10 77a9720b55d9b405ba9384dd0d89441c9764e623 7eb0ea4000af66ba55613c88f0a2787c42b928ed 8296726ab13c6726e60ecc7e3f692ffec0fc37f0 8d5a991538be430255c53ce60651e2ea2a43ce35 94cad5e9ac8f7dc388e2951c330600f67ed9884e 96938cc12d3a1f840d0735cf4be2986c88b3cac4 9d5a61526047463b065563e574aeedf0b6321500 a7794939288bbd097ee769bbfdddc6059e04ceb8 a88c9f311530084c5d172488d040004f204d2245 b438f70a2459536b2291eb2728c5f42ec6a5fd88 b8e12bb12e9d8ba9bc8c79279d492280902e0163 c4e26b764412b5d123e4a7ffdec0242a0d03d6f4 cd251fa7a58fd034b90faab0a0d3ff9073aea696 cdd6a7f842cf48e26189f49780155098b9f2662e d0627db7d4c53d57c88561b9470d77f551615fae d1e3d79edb3121f98916bbcacc2d922e27e7e7b0 d31f0fa6644e6e9a1c987c3e1d29cccdc80b2f9f e329a513ee9ca9806224cbf595d5bc4beb05349e ecc0c9223b7cdd6465461383366c25c57f28bc31 edb574b97cb4694fe4803e1d648daa0e99f440a9 ef35b612f63e0f4951e7c2c1c58dd0dc09424a93 f7b0a5007b29d9e949a461700bba2de84688b50c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1648 objects requested, 523355899 stored object bytes, 150 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a2949d32f3d62d6f554c3b9e273e84c67b2a0ec1 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a2949d32f3d62d6f554c3b9e273e84c67b2a0ec1`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1649 objects requested, 523621877 stored object bytes, 151 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d597a051d6dfd2e9b71b2652cada1eb4fdac96f0 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d597a051d6dfd2e9b71b2652cada1eb4fdac96f0 1b397ba56712747f9252b3079ff81e38833918f4 28cabf6f0aa8eca73c8136d6fbc509d4b8ff952b 2d180f05b010e5151797fd1e80c371fc8488239b 41dcd970115d22829c110e26548bd894f16ea082 736495bc495a17404eec1a3ae5190905f744775a ad2475d4f51d59cd6fd8f4975ea53f2ea6321dad afd1996e7a6ff1fc44a4c44c1af0de6ad1cefa7b b065de193333a5cf1d7221404fb6d6af5eae7e24 c68592995919fa78ff07ffc848fc0699e9731b5c d5f7aa0ebfb651f5542593360a6ee17250f78f9a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1660 objects requested, 525215145 stored object bytes, 152 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch eb2ea3c262493fdd9ebcede5a18728d88c60f8d0 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `eb2ea3c262493fdd9ebcede5a18728d88c60f8d0 03a13fbea4ea17eb35c62ba01a3cd820433cf403`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1662 objects requested, 527281322 stored object bytes, 153 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch cac2b8dd98d3d8a6dcdf429b36aaa4b576d82041 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `cac2b8dd98d3d8a6dcdf429b36aaa4b576d82041 123ce374ad3efc240e4d7022f31314e59fe4b0c0 279308978e9d64d0bb231968d6169ce78aa0ebde 2a89597702f5ec6849b6b1b894c867b35b98ca42 480e0583c8bb27ff9affefbebee72b784fb054c8 5c05dee570623f62c4ab7597d76c7bdea20eacea 7e8736686592072cf34c7f6e2e6e88f8a3ba60bb 9c0f9b275a51f720476e529c92193f4f69d4784c 9eaf67243a5ffc2dacb3fbd026b4c0620adcdd66 ac5172a35e6da3e9fdea21e25803f23cc61e31f1 d0aa18b15a9cd63f41fa4d48e82df7a3b618c75d dfe1ecc5e11eb79280c032148ad6ba68a21c431e ed10aa61d1181f8001c908ee5cae5c4f970ba417 ed758675140114dbab751f93ea7d40b8d27e4594 f5bd23f855f0d90f73d00abef90576d0c7120719 fe05403dbfac7a26822b8c8cd0fc3d5288a69fc8`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1678 objects requested, 533799125 stored object bytes, 154 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f9ac493bb3809531abe7f23ef7168d15315c2c23 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f9ac493bb3809531abe7f23ef7168d15315c2c23`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1679 objects requested, 534790529 stored object bytes, 155 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 60ace0ac99369ead3f1541f44039cc1eedeaa252 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `60ace0ac99369ead3f1541f44039cc1eedeaa252`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1680 objects requested, 535293586 stored object bytes, 156 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2ef65a941be61b7fdb3339adde25d0da3d55e68b from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2ef65a941be61b7fdb3339adde25d0da3d55e68b 175b980362e56c0aa19926c8c21f3597117cb494 1fd7749740cdcb5191b079b752582a780dd7dc6c 21bdcc4ee46957e446a2cab68afa50b409473198 29d2eefb3e65125e112372c8f38eed914e7d41fe 491310b40a23143565ab1abf65f3d89dd0a23d9c 53e8f9ec692fa5081c40915af1586cde3eaf7a95 58dbc08fce7a26b533c1397d2b8d8ea44051ec60 64f429620ab4aa9dd7e65cf459f46b7c218a3224 796c378d416ff28830db9673dca16eaa15d32998 79fbccc83a7080b10ef448ea952f064139ec4030 8d6d3dbe5fb72db419eec19c2a6bc6048b0d5490 987ab5989ca1bd7efd5bae10d74d7bda477a9cf2 9e338cd2ab0cb7bb57bbeb127179710dc8dfca5b a1de8bcdfae6d2d2df2e7f17f59b5db72143f10d b85df16d1ffcf645ac973870cf3d27ba93862683 b8ea16453501c1af58cb18a689158fda13b5a4e6 d04a9c34926b542f29f60d7c724beeba442f898e d92db0f0fdb901605ca2fce530e10e6c94d0a1cf da40d8c13103ee41381586833d1183598f8c10c2 e4272cb7bd85845328d12e7f5cf80336cb9955c6 e5457fcdb5b8e7b72c9e718ad45a7b86707cf296 eb7a17d8b208a1970e5c1f42c0267c77e90a6edc fc8eb970bbbf18ea6aebfebce5de9556b9c53f67`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1704 objects requested, 537936491 stored object bytes, 157 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 9e668318bfe8af9e269bc4aa5cbdbef8d1e0f216 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `9e668318bfe8af9e269bc4aa5cbdbef8d1e0f216 019cb41622a1e80e0649cc053dfc393bf0d0e5b2 050fd69f134d64f55bdd90ec6051d94401fa3ae7 14d92c65dfa4c76bd19f60c4ad8ce7d28782ee46 18f4e7d00ee9d09b7104af03e0fb558ce79338c4 192f499f23d47458d302136019529d5b8609aec3 1b23460ab4fc915d9a8d4136f1566ac62728fc8e 218ddd22fdb3fffb0bcb384934020c981b5cbe04 27e13e55d21e510df599ad72a656a54225ebaacf 3368ba5f06205524dfd97e995fd6b5f921e9db56 34fa3b0a609116ff4059b97e9e1dfea93e1d4bf8 371fb947059d7965adfe380a693c3f75aa65bdaf 38d65d8272669fe83a97a05a5f4504f2105b6eb2 40312002542f586240d123ba2bf0cb0be099a055 4313f9c6a43c4f3de8287d3b2d3decac808b8a2f 4dccbcd07e27fe45c48446e7b92f8f3a6a7857e4 54dd569fd7c3404f7aa189b9fc8f60700a3f76ff 55413fbb9b8fd84c31b3e416615886433c9b4995 557c481c97de931a10c1910729f533790c394f87 571e02f657c0b5f770eba8a1100db1f9de8ed93a 62989427d89cd819ca41c7d62dcf9084d0bf817e 65cd8163f2b4d5b0aa62d8dca23786125c9a6704 738f3d3bd96b5ea974ad11b486f07d6c108fa546 77381a00fb9de0ddb9f5eb8a9871c4ca8ed145e2 8100df3d4c285e16ab28f64d31159112d24fd09f 8793989e22c7b2ddc2d20ff328ef308e53cb5fd8 8a5366d0178867941b5f81898c24b3871e55d0e6 95c78f27d7ef74e34ff6534985a10749f7b4e39e 96c65239b1119ca42fa6ffe3df556db64afce94a a5ff7c454bf7ed392870980ac0e2263cda8d85d6 a7d02096b1c2850685b84e78380dfee8ea3f8501 b84be341fcfba78f620cffecacfbbf120500bf08 bf1b2aef200dbc0a7c066bcc1c3da15c8ca79fc8 c30370613f78507412985ed1e2b2a9dd3325ef0a cdc543e8dc49485af21a03e3753a4388ec9172df cfe39dca9d40c6484d6709cc9063d67782042be8 d3132a14f92a5ac9b4f6d5209dd326fe5900ad60 d81c0c230012e1542ee1d32f02d50cb540c796e6 def149a934d11aa49c95f3b05a8007240d7c70bd e05a937f3baef90410e3a07aff174037154819f1 e828193a26c9e87885af79dad91bea8f7ebff610 ee474fbb26b6a424a3401b23ad22b2bf3056051b 1b2ae33323f295433c6c16ee65435ca3d21e5150 40dd018a62f82d70f724ea2a5cfa08d4413b0d3a 8826dd8c8f9acfff44c5bc4f6f11b14919ebb902 a7bffcdcd4acac2adf59d6672f3366246accba9e c329911aacd95831203a136e6f8fdc5fd8335c09 e7e5f91f9266ba8ee3b3739ab8d61fd5bb757626 e974cbfb05a5a95fe0e3dbefb1597fb6bd4e5a50 f6a8c5559e37918c9ac7e43f84e92d3a18690ad2`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1754 objects requested, 557976246 stored object bytes, 158 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c9b1a69fb5cc6abb71fad184a4b215a501bd73a6 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c9b1a69fb5cc6abb71fad184a4b215a501bd73a6 bb1d1e217c7b137aa22c0ec917c3faf6ea729295`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1756 objects requested, 568410595 stored object bytes, 159 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 3574e94bc82288df4dc9967752604e62c74cc0ac from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `3574e94bc82288df4dc9967752604e62c74cc0ac 47676011b0ca5b55a2374b8315182a52ee0e9457`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1758 objects requested, 578258625 stored object bytes, 160 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 65f5d2b6e7591fd52248051e497ae2d991207214 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `65f5d2b6e7591fd52248051e497ae2d991207214`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1759 objects requested, 578521941 stored object bytes, 161 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c6456632524b9d2fc09db60db941368de0cc4fcb from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c6456632524b9d2fc09db60db941368de0cc4fcb 006a4b5d737e867ec68cb312a69cd189fc68486e 26769a6493691263bc5ff7b6c2510f9a7f1106e1 9873fbaf8835dcb77f7e80d38f4635097cd4902b 9be3fea1b6ee4a8b11fdcab69cbcaece79b0ec67 cef372b4fcd4e67f22659f6628b143a284f09a7f d38c3ef00ae865697ea31d50b218cce59c68aaf9 413d260f6d2294e19401298bf698be7e4cfa502f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1767 objects requested, 579409774 stored object bytes, 162 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'flexiv_rizon4/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 71a1b7fd65db0216a236773d314deec98b97b080 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `71a1b7fd65db0216a236773d314deec98b97b080`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1768 objects requested, 580203748 stored object bytes, 163 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:fourier_n1/CHANGELOG.md')` in `menagerie`. fatal: path 'fourier_n1/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', 'db140ade7ee4cb59629f9687aafc65af663d5bbe:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'db140ade7ee4cb59629f9687aafc65af663d5bbe'
+
+- Offline Git read failed (exit 128): `('show', 'cd7fc51b704c3cba05748bd5537cb17990b341eb:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'cd7fc51b704c3cba05748bd5537cb17990b341eb'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', 'acbbf1636fcfef9b437a6eb8c6f84380fb4aa998:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'acbbf1636fcfef9b437a6eb8c6f84380fb4aa998'
+
+- Offline Git read failed (exit 128): `('show', '7876dcdef0d912387441616526ed236142f047d3:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in '7876dcdef0d912387441616526ed236142f047d3'
+
+- Offline Git read failed (exit 128): `('show', 'b5ebfe0cf079d2b96acf0a5c0e29ee0c95ba32f4:google_robot/README.md')` in `menagerie`. fatal: path 'google_robot/README.md' does not exist in 'b5ebfe0cf079d2b96acf0a5c0e29ee0c95ba32f4'
+
+- Offline Git read failed (exit 128): `('show', '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec:i2rt_yam/CHANGELOG.md')` in `menagerie`. fatal: path 'i2rt_yam/CHANGELOG.md' does not exist in '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec'
+
+- Offline Git read failed (exit 128): `('show', 'a88bc450470d97ebc1f282e5969675fb4d1f0ed7:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in 'a88bc450470d97ebc1f282e5969675fb4d1f0ed7'
+
+- Offline Git read failed (exit 128): `('show', 'd74280a600a9afdfcb98d8917d0c79c86539aa61:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in 'd74280a600a9afdfcb98d8917d0c79c86539aa61'
+
+- Offline Git read failed (exit 128): `('show', '13d6c48b8f59d2c4badee7756b4ea3532613cddf:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in '13d6c48b8f59d2c4badee7756b4ea3532613cddf'
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'ms_human_700/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 61da6d8f098e04c0b08593be60ceca6391e729c8 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `61da6d8f098e04c0b08593be60ceca6391e729c8 b34159cf7b0736256d8d92f55f21dcefc20cc183 1b3a923d95859891e2b87b77ae2fdfe5f8025e1b 2809fcde41b69d9f077aeb9b8e19b5514c1bce25 b56787151dfdbd227ad6ff436efc7ed400d0874f fb46f2ff7beee9b610fe11361e647b85a6793526`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1774 objects requested, 582954300 stored object bytes, 164 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'ms_human_700/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 91d40e1524e501d3acb707c1f0a206e84d89cb65 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `91d40e1524e501d3acb707c1f0a206e84d89cb65 2b39bbc27c1c6165e809c5b8af086da602140552 a0260ad4e409e72cd9275071af96da357b06e5b5 b22d6cdc2e3f3f0a6e08389dd20500b376287596`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1778 objects requested, 583136845 stored object bytes, 165 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'ms_human_700/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 15ff6c0d7e08a10e3e8abcc3fe9d231c9e75f248 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `15ff6c0d7e08a10e3e8abcc3fe9d231c9e75f248 9e1c5a15bb2c4e18a638ceda4d6d9b5c7487f155 5820abc35dfa743415f95ec75b094ce3f7df895a 81429d226a2649a742850c2c03140c2c478b8e4e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1782 objects requested, 583339909 stored object bytes, 166 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'ms_human_700/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 549cd3979fce2794f296221c737674184e30bbe5 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `549cd3979fce2794f296221c737674184e30bbe5 a86762a7231f9818382557d8b8624c46ad7ce032 8ce31c02cef4d244f8ee36b8ae879c2edf5dcdc6 9a8d368920f2dcdf8550ce88a1ee138fef41506a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1786 objects requested, 583533155 stored object bytes, 167 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'ms_human_700/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0404e510db1f2f20b7af3b910cf8422d7cd64b38 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0404e510db1f2f20b7af3b910cf8422d7cd64b38 0fde0564bdd63550e80a138f84573f7b6acfc89f 31f84939af6d8e9bc88d454630609b6d69ddc438 81eafce1c53477a49e166d9444e119fd58017ac3`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1790 objects requested, 583662946 stored object bytes, 168 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'ms_human_700/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6e71ef25173a6de93497ff8f168b7bc14dc126df from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6e71ef25173a6de93497ff8f168b7bc14dc126df ab592b0e955e3e9c9c5a9baaa3493a7e7b1bcc96 0127a5c3f27ec88d0c410e7a3d2759d34da992c1 a59b52cc5d5830a9c56114b583cdf63487942247`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1794 objects requested, 583841523 stored object bytes, 169 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'ms_human_700/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 15ab73046d13572024648470cfe4a24acce3679f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `15ab73046d13572024648470cfe4a24acce3679f 57a7b82697eab640402378de8cc0a21a7626b626 f1d59777d389cf993171d70cfbae707d1738bf1e f98d0f05dde704b1267ba50195c8d42bc105eb4b`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1798 objects requested, 584123614 stored object bytes, 170 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'ms_human_700/README.md')` in `menagerie`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 51084bea59dd1649dbae380b3d52cc9fd7a1d1a3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `51084bea59dd1649dbae380b3d52cc9fd7a1d1a3 1af95a5a0642cad4617163f15962b829a63fe9c3`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1800 objects requested, 584281696 stored object bytes, 171 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('show', 'fae9ee82330444eec4e87568c838b99a09a39467:rainbow_robotics_rby1/README.md')` in `menagerie`. fatal: path 'rainbow_robotics_rby1/README.md' does not exist in 'fae9ee82330444eec4e87568c838b99a09a39467'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec'
+
+- Offline Git read failed (exit 128): `('show', '4a7015530bd7a4161103ae8f0905a96481e4cc1a:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '4a7015530bd7a4161103ae8f0905a96481e4cc1a'
+
+- Offline Git read failed (exit 128): `('show', 'bf110a75a56e5bd146c7ed76965737c71d48425d:shadow_dexee/README.md')` in `menagerie`. fatal: path 'shadow_dexee/README.md' does not exist in 'bf110a75a56e5bd146c7ed76965737c71d48425d'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:tetheria_aero_hand_open/CHANGELOG.md')` in `menagerie`. fatal: path 'tetheria_aero_hand_open/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:tetheria_aero_hand_open/CHANGELOG.md')` in `menagerie`. fatal: path 'tetheria_aero_hand_open/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:trossen_wxai/README.md')` in `menagerie`. fatal: path 'trossen_wxai/README.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '477ec56566682d663b996d86a188c75499e74b98:trossen_wxai/README.md')` in `menagerie`. fatal: path 'trossen_wxai/README.md' does not exist in '477ec56566682d663b996d86a188c75499e74b98'
+
+- Offline Git read failed (exit 128): `('show', '370c43965323c0944b433b202aac5058b5f907a9:i2rt_yam/assets/linear_4310/gripper.stl')` in `menagerie`. fatal: bad object 370c43965323c0944b433b202aac5058b5f907a9:i2rt_yam/assets/linear_4310/gripper.stl
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4eb296bec95a128de5dc3d52c3750db7b01bb956`
+
+- Network outcome: exit 0.
+
+- Offline Git read failed (exit 128): `('show', '370c43965323c0944b433b202aac5058b5f907a9:i2rt_yam/assets/linear_4310/tip_left.stl')` in `menagerie`. fatal: bad object 370c43965323c0944b433b202aac5058b5f907a9:i2rt_yam/assets/linear_4310/tip_left.stl
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `745e8b6f73b87c67918fefde86557b5c3548ebaa`
+
+- Network outcome: exit 0.
+
+- Offline Git read failed (exit 128): `('show', '370c43965323c0944b433b202aac5058b5f907a9:i2rt_yam/assets/linear_4310/tip_right.stl')` in `menagerie`. fatal: bad object 370c43965323c0944b433b202aac5058b5f907a9:i2rt_yam/assets/linear_4310/tip_right.stl
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0ec1224df779136c1b5bfb53af1267f45e832f12`
+
+- Network outcome: exit 0.
+
+- Offline Git read failed (exit 128): `('show', '370c43965323c0944b433b202aac5058b5f907a9:i2rt_yam/assets/linear_4310/d405_wrist_linear_4310.stl')` in `menagerie`. fatal: bad object 370c43965323c0944b433b202aac5058b5f907a9:i2rt_yam/assets/linear_4310/d405_wrist_linear_4310.stl
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `147b9af8b95c50cc10f36e07659dca46612e0b1e`
+
+- Network outcome: exit 0.
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false clone --filter=blob:none --no-checkout https://github.com/i2rt-robotics/i2rt.git .cache/i2rt-robotics__i2rt` — retrieve source commit/tree history without model blobs. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. Cloning into '.cache/i2rt-robotics__i2rt'...
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/i2rt-robotics__i2rt fetch --no-tags --refetch --filter=blob:limit=100k origin HEAD` — retrieve omitted source/mesh blobs below 100k for CPU compilation. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/i2rt-robotics/i2rt
+ * branch            HEAD       -> FETCH_HEAD
+
+- Offline Git read failed (exit 128): `('rev-parse', '--verify', 'd4efb66d81bd8bde42909880b16591d4af82e8c0^{commit}')` in `i2rt-robotics__i2rt`. fatal: Needed a single revision
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/i2rt-robotics__i2rt fetch --no-tags --filter=blob:none origin d4efb66d81bd8bde42909880b16591d4af82e8c0:refs/drift/pins/d4efb66d81bd8bde42909880b16591d4af82e8c0` — retrieve an explicitly documented source revision absent from advertised branch history. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/i2rt-robotics/i2rt
+ * [new ref]         d4efb66d81bd8bde42909880b16591d4af82e8c0 -> refs/drift/pins/d4efb66d81bd8bde42909880b16591d4af82e8c0
+
+- Offline Git read failed (exit 128): `('show', '61b1ebda80d0b3839843bb06fadf42b6b83bd3c4:robot_models/yam/yam.urdf')` in `i2rt-robotics__i2rt`. fatal: path 'robot_models/yam/yam.urdf' does not exist in '61b1ebda80d0b3839843bb06fadf42b6b83bd3c4'
+
+- https://github.com/i2rt-robotics/i2rt robot_models/yam/yam.urdf at 61b1ebda80d0b3839843bb06fadf42b6b83bd3c4: CalledProcessError: Command '['git', '-C', '.cache/i2rt-robotics__i2rt', 'show', '61b1ebda80d0b3839843bb06fadf42b6b83bd3c4:robot_models/yam/yam.urdf']' returned non-zero exit status 128.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt/robot_models/arm/yam/v1/yam.urdf')` in `i2rt-robotics__i2rt`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch bd82552830e758ef907c35165e49481aa5d13089 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/i2rt-robotics__i2rt -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `bd82552830e758ef907c35165e49481aa5d13089 7cc2634420fda1fe37499018babaaadace1608ff`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/i2rt-robotics/i2rt: 2 objects requested, 1985460 stored object bytes, 1 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt/robot_models/arm/yam/v1/yam.urdf')` in `i2rt-robotics__i2rt`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 814617d12fad4fc9cd92b6a4f173f78278c12bda from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/i2rt-robotics__i2rt -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `814617d12fad4fc9cd92b6a4f173f78278c12bda 1dafef947cb671a68719bb0195c2bf36d0a26f65 2a29a249c3bd71a022d4504f05d60132186f7b9b 981abf2e1fdc072a769cbef3c06f30af5129bf0e b3437e179ae280f4928fcfaea95853092db83b57 f7dde172e96e9cffef71ad72769c6294a99d4622 0d5caba3e126b6331d2b5b0f9e993db6f7b3bfaf 1d8171e11c1cf557e8494d5f81721f89a6ac9600 e1b480038b5196ef533409ff86761beeb518fab9 ea27afa10edbcd8d35ec7c6ae98e74cab601e007 fd14e1c977060b07400adeead8decd4ad1c1daf8`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/i2rt-robotics/i2rt: 13 objects requested, 5443978 stored object bytes, 2 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt/robot_models/arm/yam/v1/yam.urdf')` in `i2rt-robotics__i2rt`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 9b81f37922933289f5d0058e94e1133c9436aef4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/i2rt-robotics__i2rt -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `9b81f37922933289f5d0058e94e1133c9436aef4 6078dc6f065a057f8820855990d88eb2ad36a6bb 778bbb65a15a82ea0e5a5c4b3480ecd90c6d47c1 c985ba168db6b8bd40607082ec5fe31238c40147`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/i2rt-robotics/i2rt: 17 objects requested, 7971724 stored object bytes, 3 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt/robot_models/arm/yam/v1/yam.urdf')` in `i2rt-robotics__i2rt`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b78f40dfe397617ecd60d63937987a8838808190 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/i2rt-robotics__i2rt -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b78f40dfe397617ecd60d63937987a8838808190 292efb891dc1cc61862f2adb8622123f26f96509 2d3d88d70360abe69ad194b8a44a5a4550d46b6f 368d7adf13fd4097721758f08afd34c6c0e18833 8dcb8ffaf94c611066b31be4b21155f4ac12d6a2 8eade5bb53e72444b38cb081fd16b9997e94f04b 9649463558834877add40a31dc837ff1b1dcc77a ef2aa8fec0474ef84a3640214627762065e611c2 fa1584203a118eecf3eb2b353079361c045f16cb`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/i2rt-robotics/i2rt: 26 objects requested, 8860481 stored object bytes, 4 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'i2rt/robot_models/arm/yam/v1/yam.urdf')` in `i2rt-robotics__i2rt`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 2b65ae2f291bc4354129cd41d224bbb7c92070c7 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/i2rt-robotics__i2rt -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `2b65ae2f291bc4354129cd41d224bbb7c92070c7 13623388fdc2a4c3f65b8e7fc00343c3480c59ed 3d25a595022c1add5e4a03e227d2669293bf5639 48191aac11dcd9407c0399d55ded61a898453fd2 ca96c812c6b331916588bc9948f99ca2d0b58869 df334ce7cc2643916683d5bc3fcc35a4ca725b72 e71c45deda9f7cf7ccd3598d4b31a19c5fbcdd06`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/i2rt-robotics/i2rt: 33 objects requested, 9947765 stored object bytes, 5 batches; caps 4096 objects / 2147483648 bytes.
+
+- Historical source compile failed i2rt_yam db582eaa70b6a057a1e2981da6219dfa6c29422a i2rt/robot_models/arm/yam/yam.urdf: Unresolved or ambiguous package path package://urdf_top_assembly/meshes/Base.stl: []
+- Cold-cache validation outcome: {"classes": {"needs a human look": 1, "unknown": 6}, "completed": true, "exit_code": 0, "history_incomplete": 0, "matches_published": false, "method": "pinned", "model": "i2rt_yam", "published_classes": {"NO MATCHING SOURCE": 4}, "published_method": "none", "published_status": "complete", "status": "partial history"}.
+
+- Cold-cache validation command: `./drift check kuka_iiwa_14 --fetch` (serial, inherited nice 15 and single CPU-library thread).
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie fetch --filter=blob:none --no-tags origin HEAD '+refs/heads/*:refs/remotes/origin/*'` — refresh the upstream branch tips before selecting latest H. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/google-deepmind/mujoco_menagerie
+ * branch            HEAD       -> FETCH_HEAD
+
+- Rejected unrelated historical README template for agilex_piper: 0bee963312f0f4a25b53cdf9afe744ca73f2d68a heading '## UMI-Gripper Description (MJCF)'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:agilex_piper/CHANGELOG.md')` in `menagerie`. fatal: path 'agilex_piper/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Rejected conflicting robot-variant link for anybotics_anymal_c: https://github.com/ANYbotics/anymal_b_simple_description/blob/master/urdf/anymal.urdf (repository variant b, model variant c)
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:arx_l5/CHANGELOG.md')` in `menagerie`. fatal: path 'arx_l5/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:fourier_n1/CHANGELOG.md')` in `menagerie`. fatal: path 'fourier_n1/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', 'db140ade7ee4cb59629f9687aafc65af663d5bbe:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'db140ade7ee4cb59629f9687aafc65af663d5bbe'
+
+- Offline Git read failed (exit 128): `('show', 'cd7fc51b704c3cba05748bd5537cb17990b341eb:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'cd7fc51b704c3cba05748bd5537cb17990b341eb'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', 'acbbf1636fcfef9b437a6eb8c6f84380fb4aa998:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'acbbf1636fcfef9b437a6eb8c6f84380fb4aa998'
+
+- Offline Git read failed (exit 128): `('show', '7876dcdef0d912387441616526ed236142f047d3:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in '7876dcdef0d912387441616526ed236142f047d3'
+
+- Offline Git read failed (exit 128): `('show', 'b5ebfe0cf079d2b96acf0a5c0e29ee0c95ba32f4:google_robot/README.md')` in `menagerie`. fatal: path 'google_robot/README.md' does not exist in 'b5ebfe0cf079d2b96acf0a5c0e29ee0c95ba32f4'
+
+- Offline Git read failed (exit 128): `('show', '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec:i2rt_yam/CHANGELOG.md')` in `menagerie`. fatal: path 'i2rt_yam/CHANGELOG.md' does not exist in '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec'
+
+- Offline Git read failed (exit 128): `('show', 'a88bc450470d97ebc1f282e5969675fb4d1f0ed7:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in 'a88bc450470d97ebc1f282e5969675fb4d1f0ed7'
+
+- Offline Git read failed (exit 128): `('show', 'd74280a600a9afdfcb98d8917d0c79c86539aa61:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in 'd74280a600a9afdfcb98d8917d0c79c86539aa61'
+
+- Offline Git read failed (exit 128): `('show', '13d6c48b8f59d2c4badee7756b4ea3532613cddf:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in '13d6c48b8f59d2c4badee7756b4ea3532613cddf'
+
+- Offline Git read failed (exit 128): `('show', 'fae9ee82330444eec4e87568c838b99a09a39467:rainbow_robotics_rby1/README.md')` in `menagerie`. fatal: path 'rainbow_robotics_rby1/README.md' does not exist in 'fae9ee82330444eec4e87568c838b99a09a39467'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec'
+
+- Offline Git read failed (exit 128): `('show', '4a7015530bd7a4161103ae8f0905a96481e4cc1a:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '4a7015530bd7a4161103ae8f0905a96481e4cc1a'
+
+- Offline Git read failed (exit 128): `('show', 'bf110a75a56e5bd146c7ed76965737c71d48425d:shadow_dexee/README.md')` in `menagerie`. fatal: path 'shadow_dexee/README.md' does not exist in 'bf110a75a56e5bd146c7ed76965737c71d48425d'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:tetheria_aero_hand_open/CHANGELOG.md')` in `menagerie`. fatal: path 'tetheria_aero_hand_open/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:tetheria_aero_hand_open/CHANGELOG.md')` in `menagerie`. fatal: path 'tetheria_aero_hand_open/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:trossen_wxai/README.md')` in `menagerie`. fatal: path 'trossen_wxai/README.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '477ec56566682d663b996d86a188c75499e74b98:trossen_wxai/README.md')` in `menagerie`. fatal: path 'trossen_wxai/README.md' does not exist in '477ec56566682d663b996d86a188c75499e74b98'
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false clone --filter=blob:none --no-checkout https://github.com/RobotLocomotion/drake.git .cache/RobotLocomotion__drake` — retrieve source commit/tree history without model blobs. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. Cloning into '.cache/RobotLocomotion__drake'...
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake fetch --no-tags --refetch --filter=blob:limit=100k origin HEAD` — retrieve omitted source/mesh blobs below 100k for CPU compilation. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/RobotLocomotion/drake
+ * branch                  HEAD       -> FETCH_HEAD
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 26e882509f99d90f2d1171268015d7d82212b0c1 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `26e882509f99d90f2d1171268015d7d82212b0c1 16713b21079a6886829a0a1d22e4ad147c7616df 9153a60298e8b51364add63c200421854a1713ed 0a7f4f5b552ca063370832a87b9cb40e1499caa1 17051ab9343aef226476a9b2f0d8b832904ff893 40545e458aee44775b1feb3f9cfed7b00659e83a c4e9d4c71d3b0766a932c126b3a9754a461b7fec ad0dd93e22c1e77063dd84eec82449ff7ee968af d55acb5470bd204f3ba4b46c349cf7fdaebce136`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 9 objects requested, 1340831 stored object bytes, 1 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch db774c1251263daff9e0171418f8c4966ccc6105 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `db774c1251263daff9e0171418f8c4966ccc6105 2e9c7f8e4da178d8e5dcd6d7d670a06b56f2596c 424a443635abaeee5a8ff20aaf1795a3596eda28 7a1a302e69436162c975d5f2a3935cc5de65c05f 888f145be3001384bb93d4195999ce4600b13f04 b01be10bc8fdfea3ffc60213702c78edca2aec12 cb32c9c6f3b240092b24ce0af37b0fe8deedeaa9`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 16 objects requested, 3505832 stored object bytes, 2 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0bcc3954e41d9640b2b530a24e10c1e9a8117bcd from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0bcc3954e41d9640b2b530a24e10c1e9a8117bcd`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 17 objects requested, 3667535 stored object bytes, 3 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 3c1a4db014ebc95d272b83c8015aef48dd73c0db from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `3c1a4db014ebc95d272b83c8015aef48dd73c0db 34a4f581c8083fd02b2e3f2363420104ed479955 60adfcf4ddbb11d91c198267cd3634bd8fbb5b98 b810714e79fe67f7549e0bc43246df17ad155365`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 21 objects requested, 3683407 stored object bytes, 4 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4522f5b42941160ee6a46582311409d63fc34251 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4522f5b42941160ee6a46582311409d63fc34251 1f2cc2a03eb3d2ecc094088db2d886b72053d46c`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 23 objects requested, 4062572 stored object bytes, 5 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch da1463c50dc436a00bba7aab44461224f74091b3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `da1463c50dc436a00bba7aab44461224f74091b3`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 24 objects requested, 5183311 stored object bytes, 6 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5ebddf75248703ea7d99f517bfc64f85b95ddb75 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5ebddf75248703ea7d99f517bfc64f85b95ddb75 0c6c5923664ba6160169ce034b7a0ff0478eb799 1399b24ba91acb38fa15656d1b376f5ea4b51c17 345e7feddf0850b9d94954f179fb4e4761679f6e 4bbde518a64983d6292a499b8f79d565192efa48 53c7fb8ec9fc5baddfe5d5e42839d1db94113008 6c4e72d233a584405c8095cccb8df60b43fbcbfd 72e5361134b977d9a746ded86f8cfcc13777a865 82445be46b556d88fc189b35f1fb5aecd75f576b 9df6fb93aa09c98b5ce0bbfd23ac9b406d5b471d a3a3f9fc2d10186593acbac274d9552c21d77f84 a514dd106ba62bb61d1750206fed0ef7d88a29ee c3e60a5379e1b4520984bc8b025e742ccf0105ee`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 37 objects requested, 33480118 stored object bytes, 7 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d8309a6c3ec70eeb8810920b230496615c4c2262 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d8309a6c3ec70eeb8810920b230496615c4c2262 6acd1df0701efd89e67f2833c4bbc5a6b7b56e07 a7a7ba2e6f2ba73729657e3f915c46227055d653 1855736b6f2ce7a442c79048a1361a8db04cc571 1e177fd0a3fd3acf6fe2f568ac68f3fa8400c755 28842d6eba0e28bdc55bde70642e60bce7fe3763 2bd3fcf3760bb654f366e6cd9f21555933b292b3 2c2ca1ab0a20ebb4c108b137fd683224a1e8cfc9 4ab7442ee1661a015f92160d37433c1c2964598a 58a36a06d1ce91aa4d31e59e6e1b24226f7fec19 743da5688ab2e4f4320745cf558c4fd5a1e6e78a 815919be54b1ae852678f0b2762bbf316c95504d 82c2dd89ae6766560b09d4baad60dc408e2cc7b8 8403c4f59328b4f934fb15e2233d0b1c64c276bd 874b821077ae3d96f1b745b1d9e2562ac5b66af4 8ff303795b761808ad0b8540313d0561a35c432a 925f0b771fbfbd33d1ae34806e747602e57022bf 9843bb8361df66717e62c62231eec7d6837b0294 a0846db3a284f817db87c9732a0ba45b674e959d a681c72c9c018849abc9fb4d4b89b9bb81d87b67 a98bfccfbb0fdae36eb8dd104d74872cca7d179b b441bdda34d415cc9bf28713fe0d6138dfbc970c bbd87d17683f7ba1e7e545e699752544940c0228 c70b508a34d77adbba6434f6b4e06f4f493ac468 cdac19b6dd8dade433761e563e8a2dede2cff44b dcae8e369ba6de669d28a39cad56f16ae870d4a0 f3d249cb9857fbd1724e97516f3ac9a36e91c062`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 64 objects requested, 38181942 stored object bytes, 8 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch cebd4c2a281fd473a319d57bc7782d7f2470a386 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `cebd4c2a281fd473a319d57bc7782d7f2470a386 1d48c99b10b4eeb4ad55df22976d2ebc7ee876f5 3bb5f62ff665bc178f224c5a308fe7541c2d01ce 3cf94f39d5d7fe0dea1572f3322c72c25551babe 3e432c53d21b3da86ec5b709b0681a38aa5491c2 47203fa12309a2c6c61ac458ddfdbf61da313745 bb9c809a787046e6f833cb36893c42fbc2ea9908 bce3b57eb25558a6bcbbae17c9f752d658ae5335`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 72 objects requested, 38681795 stored object bytes, 9 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 60560363539a6968d2790343ec80047d18d6c5e5 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `60560363539a6968d2790343ec80047d18d6c5e5 02a3456f47a5b8ac61d52548847ebfedc8074ba8 14eea925b0fc0c60ed8833609c3599a7ade2f75f 3773aa1f1c612008660015f182634c92768dfc89 5f9baa1dd392a38c13682b66c8da267d2119ae81 67a808cb46535b32e54992c474f4ab888614fb82 70b5c5a485d9784c5d5082a4d9d2fcbb824b1b8a 99c9c03eedbffa859202374e6b496afa4d2e3747 c730c9aa004f1dc23dff04cc47b26d63e0bad6b0 c80b1433d500cc66ab8ca7d33acc14084ea8a331 ca320ea187c1311a750a729a18f31bf59a968cc3 d7d2914db5756ee7ab97d6764f72f18e8c262a61 dac745bb1d723fe967e500a8814a4e3a36434b30 e3a67919af52989f07343d2e136a68424bf5efc7`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 86 objects requested, 40785003 stored object bytes, 10 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 50212cc7b268d3be55f97473c9d76b5c2e78f0a4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `50212cc7b268d3be55f97473c9d76b5c2e78f0a4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 87 objects requested, 40894169 stored object bytes, 11 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 26971460c9689afaefdfa4c5540adfa916857a1d from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `26971460c9689afaefdfa4c5540adfa916857a1d bb13ec2e2c3986b7695f5d14ed2b913e6d87aed4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 89 objects requested, 41010533 stored object bytes, 12 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ce404876bab08f51237e5747bd96e001e8d1451c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ce404876bab08f51237e5747bd96e001e8d1451c 5060f8d45bee936320a60cc720962ee3ff1b57be 9a242d665fa199b996cd2c99adc0a2114b940747 bd38e555245e5bf1f58cd08d326931059222ad11`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 93 objects requested, 41192297 stored object bytes, 13 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 786c1707b41034d12b4ae84e5779369da51231bb from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `786c1707b41034d12b4ae84e5779369da51231bb 757f49e2d3a6d1f48d39a06b1d5555daedd0437f adfcc8c688bcbcf1112c782f02d68f613d76aada 1dc36f0494ce6138d650c22317976b3209147fb6 1fcfe40a07987a1c59bb72d1e422f797c565a8b5 39a0389188ce6029d688da4a3068995c2adf268f 57b12b47b68ad59fb7663a29d08d592d090a6795 7feb3f0496505bab7c0c5cd3520332056c5dde2d abb9f07afcd15fa3ae95616f9e84587872117421 b5a66a11a5d2706924b0a386d984c9ebf135ac9f cab72bf1175450cf7c2d24f78e9cd7f1fb47fd14 db0f650f2fed134cc7cab47ccd7b267107ff29ad de8f92b51b16c63dd265c5eeedeb2b8604494a70 e4be8293003355c59cf03d18601af311f02319c2 ef875a5e3cbb05dd7cd43692c94c8d926ab8b85b f03664cb50a5ac3bf63552623dd83a2d440c0f69`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 109 objects requested, 42814288 stored object bytes, 14 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 74ecffac0e17d7e1c947593784644fa4b03f8875 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `74ecffac0e17d7e1c947593784644fa4b03f8875 92681c290c9cae0fab9d90eaeb46dbd979750760 ebef6c66f1ac2857cef86b907a7ba555f4cc721f f4c96df09e530e7e56b3e89d8ee2957435dbe3eb 91b7cccea3092eb3b56e503d6f370d92e33422f2`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 114 objects requested, 42833534 stored object bytes, 15 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 99e676ee77a7fefc240be2d0dbbec1c8df37ca0c from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `99e676ee77a7fefc240be2d0dbbec1c8df37ca0c 1f5cf9985a5b9c921791597dad68db53fa0ecebe 533b273810b3054ecd2549e55ad265b3d07770d2 95d70ed4dc4226073f1d87871b2895898ce546eb`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 118 objects requested, 42955614 stored object bytes, 16 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch f04b4c579500fcb6321369bebde09965555e4ac0 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `f04b4c579500fcb6321369bebde09965555e4ac0 7fe2454199edc83a225c02d547acda3bf858758e a1c47f4327f245fbec86b035fa9147243c65e362`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 121 objects requested, 43071955 stored object bytes, 17 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5df1dcfe1102695e1f35f1ea5a0e1847bcc2423f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5df1dcfe1102695e1f35f1ea5a0e1847bcc2423f 2ddf3a68c1dfc29097ffaf457022315f7c415ef3 7db47bfef1f97fda6c5e2ce1692cd01781b4eb90 ac7b3f5a6fd826343fbfc1af6253245536e8eb4e befe19f497e0254ade031457b38a73f6eb707ee6 fc054e46f62da024627d82cd25099c4497505640`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 127 objects requested, 43267614 stored object bytes, 18 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5f07a9b4a844982071790125dc59e1c40cbeb04a from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5f07a9b4a844982071790125dc59e1c40cbeb04a 4530a6e409af30af7c6ab17889dfdfd946597e6f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 129 objects requested, 43326793 stored object bytes, 19 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ef6a6a5e3ad932bb8fc3b578dd97663e7c1d9df0 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ef6a6a5e3ad932bb8fc3b578dd97663e7c1d9df0 2e8300a749bc6614bbc7f896e33f449731e33173 b08af1bb667324360dab7c72856e96f3b404bd1d dcb11ad423b5c10c35d11a64908d71bfcb7f2615 f813b96e659f6e90989729e90f89ed36e56a0bd5`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 134 objects requested, 44461297 stored object bytes, 20 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4f83b8fdddc504f794129357a89295333bb95638 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4f83b8fdddc504f794129357a89295333bb95638`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 135 objects requested, 44515530 stored object bytes, 21 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 95352c3bec8940e8144c15ee99f2c5a170b1d5cf from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `95352c3bec8940e8144c15ee99f2c5a170b1d5cf 1daf4d2d5ba435588885e5f061ab0e5780f3a3b8 4bad0542af311001759ce56ffbe1d6c28ce1b114 ef7bc60a748c3df7627760cc5fe9bc766f3f47ff`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 139 objects requested, 44638544 stored object bytes, 22 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 098e88d59168665a68ff4f711733d3bd9b6db2f7 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `098e88d59168665a68ff4f711733d3bd9b6db2f7`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 140 objects requested, 44669885 stored object bytes, 23 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 50145e389ea861608abb9b298c24922341c7d0e9 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `50145e389ea861608abb9b298c24922341c7d0e9 0645895586178356b50a944fec53409750b92a2d c1c379a2b105be5117eff44eea37dce7aaaa4441`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 143 objects requested, 44738143 stored object bytes, 24 batches; caps 4096 objects / 2147483648 bytes.
+
+- Inspection commands encountered absent optional files: `cat pyproject.toml` exited 1; `rg` against `tests/test_acceptance.py` and `tests/conftest.py` exited 2. The actual H1 test is `tests/test_gate.py`; the project has no pyproject.toml. No code/test execution failed in these inspections.
+
+- Offline CLI/history/network regression tests: 22 passed. The history budget is shared across paths, continues beyond five retries, and preserves honest fallback for offline, capped, repeated-missing and failed fetch cases.
+
+- i2rt pin investigation: explicit GitHub SHA fetch of `d4efb66d81bd8bde42909880b16591d4af82e8c0` succeeded. `git for-each-ref --contains` lists only the newly created local `refs/drift/pins/` ref, with no advertised remote branch or tag containing that commit. It is therefore outside the normal clone's reachable history, not a missing blob. The available Git evidence does not establish why upstream stopped advertising that history.
+
+- i2rt cold result differs from the saved survey: pinned `120c3c81400171174604e503943f8d1ebc891058` is selected for the camera/gripper variant, with the preferred URDF instead of the saved MJCF candidate. Exact rename coverage is complete, but historical revision `db582eaa70b6a057a1e2981da6219dfa6c29422a` references absent `package://urdf_top_assembly/meshes/Base.stl`; bodies without explicit inertials are ['root']. No exact `Base.stl` path exists at that revision. Geometry cannot honestly be stripped, so partial history is retained rather than forcing the saved complete/no-match result.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5e79c69960db893899333e254fafac119e0a82cf from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5e79c69960db893899333e254fafac119e0a82cf 00cb8bd735e82a63c09b284bf2ff5f0d7388437e e9a8ca9711b959aa4d7d85afe4d78b6b290a9fc1`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 146 objects requested, 44852112 stored object bytes, 25 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 840cd1baa53398c4da6010b14f7c0bd79ff4a33f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `840cd1baa53398c4da6010b14f7c0bd79ff4a33f e2ddb2c17fb34b24f492b2331cc39c5da571a04f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 148 objects requested, 46097852 stored object bytes, 26 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 0f2249aa715c069c07f7f543ca0924d0615f1994 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `0f2249aa715c069c07f7f543ca0924d0615f1994`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 149 objects requested, 46708224 stored object bytes, 27 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 341dcf1d162d8e305178ccc8938a34853f25cd85 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `341dcf1d162d8e305178ccc8938a34853f25cd85 0392f66cf1ff4da0b8ba837fad5f66b771ab07a1 116dfa68616474eba7801fcdbdffcf4de9b3156d 48c496631742841e78da9ea870b30e2c9134d85f 4b6a7373a37cd7a34d925088e540f67f6e25c315 ba13cc2272e03a36c8daf48b8fdbf0f12ce76e71 ee796f1bfed0469626d4e4fdad65dbedb56a262d 7e967b7cd7a2ac900b0fcfd472a45ab87b61db1a 845cdc4b1c62d1d0244a24e8a4dd3a5370bbbb16 dd3666a214c02fbc7608fd901575cbe33ffe6ca4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 159 objects requested, 47119741 stored object bytes, 28 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 5d4ac7027857ea7e3a02944a7b1df135132062a6 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5d4ac7027857ea7e3a02944a7b1df135132062a6`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 160 objects requested, 48235862 stored object bytes, 29 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ff63c27fc11ee7f2a88cb37c5b43c8bb2fee69c1 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ff63c27fc11ee7f2a88cb37c5b43c8bb2fee69c1`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 161 objects requested, 48268687 stored object bytes, 30 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 59c2a0d830bb51de2eaaa33f9864f027459a56f7 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `59c2a0d830bb51de2eaaa33f9864f027459a56f7 7d25a56c2f7a50cf00b145e22906562a986e17ca 86c00817371558f96868938813a50a7fa701d79e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 164 objects requested, 48766318 stored object bytes, 31 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c96600dd27274479d368b68f6bb14658344662fb from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c96600dd27274479d368b68f6bb14658344662fb 3a870f6ecdf403c058424a2287a5f6a2c0310ab4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 166 objects requested, 48791032 stored object bytes, 32 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch a03e36ee4185a04923b0a39cc5c9f3662fdde555 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a03e36ee4185a04923b0a39cc5c9f3662fdde555 2a4dc852de9d7cb5eb1387440239f445df1550a1 447525e505f9fac13f9493ccf066a57cee089404 bc04d4a736fc8e4bea2ea7090b6af1ff2fcea43a be5d63fb5b9920c57e59b494f328874becaaff85 f98f21de72d858dbad3c85b233b495eb140224c9`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 172 objects requested, 51520547 stored object bytes, 33 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 79318bd845abd85f450bdf2cc26efddb95514836 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `79318bd845abd85f450bdf2cc26efddb95514836 1ead7bddcbb0d12315de17c390288643897d2c12 9ad7f0df1d3dbc815942b435c5a9fed0835723a7 de7ba7438208235ad41af87c954967c9739dbede`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 176 objects requested, 51895445 stored object bytes, 34 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 48ac2a18b3e5f60972216f99d2a758aacf0af6b3 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `48ac2a18b3e5f60972216f99d2a758aacf0af6b3 0035bc974b8c0a7772493d340dfe67a8d5e9bb6c 086f88105e66a7f674cb6e4ac84e2dc739be13ef 098d73ba6a8ca8b91fcfe4cd194f2ac551ae88a3 1b8475bc3f355bce013e924f5c54fced1a3a7581 1be79d465585606b03a5680373f5cc0f56be3e5e 265257b11564b3e125dd833692aef6ec1f22cc05 2d703f5c7553993e0c788e393f8df6a2a7d82849 3011f26b182adde468ca1abc2361dd18a3ff1974 3e6fb4878f69f1141415e04bfebdb9fc0011c670 4176251028779bca7bfd89f9307ca7ae8fe48b62 420bad8ca24cb28e7be9be2f11b85de4e5cb5006 47af7c921481e789b93eb85c1aa54d37f9296276 5b9cccce5b5fe01adb1e78010efc8d4ce4855869 7bd6d47f273f00816946668c1ce289ebabc8eebf 7e6cf194b5b6401ee8a0fd995c93b5bc15455fb1 7f8d1d2e3660a80e24e3c8e50d2dbf4ce59930f6 80fc1c2ec3a4ce79f6db3bbe397b6149a202b61d 99d4e305e7665795deed6568f2b98e8ea197ccbd 9db25d264f17d2565685a972e43c754d90dba1b3 a0d0bc7cbb68abe50dc57e561e3be530899071fe a2e499a3c2a97edb581bd617e3e42d31ffae155a a6b8613892e989b1cd486903d3cf392a8cd7c7fa b9c486fdeb425579edc61172a47fc3137d628dd7 be37329c9787780b7c6b9d35c94b05013aede07d bec46c4c62b352a3274fc0d1a44f569ef05a17b3 c2363ce7610a0138cd0a94ba19d8e32a986dec74 cc5fb40809e1207035e2fb93c1a4f26108275f3e ccaca80323a5f5622be46a598e8af15dc1e69036 d6efe0bac4cf9e5c02af50d5f7402d027a7234b1 e25905d5233542669c0c62ec185d893b7d77e442 e52e47d8e9826bf1c2ab2e39449d11ed7c215f48 e7a90c9bb2c003b70a5f2e53ed7ea4be4101dcc9 eb5dece273d6036dcc66ef78b5c7937697672aa2 eb71a74c097a6facc22a2ca80876f40a62d2334a edd6dbac967ff1bf7e53006f075c011d30863d87`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 212 objects requested, 56380947 stored object bytes, 35 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 6bc0339d042d229a1f21963968a006287484a7a8 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `6bc0339d042d229a1f21963968a006287484a7a8 c40c530466b584a460a6edbec2e904c39cf697a0 019354554d31a62c5672681dc68bd6d1e5b0bc45 05c91dce7b395beca42d601ed4f42d66a7b2b48b 25ebebe2555e6994094da2e79900a0df64e96f55 6535c1b7123dc687be96705b6b93b96a88feb80e 86f205bc5bc2c2c20aed2e27977eaebd9d35bf2f ccd86f34214753f76d49ad89534f0a8d920d838e d9355d7d5dd4fadb48ac694e7ada291a04a87fba 21e00150cc080c6a7fa73e68149eeb58534498f4 5983c33028c51481b34b8bf46186eede459aea57 896569d581f74e4458d565845c3b8d07b8b11762 c10240869398bc0de0f57560136f324c9d596c84 eefefc6cc79770fb4c66f9c1a0c920d283432082 f5e65418b88835ca5e957ed8be00508c633028ba fea0e236f6ccf5d8df57f13efa6c9bca06f21ede 1695475f84082405c6b9161dabb6ecda21ac9f53 1903562ef70c28abfe175893fec2819e99e19e6b 1f7848b1a78523d86600b307413c2af1fb96bb27 225ca9f05c284bedf2453ca61b251743081b5cde 30f3016889842f980f2634d2152372152183780a 55b239f50d9d7d358fdcfc375c5871a2a81cf07f 607b3f409600915fae45946862ce3b6ccb63ad7d 7dfc780791c56536da3bef8164bfa64d7be1d8a9 88ea37e8e09aafdd1978e2cae398cd4c96c54e29 b2e0259f527df00081ff6ee9a7d01b823a9db489`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 238 objects requested, 60487227 stored object bytes, 36 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch eb5e6046b69deabb4a1c03424880537b56502447 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `eb5e6046b69deabb4a1c03424880537b56502447 08bfa275553b3efb772541cfa9a34e1c3bae30ed 1967091dda6f4dae6c2019e915e1d9ee9750701c 2f70faf0cab3e4ae24281d2ed3db1c89e722717d 3829d217354cca91a9da2bab282703c8ad276279 5aa22cb05b958506b60766b1d97b30c2b357fe57 5ed05753e22e956918e6d9be934a04d76fc70ad7 5faf9f64a72561fc9579e1d6f70a3693be82ccea 6615bfcf185eff9cce3388b26bf4257aaf384357 6915b32aab7ff15e2e1f6d34d3741d33d8a6153d 767fd3b2c48db3836f6cf958c2c482add96a93dc 8f673f754e9fc0b9e90473be0eabb6763885b9ec 94e4e6a24ffb0a64bc17e21c6f5422b5a60a2852 e62ee168cda3168108e0492fd9333cfae96a0575 f08501541291db594a15637c097cecf4a3d3339b`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 253 objects requested, 63858061 stored object bytes, 37 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 15c08ec1c975d0ba9e4c9ca371fcca04e5fe3702 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `15c08ec1c975d0ba9e4c9ca371fcca04e5fe3702`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 254 objects requested, 63893682 stored object bytes, 38 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 847adeb7a0e8195555cfbc7c5d10ae0a1ea57f76 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `847adeb7a0e8195555cfbc7c5d10ae0a1ea57f76 0d18524aa5501de83728477449a66afa35c3197d 0e64a68110c91acd117e7ebae689c35e5d1272ea 32978f8bad8c7b5cc1aee5f78c243041ea640a2d 39f87adcac6a3ced2935ba19f3240309c1aa8f9a 515a1b5d3eaa3e5ac3ae1cc89cb05f28198935b1 537621f5e81ac2db8b67e15d7a8065e3d5b475f8 53a645fa0ed708632669633c1505706dbbe41436 7a9719ddfd025285db811453483d4c20f930cbe7 9381ab38935f20210413b079aa1b6a11672a394b c1b7d3a0f4570927e035fe92e79b84bacb7b6991 c1cdf01b1bed295cc3a84464b3c979aa8dd3c32d cd7dc765dfc9f56a9afdd48532157964e240dc8a d08b629f1b046ac217fcbf8e4ef12eefcb86f3bd ed8e3c615adbe8b9425412d7b287d796c6e9124e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 269 objects requested, 63924127 stored object bytes, 39 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 12564f8e0542678a5e0f42ed0a0ca3b26df37634 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `12564f8e0542678a5e0f42ed0a0ca3b26df37634 01ed9976736761b2ab78d1b10cbdbf6acedb3478 0c614951ed32c6250d702791d90b6a7557cdcd9e 10312d45ade21afe3cbd9946163030eb3f9c9995 1ba05d37b73f3c9cb40d2ca040554b3bcd0ac3ce 1fb2aaad6cedb27e00b3e0a6f99792b477ac3523 25cb34e5de9b38e26d8a685d5ad450d5a95765db 38885179f3a9c45671261f245e99f19719f32e18 41a78421634346114be423a877d4c3ee83b1df62 454b7df9ecad9403e4f9f427af20aa161b083e1d 4ce18b88a0bd849c21a9f8bede091519d567fcc2 4d2a094c99a48bbe146fc7013bc8b2ddec0da5aa 560dedf2c3927199e308753b09a8b9b50e09083f 5e7eefc5109806a8fba69ea2919d81c70d8e0aaf 6454f17f1759cbcefd1173edd97a445ce1d13f5f 6539ffce1f1d8f8bd62b79dafe137c172c02d75a 6b8190ff6974a7fb832777de67ecdf05e3e8dc42 74580ea8efffec4cc21a6edf7ada9ef6120dceba 75c7bd8d058af6f0a92baa21602a42c0cd6b58d8 7b194585fe26f1d10b785603f51fa53a93ed07dd 7c572f97f8a04c7547259a7e362fb0295c64b4fd 80a15b8b9c8346474432d1e6b5ef8d8063ff1e9a 860ebd6f4dd87d076d4067ab1be182b47b52da2e 8652d34872e9bff6e14460c3abc6a1291ff65b9b 8c1e57911b0b0cb3a0637e53a3e7e7464ce4be3c 8f8f05463f63a0b48c13763ecdcce82e85c60a21 9165f8b799019e09a6d525be05f7e074f88b801f 9476399434f84bcddbd25aad810afc489d846ae8 9d3649573129bae1b128c4c6500728799fcc21ec a7d37107404dca3052fe8803163ee038493d0785 a94ea0d71181f00feba1702edacd17e211224cf7 ae6b62ea1036637de899fe8d70dd139525d9bc92 baf828493bd38b62d6dfb3decfec3a483d9d11c8 baf8798eed019b4b2529dbd7e7beba40a4dfdfe2 c2ac46273cf22c0d87338c3d4d3b8f21ffc83f91 c3c0282860d459fb6ca9720469ccbfbc3e528fd0 c7f6226df7a4fec76165863b4521a32b4065a6c5 cf820be5b3a78353dff624ff81e4e8c6d7d29678 d6971d375bcbe6da13d999af816556aa5d374a0d d74051713acca75d9b55e1891e9d2d1970ed153c dbb53414aca7ce3f1c0200f2359f33a29740c6b4 dbd9add9d7ce7593820371a7cd4845a2f742624d e4ef48cadb2d2e4a575b2a3cc9517bd460086fd1 e7a61331538ac2ebb42dafc4961eeccea926bfa5 78fe4b281f2567d8027fb06392a189dd5b2e630e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 314 objects requested, 64094456 stored object bytes, 40 batches; caps 4096 objects / 2147483648 bytes.
+
+- Workflow parsed offline: `workflow_dispatch` is the only trigger, runner is `ubuntu-24.04`, and checkout/setup-python/upload-artifact are all `@v6`.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'multibody/benchmarks/kuka_iiwa_robot/kuka_iiwa_robot.urdf')` in `RobotLocomotion__drake`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 9dae4435e9e2e05a25a8526a93cc13b705b9feff from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/RobotLocomotion__drake -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `9dae4435e9e2e05a25a8526a93cc13b705b9feff 768fc808c1ca5095473ca7d39c8ce7b08a57e383 b5499a8cf656f0040198d9d6f0dbe289cdbe6da8 d0e02fea649d4569667a6d26ad51fdcddbd068dc 295125abda18e6cfe05724922fac4512bdcfcd12 752ee0ee2e7878a4249e6599820b8b07e21dc43e ba41149467efaffee868a446794b975440af3385 fd455555b19816fa56abcad5104432408ebcee83 bbdc2ce26a11fd56e40d985f46c1bceed7337da9`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/RobotLocomotion/drake: 323 objects requested, 66230091 stored object bytes, 41 batches; caps 4096 objects / 2147483648 bytes.
+- Cold-cache validation outcome: {"classes": {"NO MATCHING SOURCE": 2}, "completed": true, "exit_code": 0, "history_incomplete": 0, "matches_published": true, "method": "none", "model": "kuka_iiwa_14", "published_classes": {"NO MATCHING SOURCE": 2}, "published_method": "none", "published_status": "complete", "status": "complete"}.
+
+- Cold-cache validation command: `./drift check low_cost_robot_arm --fetch` (serial, inherited nice 15 and single CPU-library thread).
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie fetch --filter=blob:none --no-tags origin HEAD '+refs/heads/*:refs/remotes/origin/*'` — refresh the upstream branch tips before selecting latest H. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/google-deepmind/mujoco_menagerie
+ * branch            HEAD       -> FETCH_HEAD
+
+- Rejected unrelated historical README template for agilex_piper: 0bee963312f0f4a25b53cdf9afe744ca73f2d68a heading '## UMI-Gripper Description (MJCF)'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:agilex_piper/CHANGELOG.md')` in `menagerie`. fatal: path 'agilex_piper/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Rejected conflicting robot-variant link for anybotics_anymal_c: https://github.com/ANYbotics/anymal_b_simple_description/blob/master/urdf/anymal.urdf (repository variant b, model variant c)
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:arx_l5/CHANGELOG.md')` in `menagerie`. fatal: path 'arx_l5/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:fourier_n1/CHANGELOG.md')` in `menagerie`. fatal: path 'fourier_n1/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', 'db140ade7ee4cb59629f9687aafc65af663d5bbe:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'db140ade7ee4cb59629f9687aafc65af663d5bbe'
+
+- Offline Git read failed (exit 128): `('show', 'cd7fc51b704c3cba05748bd5537cb17990b341eb:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'cd7fc51b704c3cba05748bd5537cb17990b341eb'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', 'acbbf1636fcfef9b437a6eb8c6f84380fb4aa998:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'acbbf1636fcfef9b437a6eb8c6f84380fb4aa998'
+
+- Offline Git read failed (exit 128): `('show', '7876dcdef0d912387441616526ed236142f047d3:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in '7876dcdef0d912387441616526ed236142f047d3'
+
+- Offline Git read failed (exit 128): `('show', 'b5ebfe0cf079d2b96acf0a5c0e29ee0c95ba32f4:google_robot/README.md')` in `menagerie`. fatal: path 'google_robot/README.md' does not exist in 'b5ebfe0cf079d2b96acf0a5c0e29ee0c95ba32f4'
+
+- Offline Git read failed (exit 128): `('show', '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec:i2rt_yam/CHANGELOG.md')` in `menagerie`. fatal: path 'i2rt_yam/CHANGELOG.md' does not exist in '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec'
+
+- Offline Git read failed (exit 128): `('show', 'a88bc450470d97ebc1f282e5969675fb4d1f0ed7:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in 'a88bc450470d97ebc1f282e5969675fb4d1f0ed7'
+
+- Offline Git read failed (exit 128): `('show', 'd74280a600a9afdfcb98d8917d0c79c86539aa61:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in 'd74280a600a9afdfcb98d8917d0c79c86539aa61'
+
+- Offline Git read failed (exit 128): `('show', '13d6c48b8f59d2c4badee7756b4ea3532613cddf:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in '13d6c48b8f59d2c4badee7756b4ea3532613cddf'
+
+- Offline Git read failed (exit 128): `('show', 'fae9ee82330444eec4e87568c838b99a09a39467:rainbow_robotics_rby1/README.md')` in `menagerie`. fatal: path 'rainbow_robotics_rby1/README.md' does not exist in 'fae9ee82330444eec4e87568c838b99a09a39467'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec'
+
+- Offline Git read failed (exit 128): `('show', '4a7015530bd7a4161103ae8f0905a96481e4cc1a:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '4a7015530bd7a4161103ae8f0905a96481e4cc1a'
+
+- Offline Git read failed (exit 128): `('show', 'bf110a75a56e5bd146c7ed76965737c71d48425d:shadow_dexee/README.md')` in `menagerie`. fatal: path 'shadow_dexee/README.md' does not exist in 'bf110a75a56e5bd146c7ed76965737c71d48425d'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:tetheria_aero_hand_open/CHANGELOG.md')` in `menagerie`. fatal: path 'tetheria_aero_hand_open/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:tetheria_aero_hand_open/CHANGELOG.md')` in `menagerie`. fatal: path 'tetheria_aero_hand_open/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:trossen_wxai/README.md')` in `menagerie`. fatal: path 'trossen_wxai/README.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '477ec56566682d663b996d86a188c75499e74b98:trossen_wxai/README.md')` in `menagerie`. fatal: path 'trossen_wxai/README.md' does not exist in '477ec56566682d663b996d86a188c75499e74b98'
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false clone --filter=blob:none --no-checkout https://github.com/s1lent4gnt/koch-v1-1.git .cache/s1lent4gnt__koch-v1-1` — retrieve source commit/tree history without model blobs. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. Cloning into '.cache/s1lent4gnt__koch-v1-1'...
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/s1lent4gnt__koch-v1-1 fetch --no-tags --refetch --filter=blob:limit=100k origin HEAD` — retrieve omitted source/mesh blobs below 100k for CPU compilation. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/s1lent4gnt/koch-v1-1
+ * branch            HEAD       -> FETCH_HEAD
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false clone --filter=blob:none --no-checkout https://github.com/AlexanderKoch-Koch/low_cost_robot.git .cache/AlexanderKoch-Koch__low_cost_robot` — retrieve source commit/tree history without model blobs. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. Cloning into '.cache/AlexanderKoch-Koch__low_cost_robot'...
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/AlexanderKoch-Koch__low_cost_robot fetch --no-tags --refetch --filter=blob:limit=100k origin HEAD` — retrieve omitted source/mesh blobs below 100k for CPU compilation. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/AlexanderKoch-Koch/low_cost_robot
+ * branch            HEAD       -> FETCH_HEAD
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false clone --filter=blob:none --no-checkout https://github.com/jess-moss/koch-v1-1.git .cache/jess-moss__koch-v1-1` — retrieve source commit/tree history without model blobs. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. Cloning into '.cache/jess-moss__koch-v1-1'...
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/jess-moss__koch-v1-1 fetch --no-tags --refetch --filter=blob:limit=100k origin HEAD` — retrieve omitted source/mesh blobs below 100k for CPU compilation. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/jess-moss/koch-v1-1
+ * branch            HEAD       -> FETCH_HEAD
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'simulation/follower.urdf')` in `s1lent4gnt__koch-v1-1`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 15ea5537d2b8db3293505d08f2094dcec36e1650 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/s1lent4gnt__koch-v1-1 -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `15ea5537d2b8db3293505d08f2094dcec36e1650 4c97d7b0cc1707ca14c4a4f1cbf61702f47e525a bf069d13ca285988f4ce6d5ec8a2fff847982e0b 186c0646970412597315c119746bf4cbe6d0728a 6a24991c8a949d9fb55ececb8cd0efe7cd66ec8e`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/s1lent4gnt/koch-v1-1: 5 objects requested, 270543 stored object bytes, 1 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'simulation/follower.urdf')` in `s1lent4gnt__koch-v1-1`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 1829155dcff421a07de4bcc1ec6c428bf7fb9000 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/s1lent4gnt__koch-v1-1 -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `1829155dcff421a07de4bcc1ec6c428bf7fb9000 11bccb98aa13e49504d882e2a2111cb5b352d9f5 4c2f54d9a089d99c599d3b50b320c9c73c8b4987 881425bf20c0af4627d1f70836fb5e777483c2f1`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/s1lent4gnt/koch-v1-1: 9 objects requested, 4216498 stored object bytes, 2 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'simulation/follower.urdf')` in `s1lent4gnt__koch-v1-1`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 4088231510f6d2ae3c3a09d3458817967efc9af8 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/s1lent4gnt__koch-v1-1 -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4088231510f6d2ae3c3a09d3458817967efc9af8 038d8afdcdd2c3d8eb144faf07cbe59940f81b5f 48a9c0906fca1de2c065a73d935aeb96187982d2 4c1d91042dc75c35a29a4fadd5eea267855b3d9f 4e7cdb11c7df95a2c8707ed7e81b79274a6cf793 6d20bf3c12970194ab13eea92ad1dda151948bc5 76e5534ada836cae1d642f1dc626a2dd809b598c 917847bbe3f127de34534753be1d83c0802191e9 f592051ee6408a66033d869070110481c0539517 ff3065cf396927f4894ca4be0736e0051970a3a9 ff7115f55e7381945607aaef6d9af148bad154c7 ffb345be45370a9e1219022dbdb1299b5989622b`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/s1lent4gnt/koch-v1-1: 21 objects requested, 5329472 stored object bytes, 3 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'simulation/follower.urdf')` in `s1lent4gnt__koch-v1-1`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e5f41834c8989e2bcc9cb9f30394fe43f00fee67 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/s1lent4gnt__koch-v1-1 -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e5f41834c8989e2bcc9cb9f30394fe43f00fee67 24d027e604cadd74d94ecb082735c04ffe88736e 27e30cf85ae398dfa5481813e160439e9cea5919 3fb9a0e572872c18c563a4b6a841b28cb8a7481c 6541a3ab43c89bd184235756f3cf55c6b1a11e87 8033c8b076d24ee45ac79a8048a9307657d77b20 d416874249b67ebe5af3acd3aedca91576e11011 df338646e59ff050d2994db64467ef4e229a9ecc`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/s1lent4gnt/koch-v1-1: 29 objects requested, 5465935 stored object bytes, 4 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'simulation/follower.urdf')` in `s1lent4gnt__koch-v1-1`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 8b09b50085d031cda027dfe2f26edcd0d89994be from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/s1lent4gnt__koch-v1-1 -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `8b09b50085d031cda027dfe2f26edcd0d89994be 4d662537118a31f79c53d288cecbdf26f19deeab 0fbf4ea7f8a4d7ad8d70bcc5349d939e242e3bd5 1d3bce70cf1baff95fa3d116194c18827d80bad0 3ad725f25379f0f1dbea3bcb28097f2d517422d7 71819cce8892c0c6ffe2bbd610e317f99f492144 73a869df79ffa140c55b8a2d35df1985ef725713 7605c67669b046409f0562f4e4d470c989bbe71d 81f7211e7c4bfd97da028fac8be8d5eb6bd0d0d6 859f03fcbfdf85f0995e95ab4d65fef00228f9d7 93c6daf18efbe764a1d57eadce307308d9788ff2 a730e8515815ae63a99ba09ae7fd417eda266d12 d5f6abe558e21a095f339c309d19726e358a1901 d8b03e03a6f591627349d460d558decc4935fd3f f4d94db264d142552cc810436cc20261b5cd7a1d faeabc77419cc07a9a6a6706cbaf31533ea4b960`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/s1lent4gnt/koch-v1-1: 45 objects requested, 12352493 stored object bytes, 5 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'simulation/follower.urdf')` in `s1lent4gnt__koch-v1-1`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d683e7e0dcc78ba808408232ee6ffffcbb84219f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/s1lent4gnt__koch-v1-1 -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d683e7e0dcc78ba808408232ee6ffffcbb84219f 049b6db9033dc4a5fb902eb0d7bc47ed4486bb2d 0aea8d2abbf0513fd5c5a01abab021bcb6c1616e 28bef273443d65eb2b1c7bb2f6a5561909118d64 2fd83dd612736db22735c7b16faebf92a72deada 3205b199dcadd0c956b7d04efbd05e9f77efc8cd 3412d5e492b409d64a88493eb5b0a900e9105fc8 41fb2b418668f47bc617524caaefae9bbe655f41 55fd42a38795f840bb5649f17797254ffa423d89 6846dacf54434c9b21a6ff7ab0caed4a18df1208 6a7cfad57ce84e050a0eaf12614603779372a265`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/s1lent4gnt/koch-v1-1: 56 objects requested, 13334960 stored object bytes, 6 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'simulation/follower.urdf')` in `s1lent4gnt__koch-v1-1`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch b94bcfc00291c7a8abb36619ebd818de447261f4 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/s1lent4gnt__koch-v1-1 -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `b94bcfc00291c7a8abb36619ebd818de447261f4 0dcb126813260f7d8f97a49f5a0e4c74ec8f6840 1672c7925a2167c5fa7c9d90306fab5cbbd7a597 1d4fccbac531f743b9283ec2f5cd74251093a4c2 7815bb6678b5983fe0465e4b5adc94f724835cb6 ba813e246ded1cabf68d7d1a1079feacbf282ae0 480adaff78f71a79abdf3604c710f70b7a59e228 8192750b1f48e6d9178ac3fa86d90c9be0821abd a54a9eeed0334691cd97bbd81aa7ccaa9b9293c5 afc5e449c3160241110590a6811cc4b1f68bf263 ec7ca560e376716958de2c3fd892aefdac6c0296 f75af75e286a95bd21e5deb09b0036a1b2e5b17c fd603c889f89d8a4d3c98ed1f04e29f96318a70f`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/s1lent4gnt/koch-v1-1: 69 objects requested, 13613258 stored object bytes, 7 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'simulation/follower.urdf')` in `s1lent4gnt__koch-v1-1`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 82a2c1e834432e58cc06bf7c08cac1324c1a3a87 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/s1lent4gnt__koch-v1-1 -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `82a2c1e834432e58cc06bf7c08cac1324c1a3a87 48c997a8fe8cb972c85669a3c593470005931f9a 987e6579e428e1211edca63a535a60d8e4b88e02 cce0114afea22b0147b319e559548018c42ea42a 032f177a76bdf2a1200e35c0c65d60d7e67b9895 13052fd55792ed110ed784ba79d7a4f725985198 1766bedacb82c4a2bd0a3c960a7d6dd53932ea32 195f932ceac3adf006d9d5d6f4c6f89f4da27fe3 2c88cf5bd527ff6fc8579ca114c67b2b17fe8d2c 38fc67bfd291c267d290c9613464d446b43cd224 39ad8f8e329cff0085146e9716a3869873b8615a 3d3d6f25c69f4c159e442aab76862a6858c26a6a 5e7d525107869fb8d69bca5487fb42c49d22f957 67a07f8c5cbb1a879037bb8ecee614387348ee61 9d5ee4fe65288c4cc1915a4200e254622da0e644 9de9e2f75f17531fa60edb237e7f3396de041cdc a0b0f5b0ec94ab6f22d60b5dfe0654735556a818 a2cc551fd2e786b17b731e0bcff1b4668fc56d00 c44ae678fcf23896b42119c2d85a07a30892c19e de1d37dd95a9b3a00e2546554e3bec3001ef8f84 e78715efe1d89c48ac202c65b1652f2dec66b484 fcbaa1910cc59789eafffe42e359a739ab660db6`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/s1lent4gnt/koch-v1-1: 91 objects requested, 24989764 stored object bytes, 8 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'simulation/follower.urdf')` in `s1lent4gnt__koch-v1-1`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 36dba977b4f433f0a1dbb09a9ae97a8f2127fd32 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/s1lent4gnt__koch-v1-1 -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `36dba977b4f433f0a1dbb09a9ae97a8f2127fd32 0e9e6131b12602e164d33dc6ec24b3cef6d71652 3b8026170a781b1840b934c1a3986d832691a0e1 66af68a160a2d31ff3a12e87cf6c9a7e177da947 6e13bbd50bbe29cc1fafc64f0fb5408e3cdfaeb1 83e719d08e0eed13e9f7947e7c5d9f478c04a23c c55b51a81aa01880a4e812dd8598a3f131364720 d2ffb6c5b24ad482dfa8ff0045be7e0d6fd67bbd ec669c50058fd3605d28f2494d8314e46b73302a`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/s1lent4gnt/koch-v1-1: 100 objects requested, 29902288 stored object bytes, 9 batches; caps 4096 objects / 2147483648 bytes.
+- Cold-cache validation outcome: {"classes": {"NO MATCHING SOURCE": 15}, "completed": true, "exit_code": 0, "history_incomplete": 0, "matches_published": true, "method": "none", "model": "low_cost_robot_arm", "published_classes": {"NO MATCHING SOURCE": 15}, "published_method": "none", "published_status": "complete", "status": "complete"}.
+
+- Cold-cache validation command: `./drift check robotiq_2f85 --fetch` (serial, inherited nice 15 and single CPU-library thread).
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie fetch --filter=blob:none --no-tags origin HEAD '+refs/heads/*:refs/remotes/origin/*'` — refresh the upstream branch tips before selecting latest H. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/google-deepmind/mujoco_menagerie
+ * branch            HEAD       -> FETCH_HEAD
+
+- Rejected unrelated historical README template for agilex_piper: 0bee963312f0f4a25b53cdf9afe744ca73f2d68a heading '## UMI-Gripper Description (MJCF)'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:agilex_piper/CHANGELOG.md')` in `menagerie`. fatal: path 'agilex_piper/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Rejected conflicting robot-variant link for anybotics_anymal_c: https://github.com/ANYbotics/anymal_b_simple_description/blob/master/urdf/anymal.urdf (repository variant b, model variant c)
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:arx_l5/CHANGELOG.md')` in `menagerie`. fatal: path 'arx_l5/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:fourier_n1/CHANGELOG.md')` in `menagerie`. fatal: path 'fourier_n1/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', 'db140ade7ee4cb59629f9687aafc65af663d5bbe:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'db140ade7ee4cb59629f9687aafc65af663d5bbe'
+
+- Offline Git read failed (exit 128): `('show', 'cd7fc51b704c3cba05748bd5537cb17990b341eb:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'cd7fc51b704c3cba05748bd5537cb17990b341eb'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', 'acbbf1636fcfef9b437a6eb8c6f84380fb4aa998:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'acbbf1636fcfef9b437a6eb8c6f84380fb4aa998'
+
+- Offline Git read failed (exit 128): `('show', '7876dcdef0d912387441616526ed236142f047d3:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in '7876dcdef0d912387441616526ed236142f047d3'
+
+- Offline Git read failed (exit 128): `('show', 'b5ebfe0cf079d2b96acf0a5c0e29ee0c95ba32f4:google_robot/README.md')` in `menagerie`. fatal: path 'google_robot/README.md' does not exist in 'b5ebfe0cf079d2b96acf0a5c0e29ee0c95ba32f4'
+
+- Offline Git read failed (exit 128): `('show', '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec:i2rt_yam/CHANGELOG.md')` in `menagerie`. fatal: path 'i2rt_yam/CHANGELOG.md' does not exist in '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec'
+
+- Offline Git read failed (exit 128): `('show', 'a88bc450470d97ebc1f282e5969675fb4d1f0ed7:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in 'a88bc450470d97ebc1f282e5969675fb4d1f0ed7'
+
+- Offline Git read failed (exit 128): `('show', 'd74280a600a9afdfcb98d8917d0c79c86539aa61:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in 'd74280a600a9afdfcb98d8917d0c79c86539aa61'
+
+- Offline Git read failed (exit 128): `('show', '13d6c48b8f59d2c4badee7756b4ea3532613cddf:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in '13d6c48b8f59d2c4badee7756b4ea3532613cddf'
+
+- Offline Git read failed (exit 128): `('show', 'fae9ee82330444eec4e87568c838b99a09a39467:rainbow_robotics_rby1/README.md')` in `menagerie`. fatal: path 'rainbow_robotics_rby1/README.md' does not exist in 'fae9ee82330444eec4e87568c838b99a09a39467'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec'
+
+- Offline Git read failed (exit 128): `('show', '4a7015530bd7a4161103ae8f0905a96481e4cc1a:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '4a7015530bd7a4161103ae8f0905a96481e4cc1a'
+
+- Offline Git read failed (exit 128): `('show', 'bf110a75a56e5bd146c7ed76965737c71d48425d:shadow_dexee/README.md')` in `menagerie`. fatal: path 'shadow_dexee/README.md' does not exist in 'bf110a75a56e5bd146c7ed76965737c71d48425d'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:tetheria_aero_hand_open/CHANGELOG.md')` in `menagerie`. fatal: path 'tetheria_aero_hand_open/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:tetheria_aero_hand_open/CHANGELOG.md')` in `menagerie`. fatal: path 'tetheria_aero_hand_open/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:trossen_wxai/README.md')` in `menagerie`. fatal: path 'trossen_wxai/README.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '477ec56566682d663b996d86a188c75499e74b98:trossen_wxai/README.md')` in `menagerie`. fatal: path 'trossen_wxai/README.md' does not exist in '477ec56566682d663b996d86a188c75499e74b98'
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false clone --filter=blob:none --no-checkout https://github.com/ros-industrial/robotiq.git .cache/ros-industrial__robotiq` — retrieve source commit/tree history without model blobs. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. Cloning into '.cache/ros-industrial__robotiq'...
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/ros-industrial__robotiq fetch --no-tags --refetch --filter=blob:limit=100k origin HEAD` — retrieve omitted source/mesh blobs below 100k for CPU compilation. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/ros-industrial/robotiq
+ * branch            HEAD       -> FETCH_HEAD
+
+- Offline Git read failed (exit 128): `('show', '45196f6558fe8ba9d89bc8a105396c68c3e7e892:robotiq_2f_85_gripper_visualization/meshes/visual/robotiq_arg2f_85_base_link.dae')` in `ros-industrial__robotiq`. fatal: bad object 45196f6558fe8ba9d89bc8a105396c68c3e7e892:robotiq_2f_85_gripper_visualization/meshes/visual/robotiq_arg2f_85_base_link.dae
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/ros-industrial__robotiq -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `df98eae4e5c480ac159ffe157c92d58fea2cd554`
+
+- Network outcome: exit 0.
+
+- Offline Git read failed (exit 128): `('show', '45196f6558fe8ba9d89bc8a105396c68c3e7e892:robotiq_2f_85_gripper_visualization/meshes/visual/robotiq_arg2f_85_outer_finger.dae')` in `ros-industrial__robotiq`. fatal: bad object 45196f6558fe8ba9d89bc8a105396c68c3e7e892:robotiq_2f_85_gripper_visualization/meshes/visual/robotiq_arg2f_85_outer_finger.dae
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/ros-industrial__robotiq -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `605018839ea5b0f67a67d02fa271f40161e10cec`
+
+- Network outcome: exit 0.
+
+- Offline Git read failed (exit 128): `('show', '45196f6558fe8ba9d89bc8a105396c68c3e7e892:robotiq_2f_85_gripper_visualization/meshes/visual/robotiq_arg2f_85_inner_finger.dae')` in `ros-industrial__robotiq`. fatal: bad object 45196f6558fe8ba9d89bc8a105396c68c3e7e892:robotiq_2f_85_gripper_visualization/meshes/visual/robotiq_arg2f_85_inner_finger.dae
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/ros-industrial__robotiq -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e9322426f2d1d7e2312f20ed4a64e38aae77f46c`
+
+- Network outcome: exit 0.
+
+- Offline Git read failed (exit 128): `('show', '45196f6558fe8ba9d89bc8a105396c68c3e7e892:robotiq_2f_85_gripper_visualization/meshes/visual/robotiq_arg2f_85_inner_knuckle.dae')` in `ros-industrial__robotiq`. fatal: bad object 45196f6558fe8ba9d89bc8a105396c68c3e7e892:robotiq_2f_85_gripper_visualization/meshes/visual/robotiq_arg2f_85_inner_knuckle.dae
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/ros-industrial__robotiq -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c58db533dcc9f51967fbc3d99c5e8a551d010eb9`
+
+- Network outcome: exit 0.
+
+- https://github.com/ros-industrial/robotiq robotiq_2f_85_gripper_visualization/urdf/robotiq_arg2f_transmission.xacro at 45196f6558fe8ba9d89bc8a105396c68c3e7e892: ValueError: XML has no robot bodies; it is an include/extension fragment, not a standalone source
+
+- https://github.com/ros-industrial/robotiq robotiq_2f_85_gripper_visualization/urdf/robotiq_arg2f_85_model_macro.xacro at 45196f6558fe8ba9d89bc8a105396c68c3e7e892: ValueError: Macro-only input has no uniquely identified robot macro
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'robotiq_2f_85_gripper_visualization/urdf/robotiq_arg2f_85_model.xacro')` in `ros-industrial__robotiq`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch d0f3a2ca2e5994acfcb52bfc88cbf273bd1e4724 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/ros-industrial__robotiq -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d0f3a2ca2e5994acfcb52bfc88cbf273bd1e4724 02c600fe2ed454b13cc2f1d7fc553e09441060f5`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/ros-industrial/robotiq: 2 objects requested, 375866 stored object bytes, 1 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'robotiq_2f_85_gripper_visualization/urdf/robotiq_arg2f_85_model.xacro')` in `ros-industrial__robotiq`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 576a8a19bca0a4874c0dfea6066c50fd87a2b608 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/ros-industrial__robotiq -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `576a8a19bca0a4874c0dfea6066c50fd87a2b608 077325f42ddd18747eb8114b4cdbd7cf4fcb54ed 262506677f65f1afacfa1ef89e6702b2ec072c38 45ad02ac47672b5fdaa5911b542da4e5467dc503 57ce41301ebbbcbda849b3ec4b0e86c26d88d376 687c937f6a35f68d5ada6173e76fd709d4a46454 79a7ab3361c62bb1e31f36ef1d207ee19b4e4f24 c7ed58b3484c803192c0211746a144680b96ea96 ca10dbc8a4bc7ef399dee84faff6fef3c6c51b25`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/ros-industrial/robotiq: 11 objects requested, 1162619 stored object bytes, 2 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'robotiq_2f_85_gripper_visualization/urdf/robotiq_arg2f_85_model.xacro')` in `ros-industrial__robotiq`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch cebd4c2a281fd473a319d57bc7782d7f2470a386 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/ros-industrial__robotiq -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `cebd4c2a281fd473a319d57bc7782d7f2470a386`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/ros-industrial/robotiq: 12 objects requested, 1223701 stored object bytes, 3 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'robotiq_2f_85_gripper_visualization/urdf/robotiq_arg2f_85_model.xacro')` in `ros-industrial__robotiq`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch c4bffda1a5e6b1d10911dea67e9a0617417cfb52 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/ros-industrial__robotiq -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `c4bffda1a5e6b1d10911dea67e9a0617417cfb52 c730c9aa004f1dc23dff04cc47b26d63e0bad6b0 3723af04c15aea30234a540172f84fa6ca8b0c38`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/ros-industrial/robotiq: 15 objects requested, 2114792 stored object bytes, 4 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'robotiq_2f_85_gripper_visualization/urdf/robotiq_arg2f_85_model.xacro')` in `ros-industrial__robotiq`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch eee411244cf1c3968134a2bad5c308287391c86f from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/ros-industrial__robotiq -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `eee411244cf1c3968134a2bad5c308287391c86f 26219ba77958fe9ea160b4e05a3c792c2dcd70f4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/ros-industrial/robotiq: 17 objects requested, 3442166 stored object bytes, 5 batches; caps 4096 objects / 2147483648 bytes.
+- Cold-cache validation outcome: {"classes": {"NO MATCHING SOURCE": 1}, "completed": true, "exit_code": 0, "history_incomplete": 0, "matches_published": true, "method": "none", "model": "robotiq_2f85", "published_classes": {"NO MATCHING SOURCE": 1}, "published_method": "none", "published_status": "complete", "status": "complete"}.
+
+- Cold-cache validation command: `./drift check robotiq_2f85_v4 --fetch` (serial, inherited nice 15 and single CPU-library thread).
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie fetch --filter=blob:none --no-tags origin HEAD '+refs/heads/*:refs/remotes/origin/*'` — refresh the upstream branch tips before selecting latest H. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/google-deepmind/mujoco_menagerie
+ * branch            HEAD       -> FETCH_HEAD
+
+- Rejected unrelated historical README template for agilex_piper: 0bee963312f0f4a25b53cdf9afe744ca73f2d68a heading '## UMI-Gripper Description (MJCF)'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:agilex_piper/CHANGELOG.md')` in `menagerie`. fatal: path 'agilex_piper/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Rejected conflicting robot-variant link for anybotics_anymal_c: https://github.com/ANYbotics/anymal_b_simple_description/blob/master/urdf/anymal.urdf (repository variant b, model variant c)
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:arx_l5/CHANGELOG.md')` in `menagerie`. fatal: path 'arx_l5/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:fourier_n1/CHANGELOG.md')` in `menagerie`. fatal: path 'fourier_n1/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', 'db140ade7ee4cb59629f9687aafc65af663d5bbe:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'db140ade7ee4cb59629f9687aafc65af663d5bbe'
+
+- Offline Git read failed (exit 128): `('show', 'cd7fc51b704c3cba05748bd5537cb17990b341eb:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'cd7fc51b704c3cba05748bd5537cb17990b341eb'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', 'acbbf1636fcfef9b437a6eb8c6f84380fb4aa998:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'acbbf1636fcfef9b437a6eb8c6f84380fb4aa998'
+
+- Offline Git read failed (exit 128): `('show', '7876dcdef0d912387441616526ed236142f047d3:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in '7876dcdef0d912387441616526ed236142f047d3'
+
+- Offline Git read failed (exit 128): `('show', 'b5ebfe0cf079d2b96acf0a5c0e29ee0c95ba32f4:google_robot/README.md')` in `menagerie`. fatal: path 'google_robot/README.md' does not exist in 'b5ebfe0cf079d2b96acf0a5c0e29ee0c95ba32f4'
+
+- Offline Git read failed (exit 128): `('show', '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec:i2rt_yam/CHANGELOG.md')` in `menagerie`. fatal: path 'i2rt_yam/CHANGELOG.md' does not exist in '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec'
+
+- Offline Git read failed (exit 128): `('show', 'a88bc450470d97ebc1f282e5969675fb4d1f0ed7:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in 'a88bc450470d97ebc1f282e5969675fb4d1f0ed7'
+
+- Offline Git read failed (exit 128): `('show', 'd74280a600a9afdfcb98d8917d0c79c86539aa61:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in 'd74280a600a9afdfcb98d8917d0c79c86539aa61'
+
+- Offline Git read failed (exit 128): `('show', '13d6c48b8f59d2c4badee7756b4ea3532613cddf:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in '13d6c48b8f59d2c4badee7756b4ea3532613cddf'
+
+- Offline Git read failed (exit 128): `('show', 'fae9ee82330444eec4e87568c838b99a09a39467:rainbow_robotics_rby1/README.md')` in `menagerie`. fatal: path 'rainbow_robotics_rby1/README.md' does not exist in 'fae9ee82330444eec4e87568c838b99a09a39467'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec'
+
+- Offline Git read failed (exit 128): `('show', '4a7015530bd7a4161103ae8f0905a96481e4cc1a:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '4a7015530bd7a4161103ae8f0905a96481e4cc1a'
+
+- Offline Git read failed (exit 128): `('show', 'bf110a75a56e5bd146c7ed76965737c71d48425d:shadow_dexee/README.md')` in `menagerie`. fatal: path 'shadow_dexee/README.md' does not exist in 'bf110a75a56e5bd146c7ed76965737c71d48425d'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:tetheria_aero_hand_open/CHANGELOG.md')` in `menagerie`. fatal: path 'tetheria_aero_hand_open/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:tetheria_aero_hand_open/CHANGELOG.md')` in `menagerie`. fatal: path 'tetheria_aero_hand_open/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:trossen_wxai/README.md')` in `menagerie`. fatal: path 'trossen_wxai/README.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '477ec56566682d663b996d86a188c75499e74b98:trossen_wxai/README.md')` in `menagerie`. fatal: path 'trossen_wxai/README.md' does not exist in '477ec56566682d663b996d86a188c75499e74b98'
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/ros-industrial__robotiq fetch --filter=blob:none --no-tags origin HEAD '+refs/heads/*:refs/remotes/origin/*'` — refresh the upstream branch tips before selecting latest H. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/ros-industrial/robotiq
+ * branch            HEAD       -> FETCH_HEAD
+
+- https://github.com/ros-industrial/robotiq robotiq_2f_85_gripper_visualization/urdf/robotiq_arg2f_transmission.xacro at 45196f6558fe8ba9d89bc8a105396c68c3e7e892: ValueError: XML has no robot bodies; it is an include/extension fragment, not a standalone source
+
+- https://github.com/ros-industrial/robotiq robotiq_2f_85_gripper_visualization/urdf/robotiq_arg2f_85_model_macro.xacro at 45196f6558fe8ba9d89bc8a105396c68c3e7e892: ValueError: Macro-only input has no uniquely identified robot macro
+- Cold-cache validation outcome: {"classes": {"NO MATCHING SOURCE": 1}, "completed": true, "exit_code": 0, "history_incomplete": 0, "matches_published": true, "method": "none", "model": "robotiq_2f85_v4", "published_classes": {"NO MATCHING SOURCE": 1}, "published_method": "none", "published_status": "complete", "status": "complete"}.
+
+- Cold-cache validation command: `./drift check unitree_go1 --fetch` (serial, inherited nice 15 and single CPU-library thread).
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/menagerie fetch --filter=blob:none --no-tags origin HEAD '+refs/heads/*:refs/remotes/origin/*'` — refresh the upstream branch tips before selecting latest H. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. From https://github.com/google-deepmind/mujoco_menagerie
+ * branch            HEAD       -> FETCH_HEAD
+
+- Rejected unrelated historical README template for agilex_piper: 0bee963312f0f4a25b53cdf9afe744ca73f2d68a heading '## UMI-Gripper Description (MJCF)'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:agilex_piper/CHANGELOG.md')` in `menagerie`. fatal: path 'agilex_piper/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Rejected conflicting robot-variant link for anybotics_anymal_c: https://github.com/ANYbotics/anymal_b_simple_description/blob/master/urdf/anymal.urdf (repository variant b, model variant c)
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:arx_l5/CHANGELOG.md')` in `menagerie`. fatal: path 'arx_l5/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:fourier_n1/CHANGELOG.md')` in `menagerie`. fatal: path 'fourier_n1/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', 'db140ade7ee4cb59629f9687aafc65af663d5bbe:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'db140ade7ee4cb59629f9687aafc65af663d5bbe'
+
+- Offline Git read failed (exit 128): `('show', 'cd7fc51b704c3cba05748bd5537cb17990b341eb:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'cd7fc51b704c3cba05748bd5537cb17990b341eb'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', 'acbbf1636fcfef9b437a6eb8c6f84380fb4aa998:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in 'acbbf1636fcfef9b437a6eb8c6f84380fb4aa998'
+
+- Offline Git read failed (exit 128): `('show', '7876dcdef0d912387441616526ed236142f047d3:franka_fr3_v2/README.md')` in `menagerie`. fatal: path 'franka_fr3_v2/README.md' does not exist in '7876dcdef0d912387441616526ed236142f047d3'
+
+- Offline Git read failed (exit 128): `('show', 'b5ebfe0cf079d2b96acf0a5c0e29ee0c95ba32f4:google_robot/README.md')` in `menagerie`. fatal: path 'google_robot/README.md' does not exist in 'b5ebfe0cf079d2b96acf0a5c0e29ee0c95ba32f4'
+
+- Offline Git read failed (exit 128): `('show', '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec:i2rt_yam/CHANGELOG.md')` in `menagerie`. fatal: path 'i2rt_yam/CHANGELOG.md' does not exist in '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec'
+
+- Offline Git read failed (exit 128): `('show', 'a88bc450470d97ebc1f282e5969675fb4d1f0ed7:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in 'a88bc450470d97ebc1f282e5969675fb4d1f0ed7'
+
+- Offline Git read failed (exit 128): `('show', 'd74280a600a9afdfcb98d8917d0c79c86539aa61:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in 'd74280a600a9afdfcb98d8917d0c79c86539aa61'
+
+- Offline Git read failed (exit 128): `('show', '13d6c48b8f59d2c4badee7756b4ea3532613cddf:low_cost_robot_arm/README.md')` in `menagerie`. fatal: path 'low_cost_robot_arm/README.md' does not exist in '13d6c48b8f59d2c4badee7756b4ea3532613cddf'
+
+- Offline Git read failed (exit 128): `('show', 'fae9ee82330444eec4e87568c838b99a09a39467:rainbow_robotics_rby1/README.md')` in `menagerie`. fatal: path 'rainbow_robotics_rby1/README.md' does not exist in 'fae9ee82330444eec4e87568c838b99a09a39467'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '5ce04bea98bbfca277a8d50b55ba3c7c4a62bdec'
+
+- Offline Git read failed (exit 128): `('show', '4a7015530bd7a4161103ae8f0905a96481e4cc1a:robotstudio_so101/CHANGELOG.md')` in `menagerie`. fatal: path 'robotstudio_so101/CHANGELOG.md' does not exist in '4a7015530bd7a4161103ae8f0905a96481e4cc1a'
+
+- Offline Git read failed (exit 128): `('show', 'bf110a75a56e5bd146c7ed76965737c71d48425d:shadow_dexee/README.md')` in `menagerie`. fatal: path 'shadow_dexee/README.md' does not exist in 'bf110a75a56e5bd146c7ed76965737c71d48425d'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:tetheria_aero_hand_open/CHANGELOG.md')` in `menagerie`. fatal: path 'tetheria_aero_hand_open/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:tetheria_aero_hand_open/CHANGELOG.md')` in `menagerie`. fatal: path 'tetheria_aero_hand_open/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:toddlerbot_2xc/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xc/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '04674c8d0a4e12e33980a9e47fb604adc281fcc8:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '04674c8d0a4e12e33980a9e47fb604adc281fcc8'
+
+- Offline Git read failed (exit 128): `('show', '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '9e7f8d4dda07f5c281b6c0c6f0d07b9dd267b762'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:toddlerbot_2xm/CHANGELOG.md')` in `menagerie`. fatal: path 'toddlerbot_2xm/CHANGELOG.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '400b5f5b9fec382583f69b53b094a154d9dc7635:trossen_wxai/README.md')` in `menagerie`. fatal: path 'trossen_wxai/README.md' does not exist in '400b5f5b9fec382583f69b53b094a154d9dc7635'
+
+- Offline Git read failed (exit 128): `('show', '477ec56566682d663b996d86a188c75499e74b98:trossen_wxai/README.md')` in `menagerie`. fatal: path 'trossen_wxai/README.md' does not exist in '477ec56566682d663b996d86a188c75499e74b98'
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false clone --filter=blob:none --no-checkout https://github.com/unitreerobotics/unitree_ros.git .cache/unitree_ros` — retrieve source commit/tree history without model blobs. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. Cloning into '.cache/unitree_ros'...
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/unitree_ros fetch --no-tags --refetch --filter=blob:limit=100k origin HEAD` — retrieve omitted source/mesh blobs below 100k for CPU compilation. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network outcome: exit 0. error: unable to load config blob object 'b00da65acba7cb7dfc6f408d64068b9928c6e00a'
+From https://github.com/unitreerobotics/unitree_ros
+ * branch            HEAD       -> FETCH_HEAD
+
+- Offline Git read failed (exit 128): `('show', '157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/h2_plus/H2_Plus.urdf')` in `unitree_ros`. fatal: bad object 157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/h2_plus/H2_Plus.urdf
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/unitree_ros -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ebe912c6605124418c516d8ded40eeeb3e736ea9`
+
+- Network outcome: exit 0.
+
+- Offline Git read failed (exit 128): `('show', '157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/go1_description/meshes/trunk.dae')` in `unitree_ros`. fatal: bad object 157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/go1_description/meshes/trunk.dae
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/unitree_ros -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `848b762234aab6acec7f657f64ce30a6da95fd16`
+
+- Network outcome: exit 0.
+
+- Offline Git read failed (exit 128): `('show', '157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/go1_description/meshes/hip.dae')` in `unitree_ros`. fatal: bad object 157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/go1_description/meshes/hip.dae
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/unitree_ros -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `d1e0214402835fe9fc27144c59066be0b3ff2d5d`
+
+- Network outcome: exit 0.
+
+- Offline Git read failed (exit 128): `('show', '157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/go1_description/meshes/thigh_mirror.dae')` in `unitree_ros`. fatal: bad object 157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/go1_description/meshes/thigh_mirror.dae
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/unitree_ros -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `4367de0faab158734b06fa6b480fb39970b0facd`
+
+- Network outcome: exit 0.
+
+- Offline Git read failed (exit 128): `('show', '157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/go1_description/meshes/calf.dae')` in `unitree_ros`. fatal: bad object 157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/go1_description/meshes/calf.dae
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/unitree_ros -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `a752f24262c2c640636fe77a5d131834edba0353`
+
+- Network outcome: exit 0.
+
+- Offline Git read failed (exit 128): `('show', '157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/go1_description/meshes/thigh.dae')` in `unitree_ros`. fatal: bad object 157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/go1_description/meshes/thigh.dae
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/unitree_ros -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `5cfc422919e865be071a8a6531fbec23188d57f4`
+
+- Network outcome: exit 0.
+
+- Offline Git read failed (exit 128): `('show', '157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/go1_description/meshes/ultraSound.dae')` in `unitree_ros`. fatal: bad object 157ff950351e5f535e03c5d85a16b7d594b3dbcc:robots/go1_description/meshes/ultraSound.dae
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/unitree_ros -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `889770260ec929296643ecfc832f21649160fcd2`
+
+- Network outcome: exit 0.
+
+- https://github.com/unitreerobotics/unitree_ros robots/go1_description/xacro/leg.xacro at 157ff950351e5f535e03c5d85a16b7d594b3dbcc: ValueError: Macro leg requires unsupported explicit arguments: ['mirror', 'mirror_dae', 'front_hind', 'front_hind_dae']
+
+- https://github.com/unitreerobotics/unitree_ros robots/go1_description/xacro/const.xacro at 157ff950351e5f535e03c5d85a16b7d594b3dbcc: ValueError: XML has no robot bodies; it is an include/extension fragment, not a standalone source
+
+- https://github.com/unitreerobotics/unitree_ros robots/go1_description/xacro/gazebo.xacro at 157ff950351e5f535e03c5d85a16b7d594b3dbcc: ValueError: XML has no robot bodies; it is an include/extension fragment, not a standalone source
+
+- https://github.com/unitreerobotics/unitree_ros robots/go1_description/xacro/materials.xacro at 157ff950351e5f535e03c5d85a16b7d594b3dbcc: ValueError: XML has no robot bodies; it is an include/extension fragment, not a standalone source
+
+- https://github.com/unitreerobotics/unitree_ros robots/go1_description/xacro/ultraSound.xacro at 157ff950351e5f535e03c5d85a16b7d594b3dbcc: ValueError: XML Error: URDF joint parent or child missing
+Element 'joint', line 1
+
+- https://github.com/unitreerobotics/unitree_ros robots/go1_description/xacro/depthCamera.xacro at 157ff950351e5f535e03c5d85a16b7d594b3dbcc: ValueError: Macro depthCamera requires unsupported explicit arguments: ['camID']
+
+- https://github.com/unitreerobotics/unitree_ros robots/go1_description/xacro/transmission.xacro at 157ff950351e5f535e03c5d85a16b7d594b3dbcc: ValueError: XML has no robot bodies; it is an include/extension fragment, not a standalone source
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'robots/go1_description/urdf/go1.urdf')` in `unitree_ros`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch ac4b964bb3a0874319b272e843332c896139f328 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/unitree_ros -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `ac4b964bb3a0874319b272e843332c896139f328 134ecef81ac2c02585d5051bfe1d856efa7436b0 351f0c50f3692b3d64518fd1bc9fc8d425dda5b7 8ca98eecd51f6f5d94d4d37dda1f246b45c2f364 a867d6a7d0a6977a466bdda7b83c3abd18f12efe`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/unitreerobotics/unitree_ros: 5 objects requested, 2607421 stored object bytes, 1 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'robots/go1_description/urdf/go1.urdf')` in `unitree_ros`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch 7494e5268b48812bb7702738ff07f4d965351520 from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/unitree_ros -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `7494e5268b48812bb7702738ff07f4d965351520 1f110f8dde5a47a5edc9ed17beff1fecccb67ab0 262418b64f8892beae712f9423e666db63e74f50 2c5fb339fbd0f2a699ebe69fd405e938e5afb295 34b80d17dfc16a5a06538df2716984f124e2b4c4 3b14f695f57aaa21520deb2d0e7e165973f32e9b 3f4e7da993dd1dbcba21290db13f8b8e20f85694 41d0ea6ad0aebcc46dc3d098c40f66ff2624b8e3 4d0751cfc014575d8bcb9289e494dd0c7d6a9126 632856dc373db1164a6540e20b47fee16a8d79fb 9e81d24f2449cbfa2721f2f6471c90abe087cfaf b0a5082210b10e728d5627911cdc3b712376956e b58c27a9365d22ffeaae858831c73603bdbe8fd6 dc70c99e82bd72a391582333b71b7c6e30ad7f47 e579fec6b6aa915ea6d3eee623e39ac7121b11d4`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/unitreerobotics/unitree_ros: 20 objects requested, 10060729 stored object bytes, 2 batches; caps 4096 objects / 2147483648 bytes.
+
+- Offline Git read failed (exit 128): `('log', '--all', '--follow', '--find-renames=100%', '--format=@@@%H|%ct|%cI|%s', '--name-status', '--', 'robots/go1_description/urdf/go1.urdf')` in `unitree_ros`. warning: lazy fetching disabled; some objects may not be available
+fatal: could not fetch e009831ded17b02560f85ddded55d188b62746eb from promisor remote
+
+- Network command `git -c pack.threads=1 -c index.threads=1 -c fetch.parallel=1 -c gc.auto=0 -c maintenance.auto=false -C .cache/unitree_ros -c fetch.negotiationAlgorithm=noop -c fetch.unpackLimit=1 -c transfer.unpackLimit=1 fetch origin --no-tags --no-write-fetch-head --recurse-submodules=no --filter=blob:none --stdin` — retrieve only specifically required source/resource blobs using the promisor-fetch protocol. Parent process runs at nice 15; lazy fetching disabled.
+
+- Network command stdin object IDs: `e009831ded17b02560f85ddded55d188b62746eb 11166dcb8cba45a6eb2d0999210b0df99702db82 563b256809650e1ca6eb2c3208eca444f8ae8e73 bc4018eb58f860e8030f6cc7058e86dd6b72dd34`
+
+- Network outcome: exit 0.
+
+- History fetch counts for https://github.com/unitreerobotics/unitree_ros: 24 objects requested, 10850168 stored object bytes, 3 batches; caps 4096 objects / 2147483648 bytes.
+- Cold-cache validation outcome: {"classes": {"NO MATCHING SOURCE": 39}, "completed": true, "exit_code": 0, "history_incomplete": 0, "matches_published": true, "method": "none", "model": "unitree_go1", "published_classes": {"NO MATCHING SOURCE": 39}, "published_method": "none", "published_status": "complete", "status": "complete"}.
+
+### Cold-cache validation results (2026-11-14)
+
+Six serial CLI checks completed with exit 0. Every tested model has zero `history_incomplete` candidates, and the run logged zero `History coverage warning` entries. Five statuses and class-count dictionaries exactly match the published results. i2rt differs for the pinned-source and missing-mesh reasons recorded above; no claim of identical classification is made.
+
+| Model | Published status / classes | Cold status / classes |
+|---|---|---|
+| i2rt_yam | complete / {"NO MATCHING SOURCE": 4} | partial history / {"needs a human look": 1, "unknown": 6} |
+| kuka_iiwa_14 | complete / {"NO MATCHING SOURCE": 2} | complete / {"NO MATCHING SOURCE": 2} |
+| low_cost_robot_arm | complete / {"NO MATCHING SOURCE": 15} | complete / {"NO MATCHING SOURCE": 15} |
+| robotiq_2f85 | complete / {"NO MATCHING SOURCE": 1} | complete / {"NO MATCHING SOURCE": 1} |
+| robotiq_2f85_v4 | complete / {"NO MATCHING SOURCE": 1} | complete / {"NO MATCHING SOURCE": 1} |
+| unitree_go1 | complete / {"NO MATCHING SOURCE": 39} | complete / {"NO MATCHING SOURCE": 39} |
+
+Final per-source history-fetch totals (stored bytes, including pack indexes):
+
+- History fetch counts for https://github.com/google-deepmind/mujoco_menagerie: 1800 objects requested, 584281696 stored object bytes, 171 batches; caps 4096 objects / 2147483648 bytes.
+- History fetch counts for https://github.com/i2rt-robotics/i2rt: 33 objects requested, 9947765 stored object bytes, 5 batches; caps 4096 objects / 2147483648 bytes.
+- History fetch counts for https://github.com/RobotLocomotion/drake: 323 objects requested, 66230091 stored object bytes, 41 batches; caps 4096 objects / 2147483648 bytes.
+- History fetch counts for https://github.com/s1lent4gnt/koch-v1-1: 100 objects requested, 29902288 stored object bytes, 9 batches; caps 4096 objects / 2147483648 bytes.
+- History fetch counts for https://github.com/ros-industrial/robotiq: 17 objects requested, 3442166 stored object bytes, 5 batches; caps 4096 objects / 2147483648 bytes.
+- History fetch counts for https://github.com/unitreerobotics/unitree_ros: 24 objects requested, 10850168 stored object bytes, 3 batches; caps 4096 objects / 2147483648 bytes.
+
+- Measured project disk use including warm and cold caches: 4281094144 bytes; below the 15 GB project budget. No history object or byte cap was reached.
+
+- Restored the original warm cache to `.cache`; retained diagnostic cold results and clones under ignored `.cache-cold/`. No warm source contents were replaced.
+
+- Restored published artifacts with `git checkout -- report/ provenance/`; `git diff --exit-code -- report/ provenance/` passed. Saved results retain 20 STALE records and H1 NO MATCHING SOURCE at 51.437 versus 59.338012566 kg.
+
+- Final offline suite command: `env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 GIT_ALLOW_PROTOCOL= GIT_NO_LAZY_FETCH=1 nice -n 15 .venv/bin/python -m pytest -q`. Outcome: 83 passed in 13.80 seconds. A preceding full run also passed 83 tests; the final run additionally covers disabling core dumps when a bounded Git pack hits its file-size ceiling. No network was used for either test run.
+
+- Final review: `git diff --check` passed; workflow is manual only; warm/cold caches and the virtual environment are ignored. Author and committer both resolve to Dorian <263460420+sudorian@users.noreply.github.com>. The new commit uses message `Fix cold-cache history coverage and CI exit codes`; the existing public commit is retained as its parent. No push is performed.

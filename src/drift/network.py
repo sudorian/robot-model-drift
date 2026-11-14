@@ -5,6 +5,7 @@ import os
 import shlex
 import shutil
 import subprocess
+import resource
 from .publication import public_text
 
 
@@ -21,7 +22,21 @@ def disk_bytes():
     return int(subprocess.check_output(["du", "-sk", str(ROOT)], text=True).split()[0]) * 1024
 
 
-def network_git(args, purpose, input_text=None):
+def _file_size_limit(max_bytes):
+    """Bound each Git pack file while it is received, not just after fetch."""
+    # SIGXFSZ can terminate native Git helpers; a core dump must not consume
+    # the disk space reserved for receiving the bounded pack.
+    resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
+    _, hard = resource.getrlimit(resource.RLIMIT_FSIZE)
+    limit = max_bytes if hard == resource.RLIM_INFINITY else min(max_bytes, hard)
+    resource.setrlimit(resource.RLIMIT_FSIZE, (limit, limit))
+
+
+def object_store_bytes(directory):
+    return sum(p.stat().st_size for p in (Path(directory)/'.git/objects').rglob('*') if p.is_file())
+
+
+def network_git(args, purpose, input_text=None, max_pack_bytes=None):
     if not any(x in args for x in ("clone", "fetch")):
         raise ValueError("Only Git clone/fetch network operations are authorized")
     for value in args:
@@ -36,7 +51,8 @@ def network_git(args, purpose, input_text=None):
         log(f"Network command stdin object IDs: `{input_text.strip().replace(chr(10),' ')}`")
     try:
         result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True,
-                                input=input_text, env={**os.environ, "GIT_NO_LAZY_FETCH": "1"}, timeout=600)
+                                input=input_text, env={**os.environ, "GIT_NO_LAZY_FETCH": "1"}, timeout=600,
+                                preexec_fn=(lambda: _file_size_limit(max_pack_bytes)) if max_pack_bytes is not None else None)
     except subprocess.TimeoutExpired:
         log("Network command failed: exceeded 600-second timeout; no result inferred.")
         raise
@@ -76,14 +92,24 @@ def fetch_blobs(directory, limit="20m", ref="HEAD"):
                 f"retrieve omitted source/mesh blobs below {limit} for CPU compilation")
 
 
-def fetch_objects(directory,objects):
+def fetch_objects(directory,objects,max_pack_bytes=None):
     for oid in objects:
         if not __import__('re').fullmatch(r'[0-9a-f]{40}',oid):
             raise ValueError('Invalid Git object ID')
-    network_git(['-C',str(directory),'-c','fetch.negotiationAlgorithm=noop','fetch','origin','--no-tags',
+    network_git(['-C',str(directory),'-c','fetch.negotiationAlgorithm=noop',
+                 '-c','fetch.unpackLimit=1','-c','transfer.unpackLimit=1','fetch','origin','--no-tags',
                  '--no-write-fetch-head','--recurse-submodules=no','--filter=blob:none','--stdin'],
                 'retrieve only specifically required source/resource blobs using the promisor-fetch protocol',
-                '\n'.join(objects)+'\n')
+                '\n'.join(objects)+'\n',max_pack_bytes=max_pack_bytes)
+
+
+def fetch_revision(directory,revision):
+    if not __import__('re').fullmatch(r'[0-9a-f]{40}',revision):
+        raise ValueError('Explicit revision fetch requires a full commit SHA')
+    network_git(['-C',str(directory),'fetch','--no-tags','--filter=blob:none','origin',
+                 revision+':refs/drift/pins/'+revision],
+                'retrieve an explicitly documented source revision absent from advertised branch history',
+                max_pack_bytes=128*1024**2)
 
 
 def ensure_menagerie_texts(source,commit,allow_network=False):

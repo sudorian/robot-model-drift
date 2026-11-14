@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   survey:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 360
     env:
       OPENBLAS_NUM_THREADS: '1'
@@ -21,8 +21,8 @@ jobs:
       VECLIB_MAXIMUM_THREADS: '1'
       GIT_NO_LAZY_FETCH: '1'
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
       - name: Check disk and install pinned CPU dependencies
@@ -55,7 +55,7 @@ jobs:
           nice -n 15 ./drift cross-check
           nice -n 15 ./drift cross-check --all-stale
           du -sh .
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         if: always()
         with:
           name: robot-model-drift-report

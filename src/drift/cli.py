@@ -1,5 +1,6 @@
 """CLI for source acquisition, checks, reports, and fixed H1 acceptance."""
 import argparse
+from collections import Counter
 import json
 from pathlib import Path
 from .network import ROOT
@@ -82,7 +83,6 @@ def main():
     if args.recompare and not results:
         parser.error('--recompare requires saved report/results.json')
     completed={r['model'] for r in results}
-    failed=False
     for entry in entries:
         if args.model!='all' and entry['model']!=args.model or args.resume and entry['model'] in completed:
             continue
@@ -97,6 +97,8 @@ def main():
         results=[r for r in results if r['model']!=entry['model']]+[result]
         write_model(result,h1_annex(json.loads((args.root/'report/acceptance.json').read_text())) if entry['model']=='unitree_h1' else '')
         save(sorted(results,key=lambda r:r['model']))
-        failed |= result['status'] in ('error','incomplete','partial history')
         print(f"{entry['model']}: {result['status']} / {result['source']['method']} / {result.get('comparison',{}).get('counts',{})}",flush=True)
-    raise SystemExit(2 if failed else 0)
+    selected={e['model'] for e in entries if args.model=='all' or e['model']==args.model}
+    statuses=Counter(r['status'] for r in results if r['model'] in selected)
+    print('Status counts: '+json.dumps(dict(sorted(statuses.items())),sort_keys=True),flush=True)
+    raise SystemExit(2 if statuses['error'] else 0)

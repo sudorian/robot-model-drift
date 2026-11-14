@@ -167,7 +167,8 @@ class Runner:
                             pass
                 # A pinned historical file may have been moved or removed from HEAD.
                 if link.get('pinned'):
-                    paths=list(dict.fromkeys(candidate_paths(upstream,link['ref'],discovery_entry)+paths))
+                    pin=upstream.ensure_revision(link['ref'],allow_fetch=self.fetch)
+                    paths=list(dict.fromkeys(candidate_paths(upstream,pin,discovery_entry)+paths))
                 for upath in paths:
                     key=link['repo'],upath
                     if key in seen:
@@ -266,7 +267,7 @@ class Runner:
         if link.get('pinned'):
             psha=link['ref']
             try:
-                psha=u.git('rev-parse',link['ref']+'^{commit}').strip()
+                psha=u.ensure_revision(link['ref'],allow_fetch=self.fetch)
                 options=[]
                 pin_entry={**link,'model':name,'preferred_format':entry.get('preferred_format'),'menagerie_stems':[Path(p).stem for p in entry['menagerie_files']]}
                 for pin_path in candidate_paths(u,psha,pin_entry):
